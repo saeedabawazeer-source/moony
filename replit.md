@@ -78,3 +78,20 @@ Preferred communication style: Simple, everyday language.
 - **Carousel**: embla-carousel-react for image galleries and product showcases
 - **Forms**: React Hook Form with Hookform resolvers for form validation
 - **Command Interface**: cmdk for search and command palette functionality
+
+## Deployment Configuration
+
+### Static Deployment Fix
+**Issue**: Vite builds static files to `dist/public/` but Replit static deployment expects files directly in `dist/`
+
+**Solution**: Created post-build scripts to move files from `dist/public/` to `dist/` after build
+- `fix-deployment.sh`: Shell script for moving files after build
+- `scripts/build-for-deployment.js`: Node.js alternative script
+- Process: Run `npm run build` then `./fix-deployment.sh` before deployment
+
+**Architecture Decision**: Core configuration files (vite.config.ts, package.json, .replit) are locked and cannot be modified, requiring post-build fix approach
+
+### Deployment Process
+1. Build with `npm run build` (outputs to `dist/public/`)
+2. Run `./fix-deployment.sh` to move files to `dist/`
+3. Deploy via Replit interface - files now in expected location
