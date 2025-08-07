@@ -21,13 +21,10 @@ export default function Header() {
             <a href="#contact" className="text-gray-700 hover:text-coral transition-colors font-medium">Contact</a>
           </nav>
           
-          {/* Social Links */}
+          {/* Shopping Bag */}
           <div className="flex items-center space-x-4">
-            <a href="https://www.instagram.com/moonyswimwear" className="text-teal hover:text-coral transition-colors">
-              <i className="fab fa-instagram text-xl"></i>
-            </a>
-            <a href="https://www.instagram.com/moonyswimwear" className="text-teal hover:text-coral transition-colors">
-              <i className="fab fa-instagram text-xl"></i>
+            <a href="/checkout" className="text-teal hover:text-coral transition-colors">
+              <i className="fas fa-shopping-bag text-xl"></i>
             </a>
           </div>
           

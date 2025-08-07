@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 import type { Product, Collection } from "@shared/schema";
 
 interface ProductInfoProps {
@@ -92,22 +94,33 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
         </div>
       </div>
 
-      {/* Contact to Order */}
-      <div className={`${collection.color === 'coral' ? 'bg-coral' : 'bg-teal'} text-white p-6 rounded-2xl space-y-4`}>
-        <h3 className="text-xl font-semibold">Contact to Order</h3>
-        <div className="space-y-3">
-          <a href="mailto:contact@moonyswimwear.com" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <i className="fas fa-envelope"></i>
-            <span>contact@moonyswimwear.com</span>
-          </a>
-          <a href="tel:+1234567890" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <i className="fas fa-phone"></i>
-            <span>+1 (234) 567-890</span>
-          </a>
-          <a href="https://www.instagram.com/moonyswimwear" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <i className="fab fa-instagram"></i>
-            <span>@moonyswimwear</span>
-          </a>
+      {/* Order Actions */}
+      <div className="space-y-4">
+        <Link to="/checkout">
+          <Button 
+            className={`w-full ${collection.color === 'coral' ? 'bg-coral hover:bg-coral/90' : 'bg-teal hover:bg-teal/90'} text-white text-lg py-6`}
+          >
+            <i className="fas fa-shopping-bag mr-2"></i>
+            Add to Cart
+          </Button>
+        </Link>
+        
+        <div className={`${collection.color === 'coral' ? 'bg-coral' : 'bg-teal'} text-white p-6 rounded-2xl space-y-4`}>
+          <h3 className="text-xl font-semibold">Contact to Order</h3>
+          <div className="space-y-3">
+            <a href="mailto:contact@moonyswimwear.com" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <i className="fas fa-envelope"></i>
+              <span>contact@moonyswimwear.com</span>
+            </a>
+            <a href="tel:+1234567890" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <i className="fas fa-phone"></i>
+              <span>+1 (234) 567-890</span>
+            </a>
+            <a href="https://www.instagram.com/moonyswimwear" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <i className="fab fa-instagram"></i>
+              <span>@moonyswimwear</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
