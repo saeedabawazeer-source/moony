@@ -95,3 +95,12 @@ Preferred communication style: Simple, everyday language.
 1. Build with `npm run build` (outputs to `dist/public/`)
 2. Run `./fix-deployment.sh` to move files to `dist/`
 3. Deploy via Replit interface - files now in expected location
+
+### Static Data Solution
+**Issue**: Static deployment doesn't have access to backend API endpoints
+
+**Solution**: Implemented hybrid data loading with fallback to static data
+- Added static data files in `client/src/data/products.ts` that mirror server data
+- Modified Home component to try API first, fallback to static data on error
+- Ensures website works in both development (with API) and deployment (static)
+- No loading screens on deployed version - data loads immediately from static files

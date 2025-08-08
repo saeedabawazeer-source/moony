@@ -2,12 +2,21 @@
 
 ## Problem
 The deployment was failing because:
-- Vite builds static files to `dist/public/` directory
-- Replit static deployment expects files directly in `dist/` directory
-- Core configuration files (vite.config.ts, package.json, .replit) cannot be modified
+1. **Directory Structure**: Vite builds static files to `dist/public/` directory but Replit static deployment expects files directly in `dist/` directory
+2. **API Access**: Static deployment doesn't have access to backend API endpoints (`/api/products` and `/api/collections`)
+3. **Configuration Restrictions**: Core configuration files (vite.config.ts, package.json, .replit) cannot be modified
 
 ## Solution
-Created a post-build script that moves files from `dist/public/` to `dist/` to match Replit's expectations.
+Implemented a two-part solution:
+
+### 1. Directory Structure Fix
+Created post-build scripts that move files from `dist/public/` to `dist/` to match Replit's expectations.
+
+### 2. Static Data Fallback
+Added static data files and hybrid data loading to ensure the website works without backend APIs:
+- Created `client/src/data/products.ts` with static product and collection data
+- Modified the Home component to try API calls first, then fallback to static data
+- Eliminates loading screens on deployed version - data loads immediately
 
 ## How to Deploy
 

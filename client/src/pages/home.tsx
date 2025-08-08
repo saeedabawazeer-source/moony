@@ -5,18 +5,26 @@ import Footer from "@/components/layout/footer";
 import ProductGallery from "@/components/product/product-gallery";
 import ProductInfo from "@/components/product/product-info";
 import ProductHighlights from "@/components/product/product-highlights";
+import { products as staticProducts, collections as staticCollections } from "@/data/products";
 import type { Product, Collection } from "@shared/schema";
 
 export default function Home() {
   const [selectedCollection, setSelectedCollection] = useState("daydream");
   
-  const { data: products = [] } = useQuery<Product[]>({
+  // Try to fetch from API first, fallback to static data for deployment
+  const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
+    retry: 1,
   });
 
-  const { data: collections = [] } = useQuery<Collection[]>({
+  const { data: apiCollections, isError: collectionsError } = useQuery<Collection[]>({
     queryKey: ["/api/collections"],
+    retry: 1,
   });
+
+  // Use API data if available, otherwise use static data
+  const products = apiProducts && !productsError ? apiProducts : staticProducts;
+  const collections = apiCollections && !collectionsError ? apiCollections : staticCollections;
 
   const currentProduct = products.find(p => p.collection === selectedCollection) || products[0];
   const currentCollectionData = collections.find(c => c.id === selectedCollection) || collections[0];
