@@ -164,7 +164,7 @@ export default function Home() {
           <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
-            <div className="w-full relative h-[48vh] lg:h-[60vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
+            <div className="w-full relative h-[52vh] lg:h-[65vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
@@ -280,13 +280,13 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="flex gap-2 w-full">
-                  <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[9px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
+                <div className="flex gap-2 w-full pt-1">
+                  <button className="flex-1 py-4 lg:py-6 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
                     ADD TO CART
                   </button>
                   <button 
                     onClick={handleCheckout}
-                    className="flex-[2] btn-premium-gradient py-3 lg:py-5 text-[9px] lg:text-sm font-black shadow-lg uppercase tracking-widest leading-none"
+                    className="flex-[2] btn-premium-gradient py-4 lg:py-6 text-[11px] lg:text-base font-black shadow-lg uppercase tracking-widest leading-none"
                   >
                     PROCEED TO CHECKOUT
                   </button>
