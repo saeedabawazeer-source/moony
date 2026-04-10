@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import ProductGallery from "@/components/product/product-gallery";
-import ProductInfo from "@/components/product/product-info";
 import { products as staticProducts, collections as staticCollections } from "@/data/products";
 import type { Product, Collection } from "@shared/schema";
 
 export default function Home() {
+  const [, setLocation] = useLocation();
   const [selectedCollection, setSelectedCollection] = useState("daydream");
+  const [selectedSize, setSelectedSize] = useState("M");
   
   const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
@@ -47,6 +48,15 @@ export default function Home() {
 
   const scrollToShop = () => {
     document.getElementById('boutique-shop')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleCheckout = () => {
+    localStorage.setItem('moony_cart', JSON.stringify({ 
+      product: currentProduct.id, 
+      size: selectedSize, 
+      quantity: 1 
+    }));
+    setLocation('/checkout');
   };
 
   return (
@@ -90,41 +100,83 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Section 2: The Model interaction */}
-        <section id="boutique-shop" className="snap-slide px-4 lg:px-8">
-          <div className="max-w-5xl mx-auto w-full py-8 lg:py-12 space-y-6 lg:space-y-10">
-            <div className="flex justify-center gap-3 max-w-md mx-auto w-full">
+        {/* Section 2: The Cinematic Shop */}
+        <section id="boutique-shop" className="snap-slide px-4 lg:px-8 py-10 lg:py-16">
+          <div className="flex flex-col items-center max-w-xl mx-auto h-full justify-center space-y-6 lg:space-y-8">
+            
+            {/* 1. The Model Visual */}
+            <motion.div 
+              key={currentProduct.id}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="w-full aspect-[4/5] lg:aspect-[3/4] bg-[#fef8e1] rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden border border-[#5d4037]/10 shadow-2xl"
+            >
+              <img 
+                src={currentProduct.mainImage} 
+                alt={currentProduct.name} 
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            {/* 2. Collection Stars */}
+            <div className="flex space-x-8 items-center bg-white/40 backdrop-blur-sm px-8 py-3 rounded-full border border-white/20">
               {collections.map((collection) => (
-                <button 
+                <motion.button
                   key={collection.id}
+                  whileHover={{ scale: 1.2, rotate: 15 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => setSelectedCollection(collection.id)}
-                  className={`flex-1 py-3 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
-                    selectedCollection === collection.id 
-                      ? 'bg-[#5d4037] text-white border-[#5d4037] shadow-lg' 
-                      : 'bg-white/60 text-[#5d4037] border-transparent hover:border-[#5d4037]/10'
-                  }`}
+                  className={`relative p-2 transition-all duration-500 ${selectedCollection === collection.id ? 'opacity-100 scale-125' : 'opacity-30 grayscale hover:grayscale-0'}`}
                 >
-                  {collection.name}
-                </button>
+                  <img 
+                    src={collection.color === 'coral' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
+                    className="w-8 h-8 lg:w-10 lg:h-10"
+                    alt={`${collection.name} Star`}
+                  />
+                  {selectedCollection === collection.id && (
+                    <motion.div layoutId="activeStar" className="absolute -inset-1 border-2 border-[#5d4037]/10 rounded-full" />
+                  )}
+                </motion.button>
               ))}
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div 
-                key={selectedCollection}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            {/* 3. Branding & Selection */}
+            <div className="text-center space-y-2">
+              <h2 className="text-4xl lg:text-6xl font-serif font-black text-[#000000] tracking-tighter">
+                {currentProduct.name}
+              </h2>
+              <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-xs text-[#e5815c]">
+                5 PIECE SET
+              </p>
+            </div>
+
+            {/* 4. Purchase Block */}
+            <div className="w-full space-y-6 pt-2">
+              <div className="flex justify-center gap-3">
+                {currentProduct.sizes.map((size) => (
+                  <button 
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`w-12 h-12 lg:w-14 lg:h-14 rounded-2xl font-black text-sm lg:text-base border-2 transition-all ${
+                      selectedSize === size 
+                        ? 'bg-[#5d4037] text-white border-[#5d4037] scale-110 shadow-lg' 
+                        : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+              
+              <button 
+                onClick={handleCheckout}
+                className="btn-premium-gradient w-full py-6 lg:py-8 text-xl lg:text-2xl font-black shadow-2xl"
               >
-                <div className="w-full max-w-sm mx-auto aspect-[4/5] lg:aspect-auto">
-                  <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
-                </div>
-                <div className="w-full">
-                  <ProductInfo product={currentProduct} collection={currentCollectionData} />
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                PROCEED TO CHECKOUT
+              </button>
+            </div>
+
           </div>
         </section>
 
