@@ -45,42 +45,52 @@ export default function Home() {
     setSelectedCollection(prev => prev === "daydream" ? "aqua-glow" : "daydream");
   };
 
+  const scrollToShop = () => {
+    document.getElementById('boutique-shop')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="relative h-screen w-screen bg-[#ffecd9]">
-      {/* Static Global Frame */}
+      {/* Static Global Frame Border */}
       <div className="fixed-master-frame" />
 
-      {/* Internal Scrollable Content */}
+      {/* Internal Scrollable Content with Snapping */}
       <div className="internal-scroll-area">
-        <Header />
         
-        <main className="max-w-7xl mx-auto px-4 lg:px-8 space-y-32 py-24">
-          
-          {/* Section 1: Brand Hero */}
-          <motion.section 
+        {/* Section 1: The Brand */}
+        <section className="snap-slide">
+          <Header />
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center py-12"
+            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8"
           >
-            <h1 className="text-6xl lg:text-[7rem] leading-[0.85] tracking-tighter mb-8 font-black">
+            <h1 className="text-6xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-8 font-black">
               Embrace <br />
               <span className="text-[#ee786e] italic">Elegance.</span>
             </h1>
-            <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40 mb-12">
-              Premium Modest Boutique • Organic • Vegan
-            </p>
-            <div className="flex justify-center opacity-20">
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-px h-16 bg-[#5d4037]"
-              />
+            <div className="space-y-4 mb-12">
+              <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
+                Premium Modest Boutique • Organic • Vegan
+              </p>
+              <p className="font-serif font-black italic text-lg lg:text-3xl text-[#ee786e] tracking-tight">DESIGN IN JEDDAH</p>
             </div>
-          </motion.section>
+            
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={scrollToShop}
+              className="px-10 py-5 rounded-full bg-[#5d4037] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] shadow-2xl hover:bg-[#ee786e] transition-colors duration-500"
+            >
+              VIEW MODELS
+            </motion.button>
+          </motion.div>
+        </section>
 
-          {/* Section 2: Interaction/Shop */}
-          <section className="space-y-12">
+        {/* Section 2: The Model interaction */}
+        <section id="boutique-shop" className="snap-slide px-4 lg:px-8 py-24">
+          <div className="max-w-7xl mx-auto w-full space-y-12">
             <div className="flex justify-center gap-4 max-w-xl mx-auto w-full">
               {collections.map((collection) => (
                 <button 
@@ -101,41 +111,54 @@ export default function Home() {
               <motion.div 
                 key={selectedCollection}
                 initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start"
               >
-                <div className="lg:sticky lg:top-32">
+                <div className="w-full">
                   <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
                 </div>
-                <div className="space-y-12">
+                <div className="w-full">
                   <ProductInfo product={currentProduct} collection={currentCollectionData} />
-                  
-                  {/* Integrated Details */}
-                  <div className="bg-white/40 p-8 lg:p-12 rounded-[3rem] border border-[#5d4037]/5 space-y-8">
-                    <div className="space-y-2">
-                      <h4 className="font-black uppercase tracking-widest text-xs opacity-50 text-[#ee786e]">Boutique Breakdown</h4>
-                      <h3 className="text-3xl font-serif">What's in the box?</h3>
-                    </div>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {currentProduct.includes.map((item, i) => (
-                        <li key={i} className="flex items-center space-x-3 text-sm font-bold opacity-80">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#ee786e]"></div>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="pt-6 border-t border-[#5d4037]/5 font-medium opacity-60 italic text-sm">
-                      Recycled materials • Chlorine Resistant • UPF 50+
-                    </div>
-                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
-          </section>
+          </div>
+        </section>
 
-          <Footer />
-        </main>
+        {/* Section 3: The Details & Footer */}
+        <section className="snap-slide px-4 lg:px-8 py-24">
+          <div className="max-w-7xl mx-auto h-full flex flex-col justify-between">
+            <div className="max-w-4xl mx-auto w-full space-y-12 mb-12">
+              <div className="text-center space-y-4">
+                <h2 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter">Boutique Breakdown</h2>
+                <p className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] opacity-40 italic">Jeddah Precision • Italian Fabrics</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <div className="bg-white/40 p-10 rounded-[4rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
+                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Included Items</h4>
+                  <ul className="space-y-3">
+                    {currentProduct.includes.map((item, i) => (
+                      <li key={i} className="flex items-center space-x-3 text-sm font-bold opacity-80">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#ee786e]"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-[#a2ccb6]/10 p-10 rounded-[4rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
+                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Materials & Care</h4>
+                  <p className="text-sm lg:text-lg font-medium opacity-70 leading-relaxed italic">
+                    Designed in Jeddah with premium Italian Spandex. Breathable, quick-dry, and eco-certified.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Footer />
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -5,11 +5,11 @@ export default function Header() {
     <div className="sticky top-6 lg:top-10 z-[60] w-full px-4 lg:px-8">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         
-        {/* Logo Pill */}
+        {/* Logo (No Pill) */}
         <motion.div 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="floating-pill !px-3 !py-3 lg:!px-4 lg:!py-4"
+          className="flex items-center space-x-2 cursor-pointer group z-50"
         >
           <div className="flex items-center space-x-2 cursor-pointer group">
             <div className="w-8 h-8 lg:w-9 lg:h-9 bg-[#ee786e]/10 rounded-full flex items-center justify-center border border-[#ee786e]/20">
