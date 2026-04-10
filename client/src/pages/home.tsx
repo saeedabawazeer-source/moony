@@ -53,7 +53,7 @@ export default function Home() {
       
       <Header />
 
-      <main className="flex-grow pt-24 pb-16 lg:pt-36 lg:pb-32 relative">
+      <main className="flex-grow pt-16 pb-12 lg:pt-36 lg:pb-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Hero Section */}
@@ -61,24 +61,16 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8 lg:mb-16"
           >
-            <motion.span 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-teal font-medium tracking-[0.2em] uppercase text-xs mb-4 block"
-            >
-              New Season 2024
-            </motion.span>
-            <h1 className="text-5xl lg:text-7xl font-serif text-gray-900 leading-[1.1] tracking-tight">
+            <h1 className="text-3xl lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight">
               Embrace Elegance.<br/>
               <span className="text-gradient italic font-normal">Modest Swimwear.</span>
             </h1>
           </motion.div>
 
           {/* Collection Toggle */}
-          <div className="flex justify-center flex-wrap gap-4 lg:gap-8 mb-16 max-w-3xl mx-auto">
+          <div className="flex justify-center gap-3 lg:gap-8 mb-8 lg:mb-16 max-w-3xl mx-auto">
             {collections.map((collection, idx) => (
               <motion.div 
                 key={collection.id}
@@ -87,9 +79,9 @@ export default function Home() {
                 transition={{ delay: 0.2 + (idx * 0.1) }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center space-x-5 px-10 py-5 rounded-2xl cursor-pointer transition-colors duration-500 ${
+                className={`flex items-center space-x-3 lg:space-x-5 px-5 py-3 lg:px-10 lg:py-5 rounded-xl lg:rounded-2xl cursor-pointer transition-colors duration-500 flex-1 lg:flex-none justify-center ${
                   selectedCollection === collection.id 
-                    ? 'bg-white shadow-xl ring-2 ring-gray-900/5' 
+                    ? 'bg-white shadow-xl ring-1 ring-gray-900/5' 
                     : 'bg-white/40 hover:bg-white/60'
                 }`}
                 onClick={() => setSelectedCollection(collection.id)}

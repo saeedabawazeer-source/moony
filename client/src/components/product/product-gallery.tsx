@@ -56,9 +56,9 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
             src={product.images[currentImageIndex]} 
             alt={`${product.name} view`} 
             initial={{ opacity: 0 }}
-            animate={{ opacity: isLoaded ? 1 : 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             onLoad={() => setIsLoaded(true)}
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />

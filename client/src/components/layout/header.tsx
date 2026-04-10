@@ -9,18 +9,18 @@ export default function Header() {
       className="fixed w-full top-0 z-50 bg-[#EDE6D3] shadow-none border-none"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <motion.div 
             whileHover={{ scale: 1.02 }}
-            className="flex items-center space-x-3 cursor-pointer group"
+            className="flex items-center space-x-2 lg:space-x-3 cursor-pointer group"
           >
             <img 
               src="/images/starfish-coral.png" 
               alt="Moony Starfish Logo" 
-              className="w-10 h-10 group-hover:rotate-12 transition-transform duration-500"
+              className="w-8 h-8 lg:w-10 lg:h-10 group-hover:rotate-12 transition-transform duration-500"
             />
-            <span className="text-3xl font-serif font-bold text-gray-900 tracking-tight">moony</span>
+            <span className="text-2xl lg:text-3xl font-serif font-bold text-gray-900 tracking-tight">moony</span>
           </motion.div>
           
           {/* Navigation */}
@@ -41,14 +41,14 @@ export default function Header() {
           </nav>
           
           {/* Shopping Bag */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4 lg:space-x-6">
             <motion.a 
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               href="/checkout" 
-              className="group flex items-center justify-center w-12 h-12 rounded-full bg-white/50 hover:bg-white transition-all shadow-sm"
+              className="group flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/50 hover:bg-white transition-all shadow-sm"
             >
-              <i className="fas fa-shopping-bag text-gray-700 group-hover:text-teal transition-colors text-lg"></i>
+              <i className="fas fa-shopping-bag text-gray-700 group-hover:text-teal transition-colors text-base lg:text-lg"></i>
             </motion.a>
           </div>
         </div>
