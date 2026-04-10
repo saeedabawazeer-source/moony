@@ -27,7 +27,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
   return (
     <div className="space-y-6">
       {/* Main Image */}
-      <div className="relative bg-white rounded-[2.5rem] shadow-none overflow-hidden group">
+      <div className="relative bg-[#F7F6F2] rounded-2xl shadow-sm overflow-hidden group">
         <img 
           src="/images/starfish-coral.png" 
           alt="Starfish accent" 
@@ -58,8 +58,8 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         {product.images.map((image, index) => (
           <div 
             key={index}
-            className={`w-full aspect-square rounded-2xl overflow-hidden cursor-pointer border-[3px] transition-all duration-300 shadow-sm ${
-              index === currentImageIndex ? 'border-teal shadow-md scale-105' : 'border-transparent opacity-70 hover:opacity-100 hover:border-teal/40'
+            className={`w-full aspect-square rounded-xl overflow-hidden cursor-pointer border-[2px] transition-all duration-300 shadow-sm ${
+              index === currentImageIndex ? 'border-gray-900 shadow-md scale-100' : 'border-transparent opacity-60 hover:opacity-100 hover:border-gray-200'
             }`}
             onClick={() => selectThumbnail(index)}
           >
