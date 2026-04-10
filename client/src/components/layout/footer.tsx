@@ -1,37 +1,53 @@
+import { motion } from "framer-motion";
+
 export default function Footer() {
   return (
-    <footer className="bg-[#EDE6D3] text-gray-900 py-12 border-none shadow-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-6">
-          {/* Logo */}
-          <div className="flex justify-center items-center space-x-2">
-            <img 
-              src="/images/starfish-coral.png" 
-              alt="Moony Starfish Logo" 
-              className="w-8 h-8"
-            />
-            <span className="text-2xl font-serif font-semibold">moony</span>
-          </div>
-          
-          {/* Contact Info */}
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 text-gray-300">
-            <a href="mailto:contact@moonyswimwear.com" className="hover:text-coral transition-colors">
-              contact@moonyswimwear.com
-            </a>
-            <a href="tel:+1234567890" className="hover:text-coral transition-colors">
-              +1 (234) 567-890
-            </a>
+    <footer className="bg-[#ee786e] text-white py-16 border-t-[1.5px] border-[#5d4037]/10 relative overflow-hidden">
+      {/* Decorative Blob */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center md:text-left">
+          {/* Logo & About */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-center md:justify-start space-x-3">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md border border-[#5d4037]/5">
+                <img 
+                  src="/images/starfish-coral.png" 
+                  alt="Moony Logo" 
+                  className="w-6 h-6"
+                />
+              </div>
+              <span className="text-3xl font-serif font-black tracking-tighter">moony</span>
+            </div>
+            <p className="font-sans font-bold text-[10px] uppercase tracking-[0.2em] opacity-80 leading-loose">
+              Positively Natural • Vegan <br />
+              Hand-Packed with Love
+            </p>
           </div>
           
           {/* Social Links */}
-          <div className="flex justify-center space-x-6">
-            <a href="https://www.instagram.com/moonyswimwear" className="text-gray-300 hover:text-coral transition-colors">
-              <i className="fab fa-instagram text-2xl"></i>
-            </a>
+          <div className="flex justify-center space-x-8">
+            <motion.a whileHover={{ y: -5 }} href="#" className="transition-transform">
+              <i className="fab fa-instagram text-2xl lg:text-3xl"></i>
+            </motion.a>
+            <motion.a whileHover={{ y: -5 }} href="#" className="transition-transform">
+              <i className="fab fa-tiktok text-2xl lg:text-3xl"></i>
+            </motion.a>
+            <motion.a whileHover={{ y: -5 }} href="#" className="transition-transform">
+              <i className="fab fa-pinterest text-2xl lg:text-3xl"></i>
+            </motion.a>
           </div>
           
-          <div className="border-t border-gray-700 pt-6 text-gray-400 text-sm">
-            <p>&copy; 2024 Moony Swimwear. All rights reserved.</p>
+          {/* Contact */}
+          <div className="space-y-4 md:text-right">
+            <p className="font-sans font-black uppercase tracking-widest text-[9px] opacity-60">Get in touch</p>
+            <a href="mailto:hello@moonyswimwear.com" className="block text-xl font-serif italic hover:underline">
+              hello@moonyswimwear.com
+            </a>
+            <p className="text-[9px] font-bold opacity-40 uppercase tracking-widest leading-loose">
+              &copy; 2024 Moony Boutique. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

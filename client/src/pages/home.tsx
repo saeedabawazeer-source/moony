@@ -46,72 +46,76 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EDE6D3] flex flex-col relative overflow-x-hidden text-gray-900">
-      {/* Decorative Radial Background */}
-      <div className="fixed inset-0 pointer-events-none opacity-40" 
-           style={{ background: 'radial-gradient(circle at 50% 50%, #ffffff 0%, transparent 70%)' }}></div>
+    <div className="min-h-screen bg-[#ffecd9] flex flex-col relative overflow-x-hidden text-[#5d4037]">
+      {/* Whimsical Floating Starfish */}
+      <motion.img 
+        src="/images/starfish-coral.png"
+        className="fixed top-32 -left-12 w-32 h-32 opacity-10 animate-bop pointer-events-none"
+      />
+      <motion.img 
+        src="/images/starfish-teal.png"
+        className="fixed bottom-24 -right-12 w-48 h-48 opacity-10 animate-bop pointer-events-none"
+        style={{ animationDelay: '1s' }}
+      />
       
       <Header />
 
-      <main className="flex-grow flex flex-col justify-center pt-10 pb-2 lg:pt-36 lg:pb-32 relative overflow-y-auto lg:overflow-visible">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <main className="flex-grow pt-24 lg:pt-32 pb-12 lg:pb-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
           
-          {/* Hero Section */}
+          {/* Boutique Hero */}
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-4 lg:mb-16"
+            className="text-center mb-12 lg:mb-20"
           >
-            <h1 className="text-lg lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight whitespace-nowrap opacity-80">
-              Embrace Elegance. <span className="text-gradient italic font-normal">Modest Swimwear.</span>
+            <h1 className="text-4xl lg:text-8xl leading-[0.9] tracking-tighter mb-4">
+              Embrace Elegance. <br />
+              <span className="italic font-light text-[#ee786e]">Modest Boutique.</span>
             </h1>
+            <p className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] lg:text-xs opacity-60">
+              Positively Natural • Vegan • Hand-Packed
+            </p>
           </motion.div>
 
-          {/* Collection Toggle */}
-          <div className="flex justify-center gap-2 lg:gap-8 mb-4 lg:mb-16 max-w-xl mx-auto">
-            {collections.map((collection, idx) => (
-              <motion.div 
+          {/* Boutique Toggle */}
+          <div className="flex justify-center gap-3 mb-16 max-w-xl mx-auto">
+            {collections.map((collection) => (
+              <button 
                 key={collection.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 + (idx * 0.05) }}
-                whileTap={{ scale: 0.98 }}
-                className={`flex items-center space-x-2 lg:space-x-5 px-4 py-2 lg:px-10 lg:py-5 rounded-lg lg:rounded-2xl cursor-pointer transition-all duration-300 flex-1 lg:flex-none justify-center ${
-                  selectedCollection === collection.id 
-                    ? 'bg-white shadow-lg ring-1 ring-gray-900/5 translate-y-[-2px]' 
-                    : 'bg-white/30 hover:bg-white/50'
-                }`}
                 onClick={() => setSelectedCollection(collection.id)}
+                className={`flex-1 py-3 lg:py-4 rounded-full font-bold text-xs lg:text-sm uppercase tracking-widest transition-all duration-500 border-2 ${
+                  selectedCollection === collection.id 
+                    ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-xl' 
+                    : 'bg-white/40 text-[#5d4037] border-[#5d4037]/10 hover:border-[#5d4037]/40'
+                }`}
               >
-                <img 
-                  src={collection.icon} 
-                  alt={collection.name} 
-                  className={`w-5 h-5 lg:w-8 lg:h-8 object-contain transition-transform duration-500 ${selectedCollection === collection.id ? 'rotate-12' : ''}`}
-                />
-                <span className={`font-serif font-bold text-sm lg:text-lg tracking-wide ${selectedCollection === collection.id ? 'opacity-100' : 'opacity-40'}`}>
-                  {collection.name}
-                </span>
-              </motion.div>
+                {collection.name}
+              </button>
             ))}
           </div>
 
-          {/* Featured Product Card */}
+          {/* Asymmetric Product Display */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={selectedCollection}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white rounded-[1.5rem] lg:rounded-[2rem] p-4 lg:p-16 border border-white/50 shadow-xl overflow-hidden"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.6, ease: "circOut" }}
+              className="relative"
             >
-              <div className="grid lg:grid-cols-2 gap-6 lg:gap-24 items-start">
-                <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
+              <div className="flex flex-col lg:flex-row items-center lg:items-start lg:gap-0">
+                {/* Gallery - The Base */}
+                <div className="w-full lg:w-[60%] z-10 boutique-card p-0 overflow-hidden rounded-[3rem]">
+                  <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
+                </div>
+
+                {/* Info Card - The Overlay */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 20 }}
+                  className="w-[92%] lg:w-[45%] -mt-12 lg:mt-24 lg:-ml-24 z-20 boutique-card p-8 lg:p-12"
                 >
                   <ProductInfo product={currentProduct} collection={currentCollectionData} />
                 </motion.div>
@@ -122,9 +126,7 @@ export default function Home() {
         </div>
       </main>
 
-      <div className="hidden lg:block">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
