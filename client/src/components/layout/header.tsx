@@ -11,7 +11,7 @@ export default function Header() {
           animate={{ x: 0, opacity: 1 }}
           className="flex justify-start"
         >
-          <a href="#" className="font-sans font-black text-xl lg:text-2xl text-[#000000] hover:text-[#e5815c] transition-all border-b-2 border-[#000000]/5 pb-1 uppercase tracking-widest">
+          <a href="#" className="font-sans font-black text-xl lg:text-2xl text-[#5d4037] hover:text-[#e5815c] transition-all uppercase tracking-widest">
             ع
           </a>
         </motion.div>

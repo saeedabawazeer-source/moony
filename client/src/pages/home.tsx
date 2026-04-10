@@ -76,13 +76,47 @@ export default function Home() {
       <div className="internal-scroll-area">
         
         {/* Section 1: The Brand */}
-        <section className="snap-slide">
+        <section className="snap-slide relative overflow-hidden">
           <Header />
+          
+          {/* Ambient Animated Starfish */}
+          <motion.img 
+            src="/images/starfish-coral.png"
+            className="absolute top-[20%] right-[10%] w-12 lg:w-20 opacity-20 hidden lg:block"
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 15, 0],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img 
+            src="/images/starfish-teal.png"
+            className="absolute bottom-[25%] left-[15%] w-16 lg:w-24 opacity-15"
+            animate={{ 
+              y: [0, 25, 0],
+              rotate: [0, -10, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img 
+            src="/images/starfish-coral.png"
+            className="absolute top-[40%] left-[5%] w-10 lg:w-16 opacity-10"
+            animate={{ 
+              x: [0, 15, 0],
+              rotate: [0, 360],
+            }}
+            transition={{ 
+              x: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 40, repeat: Infinity, ease: "linear" }
+            }}
+          />
+
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8"
+            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
             <h1 className="text-6xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-8 font-black">
               Embrace <br />
@@ -90,7 +124,7 @@ export default function Home() {
             </h1>
             <div className="space-y-4 mb-12">
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
-                Premium Modest Boutique • Organic • Vegan
+                Premium Modest Boutique
               </p>
               <p className="font-serif font-black italic text-lg lg:text-3xl text-[#e5815c] tracking-tight">DESIGN IN JEDDAH</p>
             </div>
