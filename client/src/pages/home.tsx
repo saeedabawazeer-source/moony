@@ -46,7 +46,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-[100dvh] lg:min-h-screen bg-[#EDE6D3] flex flex-col relative overflow-hidden text-gray-900">
+    <div className="min-h-screen bg-[#EDE6D3] flex flex-col relative overflow-x-hidden text-gray-900">
       {/* Decorative Radial Background */}
       <div className="fixed inset-0 pointer-events-none opacity-40" 
            style={{ background: 'radial-gradient(circle at 50% 50%, #ffffff 0%, transparent 70%)' }}></div>

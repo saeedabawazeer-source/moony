@@ -41,7 +41,7 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
   return (
     <div className="space-y-4 lg:space-y-6">
       {/* Main Image Container */}
-      <div className="relative bg-[#EDE6D3] rounded-2xl shadow-sm overflow-hidden h-[30vh] lg:h-[600px] group transition-all duration-500">
+      <div className="relative bg-[#EDE6D3] rounded-2xl shadow-sm overflow-hidden h-[30vh] lg:h-[70vh] lg:max-h-[800px] group transition-all duration-500">
         
         {/* Loading Skeleton */}
         {!isLoaded && (
