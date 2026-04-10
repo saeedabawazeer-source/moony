@@ -82,7 +82,7 @@ export default function Home() {
           {/* Ambient Animated Starfish */}
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[20%] right-[10%] w-12 lg:w-20 opacity-20 hidden lg:block"
+            className="absolute top-[20%] right-[10%] w-12 lg:w-20 hidden lg:block"
             animate={{ 
               y: [0, -20, 0],
               rotate: [0, 15, 0],
@@ -92,7 +92,7 @@ export default function Home() {
           />
           <motion.img 
             src="/images/starfish-teal.png"
-            className="absolute bottom-[25%] left-[15%] w-16 lg:w-24 opacity-15"
+            className="absolute bottom-[25%] left-[15%] w-16 lg:w-24"
             animate={{ 
               y: [0, 25, 0],
               rotate: [0, -10, 0]
@@ -101,7 +101,7 @@ export default function Home() {
           />
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[40%] left-[5%] w-10 lg:w-16 opacity-10"
+            className="absolute top-[40%] left-[5%] w-10 lg:w-16"
             animate={{ 
               x: [0, 15, 0],
               rotate: [0, 360],
@@ -142,10 +142,10 @@ export default function Home() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden">
-          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-4 lg:space-y-6">
+          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4">
             
-            {/* 1. Swipeable Model Visual (Rounded All Sides - Longer Frame) */}
-            <div className="w-full relative h-[50vh] lg:h-[60vh] overflow-hidden rounded-[2.5rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
+            {/* 1. Swipeable Model Visual (Matched Frame Rounding) */}
+            <div className="w-full relative h-[42vh] lg:h-[55vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
@@ -200,24 +200,24 @@ export default function Home() {
                 </motion.button>
               ))}
 
-              <div className="space-y-2 text-left">
-                <p className="font-sans font-black uppercase tracking-[0.5em] text-[10px] lg:text-xs text-[#e5815c]">
+              <div className="space-y-1 text-left">
+                <p className="font-sans font-black uppercase tracking-[0.5em] text-[9px] text-[#e5815c]">
                   5 PIECE SET
                 </p>
-                <h2 className="text-4xl lg:text-6xl font-serif font-black text-[#000000] tracking-tighter leading-none">
+                <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-none">
                   {currentProduct.name}
                 </h2>
-                <p className="text-2xl lg:text-4xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
+                <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
               </div>
 
               {/* 3. Purchase Block */}
-              <div className="w-full space-y-5 lg:space-y-8 pb-8">
-                <div className="flex justify-start gap-3">
+              <div className="w-full space-y-3 lg:space-y-5 pb-6">
+                <div className="flex justify-start gap-2">
                   {currentProduct.sizes.map((size) => (
                     <button 
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-12 h-12 lg:w-16 lg:h-16 rounded-2xl font-black text-sm lg:text-base border-2 transition-all ${
+                      className={`w-10 h-10 lg:w-14 lg:h-14 rounded-2xl font-black text-xs lg:text-sm border-2 transition-all ${
                         selectedSize === size 
                           ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-md' 
                           : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
@@ -228,13 +228,13 @@ export default function Home() {
                   ))}
                 </div>
                 
-                <div className="flex gap-4 w-full">
-                  <button className="flex-1 py-4 lg:py-6 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-xs lg:text-base font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest">
+                <div className="flex gap-3 w-full">
+                  <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
                     ADD TO CART
                   </button>
                   <button 
                     onClick={handleCheckout}
-                    className="flex-[2] btn-premium-gradient py-4 lg:py-6 text-xs lg:text-base font-black shadow-lg uppercase tracking-widest"
+                    className="flex-[2] btn-premium-gradient py-3 lg:py-5 text-[10px] lg:text-sm font-black shadow-lg uppercase tracking-widest leading-none"
                   >
                     PROCEED TO CHECKOUT
                   </button>
