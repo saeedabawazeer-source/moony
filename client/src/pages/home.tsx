@@ -41,32 +41,50 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50/50">
       <Header />
       
       <main>
         {/* Hero Section with Collection Showcase */}
-        <section id="home" className="bg-white py-12 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl lg:text-6xl font-serif font-semibold text-gray-900 mb-6 italic">
-                Modest Swimwear Collection
+        <section id="home" className="relative overflow-hidden bg-gradient-to-br from-[#f8fdfe] via-[#f0fafb] to-[#fceceb] pt-24 pb-16 lg:pt-36 lg:pb-24">
+          {/* Decorative floating background elements */}
+          <div className="absolute top-10 left-10 w-64 h-64 bg-teal/5 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-coral/5 rounded-full blur-3xl animate-float-delayed"></div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16 animate-fade-in-up">
+              <span className="text-teal font-medium tracking-widest uppercase text-sm mb-4 block">New Season</span>
+              <h1 className="text-5xl lg:text-7xl font-serif text-gray-900 mb-6 leading-tight">
+                Embrace Elegance.<br/><span className="text-gradient italic">Modest Swimwear.</span>
               </h1>
+              <p className="max-w-2xl mx-auto text-gray-600 text-lg lg:text-xl">
+                Premium fabrics and exquisite tailoring designed for the modern woman who refuses to compromise on style or coverage.
+              </p>
+            </div>
               
               {/* Collection Options */}
-              <div className="flex justify-center space-x-8 lg:space-x-16 mb-12">
-                {collections.map((collection) => (
+              <div className="flex justify-center flex-wrap gap-6 lg:gap-10 mb-8 max-w-3xl mx-auto">
+                {collections.map((collection, idx) => (
                   <div 
                     key={collection.id}
-                    className="text-center group cursor-pointer" 
+                    className="flex flex-col items-center group cursor-pointer animate-fade-in-up"
+                    style={{ animationDelay: `${0.2 + (idx * 0.1)}s` }}
                     onClick={() => setSelectedCollection(collection.id)}
                   >
-                    <img 
-                      src={collection.icon} 
-                      alt={`${collection.name} Collection`} 
-                      className="w-16 h-16 mx-auto mb-2 group-hover:scale-110 transition-transform"
-                    />
-                    <span className={`font-medium text-lg ${collection.color === 'coral' ? 'text-coral' : 'text-teal'}`}>
+                    <div className={`p-5 rounded-2xl transition-all duration-500 mb-4 ${
+                      selectedCollection === collection.id 
+                        ? 'bg-white shadow-xl scale-110 border-b-4 border-teal' 
+                        : 'glass-panel hover:scale-105 hover:bg-white/90'
+                    }`}>
+                      <img 
+                        src={collection.icon} 
+                        alt={`${collection.name} Collection`} 
+                        className="w-14 h-14 object-contain"
+                      />
+                    </div>
+                    <span className={`font-serif font-medium text-xl tracking-wide ${
+                      collection.color === 'coral' ? 'text-coral' : 'text-teal'
+                    } ${selectedCollection === collection.id ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'}`}>
                       {collection.name}
                     </span>
                   </div>

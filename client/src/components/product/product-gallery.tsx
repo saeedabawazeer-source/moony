@@ -27,11 +27,11 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
   return (
     <div className="space-y-6">
       {/* Main Image */}
-      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+      <div className="relative bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)] overflow-hidden group">
         <img 
-          src="https://v0-moony.vercel.app/images/starfish-coral.png" 
+          src="/images/starfish-coral.png" 
           alt="Starfish accent" 
-          className="absolute top-4 left-4 w-8 h-8 z-10"
+          className="absolute top-6 left-6 w-10 h-10 z-10 opacity-80"
         />
         <img 
           src={product.images[currentImageIndex]} 
@@ -40,13 +40,13 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         />
         {/* Navigation arrows */}
         <button 
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 glass-panel hover:bg-white rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
           onClick={previousImage}
         >
           <i className="fas fa-chevron-left text-gray-700"></i>
         </button>
         <button 
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 glass-panel hover:bg-white rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
           onClick={nextImage}
         >
           <i className="fas fa-chevron-right text-gray-700"></i>
@@ -60,8 +60,8 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
             key={index}
             src={image} 
             alt={`${product.name} thumbnail ${index + 1}`} 
-            className={`w-full h-20 object-cover rounded-lg cursor-pointer border-2 shadow-sm transition-colors ${
-              index === currentImageIndex ? 'border-coral' : 'border-transparent hover:border-coral'
+            className={`w-full h-24 object-cover rounded-2xl cursor-pointer border-[3px] shadow-sm transition-all duration-300 hover:shadow-md ${
+              index === currentImageIndex ? 'border-teal opacity-100 scale-105' : 'border-transparent opacity-60 hover:opacity-100 hover:border-teal/50'
             }`}
             onClick={() => selectThumbnail(index)}
           />
