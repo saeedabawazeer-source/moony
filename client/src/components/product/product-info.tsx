@@ -26,28 +26,28 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 lg:space-y-8">
       {/* Product Header */}
-      <div className="flex items-center space-x-3 mb-4">
+      <div className="flex items-center space-x-3 mb-2 lg:mb-4">
         <img 
           src={collection.icon} 
           alt="Starfish accent" 
-          className="w-6 h-6"
+          className="w-5 h-5 lg:w-6 lg:h-6"
         />
-        <h2 className={`text-3xl lg:text-5xl font-serif font-bold ${collection.color === 'coral' ? 'text-coral' : 'text-teal'}`}>
+        <h2 className={`text-2xl lg:text-5xl font-serif font-bold ${collection.color === 'coral' ? 'text-coral' : 'text-teal'}`}>
           {product.name}
         </h2>
       </div>
       
       <div className="flex items-center space-x-4">
-        <span className="text-4xl font-bold text-gray-900">SAR {product.price}</span>
-        <span className={`px-4 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase ${collection.color === 'coral' ? 'bg-coral-light text-coral' : 'bg-teal-light text-teal'}`}>
+        <span className="text-2xl lg:text-4xl font-bold text-gray-900">SAR {product.price}</span>
+        <span className={`px-3 py-1 lg:px-4 lg:py-1.5 rounded-full text-xs lg:text-sm font-bold tracking-wider uppercase ${collection.color === 'coral' ? 'bg-coral-light text-coral' : 'bg-teal-light text-teal'}`}>
           Complete Set
         </span>
-      </div>
+      </div> 
 
-      {/* Set Includes */}
-      <div className="bg-[#FAF9F6] p-6 rounded-2xl border border-[#EAE6E1]">
+      {/* Set Includes - Hidden on mobile to save space */}
+      <div className="hidden lg:block bg-[#FAF9F6] p-6 rounded-2xl border border-[#EAE6E1]">
         <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Set Includes</h3>
         <ul className="grid grid-cols-2 gap-3">
           {product.includes.map((item, index) => (
@@ -60,13 +60,13 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
       </div>
 
       {/* Size Selection */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-bold text-gray-900">Size</h3>
-        <div className="flex space-x-3">
+      <div className="space-y-2 lg:space-y-4">
+        <h3 className="text-sm lg:text-lg font-bold text-gray-900 uppercase lg:normal-case tracking-widest lg:tracking-normal">Size</h3>
+        <div className="flex space-x-2 lg:space-x-3">
           {product.sizes.map((size) => (
             <button 
               key={size}
-              className={`w-14 h-14 border-[2px] rounded-xl font-medium text-lg transition-all duration-300 flex items-center justify-center ${
+              className={`w-10 h-10 lg:w-14 lg:h-14 border-[2px] rounded-lg lg:rounded-xl font-medium text-base lg:text-lg transition-all duration-300 flex items-center justify-center ${
                 selectedSize === size 
                   ? 'border-gray-900 bg-gray-900 text-white shadow-md'
                   : 'border-gray-200 text-gray-600 bg-white hover:border-gray-900 hover:text-gray-900'
@@ -79,29 +79,18 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
         </div>
       </div>
 
-      {/* Quantity & Order Actions */}
-      <div className="flex flex-col sm:flex-row gap-4 pt-4">
-        <div className="flex items-center space-x-4 bg-white px-4 py-2 rounded-xl border border-gray-200 w-full sm:w-auto justify-center shadow-sm">
-          <button 
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer text-gray-500 hover:text-gray-900"
-            onClick={decreaseQuantity}
-          >
-            <i className="fas fa-minus"></i>
-          </button>
-          <span className="text-xl font-semibold w-8 text-center text-gray-900">{quantity}</span>
-          <button 
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer text-gray-500 hover:text-gray-900"
-            onClick={increaseQuantity}
-          >
-            <i className="fas fa-plus"></i>
-          </button>
+      {/* Action Buttons */}
+      <div className="flex gap-3 pt-2 lg:pt-6">
+        <div className="hidden sm:flex items-center space-x-4 bg-white px-4 py-2 rounded-xl border border-gray-200 shadow-sm">
+          <button onClick={decreaseQuantity} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100"><i className="fas fa-minus text-xs"></i></button>
+          <span className="text-lg font-semibold w-6 text-center">{quantity}</span>
+          <button onClick={increaseQuantity} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100"><i className="fas fa-plus text-xs"></i></button>
         </div>
 
         <Button 
           onClick={handleBuyNow}
-          className="flex-1 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg bg-gray-900 hover:bg-gray-800 text-white text-lg py-7 font-serif tracking-wide"
+          className="flex-1 rounded-xl shadow-lg bg-gray-900 hover:bg-gray-800 text-white text-base lg:text-lg py-5 lg:py-7 font-serif tracking-wide"
         >
-          <i className="fas fa-lock mr-3 opacity-70"></i>
           Secure Checkout
         </Button>
       </div>

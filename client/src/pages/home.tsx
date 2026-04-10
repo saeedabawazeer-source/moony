@@ -46,52 +46,51 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EDE6D3] flex flex-col relative overflow-x-hidden text-gray-900">
+    <div className="h-[100dvh] lg:min-h-screen bg-[#EDE6D3] flex flex-col relative overflow-hidden text-gray-900">
       {/* Decorative Radial Background */}
       <div className="fixed inset-0 pointer-events-none opacity-40" 
            style={{ background: 'radial-gradient(circle at 50% 50%, #ffffff 0%, transparent 70%)' }}></div>
       
       <Header />
 
-      <main className="flex-grow pt-16 pb-12 lg:pt-36 lg:pb-32 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <main className="flex-grow flex flex-col justify-center pt-14 pb-4 lg:pt-36 lg:pb-32 relative overflow-y-auto lg:overflow-visible">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
           {/* Hero Section */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-8 lg:mb-16"
+            transition={{ duration: 0.6 }}
+            className="text-center mb-4 lg:mb-16"
           >
-            <h1 className="text-3xl lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight">
-              Embrace Elegance.<br/>
+            <h1 className="text-2xl lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight">
+              Embrace Elegance.<br className="hidden lg:block" />
               <span className="text-gradient italic font-normal">Modest Swimwear.</span>
             </h1>
           </motion.div>
 
           {/* Collection Toggle */}
-          <div className="flex justify-center gap-3 lg:gap-8 mb-8 lg:mb-16 max-w-3xl mx-auto">
+          <div className="flex justify-center gap-2 lg:gap-8 mb-4 lg:mb-16 max-w-xl mx-auto">
             {collections.map((collection, idx) => (
               <motion.div 
                 key={collection.id}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 + (idx * 0.1) }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.95 }}
-                className={`flex items-center space-x-3 lg:space-x-5 px-5 py-3 lg:px-10 lg:py-5 rounded-xl lg:rounded-2xl cursor-pointer transition-colors duration-500 flex-1 lg:flex-none justify-center ${
+                transition={{ delay: 0.1 + (idx * 0.05) }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center space-x-2 lg:space-x-5 px-4 py-2 lg:px-10 lg:py-5 rounded-lg lg:rounded-2xl cursor-pointer transition-all duration-300 flex-1 lg:flex-none justify-center ${
                   selectedCollection === collection.id 
-                    ? 'bg-white shadow-xl ring-1 ring-gray-900/5' 
-                    : 'bg-white/40 hover:bg-white/60'
+                    ? 'bg-white shadow-lg ring-1 ring-gray-900/5 translate-y-[-2px]' 
+                    : 'bg-white/30 hover:bg-white/50'
                 }`}
                 onClick={() => setSelectedCollection(collection.id)}
               >
                 <img 
                   src={collection.icon} 
                   alt={collection.name} 
-                  className={`w-8 h-8 object-contain transition-transform duration-700 ${selectedCollection === collection.id ? 'rotate-12' : ''}`}
+                  className={`w-5 h-5 lg:w-8 lg:h-8 object-contain transition-transform duration-500 ${selectedCollection === collection.id ? 'rotate-12' : ''}`}
                 />
-                <span className={`font-serif font-bold text-lg tracking-wide ${selectedCollection === collection.id ? 'opacity-100' : 'opacity-40'}`}>
+                <span className={`font-serif font-bold text-sm lg:text-lg tracking-wide ${selectedCollection === collection.id ? 'opacity-100' : 'opacity-40'}`}>
                   {collection.name}
                 </span>
               </motion.div>
@@ -102,18 +101,18 @@ export default function Home() {
           <AnimatePresence mode="wait">
             <motion.div 
               key={selectedCollection}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white rounded-[2rem] p-8 lg:p-16 border border-white/50 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.05)]"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white rounded-[1.5rem] lg:rounded-[2rem] p-4 lg:p-16 border border-white/50 shadow-xl overflow-hidden"
             >
-              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+              <div className="grid lg:grid-cols-2 gap-6 lg:gap-24 items-start">
                 <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
                 >
                   <ProductInfo product={currentProduct} collection={currentCollectionData} />
                 </motion.div>
@@ -124,7 +123,9 @@ export default function Home() {
         </div>
       </main>
 
-      <Footer />
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
     </div>
   );
 }

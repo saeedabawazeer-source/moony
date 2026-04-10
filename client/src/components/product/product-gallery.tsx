@@ -39,9 +39,9 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 lg:space-y-6">
       {/* Main Image Container */}
-      <div className="relative bg-[#F3EFE0] rounded-2xl shadow-sm overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px] group transition-all duration-500">
+      <div className="relative bg-[#EDE6D3] rounded-2xl shadow-sm overflow-hidden h-[35vh] lg:h-[600px] group transition-all duration-500">
         
         {/* Loading Skeleton */}
         {!isLoaded && (
@@ -58,8 +58,10 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5 }}
             onLoad={() => setIsLoaded(true)}
+            fetchpriority="high"
+            loading="eager"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
         </AnimatePresence>
@@ -68,33 +70,32 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
         <motion.img 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.9 }}
-          whileHover={{ scale: 1.1, rotate: 15 }}
           whileTap={{ scale: 0.9 }}
           src={product.collection === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
           alt="Starfish collection toggle" 
-          className="absolute top-8 left-8 w-12 h-12 z-20 cursor-pointer drop-shadow-md"
+          className="absolute top-4 left-4 lg:top-8 lg:left-8 w-8 h-8 lg:w-12 lg:h-12 z-20 cursor-pointer drop-shadow-md"
           onClick={onStarClick}
         />
 
         {/* Navigation arrows */}
-        <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20">
+        <div className="absolute inset-x-4 lg:inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20">
           <button 
-            className="pointer-events-auto bg-white/20 backdrop-blur-md hover:bg-white/40 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/30"
+            className="pointer-events-auto bg-white/20 backdrop-blur-md hover:bg-white/40 text-gray-900 rounded-full w-8 h-8 lg:w-12 lg:h-12 flex items-center justify-center opacity-0 lg:group-hover:opacity-100 transition-all duration-300 border border-white/30"
             onClick={previousImage}
           >
-            <i className="fas fa-chevron-left"></i>
+            <i className="fas fa-chevron-left text-xs lg:text-base"></i>
           </button>
           <button 
-            className="pointer-events-auto bg-white/20 backdrop-blur-md hover:bg-white/40 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/30"
+            className="pointer-events-auto bg-white/20 backdrop-blur-md hover:bg-white/40 text-gray-900 rounded-full w-8 h-8 lg:w-12 lg:h-12 flex items-center justify-center opacity-0 lg:group-hover:opacity-100 transition-all duration-300 border border-white/30"
             onClick={nextImage}
           >
-            <i className="fas fa-chevron-right"></i>
+            <i className="fas fa-chevron-right text-xs lg:text-base"></i>
           </button>
         </div>
       </div>
       
-      {/* Thumbnail Grid */}
-      <div className="grid grid-cols-4 gap-4 px-2">
+      {/* Thumbnail Grid - Hidden on mobile to save space */}
+      <div className="hidden lg:grid grid-cols-4 gap-4 px-2">
         {product.images.map((image, index) => (
           <motion.div 
             key={index}
