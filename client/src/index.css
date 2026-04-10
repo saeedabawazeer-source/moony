@@ -44,8 +44,21 @@
   }
 
   .site-frame {
-    @apply bg-[#ffecd9] border-[1.5px] border-[#5d4037]/20 rounded-b-[2.5rem] lg:rounded-b-[4rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden relative min-h-[calc(100vh-2rem)] lg:min-h-[calc(100vh-6rem)];
+    @apply bg-[#ffecd9] border-[1.5px] border-[#5d4037]/20 rounded-[2.5rem] lg:rounded-[4.5rem] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.12)] relative p-4 lg:p-12 mb-8;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  .snap-container {
+    @apply h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth;
+    scrollbar-width: none;
+  }
+  
+  .snap-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-slide {
+    @apply min-h-screen snap-start flex flex-col justify-center py-6 lg:py-12;
   }
 
   h1, h2, h3, h4, h5, h6 {
