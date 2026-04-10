@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ProductGallery from "@/components/product/product-gallery";
@@ -29,7 +30,13 @@ export default function Home() {
   if (!products.length || !collections.length) {
     return (
       <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-[#EDE6D3]">
-        <h1 className="text-2xl font-serif text-gray-900 mb-4 animate-pulse">Loading...</h1>
+        <motion.h1 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-2xl font-serif text-gray-900 mb-4"
+        >
+          Loading...
+        </motion.h1>
       </div>
     );
   }
@@ -40,54 +47,87 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#EDE6D3] flex flex-col relative overflow-x-hidden text-gray-900">
+      {/* Decorative Radial Background */}
+      <div className="fixed inset-0 pointer-events-none opacity-40" 
+           style={{ background: 'radial-gradient(circle at 50% 50%, #ffffff 0%, transparent 70%)' }}></div>
       
       <Header />
 
-      <main className="flex-grow pt-20 pb-12 lg:pt-28 lg:pb-20 relative">
-        {/* Minimal Decorative elements */}
-        
+      <main className="flex-grow pt-24 pb-16 lg:pt-36 lg:pb-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Header Typography */}
-          <div className="text-center mb-12 animate-fade-in-up">
-            <span className="text-teal font-medium tracking-widest uppercase text-sm mb-4 block">New Season</span>
-            <h1 className="text-4xl lg:text-6xl font-serif text-gray-900 leading-tight">
-              Embrace Elegance.<br/><span className="text-gradient italic">Modest Swimwear.</span>
+          {/* Hero Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <motion.span 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-teal font-medium tracking-[0.2em] uppercase text-xs mb-4 block"
+            >
+              New Season 2024
+            </motion.span>
+            <h1 className="text-5xl lg:text-7xl font-serif text-gray-900 leading-[1.1] tracking-tight">
+              Embrace Elegance.<br/>
+              <span className="text-gradient italic font-normal">Modest Swimwear.</span>
             </h1>
-          </div>
+          </motion.div>
 
-          {/* Collection Options (Model Toggle) */}
-          <div className="flex justify-center flex-wrap gap-4 lg:gap-8 mb-12 max-w-3xl mx-auto">
+          {/* Collection Toggle */}
+          <div className="flex justify-center flex-wrap gap-4 lg:gap-8 mb-16 max-w-3xl mx-auto">
             {collections.map((collection, idx) => (
-              <div 
+              <motion.div 
                 key={collection.id}
-                className={`flex items-center space-x-4 px-8 py-4 rounded-[1.5rem] cursor-pointer transition-all duration-300 ${
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 + (idx * 0.1) }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center space-x-5 px-10 py-5 rounded-2xl cursor-pointer transition-colors duration-500 ${
                   selectedCollection === collection.id 
-                    ? 'bg-white shadow-sm border-[2px] scale-105 border-gray-900' 
-                    : 'bg-white/50 hover:bg-white border-transparent border-[2px] hover:border-gray-300'
+                    ? 'bg-white shadow-xl ring-2 ring-gray-900/5' 
+                    : 'bg-white/40 hover:bg-white/60'
                 }`}
-                style={{ animationDelay: `${0.2 + (idx * 0.1)}s` }}
                 onClick={() => setSelectedCollection(collection.id)}
               >
                 <img 
                   src={collection.icon} 
-                  alt={`${collection.name} Collection`} 
-                  className="w-8 h-8 object-contain"
+                  alt={collection.name} 
+                  className={`w-8 h-8 object-contain transition-transform duration-700 ${selectedCollection === collection.id ? 'rotate-12' : ''}`}
                 />
-                <span className={`font-serif font-bold text-lg tracking-wide text-gray-900 ${selectedCollection === collection.id ? 'opacity-100' : 'opacity-60'}`}>
+                <span className={`font-serif font-bold text-lg tracking-wide ${selectedCollection === collection.id ? 'opacity-100' : 'opacity-40'}`}>
                   {collection.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          {/* Flush Product Card */}
-          <div className="bg-white rounded-2xl p-6 lg:p-14 shadow-none border-none animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-              <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
-              <ProductInfo product={currentProduct} collection={currentCollectionData} />
-            </div>
-          </div>
+          {/* Featured Product Card */}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={selectedCollection}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-[2rem] p-8 lg:p-16 border border-white/50 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.05)]"
+            >
+              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+                <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <ProductInfo product={currentProduct} collection={currentCollectionData} />
+                </motion.div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
         </div>
       </main>

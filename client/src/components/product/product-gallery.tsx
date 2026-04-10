@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Product } from "@shared/schema";
 
 interface ProductGalleryProps {
@@ -8,69 +9,108 @@ interface ProductGalleryProps {
 
 export default function ProductGallery({ product, onStarClick }: ProductGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Reset loading state and index when product changes
+  useEffect(() => {
+    setIsLoaded(false);
+    setCurrentImageIndex(0);
+  }, [product.id]);
 
   const nextImage = () => {
+    setIsLoaded(false);
     setCurrentImageIndex((prev) => 
       prev < product.images.length - 1 ? prev + 1 : 0
     );
   };
 
   const previousImage = () => {
+    setIsLoaded(false);
     setCurrentImageIndex((prev) => 
       prev > 0 ? prev - 1 : product.images.length - 1
     );
   };
 
   const selectThumbnail = (index: number) => {
-    setCurrentImageIndex(index);
+    if (index !== currentImageIndex) {
+      setIsLoaded(false);
+      setCurrentImageIndex(index);
+    }
   };
 
   return (
     <div className="space-y-6">
-      {/* Main Image */}
-      <div className="relative bg-[#F7F6F2] rounded-2xl shadow-sm overflow-hidden group">
-        <img 
+      {/* Main Image Container */}
+      <div className="relative bg-[#F3EFE0] rounded-2xl shadow-sm overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px] group transition-all duration-500">
+        
+        {/* Loading Skeleton */}
+        {!isLoaded && (
+          <div className="absolute inset-0 bg-[#EAE4D3] animate-pulse flex items-center justify-center">
+            <img src="/images/starfish-black.png" className="w-12 h-12 opacity-10" alt="Loading..." />
+          </div>
+        )}
+
+        <AnimatePresence mode="wait">
+          <motion.img 
+            key={`${product.id}-${currentImageIndex}`}
+            src={product.images[currentImageIndex]} 
+            alt={`${product.name} view`} 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isLoaded ? 1 : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            onLoad={() => setIsLoaded(true)}
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+          />
+        </AnimatePresence>
+
+        {/* The Star (Starfish Toggle) */}
+        <motion.img 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.9 }}
+          whileHover={{ scale: 1.1, rotate: 15 }}
+          whileTap={{ scale: 0.9 }}
           src={product.collection === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-          alt="Starfish accent" 
-          className="absolute top-6 left-6 w-10 h-10 z-20 opacity-90 cursor-pointer hover:rotate-12 transition-transform duration-300"
+          alt="Starfish collection toggle" 
+          className="absolute top-8 left-8 w-12 h-12 z-20 cursor-pointer drop-shadow-md"
           onClick={onStarClick}
         />
-        <img 
-          src={product.images[currentImageIndex]} 
-          alt={`${product.name} main view`} 
-          className="w-full h-96 xl:h-[550px] object-cover transition-transform duration-700 hover:scale-105"
-        />
+
         {/* Navigation arrows */}
-        <button 
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 glass-panel hover:bg-white rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
-          onClick={previousImage}
-        >
-          <i className="fas fa-chevron-left text-gray-700"></i>
-        </button>
-        <button 
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 glass-panel hover:bg-white rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
-          onClick={nextImage}
-        >
-          <i className="fas fa-chevron-right text-gray-700"></i>
-        </button>
+        <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20">
+          <button 
+            className="pointer-events-auto bg-white/20 backdrop-blur-md hover:bg-white/40 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/30"
+            onClick={previousImage}
+          >
+            <i className="fas fa-chevron-left"></i>
+          </button>
+          <button 
+            className="pointer-events-auto bg-white/20 backdrop-blur-md hover:bg-white/40 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/30"
+            onClick={nextImage}
+          >
+            <i className="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
       
       {/* Thumbnail Grid */}
       <div className="grid grid-cols-4 gap-4 px-2">
         {product.images.map((image, index) => (
-          <div 
+          <motion.div 
             key={index}
-            className={`w-full aspect-square rounded-xl overflow-hidden cursor-pointer border-[2px] transition-all duration-300 shadow-sm ${
-              index === currentImageIndex ? 'border-gray-900 shadow-md scale-100' : 'border-transparent opacity-60 hover:opacity-100 hover:border-gray-200'
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className={`w-full aspect-square rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 ${
+              index === currentImageIndex ? 'border-gray-900 shadow-md scale-100' : 'border-transparent opacity-60 hover:opacity-100 hover:border-gray-300'
             }`}
             onClick={() => selectThumbnail(index)}
           >
             <img 
               src={image} 
-              alt={`${product.name} thumbnail ${index + 1}`} 
+              alt={`${product.name} thumb ${index + 1}`} 
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
