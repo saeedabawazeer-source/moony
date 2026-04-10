@@ -295,13 +295,87 @@ export default function Home() {
 
               {/* Navigation Hint */}
               <motion.button 
-                onClick={() => document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('anatomy-section')?.scrollIntoView({ behavior: 'smooth' })}
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-full flex flex-col items-center pt-1 opacity-20 hover:opacity-100 transition-opacity"
               >
-                <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1">View More Details</p>
+                <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1">View Piece Anatomy</p>
                 <i className="fas fa-chevron-down text-[8px]"></i>
+              </motion.button>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2.5: The Anatomy of Moony */}
+        <section id="anatomy-section" className="snap-slide px-8 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden">
+          <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Left: The 5-Piece Anatomy (Editorial Look) */}
+            <div className="space-y-8">
+              <div className="space-y-2">
+                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] opacity-40">Composition</p>
+                 <h2 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter leading-none">The 5-Piece Anatomy</h2>
+              </div>
+              
+              <div className="space-y-4">
+                {[
+                  { name: "Top", desc: "Signature stretch-fit bodice" },
+                  { name: "Short coverup", desc: "Dynamic mid-length layering" },
+                  { name: "Leggings", desc: "High-waisted compression" },
+                  { name: "Turban", desc: "Secure multi-style headwear" },
+                  { name: "Whole coverup", desc: "Full-length flowing modesty" }
+                ].map((item, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-baseline space-x-4 border-b border-[#5d4037]/10 pb-4 group"
+                  >
+                    <span className="font-serif italic text-2xl lg:text-3xl text-[#e5815c] opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</span>
+                    <div>
+                      <h3 className="font-serif font-black text-xl lg:text-2xl tracking-tight">{item.name}</h3>
+                      <p className="font-sans text-[10px] uppercase font-black tracking-widest opacity-30">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Technical Specs (Structured Grid) */}
+            <div className="bg-[#f3efdb] p-8 lg:p-12 rounded-[3rem] lg:rounded-[5rem] shadow-inner space-y-10 border border-[#5d4037]/5 relative overflow-hidden">
+              <div className="text-left space-y-2">
+                <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] opacity-40 text-[#6bb7b3]">Performance</p>
+                <h3 className="text-3xl lg:text-4xl font-serif font-black tracking-tight">Moony Standards</h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {[
+                  { title: "Elegant & Modest", icon: "✨", text: "Providing full coverage with unmatched elegance." },
+                  { title: "All-Day Comfort", icon: "☁️", text: "Breathable fabrics to keep you feeling great every moment." },
+                  { title: "Sun Protection", icon: "☀️", text: "Safely enjoy the sun with integrated UV protection." },
+                  { title: "Quick-Drying", icon: "💧", text: "Ready for your next adventure in no time." }
+                ].map((spec, i) => (
+                  <div key={i} className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xl">{spec.icon}</span>
+                      <h4 className="font-serif font-black text-sm lg:text-base leading-tight tracking-tight">{spec.title}</h4>
+                    </div>
+                    <p className="text-[10px] lg:text-xs font-medium opacity-60 leading-relaxed italic">
+                      {spec.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                onClick={() => document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full py-4 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] font-black uppercase tracking-widest hover:bg-[#5d4037] hover:text-white transition-all shadow-md"
+              >
+                VIEW FULL BREAKDOWN
               </motion.button>
             </div>
           </div>
