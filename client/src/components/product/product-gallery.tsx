@@ -3,9 +3,10 @@ import type { Product } from "@shared/schema";
 
 interface ProductGalleryProps {
   product: Product;
+  onStarClick?: () => void;
 }
 
-export default function ProductGallery({ product }: ProductGalleryProps) {
+export default function ProductGallery({ product, onStarClick }: ProductGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -29,9 +30,10 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
       {/* Main Image */}
       <div className="relative bg-[#F7F6F2] rounded-2xl shadow-sm overflow-hidden group">
         <img 
-          src="/images/starfish-coral.png" 
+          src={product.collection === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
           alt="Starfish accent" 
-          className="absolute top-6 left-6 w-10 h-10 z-10 opacity-80 pointer-events-none"
+          className="absolute top-6 left-6 w-10 h-10 z-20 opacity-90 cursor-pointer hover:rotate-12 transition-transform duration-300"
+          onClick={onStarClick}
         />
         <img 
           src={product.images[currentImageIndex]} 
