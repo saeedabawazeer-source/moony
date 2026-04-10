@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -23,6 +23,23 @@ export default function Checkout() {
     zipCode: "",
     country: ""
   });
+
+  // Pull cart data from localStorage if arriving from Home screen
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('moony_cart');
+      if (savedCart) {
+        const parsed = JSON.parse(savedCart);
+        if (parsed.product) setSelectedProduct(parsed.product);
+        if (parsed.size) setSelectedSize(parsed.size);
+        if (parsed.quantity) setQuantity(parsed.quantity);
+        // Clear it so it doesn't pollute future independent visits
+        localStorage.removeItem('moony_cart');
+      }
+    } catch (e) {
+      console.error("Failed to parse cart", e);
+    }
+  }, []);
 
   const { data: products = [] } = useQuery<Product[]>({
     queryKey: ["/api/products"],
