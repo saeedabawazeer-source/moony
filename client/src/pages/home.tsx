@@ -51,6 +51,8 @@ export default function Home() {
 
   return (
     <div className="relative h-screen w-screen bg-[#e5815c]">
+      {/* Global Grain Texture Overlay */}
+      <div className="noise-overlay" />
       {/* Static Global Frame Border */}
       <div className="fixed-master-frame" />
 
