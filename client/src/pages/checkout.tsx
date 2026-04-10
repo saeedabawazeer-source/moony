@@ -305,7 +305,7 @@ export default function Checkout() {
                   </div>
 
                   <Button 
-                    className={`w-full ${currentCollection.color === 'coral' ? 'bg-coral hover:bg-coral/90' : 'bg-teal hover:bg-teal/90'} text-white`}
+                    className="w-full btn-premium-gradient py-6 text-lg font-bold shadow-lg"
                     onClick={handleSubmit}
                     disabled={!selectedProduct || !selectedSize}
                   >

@@ -94,7 +94,7 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
 
         <Button 
           onClick={handleBuyNow}
-          className="flex-1 rounded-xl shadow-lg bg-gray-900 hover:bg-gray-800 text-white text-base lg:text-lg py-5 lg:py-7 font-serif tracking-wide"
+          className="btn-premium-gradient flex-1 px-8 py-5 lg:py-7 text-base lg:text-lg font-bold shadow-lg"
         >
           Secure Checkout
         </Button>

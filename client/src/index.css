@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Raleway:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -156,6 +156,29 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .btn-premium-gradient {
+    background: linear-gradient(to right, #a2ccb6 0%, #fceeb5 50%, #ee786e 100%);
+    background-size: 500%;
+    border-radius: 5rem;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    transition: all 0.5s ease;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    border: none;
+    letter-spacing: .05em;
+  }
+
+  .btn-premium-gradient:hover {
+    animation: gradient-shift 2s forwards;
+    box-shadow: 0 .8rem 1.5rem rgba(0,0,0,.2);
+    transform: translateY(-2px);
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
   }
 }
 
