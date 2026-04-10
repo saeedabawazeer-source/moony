@@ -25,12 +25,12 @@ export const products: Product[] = [
     price: "159.00",
     description: "Elegant and modest swimwear designed for comfort and style. Our premium fabric provides UV protection while the beautiful patterns make a statement at the beach or pool.",
     collection: "daydream",
-    mainImage: "https://v0-moony.vercel.app/images/daydream-1.jpeg",
+    mainImage: "/images/models/daydream/_HTM3935.JPEG",
     images: [
-      "https://v0-moony.vercel.app/images/daydream-1.jpeg",
-      "https://v0-moony.vercel.app/images/daydream-2.jpeg",
-      "https://v0-moony.vercel.app/images/daydream-3.jpeg",
-      "https://v0-moony.vercel.app/images/daydream-4.jpeg"
+      "/images/models/daydream/_HTM3935.JPEG",
+      "/images/models/daydream/_HTM4121.JPEG",
+      "/images/models/daydream/_HTM4179.JPEG",
+      "/images/models/daydream/_HTM4610.JPEG"
     ],
     includes: [
       "Top",
@@ -94,12 +94,12 @@ export const products: Product[] = [
     price: "159.00",
     description: "Refreshing teal-themed modest swimwear designed for comfort and elegance. Premium fabric with UV protection and quick-drying technology.",
     collection: "aqua-glow",
-    mainImage: "/images/aquaglow-1.png",
+    mainImage: "/images/models/aquaglow/_HTM3828.JPEG",
     images: [
-      "/images/aquaglow-1.png",
-      "/images/aquaglow-2.png",
-      "/images/aquaglow-1.png",
-      "/images/aquaglow-2.png"
+      "/images/models/aquaglow/_HTM3828.JPEG",
+      "/images/models/aquaglow/_HTM3832.JPEG",
+      "/images/models/aquaglow/_HTM3856.JPEG",
+      "/images/models/aquaglow/_HTM3883.JPEG"
     ],
     includes: [
       "Top",
