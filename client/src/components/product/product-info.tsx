@@ -39,21 +39,26 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
         </h2>
       </div>
       
+      {/* 5-Piece Set Highlights */}
       <div className="flex items-center space-x-4">
         <span className="text-2xl lg:text-4xl font-bold text-gray-900">SAR {product.price}</span>
-        <span className={`px-3 py-1 lg:px-4 lg:py-1.5 rounded-full text-xs lg:text-sm font-bold tracking-wider uppercase ${collection.color === 'coral' ? 'bg-coral-light text-coral' : 'bg-teal-light text-teal'}`}>
-          Complete Set
-        </span>
+        <div className={`px-3 py-1 lg:px-4 lg:py-1.5 rounded-full text-[10px] lg:text-sm font-bold tracking-widest uppercase flex items-center shadow-sm ${collection.color === 'coral' ? 'bg-coral text-white' : 'bg-teal text-white'}`}>
+          <i className="fas fa-sparkles mr-1.5"></i>
+          5-Piece Set
+        </div>
       </div> 
 
-      {/* Set Includes - Hidden on mobile to save space */}
-      <div className="hidden lg:block bg-[#FAF9F6] p-6 rounded-2xl border border-[#EAE6E1]">
-        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Set Includes</h3>
-        <ul className="grid grid-cols-2 gap-3">
+      {/* Set Includes - Refined for "One Screen" fit */}
+      <div className="bg-[#FAF9F6] p-4 lg:p-6 rounded-2xl border border-[#EAE6E1] transition-all duration-300">
+        <h3 className="text-[10px] lg:text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex justify-between items-center group cursor-pointer lg:cursor-default">
+          <span>What's inside</span>
+          <span className="lg:hidden text-[8px] opacity-60">Complete Coverage</span>
+        </h3>
+        <ul className="grid grid-cols-2 gap-2 lg:gap-3">
           {product.includes.map((item, index) => (
             <li key={index} className="flex items-center space-x-2">
-              <span className={`w-2 h-2 rounded-full ${collection.color === 'coral' ? 'bg-coral' : 'bg-teal'}`}></span>
-              <span className="text-gray-800 font-medium">{item}</span>
+              <span className={`w-1.5 h-1.5 rounded-full ${collection.color === 'coral' ? 'bg-coral' : 'bg-teal'}`}></span>
+              <span className="text-[11px] lg:text-sm text-gray-800 font-medium whitespace-nowrap">{item}</span>
             </li>
           ))}
         </ul>

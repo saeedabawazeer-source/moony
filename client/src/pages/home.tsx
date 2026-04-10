@@ -63,9 +63,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-4 lg:mb-16"
           >
-            <h1 className="text-2xl lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight">
-              Embrace Elegance.<br className="hidden lg:block" />
-              <span className="text-gradient italic font-normal">Modest Swimwear.</span>
+            <h1 className="text-xl lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight whitespace-nowrap">
+              Embrace Elegance. <span className="text-gradient italic font-normal">Modest Swimwear.</span>
             </h1>
           </motion.div>
 
@@ -123,9 +122,7 @@ export default function Home() {
         </div>
       </main>
 
-      <div className="hidden lg:block">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
