@@ -209,8 +209,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-          </div>
-        </section>
 
         {/* Section 3: The Details & Footer */}
         <section className="snap-slide px-4 lg:px-8 py-12 lg:py-20">
