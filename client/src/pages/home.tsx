@@ -11,7 +11,8 @@ export default function Home() {
   const [, setLocation] = useLocation();
   const [selectedCollection, setSelectedCollection] = useState("daydream");
   const [selectedSize, setSelectedSize] = useState("M");
-  
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
     retry: 1,
@@ -26,7 +27,6 @@ export default function Home() {
   const collections = apiCollections && !collectionsError ? apiCollections : staticCollections;
 
   const currentProduct = products.find(p => p.collection === selectedCollection) || products[0];
-  const currentCollectionData = collections.find(c => c.id === selectedCollection) || collections[0];
   
   if (!products.length || !collections.length) {
     return (
@@ -42,10 +42,6 @@ export default function Home() {
     );
   }
 
-  const toggleCollection = () => {
-    setSelectedCollection(prev => prev === "daydream" ? "aqua-glow" : "daydream");
-  };
-
   const scrollToShop = () => {
     document.getElementById('boutique-shop')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -57,6 +53,15 @@ export default function Home() {
       quantity: 1 
     }));
     setLocation('/checkout');
+  };
+
+  const handleDragEnd = (event: any, info: any) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length);
+    } else if (info.offset.x > swipeThreshold) {
+      setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length);
+    }
   };
 
   return (
@@ -101,71 +106,84 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-screen flex flex-col pt-0">
-          <div className="flex flex-col items-center w-full max-w-xl mx-auto h-full space-y-4 lg:space-y-6">
+        <section id="boutique-shop" className="snap-slide h-screen flex flex-col pt-0 overflow-hidden">
+          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-2 lg:space-y-4 px-4 lg:px-0 justify-center">
             
-            {/* 1. Full-Width Model Visual (Fills the frame) */}
-            <motion.div 
-              key={currentProduct.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="w-full aspect-[4/5] lg:aspect-[3.5/4] bg-[#fef8e1] rounded-t-[2rem] lg:rounded-t-[3.5rem] overflow-hidden shadow-xl"
-            >
-              <img 
-                src={currentProduct.mainImage} 
-                alt={currentProduct.name} 
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-
-            {/* 2. Selection: The OTHER Model Star & Name */}
-            <div className="flex flex-col items-center space-y-4 px-4 lg:px-8">
-              <div className="flex items-center space-x-4">
-                {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
-                  <motion.button
-                    key={otherCollection.id}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      setSelectedCollection(otherCollection.id);
-                      setSelectedSize("M");
-                    }}
-                    className="flex items-center bg-white/40 backdrop-blur-sm pl-4 pr-6 py-2 rounded-full border border-white/20 space-x-3 group"
-                  >
-                    <img 
-                      src={otherCollection.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                      className="w-8 h-8 lg:w-10 lg:h-10 transition-transform group-hover:rotate-12"
-                      alt="Other Collection Star"
-                    />
-                    <div className="text-left">
-                      <p className="text-[9px] font-black uppercase tracking-widest opacity-40">Switch to</p>
-                      <p className="text-sm lg:text-base font-serif font-black text-[#000000]">{otherCollection.name}</p>
-                    </div>
-                  </motion.button>
+            {/* 1. Swipeable Model Visual (Rounded All Sides) */}
+            <div className="w-full relative h-[40vh] lg:h-[50vh] overflow-hidden rounded-[2.5rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
+              <motion.div 
+                key={selectedCollection}
+                className="flex h-full w-full cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={handleDragEnd}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={currentImageIndex}
+                    src={currentProduct.images[currentImageIndex]} 
+                    alt={currentProduct.name} 
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="w-full h-full object-cover pointer-events-none"
+                  />
+                </AnimatePresence>
+              </motion.div>
+              
+              {/* Swipe Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                {currentProduct.images.map((_, i) => (
+                  <div key={i} className={`w-1 h-1 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
                 ))}
               </div>
+            </div>
 
-              {/* 3. Branding for Selective context */}
-              <div className="text-center space-y-1">
-                <h2 className="text-4xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter">
-                  {currentProduct.name}
-                </h2>
-                <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] text-[#e5815c]">
+            {/* 2. Selection Cluster (Left Aligned) */}
+            <div className="w-full space-y-3 lg:space-y-4">
+              {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
+                <motion.button
+                  key={otherCollection.id}
+                  whileHover={{ x: 5 }}
+                  onClick={() => {
+                    setSelectedCollection(otherCollection.id);
+                    setCurrentImageIndex(0);
+                    setSelectedSize("M");
+                  }}
+                  className="flex items-center space-x-3 group"
+                >
+                  <img 
+                    src={otherCollection.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
+                    className="w-6 h-6 lg:w-8 lg:h-8 transition-transform group-hover:rotate-12"
+                    alt="Other"
+                  />
+                  <div className="text-left">
+                    <p className="text-[8px] font-black uppercase tracking-widest opacity-30">Switch to</p>
+                    <p className="text-xs lg:text-sm font-serif font-black text-[#000000]">{otherCollection.name}</p>
+                  </div>
+                </motion.button>
+              ))}
+
+              <div className="space-y-1 text-left">
+                <p className="font-sans font-black uppercase tracking-[0.4em] text-[9px] text-[#e5815c]">
                   5 PIECE SET
                 </p>
+                <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-[0.85]">
+                  {currentProduct.name}
+                </h2>
+                <p className="text-xl lg:text-3xl font-black text-[#000000] pt-1">SAR {currentProduct.price}</p>
               </div>
 
-              {/* 4. Purchase Block */}
-              <div className="w-full space-y-4 lg:space-y-6 pt-2">
-                <div className="flex justify-center gap-2">
+              {/* Purchase Block */}
+              <div className="w-full space-y-3 lg:space-y-5">
+                <div className="flex justify-start gap-2">
                   {currentProduct.sizes.map((size) => (
                     <button 
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-11 h-11 lg:w-14 lg:h-14 rounded-2xl font-black text-xs lg:text-sm border-2 transition-all ${
+                      className={`w-10 h-10 lg:w-14 lg:h-14 rounded-2xl font-black text-xs lg:text-sm border-2 transition-all ${
                         selectedSize === size 
-                          ? 'bg-[#5d4037] text-white border-[#5d4037] scale-110 shadow-lg' 
+                          ? 'bg-[#5d4037] text-white border-[#5d4037] shadow-md' 
                           : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
                       }`}
                     >
@@ -174,15 +192,19 @@ export default function Home() {
                   ))}
                 </div>
                 
-                <button 
-                  onClick={handleCheckout}
-                  className="btn-premium-gradient w-full py-5 lg:py-7 text-lg lg:text-xl font-black shadow-2xl"
-                >
-                  PROCEED TO CHECKOUT
-                </button>
+                <div className="flex gap-2 w-full">
+                  <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all">
+                    ADD TO CART
+                  </button>
+                  <button 
+                    onClick={handleCheckout}
+                    className="flex-[2] btn-premium-gradient py-3 lg:py-5 text-[10px] lg:text-sm font-black shadow-lg"
+                  >
+                    PROCEED TO CHECKOUT
+                  </button>
+                </div>
               </div>
             </div>
-
           </div>
         </section>
 
