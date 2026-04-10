@@ -95,8 +95,7 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
       </div>
 
       {/* Order Actions */}
-      <div className="space-y-6 pt-4">
-      <div className="space-y-4 pt-2">
+      <div className="space-y-4 pt-4">
         <Link to="/checkout" className="block">
           <Button 
             className={`w-full rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-0.5 ${
