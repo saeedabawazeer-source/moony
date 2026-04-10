@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-[#C4B494] text-gray-900 py-12 border-none shadow-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-6">
           {/* Logo */}
           <div className="flex justify-center items-center space-x-2">
             <img 
-              src="https://v0-moony.vercel.app/images/starfish-coral.png" 
+              src="/images/starfish-coral.png" 
               alt="Moony Starfish Logo" 
               className="w-8 h-8"
             />

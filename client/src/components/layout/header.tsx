@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="fixed w-full top-0 z-50 glass-panel border-b border-white/20 transition-all duration-300">
+    <header className="fixed w-full top-0 z-50 bg-[#C4B494] shadow-none border-none transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

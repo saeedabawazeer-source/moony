@@ -94,12 +94,12 @@ export const products: Product[] = [
     price: "159.00",
     description: "Refreshing teal-themed modest swimwear designed for comfort and elegance. Premium fabric with UV protection and quick-drying technology.",
     collection: "aqua-glow",
-    mainImage: "https://v0-moony.vercel.app/images/daydream-1.jpeg",
+    mainImage: "/Users/saeed/.gemini/antigravity/brain/d28b753c-5426-467b-b106-6f17d90a334c/aquaglow_swimwear_1_1775851996240.png",
     images: [
-      "https://v0-moony.vercel.app/images/daydream-1.jpeg",
-      "https://v0-moony.vercel.app/images/daydream-2.jpeg",
-      "https://v0-moony.vercel.app/images/daydream-3.jpeg",
-      "https://v0-moony.vercel.app/images/daydream-4.jpeg"
+      "/Users/saeed/.gemini/antigravity/brain/d28b753c-5426-467b-b106-6f17d90a334c/aquaglow_swimwear_1_1775851996240.png",
+      "/Users/saeed/.gemini/antigravity/brain/d28b753c-5426-467b-b106-6f17d90a334c/aquaglow_swimwear_2_1775852011288.png",
+      "/Users/saeed/.gemini/antigravity/brain/d28b753c-5426-467b-b106-6f17d90a334c/aquaglow_swimwear_1_1775851996240.png",
+      "/Users/saeed/.gemini/antigravity/brain/d28b753c-5426-467b-b106-6f17d90a334c/aquaglow_swimwear_2_1775852011288.png"
     ],
     includes: [
       "Top",

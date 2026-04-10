@@ -28,18 +28,18 @@ export default function Home() {
   
   if (!products.length || !collections.length) {
     return (
-      <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-gray-50">
+      <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-[#C4B494]">
         <h1 className="text-2xl font-serif text-gray-900 mb-4 animate-pulse">Loading...</h1>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F6F2] flex flex-col relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#C4B494] flex flex-col relative overflow-x-hidden text-gray-900">
       
       <Header />
 
-      <main className="flex-grow pt-24 pb-16 lg:pt-36 lg:pb-32 relative">
+      <main className="flex-grow pt-20 pb-12 lg:pt-28 lg:pb-20 relative">
         {/* Minimal Decorative elements */}
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -77,8 +77,8 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Cleaner Interactive Card for Product */}
-          <div className="bg-white rounded-3xl p-6 lg:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+          {/* Flush Product Card */}
+          <div className="bg-white rounded-2xl p-6 lg:p-14 shadow-none border-none animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
               <ProductGallery product={currentProduct} />
               <ProductInfo product={currentProduct} collection={currentCollectionData} />
