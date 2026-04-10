@@ -50,7 +50,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative h-screen w-screen bg-[#ffecd9]">
+    <div className="relative h-screen w-screen bg-[#e5815c]">
       {/* Static Global Frame Border */}
       <div className="fixed-master-frame" />
 
@@ -68,20 +68,20 @@ export default function Home() {
           >
             <h1 className="text-6xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-8 font-black">
               Embrace <br />
-              <span className="text-[#ee786e] italic">Elegance.</span>
+              <span className="text-[#e5815c] italic">Elegance.</span>
             </h1>
             <div className="space-y-4 mb-12">
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
                 Premium Modest Boutique • Organic • Vegan
               </p>
-              <p className="font-serif font-black italic text-lg lg:text-3xl text-[#ee786e] tracking-tight">DESIGN IN JEDDAH</p>
+              <p className="font-serif font-black italic text-lg lg:text-3xl text-[#e5815c] tracking-tight">DESIGN IN JEDDAH</p>
             </div>
             
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="px-10 py-5 rounded-full bg-[#5d4037] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] shadow-2xl hover:bg-[#ee786e] transition-colors duration-500"
+              className="px-10 py-5 rounded-full bg-[#5d4037] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] shadow-2xl hover:bg-[#e5815c] transition-colors duration-500"
             >
               VIEW MODELS
             </motion.button>
@@ -141,13 +141,13 @@ export default function Home() {
                   <ul className="grid grid-cols-2 gap-2">
                     {currentProduct.includes.map((item, i) => (
                       <li key={i} className="flex items-center space-x-2 text-[10px] lg:text-xs font-bold opacity-80">
-                        <div className="w-1 h-1 rounded-full bg-[#ee786e]"></div>
+                        <div className="w-1 h-1 rounded-full bg-[#e5815c]"></div>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="bg-[#a2ccb6]/10 p-8 rounded-[3rem] border border-[#5d4037]/5 flex items-center shadow-sm">
+                <div className="bg-[#6bb7b3]/10 p-8 rounded-[3rem] border border-[#5d4037]/5 flex items-center shadow-sm">
                   <p className="text-xs lg:text-base font-medium opacity-70 leading-relaxed italic">
                     Designed in Jeddah. Crafted with premium Italian Spandex. Breathable, quick-dry, and eco-certified.
                   </p>

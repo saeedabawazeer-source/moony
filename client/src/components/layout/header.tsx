@@ -31,7 +31,7 @@ export default function Header() {
             <a 
               key={item} 
               href="#"
-              className="text-[#5d4037] font-bold text-xs lg:text-sm tracking-wide uppercase hover:text-[#ee786e] transition-colors"
+              className="text-[#5d4037] font-bold text-xs lg:text-sm tracking-wide uppercase hover:text-[#e5815c] transition-colors"
             >
               {item}
             </a>
@@ -44,7 +44,7 @@ export default function Header() {
           animate={{ x: 0, opacity: 1 }}
           className="floating-pill !px-3 !py-3 lg:!px-4 lg:!py-4"
         >
-          <a href="/checkout" className="text-[#5d4037] hover:text-[#ee786e] transition-colors">
+          <a href="/checkout" className="text-[#5d4037] hover:text-[#e5815c] transition-colors">
             <i className="fas fa-shopping-bag text-lg lg:text-xl"></i>
           </a>
         </motion.div>

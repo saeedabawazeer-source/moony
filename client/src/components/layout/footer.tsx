@@ -23,13 +23,13 @@ export default function Footer() {
           
           {/* Social Links */}
           <div className="flex justify-center space-x-8 text-[#5d4037]">
-            <motion.a whileHover={{ y: -5, color: '#ee786e' }} href="#" className="transition-all">
+            <motion.a whileHover={{ y: -5, color: '#e5815c' }} href="#" className="transition-all">
               <i className="fab fa-instagram text-2xl lg:text-3xl"></i>
             </motion.a>
-            <motion.a whileHover={{ y: -5, color: '#ee786e' }} href="#" className="transition-all">
+            <motion.a whileHover={{ y: -5, color: '#e5815c' }} href="#" className="transition-all">
               <i className="fab fa-tiktok text-2xl lg:text-3xl"></i>
             </motion.a>
-            <motion.a whileHover={{ y: -5, color: '#ee786e' }} href="#" className="transition-all">
+            <motion.a whileHover={{ y: -5, color: '#e5815c' }} href="#" className="transition-all">
               <i className="fab fa-pinterest text-2xl lg:text-3xl"></i>
             </motion.a>
           </div>
@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Contact */}
           <div className="space-y-4 md:text-right text-[#5d4037]">
             <p className="font-sans font-black uppercase tracking-widest text-[9px] opacity-40">Get in touch</p>
-            <a href="mailto:hello@moonyswimwear.com" className="block text-xl font-serif italic hover:text-[#ee786e] transition-colors">
+            <a href="mailto:hello@moonyswimwear.com" className="block text-xl font-serif italic hover:text-[#e5815c] transition-colors">
               hello@moonyswimwear.com
             </a>
             <p className="text-[9px] font-bold opacity-30 uppercase tracking-widest leading-loose">

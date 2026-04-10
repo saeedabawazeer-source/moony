@@ -5,29 +5,30 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffecd9;
+  --background: #fef8e1;
   --foreground: #2d3436;
   --card: #ffffff;
   --card-foreground: #2d3436;
-  --primary: #ee786e;
+  --primary: #e5815c;
   --primary-foreground: #ffffff;
-  --secondary: #a2ccb6;
+  --secondary: #6bb7b3;
   --secondary-foreground: #ffffff;
   --muted: #fceeb5;
   --muted-foreground: #2d3436;
-  --accent: #ffecd9;
-  --accent-foreground: #ee786e;
+  --accent: #eda78b;
+  --accent-foreground: #e5815c;
   --border: rgba(93, 64, 55, 0.1);
   --input: #ffffff;
-  --ring: #ee786e;
+  --ring: #e5815c;
   --radius: 2.5rem;
   
-  /* Meow Meow Tweet Inspired Palette */
-  --green: #a2ccb6;
+  /* Boutique Custom Palette */
+  --green: #6bb7b3;
   --sand: #fceeb5;
-  --peach: #ee786e;
-  --paper: #ffecd9;
+  --peach: #e5815c;
+  --paper: #fef8e1;
   --mocha: #5d4037;
+  --blush: #eda78b;
   
   --font-serif: 'Fraunces', serif;
   --font-sans: 'Outfit', sans-serif;
