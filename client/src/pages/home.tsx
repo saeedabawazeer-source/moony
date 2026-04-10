@@ -29,7 +29,7 @@ export default function Home() {
   
   if (!products.length || !collections.length) {
     return (
-      <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-[#EDE6D3]">
+      <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-[#fef8e1]">
         <motion.h1 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
