@@ -110,8 +110,8 @@ export default function Home() {
         <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden">
           <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-4 lg:space-y-6">
             
-            {/* 1. Swipeable Model Visual (Rounded All Sides) */}
-            <div className="w-full relative h-[40vh] lg:h-[50vh] overflow-hidden rounded-[2.5rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
+            {/* 1. Swipeable Model Visual (Rounded All Sides - Longer Frame) */}
+            <div className="w-full relative h-[50vh] lg:h-[60vh] overflow-hidden rounded-[2.5rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
@@ -134,15 +134,15 @@ export default function Home() {
               </motion.div>
               
               {/* Swipe Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
                 {currentProduct.images.map((_, i) => (
-                  <div key={i} className={`w-1 h-1 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
+                  <div key={i} className={`w-1.5 h-1.5 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
                 ))}
               </div>
             </div>
 
-            {/* 2. Selection Cluster (Left Aligned) */}
-            <div className="w-full space-y-3 lg:space-y-4">
+            {/* 2. Selection & Branding (Generous Left Padding) */}
+            <div className="w-full space-y-4 lg:space-y-6 px-8 lg:px-0">
               {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
                 <motion.button
                   key={otherCollection.id}
@@ -152,40 +152,40 @@ export default function Home() {
                     setCurrentImageIndex(0);
                     setSelectedSize("M");
                   }}
-                  className="flex items-center space-x-3 group"
+                  className="flex items-center space-x-4 group bg-white/30 backdrop-blur-md py-2 pl-3 pr-6 rounded-full border border-white/20"
                 >
                   <img 
                     src={otherCollection.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                    className="w-6 h-6 lg:w-8 lg:h-8 transition-transform group-hover:rotate-12"
+                    className="w-8 h-8 lg:w-10 lg:h-10 transition-transform group-hover:rotate-12"
                     alt="Other"
                   />
                   <div className="text-left">
-                    <p className="text-[8px] font-black uppercase tracking-widest opacity-30">Switch to</p>
-                    <p className="text-xs lg:text-sm font-serif font-black text-[#000000]">{otherCollection.name}</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest opacity-40">Switch to</p>
+                    <p className="text-sm lg:text-base font-serif font-black text-[#000000]">{otherCollection.name}</p>
                   </div>
                 </motion.button>
               ))}
 
-              <div className="space-y-1 text-left">
-                <p className="font-sans font-black uppercase tracking-[0.4em] text-[9px] text-[#e5815c]">
+              <div className="space-y-2 text-left">
+                <p className="font-sans font-black uppercase tracking-[0.5em] text-[10px] lg:text-xs text-[#e5815c]">
                   5 PIECE SET
                 </p>
-                <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-[0.85]">
+                <h2 className="text-4xl lg:text-6xl font-serif font-black text-[#000000] tracking-tighter leading-none">
                   {currentProduct.name}
                 </h2>
-                <p className="text-xl lg:text-3xl font-black text-[#000000] pt-1">SAR {currentProduct.price}</p>
+                <p className="text-2xl lg:text-4xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
               </div>
 
-              {/* Purchase Block */}
-              <div className="w-full space-y-4 lg:space-y-6 pb-12 px-4 lg:px-0">
-                <div className="flex justify-start gap-2">
+              {/* 3. Purchase Block */}
+              <div className="w-full space-y-5 lg:space-y-8 pb-8">
+                <div className="flex justify-start gap-3">
                   {currentProduct.sizes.map((size) => (
                     <button 
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-10 h-10 lg:w-14 lg:h-14 rounded-2xl font-black text-xs lg:text-sm border-2 transition-all ${
+                      className={`w-12 h-12 lg:w-16 lg:h-16 rounded-2xl font-black text-sm lg:text-base border-2 transition-all ${
                         selectedSize === size 
-                          ? 'bg-[#5d4037] text-white border-[#5d4037] shadow-md' 
+                          ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-md' 
                           : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
                       }`}
                     >
@@ -194,19 +194,21 @@ export default function Home() {
                   ))}
                 </div>
                 
-                <div className="flex gap-2 w-full">
-                  <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all">
+                <div className="flex gap-4 w-full">
+                  <button className="flex-1 py-4 lg:py-6 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-xs lg:text-base font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest">
                     ADD TO CART
                   </button>
                   <button 
                     onClick={handleCheckout}
-                    className="flex-[2] btn-premium-gradient py-3 lg:py-5 text-[10px] lg:text-sm font-black shadow-lg"
+                    className="flex-[2] btn-premium-gradient py-4 lg:py-6 text-xs lg:text-base font-black shadow-lg uppercase tracking-widest"
                   >
                     PROCEED TO CHECKOUT
                   </button>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
           </div>
         </section>
 
