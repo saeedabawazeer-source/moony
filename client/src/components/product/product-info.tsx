@@ -36,24 +36,11 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
       </div>
       
       <div className="flex items-baseline space-x-6">
-        <span className="text-4xl lg:text-6xl font-black">SAR {product.price}</span>
+        <span className="text-4xl lg:text-5xl font-black">SAR {product.price}</span>
         <div className={`px-5 py-2 rounded-full text-[10px] lg:text-xs font-black tracking-widest uppercase flex items-center border-[1.5px] ${collection.color === 'coral' ? 'bg-[#ee786e] text-white border-[#ee786e]' : 'bg-[#a2ccb6] text-white border-[#a2ccb6]'}`}>
           Complete 5-Piece Experience
         </div>
       </div> 
-
-      {/* Boutique Details - Grid List */}
-      <div className="space-y-6 pt-4">
-        <h3 className="text-[10px] font-black text-[#5d4037]/30 uppercase tracking-[0.3em]">Authentic Set Details</h3>
-        <div className="grid grid-cols-1 gap-4">
-          {product.includes.map((item, index) => (
-            <div key={index} className="flex items-center space-x-4 group">
-              <div className={`w-2 h-2 rounded-full transition-transform group-hover:scale-150 ${collection.color === 'coral' ? 'bg-[#ee786e]' : 'bg-[#a2ccb6]'}`}></div>
-              <span className="text-sm lg:text-lg font-bold opacity-80">{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Size Selection */}
       <div className="space-y-6">
