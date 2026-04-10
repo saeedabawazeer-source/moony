@@ -56,10 +56,11 @@ export default function Home() {
   };
 
   const handleDragEnd = (event: any, info: any) => {
-    const swipeThreshold = 50;
-    if (info.offset.x < -swipeThreshold) {
+    const swipeThreshold = 20;
+    const velocityThreshold = 200;
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
       setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length);
-    } else if (info.offset.x > swipeThreshold) {
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
       setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length);
     }
   };
@@ -106,8 +107,8 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-screen flex flex-col pt-0 overflow-hidden">
-          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-2 lg:space-y-4 px-4 lg:px-0 justify-center">
+        <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden">
+          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-4 lg:space-y-6">
             
             {/* 1. Swipeable Model Visual (Rounded All Sides) */}
             <div className="w-full relative h-[40vh] lg:h-[50vh] overflow-hidden rounded-[2.5rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
@@ -116,6 +117,7 @@ export default function Home() {
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
                 onDragEnd={handleDragEnd}
               >
                 <AnimatePresence mode="wait">
@@ -175,7 +177,7 @@ export default function Home() {
               </div>
 
               {/* Purchase Block */}
-              <div className="w-full space-y-3 lg:space-y-5">
+              <div className="w-full space-y-4 lg:space-y-6 pb-12 px-4 lg:px-0">
                 <div className="flex justify-start gap-2">
                   {currentProduct.sizes.map((size) => (
                     <button 
