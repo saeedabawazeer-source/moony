@@ -46,76 +46,87 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#ffecd9] flex flex-col relative overflow-x-hidden text-[#5d4037]">
-      {/* Whimsical Floating Starfish */}
-      <motion.img 
-        src="/images/starfish-coral.png"
-        className="fixed top-32 -left-12 w-32 h-32 opacity-10 animate-bop pointer-events-none"
-      />
-      <motion.img 
-        src="/images/starfish-teal.png"
-        className="fixed bottom-24 -right-12 w-48 h-48 opacity-10 animate-bop pointer-events-none"
-        style={{ animationDelay: '1s' }}
-      />
-      
+  return (
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className="site-frame flex flex-col"
+    >
       <Header />
 
       <main className="flex-grow pt-24 lg:pt-32 pb-12 lg:pb-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           
-          {/* Boutique Hero */}
+          {/* Boutique Hero - Scroll Reveal */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12 lg:mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center mb-16 lg:mb-32"
           >
-            <h1 className="text-4xl lg:text-8xl leading-[0.9] tracking-tighter mb-4">
-              Embrace Elegance. <br />
-              <span className="italic font-light text-[#ee786e]">Modest Boutique.</span>
+            <h1 className="text-5xl lg:text-[10rem] leading-[0.8] tracking-tighter mb-8 font-black">
+              Embrace <br />
+              <span className="text-[#ee786e] italic">Elegance.</span>
             </h1>
-            <p className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] lg:text-xs opacity-60">
-              Positively Natural • Vegan • Hand-Packed
-            </p>
+            <div className="flex flex-col items-center space-y-4">
+              <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
+                Premium Modest Boutique • Organic • Vegan
+              </p>
+              <motion.div 
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-px h-16 bg-[#5d4037]/20"
+              />
+            </div>
           </motion.div>
 
-          {/* Boutique Toggle */}
-          <div className="flex justify-center gap-3 mb-16 max-w-xl mx-auto">
+          {/* Boutique Toggle - Sticky-ish */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex justify-center gap-4 mb-20 max-w-2xl mx-auto"
+          >
             {collections.map((collection) => (
               <button 
                 key={collection.id}
                 onClick={() => setSelectedCollection(collection.id)}
-                className={`flex-1 py-3 lg:py-4 rounded-full font-bold text-xs lg:text-sm uppercase tracking-widest transition-all duration-500 border-2 ${
+                className={`flex-1 py-4 lg:py-6 rounded-3xl font-black text-xs lg:text-sm uppercase tracking-[0.2em] transition-all duration-700 border-2 ${
                   selectedCollection === collection.id 
-                    ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-xl' 
-                    : 'bg-white/40 text-[#5d4037] border-[#5d4037]/10 hover:border-[#5d4037]/40'
+                    ? 'bg-[#5d4037] text-white border-[#5d4037] shadow-2xl scale-105' 
+                    : 'bg-white/50 text-[#5d4037] border-transparent hover:border-[#5d4037]/20'
                 }`}
               >
                 {collection.name}
               </button>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Asymmetric Product Display */}
+          {/* Main Product Showcase - Side-by-Side Clean Grid */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={selectedCollection}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.6, ease: "circOut" }}
-              className="relative"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              className="bg-white/40 rounded-[3rem] lg:rounded-[5rem] p-4 lg:p-12 border border-[#5d4037]/5 shadow-sm"
             >
-              <div className="flex flex-col lg:flex-row items-center lg:items-start lg:gap-0">
-                {/* Gallery - The Base */}
-                <div className="w-full lg:w-[60%] z-10 boutique-card p-0 overflow-hidden rounded-[3rem]">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+                {/* Gallery Section */}
+                <div className="w-full">
                   <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
                 </div>
 
-                {/* Info Card - The Overlay */}
+                {/* Info Section */}
                 <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 20 }}
-                  className="w-[92%] lg:w-[45%] -mt-12 lg:mt-24 lg:-ml-24 z-20 boutique-card p-8 lg:p-12"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="w-full py-8"
                 >
                   <ProductInfo product={currentProduct} collection={currentCollectionData} />
                 </motion.div>
@@ -127,6 +138,6 @@ export default function Home() {
       </main>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 }

@@ -26,50 +26,46 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
   };
 
   return (
-    <div className="space-y-6 lg:space-y-8 text-[#5d4037]">
+    <div className="space-y-8 lg:space-y-12 text-[#5d4037]">
       {/* Product Header */}
-      <div className="space-y-1">
-        <p className="font-sans font-black uppercase tracking-[0.3em] text-[10px] opacity-60">Hand-Picked Selection</p>
-        <h2 className="text-4xl lg:text-6xl font-serif font-black leading-tight tracking-tighter">
+      <div className="space-y-4">
+        <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-xs opacity-40">The Signature Piece</p>
+        <h2 className="text-5xl lg:text-8xl font-serif font-black leading-[0.85] tracking-tighter">
           {product.name}
         </h2>
       </div>
       
-      <div className="flex items-center space-x-4">
-        <span className="text-3xl lg:text-4xl font-black">SAR {product.price}</span>
-        <div className={`px-4 py-2 rounded-full text-[10px] font-black tracking-widest uppercase flex items-center shadow-sm border border-[#5d4037]/10 ${collection.color === 'coral' ? 'bg-[#ee786e] text-white' : 'bg-[#a2ccb6] text-white'}`}>
-          <i className="fas fa-sparkles mr-2 animate-pulse"></i>
-          5-Piece Set
+      <div className="flex items-baseline space-x-6">
+        <span className="text-4xl lg:text-6xl font-black">SAR {product.price}</span>
+        <div className={`px-5 py-2 rounded-full text-[10px] lg:text-xs font-black tracking-widest uppercase flex items-center border-[1.5px] ${collection.color === 'coral' ? 'bg-[#ee786e] text-white border-[#ee786e]' : 'bg-[#a2ccb6] text-white border-[#a2ccb6]'}`}>
+          Complete 5-Piece Experience
         </div>
       </div> 
 
-      {/* Boutique Details */}
-      <div className="bg-[#ffecd9]/50 p-5 rounded-[2rem] border border-[#5d4037]/5">
-        <h3 className="text-[10px] font-black text-[#5d4037]/40 uppercase tracking-[0.2em] mb-4 flex items-center">
-          <i className="fas fa-box-open mr-2"></i>
-          Included in the Box
-        </h3>
-        <ul className="grid grid-cols-2 gap-3">
+      {/* Boutique Details - Grid List */}
+      <div className="space-y-6 pt-4">
+        <h3 className="text-[10px] font-black text-[#5d4037]/30 uppercase tracking-[0.3em]">Authentic Set Details</h3>
+        <div className="grid grid-cols-1 gap-4">
           {product.includes.map((item, index) => (
-            <li key={index} className="flex items-center space-x-2">
-              <div className={`w-1.5 h-1.5 rounded-full ${collection.color === 'coral' ? 'bg-[#ee786e]' : 'bg-[#a2ccb6]'}`}></div>
-              <span className="text-xs lg:text-sm font-bold opacity-80">{item}</span>
-            </li>
+            <div key={index} className="flex items-center space-x-4 group">
+              <div className={`w-2 h-2 rounded-full transition-transform group-hover:scale-150 ${collection.color === 'coral' ? 'bg-[#ee786e]' : 'bg-[#a2ccb6]'}`}></div>
+              <span className="text-sm lg:text-lg font-bold opacity-80">{item}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       {/* Size Selection */}
-      <div className="space-y-4">
-        <h3 className="text-[10px] font-black text-[#5d4037]/40 uppercase tracking-[0.2em]">Select Your Fit</h3>
-        <div className="flex flex-wrap gap-3">
+      <div className="space-y-6">
+        <h3 className="text-[10px] font-black text-[#5d4037]/30 uppercase tracking-[0.3em]">Personal Size</h3>
+        <div className="flex flex-wrap gap-4">
           {product.sizes.map((size) => (
             <button 
               key={size}
-              className={`w-12 h-12 lg:w-14 lg:h-14 border-[1.5px] rounded-2xl font-black text-lg transition-all duration-300 flex items-center justify-center ${
+              className={`w-14 h-14 lg:w-20 lg:h-20 border-[2px] rounded-3xl font-black text-xl lg:text-2xl transition-all duration-500 flex items-center justify-center ${
                 selectedSize === size 
-                  ? 'border-[#5d4037] bg-[#5d4037] text-white shadow-xl scale-110'
-                  : 'border-[#5d4037]/10 text-[#5d4037]/60 bg-white hover:border-[#5d4037]/40 hover:text-[#5d4037]'
+                  ? 'border-[#5d4037] bg-[#5d4037] text-white shadow-2xl scale-110'
+                  : 'border-[#5d4037]/10 text-[#5d4037]/40 bg-white/20 hover:border-[#5d4037]'
               }`}
               onClick={() => setSelectedSize(size)}
             >
@@ -80,10 +76,10 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-4 pt-4">
+      <div className="pt-8">
         <Button 
           onClick={handleBuyNow}
-          className="btn-premium-gradient flex-1 px-8 py-6 lg:py-8 text-lg lg:text-xl font-black shadow-2xl"
+          className="btn-premium-gradient w-full px-12 py-8 lg:py-12 text-xl lg:text-3xl font-black shadow-2xl"
         >
           Secure Checkout
         </Button>
