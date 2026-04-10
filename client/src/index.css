@@ -39,26 +39,25 @@
   }
 
   body {
-    @apply font-sans antialiased bg-[#c2d1c0] text-[#2d3436] min-h-screen p-4 lg:p-12;
+    @apply font-sans antialiased bg-[#ffecd9] text-[#2d3436] h-screen overflow-hidden m-0 p-0;
+  }
+
+  /* The Master Fixed Frame */
+  .fixed-master-frame {
+    @apply fixed inset-0 z-[100] border-[1rem] lg:border-[2rem] border-[#ee786e] pointer-events-none rounded-[3rem] lg:rounded-[4rem];
+    /* Using box-shadow to ensure the rounded inside of the border looks sharp */
+    box-shadow: inset 0 0 0 1px rgba(93, 64, 55, 0.05);
+  }
+
+  .internal-scroll-area {
+    @apply fixed inset-[1rem] lg:inset-[2rem] overflow-y-auto bg-[#ffecd9] rounded-[2rem] lg:rounded-[3rem] z-0;
+    scrollbar-width: thin;
+    scrollbar-color: #a2ccb6 transparent;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 
-  .site-frame {
-    @apply bg-[#ffecd9] border-[1.5px] border-[#5d4037]/20 rounded-[2.5rem] lg:rounded-[4.5rem] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.12)] relative p-4 lg:p-12 mb-8;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-  }
-
-  .snap-container {
-    @apply h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth;
-    scrollbar-width: none;
-  }
-  
-  .snap-container::-webkit-scrollbar {
-    display: none;
-  }
-
-  .snap-slide {
-    @apply min-h-screen snap-start flex flex-col justify-center py-6 lg:py-12;
+  .floating-pill {
+    @apply bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-[#5d4037]/5 px-6 py-2 lg:py-4 flex items-center justify-center;
   }
 
   h1, h2, h3, h4, h5, h6 {
