@@ -49,9 +49,9 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
         </ul>
       </div>
 
-      {/* Product Description */}
-      <p className="text-gray-700 leading-relaxed">
-        {product.description}
+      {/* Condensed Description */}
+      <p className="text-gray-600 leading-relaxed text-sm">
+        Premium fabrics designed for the modern woman who refuses to compromise on style or coverage. UPF 50+ sun protection.
       </p>
 
       {/* Size Selection */}
@@ -96,35 +96,17 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
 
       {/* Order Actions */}
       <div className="space-y-6 pt-4">
+      <div className="space-y-4 pt-2">
         <Link to="/checkout" className="block">
           <Button 
-            className={`w-full rounded-[1.5rem] shadow-[0_10px_20px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_25px_rgba(0,0,0,0.15)] ${
+            className={`w-full rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-0.5 ${
               collection.color === 'coral' ? 'bg-coral hover:bg-coral/90' : 'bg-teal hover:bg-teal/90'
-            } text-white text-xl py-8 font-serif font-bold tracking-wide`}
+            } text-white text-lg py-6 font-serif font-bold`}
           >
-            <i className="fas fa-shopping-bag mr-3"></i>
-            Add to Cart
+            <i className="fas fa-lock mr-3"></i>
+            Buy Now
           </Button>
         </Link>
-        
-        <div className={`${collection.color === 'coral' ? 'bg-gradient-to-br from-coral to-[#ff5252]' : 'bg-gradient-to-br from-teal to-[#22a699]'} text-white p-8 rounded-[2rem] shadow-lg space-y-5 overflow-hidden relative group`}>
-          <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-          <h3 className="text-xl font-semibold">Contact to Order</h3>
-          <div className="space-y-3">
-            <a href="mailto:contact@moonyswimwear.com" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <i className="fas fa-envelope"></i>
-              <span>contact@moonyswimwear.com</span>
-            </a>
-            <a href="tel:+1234567890" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <i className="fas fa-phone"></i>
-              <span>+1 (234) 567-890</span>
-            </a>
-            <a href="https://www.instagram.com/moonyswimwear" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <i className="fab fa-instagram"></i>
-              <span>@moonyswimwear</span>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
