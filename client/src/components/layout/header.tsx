@@ -9,16 +9,14 @@ export default function Header() {
         <motion.div 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="flex items-center space-x-2 cursor-pointer group z-50"
+          className="flex items-center space-x-2 cursor-pointer group z-50 p-2"
         >
           <div className="flex items-center space-x-2 cursor-pointer group">
-            <div className="w-8 h-8 lg:w-9 lg:h-9 bg-[#ee786e]/10 rounded-full flex items-center justify-center border border-[#ee786e]/20">
-              <img 
-                src="/images/starfish-coral.png" 
-                alt="Moony Logo" 
-                className="w-5 h-5 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform"
-              />
-            </div>
+            <img 
+              src="/images/starfish-coral.png" 
+              alt="Moony Logo" 
+              className="w-6 h-6 lg:w-8 lg:h-8 group-hover:rotate-12 transition-transform"
+            />
             <span className="text-xl lg:text-3xl font-serif font-black text-[#5d4037] tracking-tighter">moony</span>
           </div>
         </motion.div>
