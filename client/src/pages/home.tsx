@@ -241,7 +241,6 @@ export default function Home() {
                   {currentProduct.name}
                 </h2>
                 <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
-              </div>
 
               {/* 3. Purchase Block */}
               <div className="w-full space-y-3 lg:space-y-4 pb-2">
