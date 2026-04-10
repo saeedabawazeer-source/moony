@@ -52,7 +52,7 @@ export class MemStorage implements IStorage {
       {
         id: "daydream-set",
         name: "Daydream",
-        price: "159.00",
+        price: "596.25",
         description: "Elegant and modest swimwear designed for comfort and style. Our premium fabric provides UV protection while the beautiful patterns make a statement at the beach or pool.",
         collection: "daydream",
         mainImage: "https://v0-moony.vercel.app/images/daydream-1.jpeg",
@@ -121,7 +121,7 @@ export class MemStorage implements IStorage {
       {
         id: "aqua-glow-set",
         name: "Aqua Glow",
-        price: "159.00",
+        price: "596.25",
         description: "Refreshing teal-themed modest swimwear designed for comfort and elegance. Premium fabric with UV protection and quick-drying technology.",
         collection: "aqua-glow",
         mainImage: "https://v0-moony.vercel.app/images/daydream-1.jpeg",

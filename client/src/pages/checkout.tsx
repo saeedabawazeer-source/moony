@@ -39,14 +39,32 @@ export default function Checkout() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would process the order
-    alert("Order submitted! We'll contact you soon to complete the purchase.");
+    try {
+      const res = await fetch("/api/create-charge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product: selectedProduct,
+          quantity,
+          customer: formData,
+          origin: window.location.origin
+        })
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Payment gateway error: " + data.message);
+      }
+    } catch (err) {
+      alert("There was an issue processing your payment.");
+    }
   };
 
   const subtotal = currentProduct ? parseFloat(currentProduct.price) * quantity : 0;
-  const shipping = 15.00;
+  const shipping = 56.25;
   const total = subtotal + shipping;
 
   return (
@@ -74,7 +92,7 @@ export default function Checkout() {
                     <SelectContent>
                       {products.map((product) => (
                         <SelectItem key={product.id} value={product.id}>
-                          {product.name} - ${product.price}
+                          {product.name} - SAR {product.price}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -236,7 +254,7 @@ export default function Checkout() {
                         Size: {selectedSize || "Not selected"} | Qty: {quantity}
                       </p>
                     </div>
-                    <span className="font-medium">${currentProduct.price}</span>
+                    <span className="font-medium">SAR {currentProduct.price}</span>
                   </div>
 
                   <div className="space-y-2 text-sm">
@@ -256,16 +274,16 @@ export default function Checkout() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>SAR {subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping</span>
-                      <span>${shipping.toFixed(2)}</span>
+                      <span>SAR {shipping.toFixed(2)}</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between text-lg font-semibold">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>SAR {total.toFixed(2)}</span>
                     </div>
                   </div>
 

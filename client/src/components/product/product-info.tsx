@@ -30,7 +30,7 @@ export default function ProductInfo({ product, collection }: ProductInfoProps) {
       </div>
       
       <div className="flex items-center space-x-4">
-        <span className="text-3xl font-bold text-gray-900">${product.price}</span>
+        <span className="text-3xl font-bold text-gray-900">SAR {product.price}</span>
         <span className={`px-3 py-1 rounded-full text-sm font-medium ${collection.color === 'coral' ? 'bg-coral-light text-coral' : 'bg-teal-light text-teal'}`}>
           Complete Set
         </span>
