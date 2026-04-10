@@ -12,6 +12,7 @@ export default function Home() {
   const [selectedCollection, setSelectedCollection] = useState("daydream");
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
@@ -50,7 +51,7 @@ export default function Home() {
     localStorage.setItem('moony_cart', JSON.stringify({ 
       product: currentProduct.id, 
       size: selectedSize, 
-      quantity: 1 
+      quantity: quantity 
     }));
     setLocation('/checkout');
   };
@@ -163,7 +164,7 @@ export default function Home() {
           <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
-            <div className="w-full relative h-[42vh] lg:h-[55vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
+            <div className="w-full relative h-[48vh] lg:h-[60vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
@@ -205,6 +206,7 @@ export default function Home() {
                     setSelectedCollection(otherCollection.id);
                     setCurrentImageIndex(0);
                     setSelectedSize("M");
+                    setQuantity(1);
                   }}
                   className="flex items-center space-x-3 group"
                 >
@@ -230,31 +232,51 @@ export default function Home() {
                 <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
               </div>
 
-              {/* Purchase Block */}
+              {/* 3. Purchase Block */}
               <div className="w-full space-y-3 lg:space-y-4 pb-2">
-                <div className="flex justify-start gap-2">
-                  {currentProduct.sizes.map((size) => (
+                <div className="flex items-center justify-start gap-4">
+                  {/* Size Selector */}
+                  <div className="flex gap-2">
+                    {currentProduct.sizes.map((size) => (
+                      <button 
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`w-9 h-9 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl font-black text-[10px] lg:text-sm border-2 transition-all ${
+                          selectedSize === size 
+                            ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-md' 
+                            : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Quantity Counter */}
+                  <div className="flex items-center bg-white/50 rounded-xl px-2 py-1 border-2 border-[#5d4037]/10 h-9 lg:h-14">
                     <button 
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`w-10 h-10 lg:w-14 lg:h-14 rounded-2xl font-black text-xs lg:text-sm border-2 transition-all ${
-                        selectedSize === size 
-                          ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-md' 
-                          : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
-                      }`}
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-6 h-6 flex items-center justify-center font-black text-[#5d4037] hover:scale-125 transition-transform"
                     >
-                      {size}
+                      -
                     </button>
-                  ))}
+                    <span className="px-3 font-black text-[10px] lg:text-sm text-[#5d4037] min-w-[1.5rem] text-center">{quantity}</span>
+                    <button 
+                      onClick={() => setQuantity(Math.min(10, quantity + 1))}
+                      className="w-6 h-6 flex items-center justify-center font-black text-[#5d4037] hover:scale-125 transition-transform"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 
                 <div className="flex gap-2 w-full">
-                  <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
+                  <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[9px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
                     ADD TO CART
                   </button>
                   <button 
                     onClick={handleCheckout}
-                    className="flex-[2] btn-premium-gradient py-3 lg:py-5 text-[10px] lg:text-sm font-black shadow-lg uppercase tracking-widest leading-none"
+                    className="flex-[2] btn-premium-gradient py-3 lg:py-5 text-[9px] lg:text-sm font-black shadow-lg uppercase tracking-widest leading-none"
                   >
                     PROCEED TO CHECKOUT
                   </button>
@@ -264,12 +286,12 @@ export default function Home() {
               {/* Navigation Hint */}
               <motion.button 
                 onClick={() => document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' })}
-                animate={{ y: [0, 5, 0] }}
+                animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-full flex flex-col items-center pt-2 opacity-30 hover:opacity-100 transition-opacity"
+                className="w-full flex flex-col items-center pt-1 opacity-20 hover:opacity-100 transition-opacity"
               >
-                <p className="text-[8px] font-black tracking-[0.3em] uppercase mb-1">View More Details</p>
-                <i className="fas fa-chevron-down text-[10px]"></i>
+                <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1">View More Details</p>
+                <i className="fas fa-chevron-down text-[8px]"></i>
               </motion.button>
             </div>
           </div>
