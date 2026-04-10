@@ -89,14 +89,14 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Model interaction */}
-        <section id="boutique-shop" className="snap-slide px-4 lg:px-8 py-12 lg:py-20">
-          <div className="max-w-6xl mx-auto w-full space-y-8 lg:space-y-12">
-            <div className="flex justify-center gap-3 lg:gap-4 max-w-lg mx-auto w-full">
+        <section id="boutique-shop" className="snap-slide px-4 lg:px-8">
+          <div className="max-w-5xl mx-auto w-full py-8 lg:py-12 space-y-6 lg:space-y-10">
+            <div className="flex justify-center gap-3 max-w-md mx-auto w-full">
               {collections.map((collection) => (
                 <button 
                   key={collection.id}
                   onClick={() => setSelectedCollection(collection.id)}
-                  className={`flex-1 py-3 lg:py-4 rounded-3xl font-black text-[10px] lg:text-xs uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
+                  className={`flex-1 py-3 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
                     selectedCollection === collection.id 
                       ? 'bg-[#5d4037] text-white border-[#5d4037] shadow-lg' 
                       : 'bg-white/60 text-[#5d4037] border-transparent hover:border-[#5d4037]/10'
@@ -113,9 +113,9 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+                className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
               >
-                <div className="w-full max-w-md mx-auto">
+                <div className="w-full max-w-sm mx-auto aspect-[4/5] lg:aspect-auto">
                   <ProductGallery key={currentProduct.id} product={currentProduct} onStarClick={toggleCollection} />
                 </div>
                 <div className="w-full">
@@ -127,17 +127,17 @@ export default function Home() {
         </section>
 
         {/* Section 3: The Details & Footer */}
-        <section className="snap-slide px-4 lg:px-8 pt-16 lg:pt-24 pb-12 lg:pb-16">
-          <div className="max-w-6xl mx-auto h-full flex flex-col justify-between">
-            <div className="space-y-8 lg:space-y-12">
+        <section className="snap-slide px-4 lg:px-8 py-12 lg:py-20">
+          <div className="max-w-5xl mx-auto h-full flex flex-col justify-between">
+            <div className="space-y-10 lg:space-y-16 py-8">
               <div className="text-center space-y-3">
                 <h2 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter">Boutique Breakdown</h2>
                 <p className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] opacity-40">Precision Engineering • Italian Fabrics</p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                <div className="bg-white/50 p-6 lg:p-10 rounded-[3rem] border border-[#5d4037]/5 space-y-4">
-                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Includes</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+                <div className="bg-white/50 p-8 rounded-[3rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
+                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Included</h4>
                   <ul className="grid grid-cols-2 gap-2">
                     {currentProduct.includes.map((item, i) => (
                       <li key={i} className="flex items-center space-x-2 text-[10px] lg:text-xs font-bold opacity-80">
@@ -147,17 +147,15 @@ export default function Home() {
                     ))}
                   </ul>
                 </div>
-                <div className="bg-[#a2ccb6]/10 p-6 lg:p-10 rounded-[3rem] border border-[#5d4037]/5 flex items-center">
-                  <p className="text-xs lg:text-sm font-medium opacity-70 leading-relaxed italic">
-                    Designed in Jeddah. Premium Italian Spandex. Eco-certified.
+                <div className="bg-[#a2ccb6]/10 p-8 rounded-[3rem] border border-[#5d4037]/5 flex items-center shadow-sm">
+                  <p className="text-xs lg:text-base font-medium opacity-70 leading-relaxed italic">
+                    Designed in Jeddah. Crafted with premium Italian Spandex. Breathable, quick-dry, and eco-certified.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-8 lg:pt-16">
-              <Footer />
-            </div>
+            <Footer />
           </div>
         </section>
       </div>
