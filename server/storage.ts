@@ -31,14 +31,14 @@ export class MemStorage implements IStorage {
         id: "daydream",
         name: "Daydream",
         description: "Elegant coral-themed modest swimwear collection",
-        icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+        icon: "/images/starfish-coral.png",
         color: "coral"
       },
       {
         id: "aqua-glow",
         name: "Aqua Glow",
         description: "Refreshing teal-themed modest swimwear collection",
-        icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+        icon: "/images/starfish-teal.png",
         color: "teal"
       }
     ];
@@ -57,10 +57,10 @@ export class MemStorage implements IStorage {
         collection: "daydream",
         mainImage: "https://v0-moony.vercel.app/images/daydream-1.jpeg",
         images: [
-          "https://v0-moony.vercel.app/images/daydream-1.jpeg",
-          "https://v0-moony.vercel.app/images/daydream-2.jpeg",
-          "https://v0-moony.vercel.app/images/daydream-3.jpeg",
-          "https://v0-moony.vercel.app/images/daydream-4.jpeg"
+          "/images/daydream-1.jpeg",
+          "/images/daydream-2.jpeg",
+          "/images/daydream-3.jpeg",
+          "/images/daydream-4.jpeg"
         ],
         includes: [
           "Top",
@@ -71,42 +71,42 @@ export class MemStorage implements IStorage {
         ],
         highlights: [
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+            icon: "/images/starfish-teal.png",
             title: "Premium Design",
             description: "Elegant and modest swimwear designed for the modern woman with full coverage while maintaining a stylish look."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+            icon: "/images/starfish-coral.png",
             title: "Complete Set",
             description: "Includes top, leggings, short coverup, whole coverup, and matching turban for multiple styling options."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-black.png",
+            icon: "/images/starfish-black.png",
             title: "UV Protection",
             description: "UPF 50+ sun protection for all-day wear, keeping you safe from harmful rays."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+            icon: "/images/starfish-teal.png",
             title: "Quick-Drying",
             description: "Premium fabric that dries quickly after swimming for comfort throughout the day."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+            icon: "/images/starfish-coral.png",
             title: "Material",
             description: "80% Polyamide, 20% Elastane for durability, comfort and stretch."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-black.png",
+            icon: "/images/starfish-black.png",
             title: "Care Instructions",
             description: "Hand wash in cold water. Do not bleach. Hang to dry in shade. Rinse after use in chlorinated or salt water."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+            icon: "/images/starfish-teal.png",
             title: "Signature Details",
             description: "Neon accents and Moony starfish branding make this swimwear uniquely stylish."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+            icon: "/images/starfish-coral.png",
             title: "Versatile Styling",
             description: "Multiple ways to wear for different occasions, from swimming to beach lounging."
           }
@@ -126,10 +126,10 @@ export class MemStorage implements IStorage {
         collection: "aqua-glow",
         mainImage: "https://v0-moony.vercel.app/images/daydream-1.jpeg",
         images: [
-          "https://v0-moony.vercel.app/images/daydream-1.jpeg",
-          "https://v0-moony.vercel.app/images/daydream-2.jpeg",
-          "https://v0-moony.vercel.app/images/daydream-3.jpeg",
-          "https://v0-moony.vercel.app/images/daydream-4.jpeg"
+          "/images/daydream-1.jpeg",
+          "/images/daydream-2.jpeg",
+          "/images/daydream-3.jpeg",
+          "/images/daydream-4.jpeg"
         ],
         includes: [
           "Top",
@@ -140,42 +140,42 @@ export class MemStorage implements IStorage {
         ],
         highlights: [
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+            icon: "/images/starfish-teal.png",
             title: "Premium Design",
             description: "Elegant and modest swimwear designed for the modern woman with full coverage while maintaining a stylish look."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+            icon: "/images/starfish-coral.png",
             title: "Complete Set",
             description: "Includes top, leggings, short coverup, whole coverup, and matching turban for multiple styling options."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-black.png",
+            icon: "/images/starfish-black.png",
             title: "UV Protection",
             description: "UPF 50+ sun protection for all-day wear, keeping you safe from harmful rays."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+            icon: "/images/starfish-teal.png",
             title: "Quick-Drying",
             description: "Premium fabric that dries quickly after swimming for comfort throughout the day."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+            icon: "/images/starfish-coral.png",
             title: "Material",
             description: "80% Polyamide, 20% Elastane for durability, comfort and stretch."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-black.png",
+            icon: "/images/starfish-black.png",
             title: "Care Instructions",
             description: "Hand wash in cold water. Do not bleach. Hang to dry in shade. Rinse after use in chlorinated or salt water."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
+            icon: "/images/starfish-teal.png",
             title: "Signature Details",
             description: "Neon accents and Moony starfish branding make this swimwear uniquely stylish."
           },
           {
-            icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+            icon: "/images/starfish-coral.png",
             title: "Versatile Styling",
             description: "Multiple ways to wear for different occasions, from swimming to beach lounging."
           }
