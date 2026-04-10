@@ -53,7 +53,7 @@ export default function Home() {
       
       <Header />
 
-      <main className="flex-grow flex flex-col justify-center pt-14 pb-4 lg:pt-36 lg:pb-32 relative overflow-y-auto lg:overflow-visible">
+      <main className="flex-grow flex flex-col justify-center pt-10 pb-2 lg:pt-36 lg:pb-32 relative overflow-y-auto lg:overflow-visible">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           
           {/* Hero Section */}
@@ -63,7 +63,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-4 lg:mb-16"
           >
-            <h1 className="text-xl lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight whitespace-nowrap">
+            <h1 className="text-lg lg:text-7xl font-serif text-gray-900 leading-tight tracking-tight whitespace-nowrap opacity-80">
               Embrace Elegance. <span className="text-gradient italic font-normal">Modest Swimwear.</span>
             </h1>
           </motion.div>
@@ -122,7 +122,9 @@ export default function Home() {
         </div>
       </main>
 
-      <Footer />
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
     </div>
   );
 }
