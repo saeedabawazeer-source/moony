@@ -160,7 +160,7 @@ export default function Home() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden">
-          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4 justify-center">
+          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
             <div className="w-full relative h-[42vh] lg:h-[55vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
@@ -195,8 +195,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 2. Selection Cluster (Left Aligned) */}
-            <div className="w-full space-y-3 lg:space-y-4">
+            {/* 2. Selection Cluster (Generous Left/Right Padding) */}
+            <div className="w-full space-y-3 lg:space-y-4 px-8 lg:px-0">
               {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
                 <motion.button
                   key={otherCollection.id}
