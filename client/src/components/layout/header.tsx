@@ -3,49 +3,49 @@ import { motion } from "framer-motion";
 export default function Header() {
   return (
     <div className="sticky top-6 lg:top-10 z-[60] w-full px-4 lg:px-8">
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
+      <div className="grid grid-cols-3 items-center max-w-7xl mx-auto">
         
-        {/* Logo (No Pill) */}
+        {/* Left: Arabic Toggle */}
         <motion.div 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="flex items-center space-x-2 cursor-pointer group z-50 p-2"
+          className="flex justify-start"
         >
-          <div className="flex items-center space-x-2 cursor-pointer group">
-            <img 
-              src="/images/starfish-coral.png" 
-              alt="Moony Logo" 
-              className="w-6 h-6 lg:w-8 lg:h-8 group-hover:rotate-12 transition-transform"
-            />
-            <span className="text-xl lg:text-3xl font-serif font-black text-[#5d4037] tracking-tighter">moony</span>
-          </div>
+          <a href="#" className="font-sans font-black text-xs lg:text-sm text-[#5d4037] hover:text-[#e5815c] transition-colors border-b-2 border-[#5d4037]/10 pb-1">
+            العربية
+          </a>
         </motion.div>
 
-        {/* Navigation Pill (The Meow Meow Centerpiece) */}
-        <motion.nav 
+        {/* Center: Brand Identity */}
+        <motion.div 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="hidden md:flex floating-pill space-x-8 lg:space-x-10"
+          className="flex flex-col items-center justify-center space-y-2"
         >
-          {['Shop', 'Our Story', 'Boutique', 'Contact'].map((item) => (
-            <a 
-              key={item} 
-              href="#"
-              className="text-[#5d4037] font-bold text-xs lg:text-sm tracking-wide uppercase hover:text-[#e5815c] transition-colors"
-            >
-              {item}
-            </a>
-          ))}
-        </motion.nav>
+          <div className="flex items-center space-x-2 lg:space-x-3 cursor-pointer group">
+            <img 
+              src="/images/starfish-black.png" 
+              alt="Moony Logo" 
+              className="w-6 h-6 lg:w-8 lg:h-8 group-hover:rotate-45 transition-transform duration-700"
+            />
+            <span className="text-2xl lg:text-4xl font-serif font-black text-[#5d4037] tracking-tighter">moony</span>
+          </div>
+          {/* Subtle Nav Flanking the Center */}
+          <nav className="hidden lg:flex space-x-6 text-[9px] font-black uppercase tracking-widest text-[#5d4037]/40">
+            <a href="#" className="hover:text-[#e5815c]">Shop</a>
+            <a href="#" className="hover:text-[#e5815c]">Our Story</a>
+            <a href="#" className="hover:text-[#e5815c]">Boutique</a>
+          </nav>
+        </motion.div>
 
-        {/* Shopping Pill */}
+        {/* Right: Personal Bag */}
         <motion.div 
           initial={{ x: 20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="floating-pill !px-3 !py-3 lg:!px-4 lg:!py-4"
+          className="flex justify-end"
         >
-          <a href="/checkout" className="text-[#5d4037] hover:text-[#e5815c] transition-colors">
-            <i className="fas fa-shopping-bag text-lg lg:text-xl"></i>
+          <a href="/checkout" className="text-[#5d4037] hover:text-[#e5815c] transition-all transform hover:scale-110">
+            <i className="fas fa-shopping-bag text-xl lg:text-2xl"></i>
           </a>
         </motion.div>
 

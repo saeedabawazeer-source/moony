@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center justify-center md:justify-start space-x-3">
               <img 
-                src="/images/starfish-coral.png" 
+                src="/images/starfish-black.png" 
                 alt="Moony Logo" 
                 className="w-6 h-6 lg:w-8 lg:h-8"
               />

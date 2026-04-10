@@ -46,7 +46,7 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
         {/* Loading Skeleton */}
         {!isLoaded && (
           <div className="absolute inset-0 bg-[#fceeb5] animate-pulse flex items-center justify-center">
-            <img src="/images/starfish-coral.png" className="w-12 h-12 opacity-15 animate-spin-slow" alt="Loading..." />
+            <img src="/images/starfish-black.png" className="w-12 h-12 opacity-15 animate-spin-slow" alt="Loading..." />
           </div>
         )}
 
@@ -76,7 +76,7 @@ export default function ProductGallery({ product, onStarClick }: ProductGalleryP
           className="absolute top-4 left-4 lg:top-8 lg:left-8 z-20 cursor-pointer bg-white/90 backdrop-blur-md p-2 lg:p-3 rounded-2xl shadow-lg border border-[#5d4037]/5 group/star"
         >
           <img 
-            src={product.collection === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
+            src="/images/starfish-black.png"
             alt="Toggle collection" 
             className="w-6 h-6 lg:w-9 lg:h-9 drop-shadow-sm group-hover/star:rotate-12 transition-transform"
           />

@@ -83,7 +83,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="px-10 py-5 rounded-full bg-[#5d4037] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] shadow-2xl hover:bg-[#e5815c] transition-colors duration-500"
+              className="px-10 py-5 rounded-full bg-[#6bb7b3] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] shadow-2xl hover:brightness-110 transition-all duration-500"
             >
               VIEW MODELS
             </motion.button>
