@@ -179,10 +179,10 @@ export default function Home() {
                     key={currentImageIndex}
                     src={currentProduct.images[currentImageIndex]} 
                     alt={currentProduct.name} 
-                    initial={{ opacity: 0, x: 50, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, x: -50, filter: "blur(10px)" }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
                 </AnimatePresence>
@@ -196,33 +196,44 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 2. Selection Cluster (Generous Left/Right Padding) */}
-            <div className="w-full space-y-3 lg:space-y-4 px-8 lg:px-0">
-              {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
-                <motion.button
-                  key={otherCollection.id}
-                  whileHover={{ x: 5 }}
-                  onClick={() => {
-                    setSelectedCollection(otherCollection.id);
-                    setCurrentImageIndex(0);
-                    setSelectedSize("M");
-                    setQuantity(1);
-                  }}
-                  className="flex items-center space-x-3 group"
-                >
-                  <img 
-                    src={otherCollection.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                    className="w-6 h-6 lg:w-8 lg:h-8 transition-transform group-hover:rotate-12"
-                    alt="Other"
-                  />
-                  <div className="text-left">
-                    <p className="text-[8px] font-black uppercase tracking-widest opacity-30">Switch to</p>
-                    <p className="text-xs lg:text-sm font-serif font-black text-[#000000]">{otherCollection.name}</p>
-                  </div>
-                </motion.button>
-              ))}
+            {/* 2. Model Switcher (Stars in one line) */}
+            <div className="w-full flex space-x-6 pb-2 px-8 lg:px-0">
+              {collections.map((col) => {
+                const isActive = selectedCollection === col.id;
+                return (
+                  <motion.button
+                    key={col.id}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => {
+                      setSelectedCollection(col.id);
+                      setCurrentImageIndex(0);
+                      setSelectedSize("M");
+                      setQuantity(1);
+                    }}
+                    className="relative"
+                  >
+                    <img 
+                      src={col.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
+                      className={`w-10 h-10 lg:w-12 lg:h-12 transition-all duration-300 ${
+                        isActive 
+                          ? 'drop-shadow-[0_0_15px_rgba(229,129,92,0.4)] scale-110 grayscale-0 opacity-100' 
+                          : 'grayscale-[80%] opacity-30 hover:opacity-60'
+                      }`}
+                      alt={col.name}
+                    />
+                    {isActive && (
+                      <motion.div 
+                        layoutId="activeStar"
+                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#5d4037] rounded-full"
+                      />
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
 
-              <div className="space-y-1 text-left">
+            <div className="w-full space-y-1 lg:space-y-2 px-8 lg:px-0">
                 <p className="font-sans font-black uppercase tracking-[0.5em] text-[8px] lg:text-[9px] text-[#e5815c]">
                   5 PIECE SET
                 </p>
