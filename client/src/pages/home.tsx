@@ -307,105 +307,150 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 2.5: The Anatomy of Moony */}
-        <section id="anatomy-section" className="snap-slide px-8 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden">
-          <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Section 2.5: The Anatomy of Moony (Editorial Blueprint) */}
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-6 lg:px-20 py-8 lg:py-24 flex flex-col justify-center overflow-hidden">
+          <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center h-full">
             
-            {/* Left: The 5-Piece Anatomy (Editorial Look) */}
-            <div className="space-y-8">
-              <div className="space-y-2">
-                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] opacity-40">Composition</p>
-                 <h2 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter leading-none">The 5-Piece Anatomy</h2>
-              </div>
+            {/* Left: The Visual Blueprint (With Arrows) */}
+            <div className="relative h-[45vh] lg:h-[70vh] w-full rounded-[2rem] lg:rounded-[4rem] overflow-hidden bg-[#fef8e1] shadow-xl group">
+              <img 
+                src={currentProduct.images[0]} 
+                className="w-full h-full object-cover opacity-90 grayscale-[20%]" 
+                alt="Blueprint"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               
-              <div className="space-y-4">
-                {[
-                  { name: "Top", desc: "Signature stretch-fit bodice" },
-                  { name: "Short coverup", desc: "Dynamic mid-length layering" },
-                  { name: "Leggings", desc: "High-waisted compression" },
-                  { name: "Turban", desc: "Secure multi-style headwear" },
-                  { name: "Whole coverup", desc: "Full-length flowing modesty" }
-                ].map((item, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-baseline space-x-4 border-b border-[#5d4037]/10 pb-4 group"
-                  >
-                    <span className="font-serif italic text-2xl lg:text-3xl text-[#e5815c] opacity-40 group-hover:opacity-100 transition-opacity">0{i+1}</span>
-                    <div>
-                      <h3 className="font-serif font-black text-xl lg:text-2xl tracking-tight">{item.name}</h3>
-                      <p className="font-sans text-[10px] uppercase font-black tracking-widest opacity-30">{item.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
+              {/* editorial Overlay Labels (Hand-sketched SVG Arrows) */}
+              <div className="absolute inset-0 pointer-events-none font-serif italic text-[10px] lg:text-sm text-white drop-shadow-lg">
+                {/* Turban */}
+                <div className="absolute top-[6%] right-[18%] flex flex-col items-center">
+                  <span className="mb-0.5">Turban</span>
+                  <svg className="w-6 h-10 -rotate-12 opacity-60" viewBox="0 0 24 40" fill="none">
+                    <path d="M12 2C12 2 15 15 2 38" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M2 38L6 34M2 38L1 32" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                {/* Top */}
+                <div className="absolute top-[28%] left-[12%] flex items-center">
+                  <span className="mr-2">Top</span>
+                  <svg className="w-12 h-6 opacity-60" viewBox="0 0 48 24" fill="none">
+                    <path d="M2 12C2 12 25 5 46 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M46 12L42 16M46 12L42 8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                {/* Short coverup */}
+                <div className="absolute top-[48%] right-[8%] flex items-center">
+                  <svg className="w-10 h-6 opacity-60 mr-2" viewBox="0 0 40 24" fill="none">
+                    <path d="M38 10C38 10 15 15 2 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M2 12L6 8M2 12L6 16" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <span>Short coverup</span>
+                </div>
+                {/* Leggings */}
+                <div className="absolute bottom-[22%] left-[10%] flex flex-col items-start translate-x-4">
+                  <svg className="w-6 h-12 -rotate-12 opacity-60 mb-1" viewBox="0 0 24 48" fill="none">
+                    <path d="M2 2C2 2 5 25 22 46" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M22 46L21 40M22 46L16 45" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <span>Leggings</span>
+                </div>
+                {/* Whole coverup */}
+                <div className="absolute bottom-[32%] right-[10%] flex flex-col items-end">
+                  <span className="mb-1">Whole coverup</span>
+                  <svg className="w-16 h-6 rotate-12 opacity-60" viewBox="0 0 64 24" fill="none">
+                    <path d="M62 5C62 5 35 15 2 10" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M2 10L6 14M2 10L6 6" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
               </div>
             </div>
 
-            {/* Right: Technical Specs (Structured Grid) */}
-            <div className="bg-[#f3efdb] p-8 lg:p-12 rounded-[3rem] lg:rounded-[5rem] shadow-inner space-y-10 border border-[#5d4037]/5 relative overflow-hidden">
-              <div className="text-left space-y-2">
-                <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] opacity-40 text-[#6bb7b3]">Performance</p>
-                <h3 className="text-3xl lg:text-4xl font-serif font-black tracking-tight">Moony Standards</h3>
+            {/* Right: Why you'll love Moony (Simplified) */}
+            <div className="space-y-6 lg:space-y-10">
+              <div className="space-y-2">
+                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">Selection Checklist</p>
+                 <h2 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter leading-none">Why you'll love our products:</h2>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              
+              <div className="grid grid-cols-1 gap-4 lg:gap-6">
                 {[
-                  { title: "Elegant & Modest", icon: "✨", text: "Providing full coverage with unmatched elegance." },
-                  { title: "All-Day Comfort", icon: "☁️", text: "Breathable fabrics to keep you feeling great every moment." },
-                  { title: "Sun Protection", icon: "☀️", text: "Safely enjoy the sun with integrated UV protection." },
-                  { title: "Quick-Drying", icon: "💧", text: "Ready for your next adventure in no time." }
+                  { title: "1- Elegant and Modest 💙", text: "Enjoy riding the waves with swimwear that provides full coverage and unmatched elegance." },
+                  { title: "2- All-Day Comfort ☁️", text: "Made from comfortable and breathable fabrics to keep you feeling great every moment under the sun." },
+                  { title: "3- Excellent Sun Protection ☀️", text: "Enjoy the sun safely with UV protection." },
+                  { title: "4- Quick-Drying 💧", text: "Fast-drying fabric so you're ready for your next adventure in no time." }
                 ].map((spec, i) => (
-                  <div key={i} className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-xl">{spec.icon}</span>
-                      <h4 className="font-serif font-black text-sm lg:text-base leading-tight tracking-tight">{spec.title}</h4>
-                    </div>
-                    <p className="text-[10px] lg:text-xs font-medium opacity-60 leading-relaxed italic">
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="space-y-1"
+                  >
+                    <h4 className="font-serif font-black text-sm lg:text-lg text-[#5d4037]">{spec.title}</h4>
+                    <p className="text-[10px] lg:text-xs font-medium opacity-60 leading-relaxed max-w-md italic">
                       {spec.text}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               <motion.button 
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ y: -5 }}
                 onClick={() => document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full py-4 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] font-black uppercase tracking-widest hover:bg-[#5d4037] hover:text-white transition-all shadow-md"
+                className="flex items-center space-x-3 opacity-30 hover:opacity-100 transition-opacity"
               >
-                VIEW FULL BREAKDOWN
+                <div className="w-8 h-px bg-[#5d4037]" />
+                <span className="text-[8px] font-black uppercase tracking-[0.3em]">Join the family</span>
               </motion.button>
             </div>
           </div>
         </section>
 
         {/* Section 3: The Details & Footer */}
-        <section id="details-section" className="snap-slide px-4 lg:px-8 py-12 lg:py-20">
-          <div className="max-w-5xl mx-auto h-full flex flex-col justify-between">
-            <div className="space-y-10 lg:space-y-16 py-8">
-              <div className="text-center space-y-3">
-                <h2 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter">Boutique Breakdown</h2>
-                <p className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] opacity-40">Precision Engineering • Italian Fabrics</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
-                <div className="bg-white/50 p-8 rounded-[3rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
-                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Included</h4>
-                  <ul className="grid grid-cols-2 gap-2">
+        <section id="details-section" className="snap-slide px-4 lg:px-8 py-12 lg:py-20 flex flex-col justify-between overflow-hidden">
+          <div className="max-w-5xl mx-auto w-full h-full flex flex-col justify-center space-y-12 lg:space-y-20">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center">
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <h2 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter">Boutique Breakdown</h2>
+                  <p className="font-sans font-black uppercase tracking-[0.3em] text-[10px] text-[#e5815c]">Precision Engineering • Italian Fabrics</p>
+                </div>
+                
+                <div className="bg-white/50 p-6 lg:p-10 rounded-[3rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
+                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Included in every set</h4>
+                  <ul className="grid grid-cols-2 gap-y-3 gap-x-6">
                     {currentProduct.includes.map((item, i) => (
-                      <li key={i} className="flex items-center space-x-2 text-[10px] lg:text-xs font-bold opacity-80">
-                        <div className="w-1 h-1 rounded-full bg-[#e5815c]"></div>
+                      <li key={i} className="flex items-center space-x-3 text-[10px] lg:text-xs font-bold opacity-80">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#6bb7b3]" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="bg-[#6bb7b3]/10 p-8 rounded-[3rem] border border-[#5d4037]/5 flex items-center shadow-sm">
-                  <p className="text-xs lg:text-base font-medium opacity-70 leading-relaxed italic">
-                    Designed in Jeddah. Crafted with premium Italian Spandex. Breathable, quick-dry, and eco-certified.
+              </div>
+
+              <div className="space-y-8 lg:space-y-12 bg-[#f3efdb]/50 p-10 lg:p-16 rounded-[4rem] text-center border-2 border-[#5d4037]/10 relative">
+                <div className="space-y-4">
+                  <p className="font-serif italic text-lg lg:text-2xl leading-relaxed text-[#5d4037]">
+                    "Join the <span className="text-[#6bb7b3] font-black not-italic">Moony Stars</span> family and shop our dazzling collection today on Instagram."
                   </p>
+                  <p className="text-[10px] lg:text-xs font-bold opacity-40 leading-relaxed uppercase tracking-widest max-w-xs mx-auto">
+                    Discover how you can shine like a star with your new look, and share your joyful water adventures with us!
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter text-[#e5815c] italic">
+                    Let's shine together like stars 🌟
+                  </h3>
+                  <div className="flex justify-center space-x-6 pt-4">
+                    <a href="#" className="flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-[#5d4037] hover:brightness-150 transition-all">
+                      <i className="fab fa-instagram text-base"></i>
+                      <span>Instagram</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
