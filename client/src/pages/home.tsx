@@ -72,6 +72,13 @@ export default function Home() {
       {/* Static Global Frame Border */}
       <div className="fixed-master-frame" />
 
+      {/* Image Preloader (Hidden) */}
+      <div className="hidden">
+        {products.flatMap(p => p.images).map((src, i) => (
+          <img key={i} src={src} alt="preload" />
+        ))}
+      </div>
+
       {/* Internal Scrollable Content with Snapping */}
       <div className="internal-scroll-area">
         
@@ -79,20 +86,19 @@ export default function Home() {
         <section className="snap-slide relative overflow-hidden">
           <Header />
           
-          {/* Ambient Animated Starfish */}
+          {/* Ambient Animated Starfish (Repositioned to Edges) */}
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[20%] right-[10%] w-12 lg:w-20 hidden lg:block"
+            className="absolute top-[10%] right-[5%] w-12 lg:w-20 pointer-events-none"
             animate={{ 
               y: [0, -20, 0],
-              rotate: [0, 15, 0],
-              scale: [1, 1.05, 1]
+              rotate: [0, 15, 0]
             }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.img 
             src="/images/starfish-teal.png"
-            className="absolute bottom-[25%] left-[15%] w-16 lg:w-24"
+            className="absolute bottom-[10%] left-[5%] w-16 lg:w-24 pointer-events-none"
             animate={{ 
               y: [0, 25, 0],
               rotate: [0, -10, 0]
@@ -101,7 +107,7 @@ export default function Home() {
           />
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[40%] left-[5%] w-10 lg:w-16"
+            className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40"
             animate={{ 
               x: [0, 15, 0],
               rotate: [0, 360],
@@ -110,6 +116,18 @@ export default function Home() {
               x: { duration: 10, repeat: Infinity, ease: "easeInOut" },
               rotate: { duration: 40, repeat: Infinity, ease: "linear" }
             }}
+          />
+          <motion.img 
+            src="/images/starfish-teal.png"
+            className="absolute top-[15%] left-[10%] w-8 lg:w-12 pointer-events-none opacity-30"
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+            transition={{ duration: 5, repeat: Infinity }}
+          />
+          <motion.img 
+            src="/images/starfish-coral.png"
+            className="absolute bottom-[20%] right-[8%] w-14 lg:w-22 pointer-events-none opacity-20"
+            animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
+            transition={{ duration: 9, repeat: Infinity }}
           />
 
           <motion.div 
@@ -142,41 +160,43 @@ export default function Home() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden">
-          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4">
+          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4 justify-center">
             
-            {/* 1. Swipeable Model Visual (Matched Frame Rounding) */}
+            {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
             <div className="w-full relative h-[42vh] lg:h-[55vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
+                dragElastic={0.15}
+                dragMomentum={false}
                 onDragEnd={handleDragEnd}
               >
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="popLayout" initial={false}>
                   <motion.img 
                     key={currentImageIndex}
                     src={currentProduct.images[currentImageIndex]} 
                     alt={currentProduct.name} 
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="w-full h-full object-cover pointer-events-none"
+                    initial={{ opacity: 0, x: 50, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, x: -50, filter: "blur(10px)" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
                 </AnimatePresence>
               </motion.div>
               
               {/* Swipe Indicators */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
                 {currentProduct.images.map((_, i) => (
-                  <div key={i} className={`w-1.5 h-1.5 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
+                  <div key={i} className={`w-1 h-1 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
                 ))}
               </div>
             </div>
 
-            {/* 2. Selection & Branding (Generous Left Padding) */}
-            <div className="w-full space-y-4 lg:space-y-6 px-8 lg:px-0">
+            {/* 2. Selection Cluster (Left Aligned) */}
+            <div className="w-full space-y-3 lg:space-y-4">
               {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
                 <motion.button
                   key={otherCollection.id}
@@ -186,22 +206,22 @@ export default function Home() {
                     setCurrentImageIndex(0);
                     setSelectedSize("M");
                   }}
-                  className="flex items-center space-x-4 group bg-white/30 backdrop-blur-md py-2 pl-3 pr-6 rounded-full border border-white/20"
+                  className="flex items-center space-x-3 group"
                 >
                   <img 
                     src={otherCollection.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                    className="w-8 h-8 lg:w-10 lg:h-10 transition-transform group-hover:rotate-12"
+                    className="w-6 h-6 lg:w-8 lg:h-8 transition-transform group-hover:rotate-12"
                     alt="Other"
                   />
                   <div className="text-left">
-                    <p className="text-[9px] font-black uppercase tracking-widest opacity-40">Switch to</p>
-                    <p className="text-sm lg:text-base font-serif font-black text-[#000000]">{otherCollection.name}</p>
+                    <p className="text-[8px] font-black uppercase tracking-widest opacity-30">Switch to</p>
+                    <p className="text-xs lg:text-sm font-serif font-black text-[#000000]">{otherCollection.name}</p>
                   </div>
                 </motion.button>
               ))}
 
               <div className="space-y-1 text-left">
-                <p className="font-sans font-black uppercase tracking-[0.5em] text-[9px] text-[#e5815c]">
+                <p className="font-sans font-black uppercase tracking-[0.5em] text-[8px] lg:text-[9px] text-[#e5815c]">
                   5 PIECE SET
                 </p>
                 <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-none">
@@ -210,8 +230,8 @@ export default function Home() {
                 <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
               </div>
 
-              {/* 3. Purchase Block */}
-              <div className="w-full space-y-3 lg:space-y-5 pb-6">
+              {/* Purchase Block */}
+              <div className="w-full space-y-3 lg:space-y-4 pb-2">
                 <div className="flex justify-start gap-2">
                   {currentProduct.sizes.map((size) => (
                     <button 
@@ -228,7 +248,7 @@ export default function Home() {
                   ))}
                 </div>
                 
-                <div className="flex gap-3 w-full">
+                <div className="flex gap-2 w-full">
                   <button className="flex-1 py-3 lg:py-5 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
                     ADD TO CART
                   </button>
@@ -240,12 +260,23 @@ export default function Home() {
                   </button>
                 </div>
               </div>
+
+              {/* Navigation Hint */}
+              <motion.button 
+                onClick={() => document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' })}
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-full flex flex-col items-center pt-2 opacity-30 hover:opacity-100 transition-opacity"
+              >
+                <p className="text-[8px] font-black tracking-[0.3em] uppercase mb-1">View More Details</p>
+                <i className="fas fa-chevron-down text-[10px]"></i>
+              </motion.button>
             </div>
           </div>
         </section>
 
         {/* Section 3: The Details & Footer */}
-        <section className="snap-slide px-4 lg:px-8 py-12 lg:py-20">
+        <section id="details-section" className="snap-slide px-4 lg:px-8 py-12 lg:py-20">
           <div className="max-w-5xl mx-auto h-full flex flex-col justify-between">
             <div className="space-y-10 lg:space-y-16 py-8">
               <div className="text-center space-y-3">
