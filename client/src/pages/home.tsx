@@ -101,16 +101,16 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide px-4 lg:px-8 py-10 lg:py-16">
-          <div className="flex flex-col items-center max-w-xl mx-auto h-full justify-center space-y-6 lg:space-y-8">
+        <section id="boutique-shop" className="snap-slide h-screen flex flex-col pt-0">
+          <div className="flex flex-col items-center w-full max-w-xl mx-auto h-full space-y-4 lg:space-y-6">
             
-            {/* 1. The Model Visual */}
+            {/* 1. Full-Width Model Visual (Fills the frame) */}
             <motion.div 
               key={currentProduct.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="w-full aspect-[4/5] lg:aspect-[3/4] bg-[#fef8e1] rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden border border-[#5d4037]/10 shadow-2xl"
+              className="w-full aspect-[4/5] lg:aspect-[3.5/4] bg-[#fef8e1] rounded-t-[2rem] lg:rounded-t-[3.5rem] overflow-hidden shadow-xl"
             >
               <img 
                 src={currentProduct.mainImage} 
@@ -119,62 +119,68 @@ export default function Home() {
               />
             </motion.div>
 
-            {/* 2. Collection Stars */}
-            <div className="flex space-x-8 items-center bg-white/40 backdrop-blur-sm px-8 py-3 rounded-full border border-white/20">
-              {collections.map((collection) => (
-                <motion.button
-                  key={collection.id}
-                  whileHover={{ scale: 1.2, rotate: 15 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setSelectedCollection(collection.id)}
-                  className={`relative p-2 transition-all duration-500 ${selectedCollection === collection.id ? 'opacity-100 scale-125' : 'opacity-30 grayscale hover:grayscale-0'}`}
-                >
-                  <img 
-                    src={collection.color === 'coral' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                    className="w-8 h-8 lg:w-10 lg:h-10"
-                    alt={`${collection.name} Star`}
-                  />
-                  {selectedCollection === collection.id && (
-                    <motion.div layoutId="activeStar" className="absolute -inset-1 border-2 border-[#5d4037]/10 rounded-full" />
-                  )}
-                </motion.button>
-              ))}
-            </div>
-
-            {/* 3. Branding & Selection */}
-            <div className="text-center space-y-2">
-              <h2 className="text-4xl lg:text-6xl font-serif font-black text-[#000000] tracking-tighter">
-                {currentProduct.name}
-              </h2>
-              <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-xs text-[#e5815c]">
-                5 PIECE SET
-              </p>
-            </div>
-
-            {/* 4. Purchase Block */}
-            <div className="w-full space-y-6 pt-2">
-              <div className="flex justify-center gap-3">
-                {currentProduct.sizes.map((size) => (
-                  <button 
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`w-12 h-12 lg:w-14 lg:h-14 rounded-2xl font-black text-sm lg:text-base border-2 transition-all ${
-                      selectedSize === size 
-                        ? 'bg-[#5d4037] text-white border-[#5d4037] scale-110 shadow-lg' 
-                        : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
-                    }`}
+            {/* 2. Selection: The OTHER Model Star & Name */}
+            <div className="flex flex-col items-center space-y-4 px-4 lg:px-8">
+              <div className="flex items-center space-x-4">
+                {collections.filter(c => c.id !== selectedCollection).map((otherCollection) => (
+                  <motion.button
+                    key={otherCollection.id}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setSelectedCollection(otherCollection.id);
+                      setSelectedSize("M");
+                    }}
+                    className="flex items-center bg-white/40 backdrop-blur-sm pl-4 pr-6 py-2 rounded-full border border-white/20 space-x-3 group"
                   >
-                    {size}
-                  </button>
+                    <img 
+                      src={otherCollection.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
+                      className="w-8 h-8 lg:w-10 lg:h-10 transition-transform group-hover:rotate-12"
+                      alt="Other Collection Star"
+                    />
+                    <div className="text-left">
+                      <p className="text-[9px] font-black uppercase tracking-widest opacity-40">Switch to</p>
+                      <p className="text-sm lg:text-base font-serif font-black text-[#000000]">{otherCollection.name}</p>
+                    </div>
+                  </motion.button>
                 ))}
               </div>
-              
-              <button 
-                onClick={handleCheckout}
-                className="btn-premium-gradient w-full py-6 lg:py-8 text-xl lg:text-2xl font-black shadow-2xl"
-              >
-                PROCEED TO CHECKOUT
-              </button>
+
+              {/* 3. Branding for Selective context */}
+              <div className="text-center space-y-1">
+                <h2 className="text-4xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter">
+                  {currentProduct.name}
+                </h2>
+                <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] text-[#e5815c]">
+                  5 PIECE SET
+                </p>
+              </div>
+
+              {/* 4. Purchase Block */}
+              <div className="w-full space-y-4 lg:space-y-6 pt-2">
+                <div className="flex justify-center gap-2">
+                  {currentProduct.sizes.map((size) => (
+                    <button 
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`w-11 h-11 lg:w-14 lg:h-14 rounded-2xl font-black text-xs lg:text-sm border-2 transition-all ${
+                        selectedSize === size 
+                          ? 'bg-[#5d4037] text-white border-[#5d4037] scale-110 shadow-lg' 
+                          : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+                
+                <button 
+                  onClick={handleCheckout}
+                  className="btn-premium-gradient w-full py-5 lg:py-7 text-lg lg:text-xl font-black shadow-2xl"
+                >
+                  PROCEED TO CHECKOUT
+                </button>
+              </div>
             </div>
 
           </div>
