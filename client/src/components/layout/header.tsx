@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 export default function Header() {
   return (
     <motion.header 
-      initial={{ y: -50, opacity: 0 }}
+      initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed w-full top-0 z-50 bg-[#a2ccb6] border-b-[1.5px] border-[#5d4037]/10"
+      className="sticky top-0 z-50 bg-[#a2ccb6] border-b-[1.5px] border-[#5d4037]/10 w-full"
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center h-14 lg:h-16">

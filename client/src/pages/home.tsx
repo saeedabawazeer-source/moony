@@ -54,30 +54,26 @@ export default function Home() {
     >
       <Header />
 
-      <main className="flex-grow pt-24 lg:pt-32 pb-12 lg:pb-24 relative z-10">
+      <main className="flex-grow pt-12 lg:pt-16 pb-12 lg:pb-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           
-          {/* Boutique Hero - Scroll Reveal */}
+          {/* Boutique Hero - Balanced Editorial */}
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mb-16 lg:mb-32"
+            transition={{ duration: 0.8, ease: "circOut" }}
+            className="text-center mb-12 lg:mb-20"
           >
-            <h1 className="text-5xl lg:text-[10rem] leading-[0.8] tracking-tighter mb-8 font-black">
+            <h1 className="text-5xl lg:text-[7rem] leading-[0.9] tracking-tighter mb-6 font-black">
               Embrace <br />
               <span className="text-[#ee786e] italic">Elegance.</span>
             </h1>
             <div className="flex flex-col items-center space-y-4">
-              <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
+              <p className="font-sans font-black uppercase tracking-[0.3em] text-[10px] lg:text-xs opacity-40">
                 Premium Modest Boutique • Organic • Vegan
               </p>
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-px h-16 bg-[#5d4037]/20"
-              />
+              <div className="w-px h-12 bg-[#5d4037]/20" />
             </div>
           </motion.div>
 
