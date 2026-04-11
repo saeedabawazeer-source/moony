@@ -307,22 +307,26 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 2.5: The Unified Anatomy Hub (Dissected Anatomy + Specs) */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-2 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-20 items-center h-full">
-            
-            {/* Left: The Dissected Pieces (Floating, Clean, No-BG) */}
-            <div className="relative h-[42vh] lg:h-[80vh] w-full flex items-center justify-center lg:translate-y-0">
-              <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.8] lg:scale-100">
+        {/* Section 2.5: The Anatomy Hub (Purely Dissected Pieces) */}
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-8 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+          <div className="max-w-4xl mx-auto w-full h-full flex flex-col justify-center items-center">
+             <div className="text-center mb-8 lg:mb-12">
+                <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3] mb-1">Dissected Anatomy</p>
+                <h2 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter leading-none">The Moony Blueprint</h2>
+             </div>
+
+            {/* The Dissected Pieces (Floating, Clean, No-BG) */}
+            <div className="relative h-[65vh] lg:h-[75vh] w-full flex items-center justify-center">
+              <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.8] lg:scale-100">
                 {/* 1. Turban */}
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[32%] z-30">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[32%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute -top-4 -right-2 flex items-center space-x-1"
+                    className="absolute -top-4 -right-4 flex items-center space-x-1"
                   >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">Turban</span>
                     <svg className="w-6 h-6" viewBox="0 0 40 40" fill="none">
@@ -333,14 +337,14 @@ export default function Home() {
                 </div>
 
                 {/* 2. Top (Tunic) */}
-                <div className="absolute top-[12%] left-[8%] w-[55%] z-20">
+                <div className="absolute top-[18%] left-[5%] w-[58%] z-20">
                   <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute top-0 -left-6 flex items-center space-x-1"
+                    className="absolute top-4 -left-8 flex items-center space-x-1"
                   >
                     <svg className="w-6 h-6" viewBox="0 0 40 40" fill="none">
                       <path d="M38 38C25 30 15 15 2 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
@@ -351,14 +355,14 @@ export default function Home() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[32%] right-[5%] w-[45%] z-10">
+                <div className="absolute top-[40%] right-[2%] w-[48%] z-10">
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute bottom-4 -right-4 flex flex-col items-center"
+                    className="absolute bottom-8 -right-6 flex flex-col items-center"
                   >
                     <svg className="w-6 h-6 rotate-90" viewBox="0 0 40 40" fill="none">
                       <path d="M2 2C15 10 25 25 38 38" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
@@ -369,14 +373,14 @@ export default function Home() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[20%] left-[2%] w-[40%] z-40">
+                <div className="absolute bottom-[22%] left-[2%] w-[45%] z-40">
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute -bottom-2 -left-2 flex flex-col items-center"
+                    className="absolute -bottom-2 -left-4 flex flex-col items-center"
                   >
                     <span className="font-serif font-black italic text-[10px] lg:text-[11px] text-[#000000] mb-0.5">Short Coverup</span>
                     <svg className="w-5 h-5 -rotate-[135deg]" viewBox="0 0 40 40" fill="none">
@@ -386,14 +390,14 @@ export default function Home() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-2 right-[18%] w-[48%] z-10 opacity-90">
+                <div className="absolute bottom-0 right-[20%] w-[52%] z-10 opacity-90">
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute -bottom-2 right-4 flex flex-col items-end"
+                    className="absolute bottom-0 lg:-bottom-2 right-8 lg:right-4 flex flex-col items-end"
                    >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000] mb-0.5">Whole Coverup</span>
                     <svg className="w-10 h-4" viewBox="0 0 60 20" fill="none">
@@ -404,72 +408,63 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Right: Why you'll love Moony + Join the family (Consolidated) */}
-            <div className="space-y-3 lg:space-y-8 flex flex-col justify-center transform lg:translate-x-4">
-              <div className="space-y-0.5">
-                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">Moony Excellence</p>
-                 <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love it:</h2>
-              </div>
-              
-              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-5">
-                {[
-                  { title: "1- Elegant and Modest 💙", text: "Full coverage swim elegance." },
-                  { title: "2- All-Day Comfort ☁️", text: "Breathable fabric performance." },
-                  { title: "3- Sun Protection ☀️", text: "Integrated safe UV shielding." },
-                  { title: "4- Quick-Drying 💧", text: "Fast-drying, adventure ready." }
-                ].map((spec, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="space-y-0.5"
-                  >
-                    <h4 className="font-serif font-black text-[10px] lg:text-base text-[#000000]">{spec.title}</h4>
-                    <p className="text-[8px] lg:text-xs font-bold opacity-40 leading-tight italic max-w-sm">
-                      {spec.text}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Simplified "Join the family" Bulletin */}
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="pt-2 lg:pt-8 border-t border-[#000000]/5 flex flex-col space-y-2 lg:space-y-3"
-              >
-                <p className="font-sans font-black uppercase tracking-widest text-[8px] lg:text-[10px] text-[#e5815c]">Join the Moony Stars family</p>
-                <div className="grid grid-cols-1 gap-1">
-                  {['Exclusive collection drops', 'Dazzling community stories'].map((item, i) => (
-                    <div key={i} className="flex items-center space-x-2 text-[9px] lg:text-xs font-black text-[#5d4037]">
-                      <span className="text-[10px]">🌟</span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
           </div>
         </section>
 
-        {/* Section 3: Brand Sign-off & Footer */}
-        <section id="details-section" className="snap-slide px-4 lg:px-8 py-12 lg:py-20 flex flex-col justify-end overflow-hidden">
-          <div className="max-w-5xl mx-auto w-full space-y-12 lg:space-y-20">
-            <div className="text-center space-y-12">
-               <div className="space-y-4">
-                  <h3 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter text-[#e5815c] italic">
-                    Let's shine together like stars 🌟
-                  </h3>
-                  <div className="flex justify-center space-x-8 pt-4">
-                    <a href="#" className="flex items-center space-x-3 text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#5d4037] hover:brightness-150 transition-all">
-                      <i className="fab fa-instagram text-xl"></i>
-                      <span>Instagram</span>
-                    </a>
-                  </div>
-                </div>
+        {/* Section 3: The Final Chapter (Specs + Signup + Footer) */}
+        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-between overflow-hidden bg-white">
+          <div className="max-w-6xl mx-auto w-full h-full flex flex-col justify-center space-y-12 lg:space-y-16">
+            
+            {/* 3 Key Specs (Bold) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+              {[
+                { title: "Elegant and Modest 💙", text: "Swimwear that provides full coverage and unmatched elegance." },
+                { title: "All-Day Comfort ☁️", text: "Breathable fabrics to keep you feeling great every moment under the sun." },
+                { title: "Sun Protection ☀️", text: "Enjoy the sun safely with integrated UV protection." }
+              ].map((spec, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="space-y-3"
+                >
+                  <h4 className="font-serif font-black text-xl lg:text-2xl text-[#000000] leading-none">{spec.title}</h4>
+                  <p className="text-xs lg:text-sm font-bold opacity-40 leading-relaxed italic border-l-2 border-[#e5815c] pl-4">
+                    {spec.text}
+                  </p>
+                </motion.div>
+              ))}
             </div>
+
+            {/* Brand Signup (Join the family) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-[#fef8e1] p-10 lg:p-16 rounded-[4rem] border-2 border-[#5d4037]/5">
+               <div className="space-y-6 text-center lg:text-left">
+                  <div className="space-y-2">
+                    <p className="font-sans font-black uppercase tracking-widest text-[10px] text-[#e5815c]">Join the Moony Stars family</p>
+                    <h3 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter italic">
+                      Shine together 🌟
+                    </h3>
+                  </div>
+                  <div className="flex flex-col lg:flex-row lg:items-center space-y-2 lg:space-y-0 lg:space-x-8">
+                    {['Collection drops', 'Community stories', 'Water adventures'].map((item, i) => (
+                      <div key={i} className="flex items-center space-x-2 text-xs lg:text-sm font-black text-[#5d4037]">
+                        <span className="text-base text-[#e5815c]">★</span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+
+               <div className="flex flex-col items-center lg:items-end space-y-6">
+                 <p className="text-xs lg:text-sm font-bold opacity-50 uppercase tracking-[0.3em] text-center lg:text-right">Follow our dazzling journey</p>
+                 <a href="#" className="group flex items-center space-x-4 bg-[#000000] text-white px-10 py-5 rounded-full hover:bg-[#e5815c] transition-all">
+                    <i className="fab fa-instagram text-2xl"></i>
+                    <span className="font-black uppercase tracking-widest text-xs lg:text-sm">Join on Instagram</span>
+                 </a>
+               </div>
+            </div>
+
             <Footer />
           </div>
         </section>
