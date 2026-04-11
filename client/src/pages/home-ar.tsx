@@ -373,26 +373,36 @@ export default function HomeAR() {
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-10 lg:space-y-16">
             
             {/* WhatsApp Newsletter Card (Slim 2-bar Pill) */}
-            <div className="w-full bg-white p-6 lg:p-8 rounded-[3rem] lg:rounded-full border-2 border-[#5d4037]/5 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
-               <div className="text-center lg:text-right space-y-0.5 lg:px-8">
-                  <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
-                    دائرة موني المقربة
-                  </h3>
-                  <p className="text-[9px] lg:text-[11px] font-black text-[#e5815c] uppercase tracking-widest">
-                    اشتركي للحصول على خصم 10% إضافي
-                  </p>
-               </div>
+            <div className="w-full bg-white p-6 lg:p-8 rounded-[3rem] lg:rounded-[4rem] border-2 border-[#5d4037]/5 flex flex-col items-center space-y-8 shadow-xl" dir="rtl">
+               <div className="flex flex-col lg:flex-row items-center justify-between w-full lg:px-8 gap-6">
+                 <div className="text-center lg:text-right space-y-0.5">
+                    <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
+                      دائرة موني المقربة
+                    </h3>
+                    <p className="text-[9px] lg:text-[11px] font-black text-[#e5815c] uppercase tracking-widest">
+                      اشتركي للحصول على خصم 10% إضافي
+                    </p>
+                 </div>
 
-               <form className="flex w-full lg:w-auto items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-2 border-[#5d4037]/10 group focus-within:border-[#e5815c]/30 transition-all" dir="rtl">
-                 <input 
-                   type="tel" 
-                   placeholder="رقم الواتساب الخاص بك"
-                   className="flex-1 lg:w-64 bg-transparent px-6 py-2 outline-none font-sans font-bold text-sm lg:text-base text-right placeholder:opacity-30"
-                 />
-                 <button className="bg-[#000000] text-white px-10 py-3.5 rounded-full font-black uppercase tracking-widest text-[10px] lg:text-xs hover:bg-[#25D366] transition-all shadow-lg active:scale-95">
-                    انضمي
-                 </button>
-               </form>
+                 <div className="flex flex-col items-center lg:items-start space-y-3">
+                   <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-2 border-[#5d4037]/10 group focus-within:border-[#e5815c]/30 transition-all">
+                     <div className="pr-4 pl-2 border-l border-[#5d4037]/10 text-[10px] lg:text-xs font-black opacity-40" dir="ltr">
+                        +966
+                     </div>
+                     <input 
+                       type="tel" 
+                       placeholder="5XXXXXXXX"
+                       className="flex-1 bg-transparent px-4 py-2 outline-none font-sans font-bold text-sm lg:text-base text-right placeholder:opacity-30"
+                     />
+                     <button className="flex-shrink-0 bg-[#000000] text-white px-8 lg:px-10 py-3.5 rounded-full font-black uppercase tracking-widest text-[10px] lg:text-xs hover:bg-[#25D366] transition-all shadow-lg active:scale-95">
+                        انضمي
+                     </button>
+                   </form>
+                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] opacity-40 text-center lg:text-right">
+                      انضمي إلى أكثر من 500 من أخوات موني ★
+                   </p>
+                 </div>
+               </div>
             </div>
 
             <Footer />
