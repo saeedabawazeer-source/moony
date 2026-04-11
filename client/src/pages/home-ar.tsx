@@ -278,12 +278,6 @@ export default function HomeAR() {
             {/* Left: Pieces Cluster - Mirrored To Left in RTL */}
             <div className="relative h-[50vh] lg:h-[80vh] w-full flex items-center justify-center order-1 lg:order-1">
               <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.15]">
->
-            </div>
-
-            {/* Left: Pieces Cluster - Mirrored To Left in RTL */}
-            <div className="relative h-[45vh] lg:h-[75vh] w-full flex items-center justify-center order-2 lg:order-1">
-              <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.8] lg:scale-100">
                 {/* 1. Turban */}
                 <div className="absolute top-[2%] left-1/2 -translate-x-1/2 w-[30%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
