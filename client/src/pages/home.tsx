@@ -305,12 +305,12 @@ export default function Home() {
         </section>
 
         {/* Section 2.5: The Anatomy Hub (Dissected Pieces + Bold Stats) */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-4 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-20 items-center h-full">
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-8 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center h-full">
             
             {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
-            <div className="relative h-[45vh] lg:h-[75vh] w-full flex items-center justify-center">
-              <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.75] lg:scale-100">
+            <div className="relative h-[50vh] lg:h-[80vh] w-full flex items-center justify-center">
+              <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.15]">
                 {/* 1. Turban */}
                 <div className="absolute top-[2%] left-1/2 -translate-x-1/2 w-[30%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
@@ -383,14 +383,14 @@ export default function Home() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-[5%] right-[20%] w-[50%] z-10 opacity-90">
+                <div className="absolute bottom-[8%] right-[22%] w-[48%] z-10 opacity-90">
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute bottom-0 lg:-bottom-2 right-8 lg:right-4 flex flex-col items-end"
+                    className="absolute -bottom-4 lg:-bottom-2 right-8 lg:right-4 flex flex-col items-end"
                    >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000] mb-0.5">Whole Coverup</span>
                     <svg className="w-10 h-4" viewBox="0 0 60 20" fill="none">
@@ -403,27 +403,30 @@ export default function Home() {
             </div>
 
             {/* Right: Why you'll love it (High-Impact Stats) */}
-            <div className="space-y-4 lg:space-y-12 flex flex-col justify-center h-full">
+            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center h-full lg:-translate-y-12">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
                </div>
                
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-10">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12">
                 {[
-                  { title: "Elegant & Modest ★", text: "Full coverage, unmatched elegance." },
-                  { title: "All-Day Comfort ★", text: "Breathable fabric performance." },
-                  { title: "Sun Protection ★", text: "Integrated UV shielding." },
-                  { title: "Quick-Drying ★", text: "Ready for the next adventure." }
+                  { title: "Elegant & Modest", text: "Full coverage, unmatched elegance." },
+                  { title: "All-Day Comfort", text: "Breathable fabric performance." },
+                  { title: "Sun Protection", text: "Integrated UV shielding." },
+                  { title: "Quick-Drying", text: "Ready for the next adventure." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-0.5 lg:space-y-1"
+                    className="space-y-1 lg:space-y-2"
                   >
-                    <h4 className="font-serif font-black text-xs lg:text-2xl text-[#000000]">{spec.title}</h4>
+                    <div className="flex items-center space-x-2">
+                       <h4 className="font-serif font-black text-xs lg:text-2xl text-[#000000]">{spec.title}</h4>
+                       <i className="fas fa-star text-[8px] lg:text-xs text-[#e5815c]"></i>
+                    </div>
                     <p className="text-[9px] lg:text-base font-bold opacity-40 leading-tight italic max-w-xs">
                       {spec.text}
                     </p>
@@ -435,29 +438,30 @@ export default function Home() {
         </section>
 
         {/* Section 3: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden bg-white">
-          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-12 lg:space-y-20">
+        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-20 flex flex-col justify-center overflow-hidden bg-white">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-10 lg:space-y-16">
             
-            {/* WhatsApp Newsletter Card (Minimalist) */}
-            <div className="w-full bg-[#fef8e1] p-12 lg:p-20 rounded-[4rem] border-2 border-[#5d4037]/5 space-y-10">
-               <div className="space-y-4 lg:space-y-6">
-                  <div className="flex justify-center space-x-3 text-[#e5815c] text-xl">
-                    <span>★</span><span>★</span><span>★</span>
-                  </div>
-                  <h3 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter italic">
+            {/* WhatsApp Newsletter Card (Slim 2-bar) */}
+            <div className="w-full bg-[#fef8e1] p-8 lg:p-12 rounded-[3rem] lg:rounded-[4rem] border-2 border-[#5d4037]/5 flex flex-col lg:flex-row items-center justify-between gap-8">
+               <div className="text-center lg:text-left space-y-1 lg:space-y-2">
+                  <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic leading-none">
                     Moony Inner Circle
                   </h3>
-                  <p className="text-xs lg:text-lg font-bold opacity-50 uppercase tracking-[0.2em] max-w-md mx-auto leading-relaxed">
-                    Subscribe to our WhatsApp newsletter for an extra 10% off your first set.
+                  <p className="text-[10px] lg:text-sm font-black text-[#e5815c] uppercase tracking-widest">
+                    Subscibe for an extra 10% off
                   </p>
                </div>
 
-               <div className="flex flex-col items-center">
-                 <a href="https://wa.me/" className="group flex items-center space-x-6 bg-[#000000] text-white px-12 py-6 rounded-full hover:bg-[#25D366] transition-all transform hover:scale-105 shadow-2xl">
-                    <i className="fab fa-whatsapp text-2xl lg:text-3xl"></i>
-                    <span className="font-black uppercase tracking-widest text-sm lg:text-lg">Subscribe via WhatsApp</span>
-                 </a>
-               </div>
+               <form className="flex w-full lg:w-auto items-center bg-white rounded-full p-2 border-2 border-[#5d4037]/10 shadow-sm">
+                 <input 
+                   type="tel" 
+                   placeholder="Your WhatsApp Number"
+                   className="flex-1 lg:w-64 bg-transparent px-6 py-2 outline-none font-sans font-bold text-sm lg:text-base"
+                 />
+                 <button className="bg-[#000000] text-white px-8 py-3 rounded-full font-black uppercase tracking-widest text-[10px] lg:text-xs hover:bg-[#25D366] transition-all">
+                    JOIN
+                 </button>
+               </form>
             </div>
 
             <Footer />

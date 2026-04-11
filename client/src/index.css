@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@300;400;500;600;700&family=Cairo:wght@700;900&family=IBM+Plex+Sans+Arabic:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -32,6 +32,11 @@
   
   --font-serif: 'Fraunces', serif;
   --font-sans: 'Outfit', sans-serif;
+}
+
+[dir="rtl"] {
+  --font-serif: 'Cairo', sans-serif;
+  --font-sans: 'IBM Plex Sans Arabic', sans-serif;
 }
 
 @layer base {
