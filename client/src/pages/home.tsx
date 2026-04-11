@@ -321,10 +321,13 @@ export default function Home() {
                   className="absolute top-0 left-1/2 -translate-x-1/2 w-[30%] z-10"
                 >
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
-                  <div className="absolute -top-4 -right-12 hidden lg:flex items-center space-x-2">
-                    <span className="font-serif italic text-xs text-[#5d4037]">Turban</span>
-                    <svg className="w-8 h-8 -rotate-45 opacity-30" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#5d4037" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                  </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute -top-4 -right-12 hidden lg:flex items-center space-x-2"
+                  >
+                    <span className="font-serif font-black italic text-sm text-[#000000] drop-shadow-sm">Turban</span>
+                    <svg className="w-8 h-8 -rotate-45" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                  </motion.div>
                 </motion.div>
 
                 {/* 2. Top (Tunic) */}
@@ -335,10 +338,13 @@ export default function Home() {
                   className="absolute top-[15%] left-[10%] w-[50%] z-20"
                 >
                   <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
-                  <div className="absolute -bottom-4 -left-12 hidden lg:flex items-center space-x-2">
-                    <svg className="w-8 h-8 rotate-[135deg] opacity-30" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#5d4037" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                    <span className="font-serif italic text-xs text-[#5d4037]">Top</span>
-                  </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute -bottom-4 -left-12 hidden lg:flex items-center space-x-2"
+                  >
+                    <svg className="w-8 h-8 rotate-[135deg]" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                    <span className="font-serif font-black italic text-sm text-[#000000] drop-shadow-sm">Top</span>
+                  </motion.div>
                 </motion.div>
 
                 {/* 3. Leggings */}
@@ -349,10 +355,13 @@ export default function Home() {
                   className="absolute top-[35%] right-[5%] w-[40%] z-0"
                 >
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
-                  <div className="absolute -bottom-8 -right-4 hidden lg:flex flex-col items-center">
-                    <svg className="w-8 h-8 rotate-[45deg] opacity-30" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#5d4037" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                    <span className="font-serif italic text-xs text-[#5d4037]">Leggings</span>
-                  </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute -bottom-8 -right-4 hidden lg:flex flex-col items-center"
+                  >
+                    <svg className="w-8 h-8 rotate-[45deg]" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                    <span className="font-serif font-black italic text-sm text-[#000000] drop-shadow-sm">Leggings</span>
+                  </motion.div>
                 </motion.div>
 
                 {/* 4. Short Coverup (Mini Sakirt) */}
@@ -363,10 +372,13 @@ export default function Home() {
                   className="absolute bottom-[20%] left-[5%] w-[35%] z-30"
                 >
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
-                  <div className="absolute -bottom-6 -left-8 hidden lg:flex items-center space-x-2">
-                    <span className="font-serif italic text-[10px] text-[#5d4037]">Short Coverup</span>
-                    <svg className="w-6 h-6 rotate-[-135deg] opacity-30" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#5d4037" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                  </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute -bottom-6 -left-8 hidden lg:flex items-center space-x-2"
+                  >
+                    <span className="font-serif font-black italic text-[12px] text-[#000000] drop-shadow-sm leading-none">Short Coverup</span>
+                    <svg className="w-6 h-6 rotate-[-135deg]" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                  </motion.div>
                 </motion.div>
 
                 {/* 5. Whole Coverup (Long Skirt) */}
@@ -377,10 +389,13 @@ export default function Home() {
                   className="absolute bottom-0 right-[20%] w-[45%] z-10 opacity-80"
                 >
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
-                   <div className="absolute -bottom-4 right-0 hidden lg:flex flex-col items-end">
-                    <span className="font-serif italic text-xs text-[#5d4037] mb-1">Whole Coverup</span>
-                    <svg className="w-10 h-6 opacity-30" viewBox="0 0 40 24" fill="none"><path d="M2 22L38 2M38 2L34 2M38 2L38 6" stroke="#5d4037" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                  </div>
+                   <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute -bottom-4 right-0 hidden lg:flex flex-col items-end"
+                   >
+                    <span className="font-serif font-black italic text-sm text-[#000000] mb-1 drop-shadow-sm">Whole Coverup</span>
+                    <svg className="w-10 h-6" viewBox="0 0 40 24" fill="none"><path d="M2 22L38 2M38 2L34 2M38 2L38 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                  </motion.div>
                 </motion.div>
               </div>
             </div>
@@ -441,7 +456,9 @@ export default function Home() {
                 <div className="bg-white/50 p-6 lg:p-10 rounded-[3rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
                   <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Included in every set</h4>
                   <ul className="grid grid-cols-2 gap-y-3 gap-x-6">
-                    {currentProduct.includes.map((item, i) => (
+                    {currentProduct.includes
+                      .filter(item => !['Top', 'Leggings', 'Short Coverup', 'Whole Coverup', 'Turban'].includes(item))
+                      .map((item, i) => (
                       <li key={i} className="flex items-center space-x-3 text-[10px] lg:text-xs font-bold opacity-80">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#6bb7b3]" />
                         <span>{item}</span>
