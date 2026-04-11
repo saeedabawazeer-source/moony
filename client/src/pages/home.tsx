@@ -315,18 +315,12 @@ export default function Home() {
             <div className="relative h-[42vh] lg:h-[80vh] w-full flex items-center justify-center lg:translate-y-0">
               <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.8] lg:scale-100">
                 {/* 1. Turban */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ 
-                    scale: { type: "spring", stiffness: 260, damping: 20 },
-                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                  }}
-                  className="absolute top-2 left-1/2 -translate-x-1/2 w-[32%] z-30"
-                >
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[32%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
                     whileHover={{ scale: 1.1 }}
                     className="absolute -top-4 -right-2 flex items-center space-x-1"
                   >
@@ -336,21 +330,15 @@ export default function Home() {
                       <path d="M38 2L32 2M38 2L38 8" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </motion.div>
-                </motion.div>
+                </div>
 
                 {/* 2. Top (Tunic) */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  animate={{ y: [0, -12, 0] }}
-                  transition={{ 
-                    scale: { type: "spring", stiffness: 260, damping: 20, delay: 0.1 },
-                    y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }
-                  }}
-                  className="absolute top-[12%] left-[8%] w-[55%] z-20"
-                >
+                <div className="absolute top-[12%] left-[8%] w-[55%] z-20">
                   <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 }}
                     whileHover={{ scale: 1.1 }}
                     className="absolute top-0 -left-6 flex items-center space-x-1"
                   >
@@ -360,21 +348,15 @@ export default function Home() {
                     </svg>
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">Top</span>
                   </motion.div>
-                </motion.div>
+                </div>
 
                 {/* 3. Leggings */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  animate={{ y: [0, -15, 0] }}
-                  transition={{ 
-                    scale: { type: "spring", stiffness: 260, damping: 20, delay: 0.2 },
-                    y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }
-                  }}
-                  className="absolute top-[32%] right-[5%] w-[45%] z-10"
-                >
+                <div className="absolute top-[32%] right-[5%] w-[45%] z-10">
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
                     whileHover={{ scale: 1.1 }}
                     className="absolute bottom-4 -right-4 flex flex-col items-center"
                   >
@@ -384,21 +366,15 @@ export default function Home() {
                     </svg>
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">Leggings</span>
                   </motion.div>
-                </motion.div>
+                </div>
 
                 {/* 4. Short Coverup */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ 
-                    scale: { type: "spring", stiffness: 260, damping: 20, delay: 0.3 },
-                    y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.1 }
-                  }}
-                  className="absolute bottom-[20%] left-[2%] w-[40%] z-40"
-                >
+                <div className="absolute bottom-[20%] left-[2%] w-[40%] z-40">
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
                     whileHover={{ scale: 1.1 }}
                     className="absolute -bottom-2 -left-2 flex flex-col items-center"
                   >
@@ -407,21 +383,15 @@ export default function Home() {
                       <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </motion.div>
-                </motion.div>
+                </div>
 
                 {/* 5. Whole Coverup */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ 
-                    scale: { type: "spring", stiffness: 260, damping: 20, delay: 0.4 },
-                    y: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.3 }
-                  }}
-                  className="absolute bottom-2 right-[18%] w-[48%] z-10 opacity-90"
-                >
+                <div className="absolute bottom-2 right-[18%] w-[48%] z-10 opacity-90">
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
                     whileHover={{ scale: 1.1 }}
                     className="absolute -bottom-2 right-4 flex flex-col items-end"
                    >
@@ -431,7 +401,7 @@ export default function Home() {
                       <path d="M58 2L52 2M58 2L58 8" stroke="#000000" strokeWidth="4" strokeLinecap="round" transform="rotate(-15 58 2)" />
                     </svg>
                   </motion.div>
-                </motion.div>
+                </div>
               </div>
             </div>
 
