@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import CheckoutOverlay from "@/components/product/checkout-overlay";
 import { products as staticProducts, collections as staticCollections } from "@/data/products";
 import type { Product, Collection } from "@shared/schema";
 
@@ -13,6 +14,7 @@ export default function HomeAR() {
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
@@ -48,12 +50,7 @@ export default function HomeAR() {
   };
 
   const handleCheckout = () => {
-    localStorage.setItem('moony_cart', JSON.stringify({ 
-      product: currentProduct.id, 
-      size: selectedSize, 
-      quantity: quantity 
-    }));
-    setLocation('/checkout');
+    setIsCheckoutOpen(true);
   };
 
   const handleDragEnd = (event: any, info: any) => {
@@ -245,7 +242,7 @@ export default function HomeAR() {
         <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-4 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-20 items-center h-full">
             
-            {/* Right: Why you'll love it (High-Impact Stats) - Mirrored to Left/Top in Grid */}
+            {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
             <div className="space-y-4 lg:space-y-10 flex flex-col justify-start text-right order-1 lg:order-2">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">أداء عالي</p>
@@ -275,7 +272,7 @@ export default function HomeAR() {
                </div>
             </div>
 
-            {/* Left: Pieces Cluster - Mirrored to Right/Bottom in Grid */}
+            {/* Left: Pieces Cluster - Mirrored To Left in RTL */}
             <div className="relative h-[45vh] lg:h-[75vh] w-full flex items-center justify-center order-2 lg:order-1">
               <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.8] lg:scale-100">
                 {/* 1. Turban */}
@@ -285,6 +282,7 @@ export default function HomeAR() {
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
+                    whileHover={{ scale: 1.1 }}
                     className="absolute -top-4 -left-4 flex items-center space-x-1 flex-row-reverse"
                   >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">توربان</span>
@@ -293,9 +291,69 @@ export default function HomeAR() {
                     </svg>
                   </motion.div>
                 </div>
-                {/* ... Simplified for brevity in this example, but fully functional ... */}
-                <div className="absolute top-[40%] left-[25%] text-center">
-                    <p className="font-serif font-black italic text-[10px] lg:text-sm opacity-20">مخطط موني Blueprint</p>
+
+                {/* 2. Top */}
+                <div className="absolute top-[18%] right-[5%] w-[58%] z-20">
+                  <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 }}
+                    className="absolute top-4 -right-8 flex items-center space-x-1 flex-row-reverse"
+                  >
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">بلوزة</span>
+                    <svg className="w-6 h-6 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
+                      <path d="M38 38C25 30 15 15 2 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
+                  </motion.div>
+                </div>
+
+                {/* 3. Leggings */}
+                <div className="absolute top-[40%] left-[2%] w-[48%] z-10">
+                  <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
+                    className="absolute bottom-8 -left-6 flex flex-col items-center"
+                  >
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">ليجنز</span>
+                    <svg className="w-6 h-6 rotate-90 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
+                      <path d="M2 2C15 10 25 25 38 38" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
+                  </motion.div>
+                </div>
+
+                {/* 4. Short Coverup */}
+                <div className="absolute bottom-[22%] right-[2%] w-[45%] z-40">
+                  <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
+                    className="absolute -bottom-2 -right-4 flex flex-col items-center"
+                  >
+                    <span className="font-serif font-black italic text-[10px] lg:text-[11px] text-[#000000] mb-0.5">كيمونو قصير</span>
+                    <svg className="w-5 h-5 -rotate-[135deg] scale-x-[-1]" viewBox="0 0 40 40" fill="none">
+                      <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
+                  </motion.div>
+                </div>
+
+                {/* 5. Whole Coverup */}
+                <div className="absolute bottom-0 left-[20%] w-[52%] z-10 opacity-90">
+                  <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
+                   <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
+                    className="absolute bottom-0 lg:-bottom-2 left-8 lg:left-4 flex flex-col items-start"
+                   >
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000] mb-0.5">كيمونو كامل</span>
+                    <svg className="w-10 h-4 scale-x-[-1]" viewBox="0 0 60 20" fill="none">
+                      <path d="M2 2C20 15 40 15 58 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -358,6 +416,15 @@ export default function HomeAR() {
           </div>
         </section>
       </div>
+
+      <CheckoutOverlay 
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        product={currentProduct}
+        size={selectedSize}
+        quantity={quantity}
+        isArabic={true}
+      />
     </div>
   );
 }

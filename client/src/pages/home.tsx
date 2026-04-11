@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import CheckoutOverlay from "@/components/product/checkout-overlay";
 import { products as staticProducts, collections as staticCollections } from "@/data/products";
 import type { Product, Collection } from "@shared/schema";
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
@@ -48,12 +50,7 @@ export default function Home() {
   };
 
   const handleCheckout = () => {
-    localStorage.setItem('moony_cart', JSON.stringify({ 
-      product: currentProduct.id, 
-      size: selectedSize, 
-      quantity: quantity 
-    }));
-    setLocation('/checkout');
+    setIsCheckoutOpen(true);
   };
 
   const handleDragEnd = (event: any, info: any) => {
@@ -495,6 +492,14 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <CheckoutOverlay 
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        product={currentProduct}
+        size={selectedSize}
+        quantity={quantity}
+      />
     </div>
   );
 }
