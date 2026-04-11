@@ -7,26 +7,32 @@ export default function Header() {
 
   return (
     <div className="sticky top-6 lg:top-10 z-[60] w-full px-4 lg:px-8">
-      <div className={`grid grid-cols-3 items-center max-w-7xl mx-auto ${isArabic ? 'flex-row-reverse' : ''}`}>
+      <div className="grid grid-cols-3 items-center max-w-7xl mx-auto">
         
-        {/* Left/Right: Language Toggle */}
+        {/* First Column: Toggle in EN, Bag in AR */}
         <motion.div 
-          initial={{ x: isArabic ? 20 : -20, opacity: 0 }}
+          initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className={`flex ${isArabic ? 'justify-end order-3' : 'justify-start'}`}
+          className={`flex ${isArabic ? 'justify-start' : 'justify-start'}`}
         >
-          <Link href={isArabic ? "/" : "/ar"}>
-            <a className="font-sans font-black text-xl lg:text-2xl text-[#5d4037] hover:text-[#e5815c] transition-all uppercase tracking-widest">
-              {isArabic ? 'EN' : 'ع'}
-            </a>
-          </Link>
+          {isArabic ? (
+            <Link href="/checkout">
+              <a className="text-[#5d4037] hover:text-[#e5815c] transition-all transform hover:scale-110">
+                <i className="fas fa-shopping-bag text-xl lg:text-2xl"></i>
+              </a>
+            </Link>
+          ) : (
+            <Link href="/ar">
+              <a className="font-sans font-black text-xl lg:text-2xl text-[#5d4037] hover:text-[#e5815c] transition-all uppercase tracking-widest">ع</a>
+            </Link>
+          )}
         </motion.div>
 
-        {/* Center: Monolithic Brand Identity */}
+        {/* Center: Brand Identity (Always Column 2) */}
         <motion.div 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="flex flex-col items-center justify-center space-y-1 lg:space-y-2 order-2"
+          className="flex flex-col items-center justify-center space-y-1 lg:space-y-2"
         >
           <Link href={isArabic ? "/ar" : "/"}>
             <div className="flex items-center space-x-2 lg:space-x-3 cursor-pointer group">
@@ -45,17 +51,23 @@ export default function Header() {
           </nav>
         </motion.div>
 
-        {/* Right/Left: Personal Bag */}
+        {/* Third Column: Bag in EN, Toggle in AR */}
         <motion.div 
-          initial={{ x: isArabic ? -20 : 20, opacity: 0 }}
+          initial={{ x: 20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className={`flex ${isArabic ? 'justify-start order-1' : 'justify-end'}`}
+          className={`flex ${isArabic ? 'justify-end' : 'justify-end'}`}
         >
-          <Link href="/checkout">
-            <a className="text-[#5d4037] hover:text-[#e5815c] transition-all transform hover:scale-110">
-              <i className="fas fa-shopping-bag text-xl lg:text-2xl"></i>
-            </a>
-          </Link>
+          {isArabic ? (
+            <Link href="/">
+              <a className="font-sans font-black text-xl lg:text-2xl text-[#5d4037] hover:text-[#e5815c] transition-all uppercase tracking-widest">EN</a>
+            </Link>
+          ) : (
+            <Link href="/checkout">
+              <a className="text-[#5d4037] hover:text-[#e5815c] transition-all transform hover:scale-110">
+                <i className="fas fa-shopping-bag text-xl lg:text-2xl"></i>
+              </a>
+            </Link>
+          )}
         </motion.div>
 
       </div>

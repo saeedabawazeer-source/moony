@@ -309,13 +309,13 @@ export default function HomeAR() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[48%] left-[2%] w-[46%] z-10">
+                <div className="absolute top-[48%] left-[2%] w-[44%] z-10">
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
-                    className="absolute bottom-8 -left-6 flex flex-col items-center"
+                    className="absolute bottom-4 -left-10 flex flex-col items-center"
                   >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">ليجنز</span>
                     <svg className="w-6 h-6 rotate-90 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
@@ -325,13 +325,13 @@ export default function HomeAR() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[28%] right-[2%] w-[42%] z-40">
+                <div className="absolute bottom-[28%] right-[2%] w-[40%] z-40">
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
-                    className="absolute -bottom-2 -right-4 flex flex-col items-center"
+                    className="absolute -bottom-4 -right-4 flex flex-col items-center"
                   >
                     <span className="font-serif font-black italic text-[10px] lg:text-[11px] text-[#000000] mb-0.5">كيمونو قصير</span>
                     <svg className="w-5 h-5 -rotate-[135deg] scale-x-[-1]" viewBox="0 0 40 40" fill="none">
@@ -362,7 +362,7 @@ export default function HomeAR() {
 
         {/* Section 3: Finale */}
         <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden bg-white">
-          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-12 lg:space-y-20 text-right">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-12 lg:space-y-20">
             
             {/* WhatsApp Newsletter Card */}
             <div className="w-full bg-[#fef8e1] p-12 lg:p-20 rounded-[4rem] border-2 border-[#5d4037]/5 space-y-10">
@@ -383,8 +383,6 @@ export default function HomeAR() {
                     <i className="fab fa-whatsapp text-2xl lg:text-3xl"></i>
                     <span className="font-black uppercase tracking-widest text-sm lg:text-lg">اشتركي عبر واتساب</span>
                  </a>
-               </div>
-                  </div>
                </div>
             </div>
 
