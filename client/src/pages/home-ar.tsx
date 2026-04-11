@@ -90,10 +90,15 @@ export default function HomeAR() {
               <span className="text-[#e5815c] italic">بالأناقة.</span>
             </h1>
             <div className="space-y-4 mb-12">
+              <div className="flex items-center justify-center space-x-3 space-x-reverse mb-2 opacity-50">
+                 <i className="fas fa-star text-[8px] text-[#e5815c]"></i>
+                 <i className="fas fa-star text-[10px] text-[#e5815c]"></i>
+                 <i className="fas fa-star text-[8px] text-[#e5815c]"></i>
+              </div>
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
                 بوتيك راقٍ للأزياء المحتشمة
               </p>
-              <p className="font-serif font-black italic text-lg lg:text-3xl text-[#e5815c] tracking-tight">صُمم في جدة</p>
+              <p className="font-serif font-black italic text-lg lg:text-3xl text-[#e5815c] tracking-tight">صُمم في جدة ★</p>
             </div>
             
             <motion.button 
@@ -243,7 +248,7 @@ export default function HomeAR() {
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center h-full">
             
             {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
-            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 lg:-translate-y-12 h-full">
+            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 lg:-translate-y-20 h-full">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">أداء عالي</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">لماذا ستحبين موني؟</h2>
@@ -364,27 +369,27 @@ export default function HomeAR() {
         </section>
 
         {/* Section 3: Finale (Signup + Footer) */}
-        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-20 flex flex-col justify-center overflow-hidden bg-white">
+        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-20 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-10 lg:space-y-16">
             
-            {/* WhatsApp Newsletter Card (Slim 2-bar) */}
-            <div className="w-full bg-[#fef8e1] p-8 lg:p-12 rounded-[3rem] lg:rounded-[4rem] border-2 border-[#5d4037]/5 flex flex-col lg:flex-row items-center justify-between gap-8">
-               <div className="text-center lg:text-right space-y-1 lg:space-y-2">
-                  <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic leading-none">
+            {/* WhatsApp Newsletter Card (Slim 2-bar Pill) */}
+            <div className="w-full bg-white p-6 lg:p-8 rounded-[3rem] lg:rounded-full border-2 border-[#5d4037]/5 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
+               <div className="text-center lg:text-right space-y-0.5 lg:px-8">
+                  <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
                     دائرة موني المقربة
                   </h3>
-                  <p className="text-[10px] lg:text-sm font-black text-[#e5815c] uppercase tracking-widest">
+                  <p className="text-[9px] lg:text-[11px] font-black text-[#e5815c] uppercase tracking-widest">
                     اشتركي للحصول على خصم 10% إضافي
                   </p>
                </div>
 
-               <form className="flex w-full lg:w-auto items-center bg-white rounded-full p-2 border-2 border-[#5d4037]/10 shadow-sm" dir="rtl">
+               <form className="flex w-full lg:w-auto items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-2 border-[#5d4037]/10 group focus-within:border-[#e5815c]/30 transition-all" dir="rtl">
                  <input 
                    type="tel" 
                    placeholder="رقم الواتساب الخاص بك"
-                   className="flex-1 lg:w-64 bg-transparent px-6 py-2 outline-none font-sans font-bold text-sm lg:text-base text-right"
+                   className="flex-1 lg:w-64 bg-transparent px-6 py-2 outline-none font-sans font-bold text-sm lg:text-base text-right placeholder:opacity-30"
                  />
-                 <button className="bg-[#000000] text-white px-8 py-3 rounded-full font-black uppercase tracking-widest text-[10px] lg:text-xs hover:bg-[#25D366] transition-all">
+                 <button className="bg-[#000000] text-white px-10 py-3.5 rounded-full font-black uppercase tracking-widest text-[10px] lg:text-xs hover:bg-[#25D366] transition-all shadow-lg active:scale-95">
                     انضمي
                  </button>
                </form>

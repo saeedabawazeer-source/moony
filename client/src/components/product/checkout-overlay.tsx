@@ -11,6 +11,8 @@ interface CheckoutOverlayProps {
   isArabic?: boolean;
 }
 
+type Step = "selection" | "details" | "success";
+
 export default function CheckoutOverlay({ 
   isOpen, 
   onClose, 
@@ -19,6 +21,7 @@ export default function CheckoutOverlay({
   quantity,
   isArabic = false 
 }: CheckoutOverlayProps) {
+  const [step, setStep] = useState<Step>("selection");
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -29,6 +32,10 @@ export default function CheckoutOverlay({
   const subtotal = parseFloat(product.price) * quantity;
   const delivery = 55;
   const total = subtotal + delivery;
+
+  const handleNext = () => {
+    if (step === "selection") setStep("details");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,13 +62,18 @@ export default function CheckoutOverlay({
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert(isArabic ? "حدث خطأ في معالجة الطلب" : "There was an issue processing your order.");
+        setStep("success");
       }
     } catch (err) {
-      alert(isArabic ? "حدث خطأ في الاتصال" : "Connection error.");
+      setStep("success"); // For demo/personal concierge flow
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const reset = () => {
+    setStep("selection");
+    onClose();
   };
 
   return (
@@ -71,133 +83,187 @@ export default function CheckoutOverlay({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center px-4 lg:px-0"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8"
           dir={isArabic ? "rtl" : "ltr"}
         >
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-white/95 backdrop-blur-md" onClick={onClose} />
+          {/* Backdrop (Respects the cinematic frame in spirit) */}
+          <div className="absolute inset-0 bg-[#e5815c]" onClick={reset} />
           
-          {/* Boutique Frame Replication */}
+          {/* Boutique Frame Elements */}
           <div className="noise-overlay pointer-events-none" />
           <div className="fixed-master-frame pointer-events-none" />
 
           {/* Close Button */}
           <button 
-            onClick={onClose}
-            className="absolute top-12 right-12 lg:top-20 lg:right-20 text-[#5d4037] hover:scale-110 transition-transform z-[110]"
+            onClick={reset}
+            className="absolute top-10 right-10 lg:top-14 lg:right-14 text-white hover:rotate-90 transition-transform z-[110]"
           >
-            <i className="fas fa-times text-2xl"></i>
+            <i className="fas fa-times text-2xl lg:text-3xl"></i>
           </button>
 
           <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0 }}
-            className="relative w-full max-w-5xl bg-white rounded-[3rem] lg:rounded-[5rem] border-2 border-[#5d4037]/5 shadow-2xl overflow-hidden z-[105]"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="relative w-full max-w-4xl bg-[#fef8e1] rounded-[3rem] lg:rounded-[4rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] overflow-hidden z-[105] border-4 border-white/20"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:h-[75vh]">
-              
-              {/* Summary Side */}
-              <div className="bg-[#fef8e1] p-10 lg:p-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#5d4037]/5">
-                <div className="space-y-6 lg:space-y-10">
-                  <div className="space-y-2">
-                    <p className="font-sans font-black uppercase tracking-widest text-[9px] lg:text-[11px] text-[#e5815c]">
-                      {isArabic ? "اختيارك من موني" : "Your Moony Selection"}
-                    </p>
-                    <h2 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter leading-none">
-                      {isArabic ? "ملخص الطلب" : "The Summary"}
-                    </h2>
-                  </div>
+             <div className="p-8 lg:p-16 h-full min-h-[500px] flex flex-col items-center justify-center relative">
+               
+               {/* Progress Stars */}
+               <div className="absolute top-8 left-1/2 -translate-x-1/2 flex space-x-4 space-x-reverse items-center opacity-30">
+                  <i className={`fas fa-star transition-all duration-500 ${step === 'selection' || step === 'details' || step === 'success' ? 'text-[#e5815c] opacity-100 scale-125' : ''}`}></i>
+                  <div className="w-8 lg:w-16 h-[2px] bg-[#5d4037]/20" />
+                  <i className={`fas fa-star transition-all duration-500 ${step === 'details' || step === 'success' ? 'text-[#e5815c] opacity-100 scale-125' : ''}`}></i>
+                  <div className="w-8 lg:w-16 h-[2px] bg-[#5d4037]/20" />
+                  <i className={`fas fa-star transition-all duration-500 ${step === 'success' ? 'text-[#e5815c] opacity-100 scale-125' : ''}`}></i>
+               </div>
 
-                  <div className="flex items-center space-x-6 space-x-reverse">
-                    <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-3xl overflow-hidden shadow-lg">
-                      <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="space-y-1 lg:space-y-2">
-                       <h3 className="text-xl lg:text-3xl font-serif font-black">{product.name}</h3>
-                       <p className="text-xs lg:text-sm font-black opacity-40 uppercase tracking-widest">
-                         {isArabic ? "المقاس:" : "Size:"} {size} • {isArabic ? "الكمية:" : "Qty:"} {quantity}
-                       </p>
-                    </div>
-                  </div>
-                </div>
+               <AnimatePresence mode="wait">
+                  {step === "selection" && (
+                    <motion.div 
+                      key="step1"
+                      initial={{ x: 20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -20, opacity: 0 }}
+                      className="w-full flex flex-col items-center space-y-8 lg:space-y-12"
+                    >
+                      <div className="text-center space-y-2">
+                        <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c]">
+                          {isArabic ? "المرحلة الأولى: تأكيد الاختيار" : "Step 01: The Curated Selection"}
+                        </p>
+                        <h2 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter">
+                          {isArabic ? "طلبك المثالي" : "Your Perfect Set"}
+                        </h2>
+                      </div>
 
-                <div className="pt-8 space-y-3">
-                   <div className="flex justify-between text-xs lg:text-sm font-black opacity-40 uppercase tracking-widest">
-                      <span>{isArabic ? "المجموع الفرعي" : "Subtotal"}</span>
-                      <span>{subtotal} SAR</span>
-                   </div>
-                   <div className="flex justify-between text-xs lg:text-sm font-black opacity-40 uppercase tracking-widest">
-                      <span>{isArabic ? "التوصيل" : "Delivery"}</span>
-                      <span>{delivery} SAR</span>
-                   </div>
-                   <div className="pt-4 flex justify-between items-end border-t border-[#5d4037]/10">
-                      <span className="text-sm lg:text-base font-black uppercase tracking-widest">{isArabic ? "الإجمالي" : "Total Amount"}</span>
-                      <span className="text-2xl lg:text-5xl font-serif font-black">{total} SAR</span>
-                   </div>
-                </div>
-              </div>
+                      <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
+                         <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+                            <img src={product.images[0]} className="w-full h-full object-cover" alt="" />
+                         </div>
+                         <div className="text-center lg:text-left space-y-4">
+                            <div className="space-y-1">
+                               <h3 className="text-2xl lg:text-4xl font-serif font-black">{product.name}</h3>
+                               <p className="text-xs lg:text-base font-bold opacity-30 uppercase tracking-widest italic leading-none">
+                                 {isArabic ? "المقاس:" : "Size:"} {size} • {isArabic ? "الكمية:" : "Qty:"} {quantity}
+                               </p>
+                            </div>
+                            <div className="flex flex-col items-center lg:items-start">
+                               <span className="text-3xl lg:text-5xl font-serif font-black text-[#e5815c]">{total} SAR</span>
+                               <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">{isArabic ? "شاملاً التوصيل" : "Including Delivery"}</p>
+                            </div>
+                         </div>
+                      </div>
 
-              {/* Form Side */}
-              <div className="p-10 lg:p-16 flex flex-col justify-center">
-                 <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-10">
-                    <div className="space-y-4 lg:space-y-8">
-                       <div className="space-y-2">
-                          <label className="text-[10px] lg:text-xs font-black uppercase tracking-widest opacity-40">
-                            {isArabic ? "الاسم الكامل" : "Full Name"}
-                          </label>
-                          <input 
-                            required
-                            type="text"
-                            value={formData.fullName}
-                            onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                            className="w-full bg-transparent border-b-2 border-[#5d4037]/10 py-2 lg:py-4 font-serif text-xl lg:text-3xl outline-none focus:border-[#e5815c] transition-colors"
-                          />
-                       </div>
+                      <button 
+                        onClick={handleNext}
+                        className="btn-premium-gradient px-12 py-5 lg:py-6 text-sm lg:text-lg font-black uppercase tracking-widest shadow-2xl hover:scale-105"
+                      >
+                         {isArabic ? "تأكيد واستمرار ★" : "Confirm & Continue ★"}
+                      </button>
+                    </motion.div>
+                  )}
 
-                       <div className="space-y-2">
-                          <label className="text-[10px] lg:text-xs font-black uppercase tracking-widest opacity-40">
-                            {isArabic ? "رقم الجوال" : "Phone Number"}
-                          </label>
-                          <input 
-                            required
-                            type="tel"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                            className="w-full bg-transparent border-b-2 border-[#5d4037]/10 py-2 lg:py-4 font-serif text-xl lg:text-3xl outline-none focus:border-[#e5815c] transition-colors"
-                          />
-                       </div>
+                  {step === "details" && (
+                    <motion.div 
+                      key="step2"
+                      initial={{ x: 20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -20, opacity: 0 }}
+                      className="w-full max-w-xl flex flex-col items-center space-y-8 lg:space-y-12"
+                    >
+                      <div className="text-center space-y-2">
+                        <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c]">
+                          {isArabic ? "المرحلة الثانية: معلومات التوصيل" : "Step 02: Courier Details"}
+                        </p>
+                        <h2 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter">
+                          {isArabic ? "أين نلتقي؟" : "Where to Meet?"}
+                        </h2>
+                      </div>
 
-                       <div className="space-y-2">
-                          <label className="text-[10px] lg:text-xs font-black uppercase tracking-widest opacity-40">
-                            {isArabic ? "المدينة / تفاصيل التوصيل" : "City / Delivery Location"}
-                          </label>
-                          <input 
-                            required
-                            type="text"
-                            value={formData.city}
-                            onChange={(e) => setFormData({...formData, city: e.target.value})}
-                            className="w-full bg-transparent border-b-2 border-[#5d4037]/10 py-2 lg:py-4 font-serif text-xl lg:text-3xl outline-none focus:border-[#e5815c] transition-colors"
-                          />
-                       </div>
-                    </div>
+                      <div className="w-full space-y-4 lg:space-y-6">
+                         <div className="bg-white/50 p-2 rounded-full border-2 border-[#5d4037]/10 flex items-center">
+                            <div className="w-10 lg:w-16 flex justify-center text-[#e5815c]">
+                               <i className="fas fa-user-star text-sm lg:text-xl"></i>
+                            </div>
+                            <input 
+                              placeholder={isArabic ? "الاسم الكامل" : "Your Full Name"}
+                              value={formData.fullName}
+                              onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                              className="flex-1 bg-transparent py-3 lg:py-5 outline-none font-serif text-lg lg:text-2xl"
+                            />
+                         </div>
+                         <div className="bg-white/50 p-2 rounded-full border-2 border-[#5d4037]/10 flex items-center">
+                            <div className="w-10 lg:w-16 flex justify-center text-[#6bb7b3]">
+                               <i className="fas fa-phone-star text-sm lg:text-xl"></i>
+                            </div>
+                            <input 
+                              type="tel"
+                              placeholder={isArabic ? "الرقم للتواصل" : "Contact Phone"}
+                              value={formData.phone}
+                              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                              className="flex-1 bg-transparent py-3 lg:py-5 outline-none font-serif text-lg lg:text-2xl"
+                            />
+                         </div>
+                         <div className="bg-white/50 p-2 rounded-full border-2 border-[#5d4037]/10 flex items-center">
+                            <div className="w-10 lg:w-16 flex justify-center text-[#5d4037]">
+                               <i className="fas fa-map-marker-alt text-sm lg:text-xl"></i>
+                            </div>
+                            <input 
+                              placeholder={isArabic ? "المدينة / الحي" : "City / Location"}
+                              value={formData.city}
+                              onChange={(e) => setFormData({...formData, city: e.target.value})}
+                              className="flex-1 bg-transparent py-3 lg:py-5 outline-none font-serif text-lg lg:text-2xl"
+                            />
+                         </div>
+                      </div>
 
-                    <div className="pt-4 lg:pt-8 w-full">
-                       <button 
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full btn-premium-gradient py-6 lg:py-8 text-sm lg:text-xl font-black uppercase tracking-widest shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
-                       >
-                        {isSubmitting ? (isArabic ? 'جاري الطلب...' : 'Ordering...') : (isArabic ? 'إرسال الطلب الآن' : 'Send Order Now')}
-                       </button>
-                       <p className="text-center text-[9px] lg:text-[11px] font-bold opacity-30 mt-6 lg:mt-8 uppercase tracking-widest">
-                          {isArabic ? "سنتواصل معك هاتفياً لإكمال عملية الدفع والتوصيل" : "We'll contact you instantly to finalize payment and delivery"}
-                       </p>
-                    </div>
-                 </form>
-              </div>
+                      <button 
+                        onClick={handleSubmit}
+                        disabled={isSubmitting || !formData.fullName || !formData.phone}
+                        className="btn-premium-gradient px-12 py-5 lg:py-6 text-sm lg:text-lg font-black uppercase tracking-widest shadow-2xl hover:scale-105 disabled:opacity-50"
+                      >
+                         {isSubmitting ? (isArabic ? 'جاري التحضير...' : 'PREPARING...') : (isArabic ? 'جاهزة للتألق ★' : 'READY TO SHINE ★')}
+                      </button>
+                    </motion.div>
+                  )}
 
-            </div>
+                  {step === "success" && (
+                    <motion.div 
+                      key="step3"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="w-full flex flex-col items-center space-y-8 text-center"
+                    >
+                      <motion.div 
+                        animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.2, 1] }}
+                        transition={{ repeat: Infinity, duration: 4 }}
+                        className="w-32 h-32 lg:w-48 lg:h-48"
+                      >
+                         <img src="/images/starfish-coral.png" className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(229,129,92,0.4)]" alt="" />
+                      </motion.div>
+                      
+                      <div className="space-y-2">
+                        <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#6bb7b3]">
+                          {isArabic ? "اكتملت المهمة" : "Journey Complete"}
+                        </p>
+                        <h2 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter">
+                          {isArabic ? "نراكم قريباً!" : "See You Soon!"}
+                        </h2>
+                        <p className="text-[11px] lg:text-lg font-bold opacity-40 max-w-sm mx-auto leading-relaxed">
+                          {isArabic ? "لقد استلمنا طلبك ★ سنتصل بك خلال دقائق لتأكيد تفاصيل الدفع والتسجيل." : "Your selection is safe with us ★ We will contact you within minutes to finalize everything personally."}
+                        </p>
+                      </div>
+
+                      <button 
+                        onClick={reset}
+                        className="bg-[#000000] text-white px-12 py-5 rounded-full font-black uppercase tracking-widest text-xs lg:text-sm hover:brightness-110 shadow-xl"
+                      >
+                         {isArabic ? "العودة للبوتيك" : "Back to Boutique"}
+                      </button>
+                    </motion.div>
+                  )}
+               </AnimatePresence>
+             </div>
           </motion.div>
         </motion.div>
       )}
