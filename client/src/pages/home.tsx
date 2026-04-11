@@ -310,9 +310,9 @@ export default function Home() {
             
             {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
             <div className="relative h-[45vh] lg:h-[75vh] w-full flex items-center justify-center">
-              <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.8] lg:scale-100">
+              <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.75] lg:scale-100">
                 {/* 1. Turban */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[32%] z-30">
+                <div className="absolute top-[2%] left-1/2 -translate-x-1/2 w-[30%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -330,7 +330,7 @@ export default function Home() {
                 </div>
 
                 {/* 2. Top (Tunic) */}
-                <div className="absolute top-[18%] left-[5%] w-[58%] z-20">
+                <div className="absolute top-[16%] left-[5%] w-[54%] z-20">
                   <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -348,7 +348,7 @@ export default function Home() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[40%] right-[2%] w-[48%] z-10">
+                <div className="absolute top-[48%] right-[2%] w-[46%] z-10">
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -366,7 +366,7 @@ export default function Home() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[22%] left-[2%] w-[45%] z-40">
+                <div className="absolute bottom-[28%] left-[2%] w-[42%] z-40">
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -383,7 +383,7 @@ export default function Home() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-0 right-[20%] w-[52%] z-10 opacity-90">
+                <div className="absolute bottom-[5%] right-[20%] w-[50%] z-10 opacity-90">
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -403,28 +403,28 @@ export default function Home() {
             </div>
 
             {/* Right: Why you'll love it (High-Impact Stats) */}
-            <div className="space-y-4 lg:space-y-10 flex flex-col justify-start lg:translate-y-0 translate-y-[-2vh]">
+            <div className="space-y-4 lg:space-y-12 flex flex-col justify-center h-full">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
                </div>
                
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-8">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-10">
                 {[
-                  { title: "Elegant & Modest 💙", text: "Full coverage, unmatched elegance." },
-                  { title: "All-Day Comfort ☁️", text: "Breathable fabric performance." },
-                  { title: "Sun Protection ☀️", text: "Integrated UV shielding." },
-                  { title: "Quick-Drying 💧", text: "Ready for the next adventure." }
+                  { title: "Elegant & Modest ★", text: "Full coverage, unmatched elegance." },
+                  { title: "All-Day Comfort ★", text: "Breathable fabric performance." },
+                  { title: "Sun Protection ★", text: "Integrated UV shielding." },
+                  { title: "Quick-Drying ★", text: "Ready for the next adventure." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-0.5"
+                    className="space-y-0.5 lg:space-y-1"
                   >
-                    <h4 className="font-serif font-black text-xs lg:text-xl text-[#000000]">{spec.title}</h4>
-                    <p className="text-[9px] lg:text-sm font-bold opacity-40 leading-tight italic max-w-xs">
+                    <h4 className="font-serif font-black text-xs lg:text-2xl text-[#000000]">{spec.title}</h4>
+                    <p className="text-[9px] lg:text-base font-bold opacity-40 leading-tight italic max-w-xs">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -434,56 +434,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3: The Final Chapter (Specs + Signup + Footer) */}
-        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-between overflow-hidden bg-white">
-          <div className="max-w-6xl mx-auto w-full h-full flex flex-col justify-center space-y-12 lg:space-y-16">
+        {/* Section 3: The Final Chapter (Signup + Footer) */}
+        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden bg-white">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-12 lg:space-y-20">
             
-            {/* 3 Key Specs (Bold) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-              {[
-                { title: "Elegant and Modest 💙", text: "Swimwear that provides full coverage and unmatched elegance." },
-                { title: "All-Day Comfort ☁️", text: "Breathable fabrics to keep you feeling great every moment under the sun." },
-                { title: "Sun Protection ☀️", text: "Enjoy the sun safely with integrated UV protection." }
-              ].map((spec, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="space-y-3"
-                >
-                  <h4 className="font-serif font-black text-xl lg:text-2xl text-[#000000] leading-none">{spec.title}</h4>
-                  <p className="text-xs lg:text-sm font-bold opacity-40 leading-relaxed italic border-l-2 border-[#e5815c] pl-4">
-                    {spec.text}
+            {/* WhatsApp Newsletter Card (Minimalist) */}
+            <div className="w-full bg-[#fef8e1] p-12 lg:p-20 rounded-[4rem] border-2 border-[#5d4037]/5 space-y-10">
+               <div className="space-y-4 lg:space-y-6">
+                  <div className="flex justify-center space-x-3 text-[#e5815c] text-xl">
+                    <span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <h3 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter italic">
+                    Moony Inner Circle
+                  </h3>
+                  <p className="text-xs lg:text-lg font-bold opacity-50 uppercase tracking-[0.2em] max-w-md mx-auto leading-relaxed">
+                    Subscribe to our WhatsApp newsletter for an extra 10% off your first set.
                   </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Brand Signup (Join the family) */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-[#fef8e1] p-10 lg:p-16 rounded-[4rem] border-2 border-[#5d4037]/5">
-               <div className="space-y-6 text-center lg:text-left">
-                  <div className="space-y-2">
-                    <p className="font-sans font-black uppercase tracking-widest text-[10px] text-[#e5815c]">Join the Moony Stars family</p>
-                    <h3 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter italic">
-                      Shine together 🌟
-                    </h3>
-                  </div>
-                  <div className="flex flex-col lg:flex-row lg:items-center space-y-2 lg:space-y-0 lg:space-x-8">
-                    {['Collection drops', 'Community stories', 'Water adventures'].map((item, i) => (
-                      <div key={i} className="flex items-center space-x-2 text-xs lg:text-sm font-black text-[#5d4037]">
-                        <span className="text-base text-[#e5815c]">★</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
                </div>
 
-               <div className="flex flex-col items-center lg:items-end space-y-6">
-                 <p className="text-xs lg:text-sm font-bold opacity-50 uppercase tracking-[0.3em] text-center lg:text-right">Follow our dazzling journey</p>
-                 <a href="#" className="group flex items-center space-x-4 bg-[#000000] text-white px-10 py-5 rounded-full hover:bg-[#e5815c] transition-all">
-                    <i className="fab fa-instagram text-2xl"></i>
-                    <span className="font-black uppercase tracking-widest text-xs lg:text-sm">Join on Instagram</span>
+               <div className="flex flex-col items-center">
+                 <a href="https://wa.me/" className="group flex items-center space-x-6 bg-[#000000] text-white px-12 py-6 rounded-full hover:bg-[#25D366] transition-all transform hover:scale-105 shadow-2xl">
+                    <i className="fab fa-whatsapp text-2xl lg:text-3xl"></i>
+                    <span className="font-black uppercase tracking-widest text-sm lg:text-lg">Subscribe via WhatsApp</span>
                  </a>
                </div>
             </div>
