@@ -375,123 +375,103 @@ export default function Home() {
                   <motion.div 
                     whileHover={{ scale: 1.2 }}
                     className="absolute -bottom-6 -left-8 hidden lg:flex items-center space-x-2"
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute -bottom-4 -left-4 lg:-left-8 flex flex-col items-center"
                   >
-                    <span className="font-serif font-black italic text-[12px] text-[#000000] drop-shadow-sm leading-none">Short Coverup</span>
-                    <svg className="w-6 h-6 rotate-[-135deg]" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                    <span className="font-serif font-black italic text-[9px] lg:text-[11px] text-[#000000] mb-1">Short Coverup</span>
+                    <svg className="w-5 h-5 lg:w-6 lg:h-6 -rotate-[135deg]" viewBox="0 0 40 40" fill="none">
+                      <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
                   </motion.div>
                 </motion.div>
 
-                {/* 5. Whole Coverup (Long Skirt) */}
+                {/* 5. Whole Coverup */}
                 <motion.div 
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="absolute bottom-0 right-[20%] w-[45%] z-10 opacity-80"
+                  className="absolute bottom-0 right-[15%] w-[42%] z-10 opacity-90"
                 >
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="absolute -bottom-4 right-0 hidden lg:flex flex-col items-end"
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute -bottom-4 lg:-bottom-6 right-0 flex flex-col items-end"
                    >
-                    <span className="font-serif font-black italic text-sm text-[#000000] mb-1 drop-shadow-sm">Whole Coverup</span>
-                    <svg className="w-10 h-6" viewBox="0 0 40 24" fill="none"><path d="M2 22L38 2M38 2L34 2M38 2L38 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm text-[#000000] mb-1">Whole Coverup</span>
+                    <svg className="w-8 h-4 lg:w-10 lg:h-6" viewBox="0 0 60 20" fill="none">
+                      <path d="M2 2C20 15 40 15 58 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M58 2L52 2M58 2L58 8" stroke="#000000" strokeWidth="3" strokeLinecap="round" transform="rotate(-15 58 2)" />
+                    </svg>
                   </motion.div>
                 </motion.div>
               </div>
             </div>
 
-            {/* Right: Why you'll love Moony (Simplified) */}
-            <div className="space-y-6 lg:space-y-10">
-              <div className="space-y-2">
-                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">Selection Checklist</p>
-                 <h2 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter leading-none">Why you'll love our products:</h2>
+            {/* Right: Why you'll love Moony + Join the family (Consolidated) */}
+            <div className="space-y-4 lg:space-y-8 flex flex-col justify-center transform lg:translate-x-4">
+              <div className="space-y-1">
+                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">Moony Excellence</p>
+                 <h2 className="text-2xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love it:</h2>
               </div>
               
-              <div className="grid grid-cols-1 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 gap-2 lg:gap-5">
                 {[
-                  { title: "1- Elegant and Modest 💙", text: "Enjoy riding the waves with swimwear that provides full coverage and unmatched elegance." },
-                  { title: "2- All-Day Comfort ☁️", text: "Made from comfortable and breathable fabrics to keep you feeling great every moment under the sun." },
-                  { title: "3- Excellent Sun Protection ☀️", text: "Enjoy the sun safely with UV protection." },
-                  { title: "4- Quick-Drying 💧", text: "Fast-drying fabric so you're ready for your next adventure in no time." }
+                  { title: "1- Elegant and Modest 💙", text: "Swimwear that provides full coverage and unmatched elegance." },
+                  { title: "2- All-Day Comfort ☁️", text: "Breathable fabrics to keep you feeling great every moment." },
+                  { title: "3- Excellent Sun Protection ☀️", text: "Enjoy the sun safely with integrated UV protection." },
+                  { title: "4- Quick-Drying 💧", text: "Fast-drying fabric so you're ready for your next adventure." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="space-y-1"
+                    className="space-y-0.5"
                   >
-                    <h4 className="font-serif font-black text-sm lg:text-lg text-[#5d4037]">{spec.title}</h4>
-                    <p className="text-[10px] lg:text-xs font-medium opacity-60 leading-relaxed max-w-md italic">
+                    <h4 className="font-serif font-black text-xs lg:text-base text-[#000000]">{spec.title}</h4>
+                    <p className="text-[9px] lg:text-xs font-bold opacity-40 leading-snug italic max-w-sm">
                       {spec.text}
                     </p>
                   </motion.div>
                 ))}
               </div>
 
-              <motion.button 
-                whileHover={{ y: -5 }}
-                onClick={() => document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="flex items-center space-x-3 opacity-30 hover:opacity-100 transition-opacity"
+              {/* Simplified "Join the family" Bulletin */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="pt-4 lg:pt-8 border-t border-[#000000]/5 flex flex-col space-y-3"
               >
-                <div className="w-8 h-px bg-[#5d4037]" />
-                <span className="text-[8px] font-black uppercase tracking-[0.3em]">Join the family</span>
-              </motion.button>
+                <p className="font-sans font-black uppercase tracking-widest text-[8px] lg:text-[10px] text-[#e5815c]">Join the Moony Stars family</p>
+                <div className="grid grid-cols-1 gap-1">
+                  {['Exclusive collection drops', 'Dazzling community stories', 'Joyful water adventures'].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-2 text-[9px] lg:text-xs font-black text-[#5d4037]">
+                      <span className="text-xs">🌟</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Section 3: The Details & Footer */}
-        <section id="details-section" className="snap-slide px-4 lg:px-8 py-12 lg:py-20 flex flex-col justify-between overflow-hidden">
-          <div className="max-w-5xl mx-auto w-full h-full flex flex-col justify-center space-y-12 lg:space-y-20">
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center">
-              <div className="space-y-8">
-                <div className="space-y-3">
-                  <h2 className="text-4xl lg:text-6xl font-serif font-black tracking-tighter">Boutique Breakdown</h2>
-                  <p className="font-sans font-black uppercase tracking-[0.3em] text-[10px] text-[#e5815c]">Precision Engineering • Italian Fabrics</p>
-                </div>
-                
-                <div className="bg-white/50 p-6 lg:p-10 rounded-[3rem] border border-[#5d4037]/5 space-y-4 shadow-sm">
-                  <h4 className="font-black uppercase tracking-widest text-xs opacity-50">Included in every set</h4>
-                  <ul className="grid grid-cols-2 gap-y-3 gap-x-6">
-                    {currentProduct.includes
-                      .filter(item => !['Top', 'Leggings', 'Short Coverup', 'Whole Coverup', 'Turban'].includes(item))
-                      .map((item, i) => (
-                      <li key={i} className="flex items-center space-x-3 text-[10px] lg:text-xs font-bold opacity-80">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#6bb7b3]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-8 lg:space-y-12 bg-[#f3efdb]/50 p-10 lg:p-16 rounded-[4rem] text-center border-2 border-[#5d4037]/10 relative">
-                <div className="space-y-4">
-                  <p className="font-serif italic text-lg lg:text-2xl leading-relaxed text-[#5d4037]">
-                    "Join the <span className="text-[#6bb7b3] font-black not-italic">Moony Stars</span> family and shop our dazzling collection today on Instagram."
-                  </p>
-                  <p className="text-[10px] lg:text-xs font-bold opacity-40 leading-relaxed uppercase tracking-widest max-w-xs mx-auto">
-                    Discover how you can shine like a star with your new look, and share your joyful water adventures with us!
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter text-[#e5815c] italic">
+        {/* Section 3: Brand Sign-off & Footer */}
+        <section id="details-section" className="snap-slide px-4 lg:px-8 py-12 lg:py-20 flex flex-col justify-end overflow-hidden">
+          <div className="max-w-5xl mx-auto w-full space-y-12 lg:space-y-20">
+            <div className="text-center space-y-12">
+               <div className="space-y-4">
+                  <h3 className="text-4xl lg:text-7xl font-serif font-black tracking-tighter text-[#e5815c] italic">
                     Let's shine together like stars 🌟
                   </h3>
-                  <div className="flex justify-center space-x-6 pt-4">
-                    <a href="#" className="flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-[#5d4037] hover:brightness-150 transition-all">
-                      <i className="fab fa-instagram text-base"></i>
+                  <div className="flex justify-center space-x-8 pt-4">
+                    <a href="#" className="flex items-center space-x-3 text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#5d4037] hover:brightness-150 transition-all">
+                      <i className="fab fa-instagram text-xl"></i>
                       <span>Instagram</span>
                     </a>
                   </div>
                 </div>
-              </div>
             </div>
-
             <Footer />
           </div>
         </section>
