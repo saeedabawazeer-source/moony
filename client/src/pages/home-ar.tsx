@@ -372,36 +372,54 @@ export default function HomeAR() {
         <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-20 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-10 lg:space-y-16">
             
-            {/* WhatsApp Newsletter Card (Slim 2-bar Pill) */}
-            <div className="w-full bg-white p-6 lg:p-8 rounded-[3rem] lg:rounded-[4rem] border-2 border-[#5d4037]/5 flex flex-col items-center space-y-8 shadow-xl" dir="rtl">
-               <div className="flex flex-col lg:flex-row items-center justify-between w-full lg:px-8 gap-6">
-                 <div className="text-center lg:text-right space-y-0.5">
-                    <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
-                      دائرة موني المقربة
-                    </h3>
-                    <p className="text-[9px] lg:text-[11px] font-black text-[#e5815c] uppercase tracking-widest">
-                      اشتركي للحصول على خصم 10% إضافي
-                    </p>
-                 </div>
+            {/* Glowing Reviews (Social Proof) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 w-full lg:px-20" dir="rtl">
+               {[
+                 { text: "توازن مثالي بين الأناقة والاحتشام. أشعر بالثقة والراحة!", author: "سارة ج." },
+                 { text: "أسرع توصيل جربته في جدة. الجودة لا تضاهى فعلياً.", author: "لينا م." },
+                 { text: "أخيراً، علامة تجارية تفهم احتياجاتنا تماماً. ★★★★★", author: "مريم أ." }
+               ].map((review, i) => (
+                 <motion.div 
+                   key={i}
+                   initial={{ opacity: 0, y: 10 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   transition={{ delay: i * 0.1 }}
+                   className="space-y-2 text-center lg:text-right"
+                 >
+                   <p className="text-[11px] lg:text-sm font-bold italic opacity-60 leading-relaxed">"{review.text}"</p>
+                   <p className="text-[9px] font-black uppercase tracking-widest text-[#e5815c]">— {review.author}</p>
+                 </motion.div>
+               ))}
+            </div>
 
-                 <div className="flex flex-col items-center lg:items-start space-y-3">
-                   <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-2 border-[#5d4037]/10 group focus-within:border-[#e5815c]/30 transition-all">
-                     <div className="pr-4 pl-2 border-l border-[#5d4037]/10 text-[10px] lg:text-xs font-black opacity-40" dir="ltr">
-                        +966
-                     </div>
-                     <input 
-                       type="tel" 
-                       placeholder="5XXXXXXXX"
-                       className="flex-1 bg-transparent px-4 py-2 outline-none font-sans font-bold text-sm lg:text-base text-right placeholder:opacity-30"
-                     />
-                     <button className="flex-shrink-0 bg-[#000000] text-white px-8 lg:px-10 py-3.5 rounded-full font-black uppercase tracking-widest text-[10px] lg:text-xs hover:bg-[#25D366] transition-all shadow-lg active:scale-95">
-                        انضمي
-                     </button>
-                   </form>
-                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] opacity-40 text-center lg:text-right">
-                      انضمي إلى أكثر من 500 من أخوات موني ★
-                   </p>
-                 </div>
+            {/* WhatsApp Newsletter Card (Slim 2-bar Pill) */}
+            <div className="w-full bg-white p-6 lg:p-10 rounded-[2.5rem] lg:rounded-full border-2 border-[#5d4037]/5 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6 shadow-xl" dir="rtl">
+               <div className="text-center lg:text-right space-y-0.5">
+                  <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
+                    دائرة موني المقربة
+                  </h3>
+                  <p className="text-[9px] lg:text-[11px] font-black text-[#e5815c] uppercase tracking-widest leading-none">
+                    اشتركي للحصول على خصم 10% إضافي
+                  </p>
+               </div>
+
+               <div className="flex flex-col items-center lg:items-start w-full lg:w-auto space-y-4">
+                 <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-2 border-[#5d4037]/10 group focus-within:border-[#e5815c]/30 transition-all">
+                   <div className="pr-4 pl-2 border-l border-[#5d4037]/10 text-[10px] lg:text-xs font-black opacity-40" dir="ltr">
+                      +966
+                   </div>
+                   <input 
+                     type="tel" 
+                     placeholder="5XXXXXXXX"
+                     className="flex-1 bg-transparent px-3 py-2 outline-none font-sans font-bold text-xs lg:text-base text-right placeholder:opacity-30 min-w-0"
+                   />
+                   <button className="flex-shrink-0 bg-[#000000] text-white px-6 lg:px-10 py-3 rounded-full font-black uppercase tracking-widest text-[9px] lg:text-xs hover:bg-[#25D366] transition-all shadow-lg active:scale-95">
+                      انضمي
+                   </button>
+                 </form>
+                 <p className="hidden lg:block text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] opacity-40">
+                    انضمي إلى أكثر من 500 من أخوات موني ★
+                 </p>
                </div>
             </div>
 
