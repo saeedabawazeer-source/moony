@@ -21,27 +21,27 @@ export default function Footer() {
             </p>
           </div>
           
-          {/* Social Links */}
+          {/* Social Links & Contact Icons */}
           <div className="flex justify-center space-x-8 text-[#5d4037]">
-            <motion.a whileHover={{ y: -5, color: '#e5815c' }} href="#" className="transition-all">
+            <motion.a whileHover={{ y: -5, scale: 1.1 }} href="#" className="transition-all hover:text-[#e5815c]" title="Instagram">
               <i className="fab fa-instagram text-2xl lg:text-3xl"></i>
             </motion.a>
-            <motion.a whileHover={{ y: -5, color: '#e5815c' }} href="#" className="transition-all">
+            <motion.a whileHover={{ y: -5, scale: 1.1 }} href="#" className="transition-all hover:text-[#e5815c]" title="TikTok">
               <i className="fab fa-tiktok text-2xl lg:text-3xl"></i>
             </motion.a>
-            <motion.a whileHover={{ y: -5, color: '#e5815c' }} href="#" className="transition-all">
-              <i className="fab fa-pinterest text-2xl lg:text-3xl"></i>
+            <motion.a whileHover={{ y: -5, scale: 1.1 }} href="https://wa.me/" className="transition-all hover:text-[#25D366]" title="WhatsApp">
+              <i className="fab fa-whatsapp text-2xl lg:text-3xl"></i>
+            </motion.a>
+            <motion.a whileHover={{ y: -5, scale: 1.1 }} href="mailto:hello@moonyswimwear.com" className="transition-all hover:text-[#e5815c]" title="Email">
+              <i className="fas fa-envelope text-2xl lg:text-3xl"></i>
             </motion.a>
           </div>
           
-          {/* Contact */}
+          {/* Copyright Information */}
           <div className="space-y-4 md:text-right text-[#5d4037]">
-            <p className="font-sans font-black uppercase tracking-widest text-[9px] opacity-40">Get in touch</p>
-            <a href="mailto:hello@moonyswimwear.com" className="block text-xl font-serif italic hover:text-[#e5815c] transition-colors">
-              hello@moonyswimwear.com
-            </a>
-            <p className="text-[9px] font-bold opacity-30 uppercase tracking-widest leading-loose">
-              &copy; 2024 Moony Boutique. All rights reserved.
+            <p className="text-[9px] font-bold opacity-30 uppercase tracking-[0.3em] leading-loose">
+              &copy; 2024 Moony Boutique. All rights reserved. <br className="hidden lg:block" />
+              Positively Natural • Vegan
             </p>
           </div>
         </div>

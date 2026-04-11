@@ -307,16 +307,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 2.5: The Anatomy Hub (Purely Dissected Pieces) */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-8 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-4xl mx-auto w-full h-full flex flex-col justify-center items-center">
-             <div className="text-center mb-8 lg:mb-12">
-                <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3] mb-1">Dissected Anatomy</p>
-                <h2 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter leading-none">The Moony Blueprint</h2>
-             </div>
-
-            {/* The Dissected Pieces (Floating, Clean, No-BG) */}
-            <div className="relative h-[65vh] lg:h-[75vh] w-full flex items-center justify-center">
+        {/* Section 2.5: The Anatomy Hub (Dissected Pieces + Bold Stats) */}
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-4 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-20 items-center h-full">
+            
+            {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
+            <div className="relative h-[45vh] lg:h-[75vh] w-full flex items-center justify-center">
               <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.8] lg:scale-100">
                 {/* 1. Turban */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[32%] z-30">
@@ -407,6 +403,36 @@ export default function Home() {
                   </motion.div>
                 </div>
               </div>
+            </div>
+
+            {/* Right: Why you'll love it (High-Impact Stats) */}
+            <div className="space-y-4 lg:space-y-10 flex flex-col justify-start lg:translate-y-0 translate-y-[-2vh]">
+               <div className="space-y-1">
+                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
+                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
+               </div>
+               
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-8">
+                {[
+                  { title: "Elegant & Modest 💙", text: "Full coverage, unmatched elegance." },
+                  { title: "All-Day Comfort ☁️", text: "Breathable fabric performance." },
+                  { title: "Sun Protection ☀️", text: "Integrated UV shielding." },
+                  { title: "Quick-Drying 💧", text: "Ready for the next adventure." }
+                ].map((spec, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="space-y-0.5"
+                  >
+                    <h4 className="font-serif font-black text-xs lg:text-xl text-[#000000]">{spec.title}</h4>
+                    <p className="text-[9px] lg:text-sm font-bold opacity-40 leading-tight italic max-w-xs">
+                      {spec.text}
+                    </p>
+                  </motion.div>
+                ))}
+               </div>
             </div>
           </div>
         </section>
