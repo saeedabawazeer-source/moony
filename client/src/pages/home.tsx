@@ -406,8 +406,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-              </div>
-            </div>
 
             {/* Right: Why you'll love it (High-Impact Stats) */}
             <div className="space-y-6 lg:space-y-16 flex flex-col justify-center h-full lg:-translate-y-24">

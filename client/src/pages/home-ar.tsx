@@ -370,8 +370,6 @@ export default function HomeAR() {
                 </div>
               </div>
             </div>
-              </div>
-            </div>
           </div>
         </section>
 
