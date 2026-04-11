@@ -266,13 +266,13 @@ export default function HomeAR() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-1 lg:space-y-2"
+                    className="space-y-1 lg:space-y-3"
                   >
                     <div className="flex items-center space-x-2 space-x-reverse">
-                       <h4 className="font-serif font-black text-xs lg:text-2xl text-[#000000]">{spec.title}</h4>
-                       <i className="fas fa-star text-[8px] lg:text-xs text-[#e5815c]"></i>
+                       <h4 className="font-serif font-black text-sm lg:text-3xl text-[#000000] tracking-tight">{spec.title}</h4>
+                       <i className="fas fa-star text-[10px] lg:text-sm text-[#e5815c]"></i>
                     </div>
-                    <p className="text-[9px] lg:text-base font-bold opacity-40 leading-tight italic max-w-xs">
+                    <p className="text-[10px] lg:text-lg font-bold opacity-60 leading-tight italic max-w-sm">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -281,10 +281,15 @@ export default function HomeAR() {
             </div>
 
             {/* Left: Pieces Cluster - Mirrored To Left in RTL */}
-            <div className="relative h-[50vh] lg:h-[80vh] w-full flex items-center justify-center order-1 lg:order-1">
-              <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.15]">
+            <div className="relative h-[50vh] lg:h-[80vh] w-full flex flex-col items-center justify-center order-1 lg:order-1">
+              <div className="mb-8 lg:mb-12 text-center lg:text-right w-full lg:max-w-xl">
+                <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">المواصفات</p>
+                <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">الطقم الكامل المتكامل</h3>
+              </div>
+
+              <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.2]">
                 {/* 1. Turban */}
-                <div className="absolute top-[2%] left-1/2 -translate-x-1/2 w-[30%] z-30">
+                <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[32%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -301,7 +306,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 2. Top */}
-                <div className="absolute top-[16%] right-[5%] w-[54%] z-20">
+                <div className="absolute top-[22%] right-[5%] w-[58%] z-20">
                   <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -317,7 +322,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[48%] left-[2%] w-[44%] z-10">
+                <div className="absolute top-[42%] left-[5%] w-[48%] z-10">
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -333,7 +338,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[28%] right-[2%] w-[40%] z-40">
+                <div className="absolute bottom-[28%] right-[5%] w-[45%] z-40">
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -349,7 +354,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-[8%] left-[22%] w-[48%] z-10 opacity-90">
+                <div className="absolute bottom-[10%] left-[20%] w-[52%] z-10 opacity-90">
                   <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -363,6 +368,8 @@ export default function HomeAR() {
                     </svg>
                   </motion.div>
                 </div>
+              </div>
+            </div>
               </div>
             </div>
           </div>
