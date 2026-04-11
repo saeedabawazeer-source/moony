@@ -307,74 +307,81 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 2.5: The Anatomy of Moony (Dissected Anatomy) */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-6 lg:px-20 py-8 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center h-full">
+        {/* Section 2.5: The Unified Anatomy Hub (Dissected Anatomy + Specs) */}
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-2 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-20 items-center h-full">
             
             {/* Left: The Dissected Pieces (Floating, Clean, No-BG) */}
-            <div className="relative h-[55vh] lg:h-[75vh] w-full flex items-center justify-center">
-              <div className="relative w-full h-full max-w-lg mx-auto">
+            <div className="relative h-[38vh] lg:h-[75vh] w-full flex items-center justify-center -translate-y-2 lg:translate-y-0">
+              <div className="relative w-full h-full max-w-lg mx-auto transform scale-[0.75] lg:scale-100">
                 {/* 1. Turban */}
                 <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-[30%] z-10"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-[28%] z-10"
                 >
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="absolute -top-4 -right-12 hidden lg:flex items-center space-x-2"
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute -top-6 -right-6 lg:-right-12 flex items-center space-x-1 lg:space-x-2"
                   >
-                    <span className="font-serif font-black italic text-sm text-[#000000] drop-shadow-sm">Turban</span>
-                    <svg className="w-8 h-8 -rotate-45" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm text-[#000000]">Turban</span>
+                    <svg className="w-6 h-6 lg:w-8 lg:h-8" viewBox="0 0 40 40" fill="none">
+                      <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M38 2L32 2M38 2L38 8" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
                   </motion.div>
                 </motion.div>
 
-                {/* 2. Top (Tunic) */}
+                {/* 2. Top */}
                 <motion.div 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.1 }}
-                  className="absolute top-[15%] left-[10%] w-[50%] z-20"
+                  className="absolute top-[12%] left-[5%] w-[48%] z-20"
                 >
                   <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="absolute -bottom-4 -left-12 hidden lg:flex items-center space-x-2"
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute -top-4 -left-6 lg:-left-12 flex items-center space-x-1 lg:space-x-2"
                   >
-                    <svg className="w-8 h-8 rotate-[135deg]" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
-                    <span className="font-serif font-black italic text-sm text-[#000000] drop-shadow-sm">Top</span>
+                    <svg className="w-6 h-6 lg:w-8 lg:h-8" viewBox="0 0 40 40" fill="none">
+                      <path d="M38 38C25 30 15 15 2 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M2 2L8 2M2 2L2 8" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm text-[#000000]">Top</span>
                   </motion.div>
                 </motion.div>
 
                 {/* 3. Leggings */}
                 <motion.div 
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="absolute top-[35%] right-[5%] w-[40%] z-0"
+                  className="absolute top-[35%] right-[2%] w-[38%] z-0"
                 >
                   <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="absolute -bottom-8 -right-4 hidden lg:flex flex-col items-center"
+                    whileHover={{ scale: 1.1 }}
+                    className="absolute bottom-0 -right-4 lg:-right-8 flex flex-col items-center"
                   >
-                    <svg className="w-8 h-8 rotate-[45deg]" viewBox="0 0 24 24" fill="none"><path d="M2 22L22 2M22 2L18 2M22 2L22 6" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" /></svg>
-                    <span className="font-serif font-black italic text-sm text-[#000000] drop-shadow-sm">Leggings</span>
+                    <svg className="w-6 h-6 lg:w-8 lg:h-8 rotate-90" viewBox="0 0 40 40" fill="none">
+                      <path d="M2 2C15 10 25 25 38 38" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M38 38L32 38M38 38L38 32" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm text-[#000000] mt-1">Leggings</span>
                   </motion.div>
                 </motion.div>
 
-                {/* 4. Short Coverup (Mini Sakirt) */}
+                {/* 4. Short Coverup */}
                 <motion.div 
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="absolute bottom-[20%] left-[5%] w-[35%] z-30"
+                  className="absolute bottom-[15%] left-0 w-[35%] z-30"
                 >
                   <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="absolute -bottom-6 -left-8 hidden lg:flex items-center space-x-2"
                     whileHover={{ scale: 1.1 }}
                     className="absolute -bottom-4 -left-4 lg:-left-8 flex flex-col items-center"
                   >
@@ -408,18 +415,18 @@ export default function Home() {
             </div>
 
             {/* Right: Why you'll love Moony + Join the family (Consolidated) */}
-            <div className="space-y-4 lg:space-y-8 flex flex-col justify-center transform lg:translate-x-4">
-              <div className="space-y-1">
+            <div className="space-y-3 lg:space-y-8 flex flex-col justify-center transform lg:translate-x-4">
+              <div className="space-y-0.5">
                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">Moony Excellence</p>
-                 <h2 className="text-2xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love it:</h2>
+                 <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love it:</h2>
               </div>
               
-              <div className="grid grid-cols-1 gap-2 lg:gap-5">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-5">
                 {[
-                  { title: "1- Elegant and Modest 💙", text: "Swimwear that provides full coverage and unmatched elegance." },
-                  { title: "2- All-Day Comfort ☁️", text: "Breathable fabrics to keep you feeling great every moment." },
-                  { title: "3- Excellent Sun Protection ☀️", text: "Enjoy the sun safely with integrated UV protection." },
-                  { title: "4- Quick-Drying 💧", text: "Fast-drying fabric so you're ready for your next adventure." }
+                  { title: "1- Elegant and Modest 💙", text: "Full coverage swim elegance." },
+                  { title: "2- All-Day Comfort ☁️", text: "Breathable fabric performance." },
+                  { title: "3- Sun Protection ☀️", text: "Integrated safe UV shielding." },
+                  { title: "4- Quick-Drying 💧", text: "Fast-drying, adventure ready." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
@@ -428,8 +435,8 @@ export default function Home() {
                     transition={{ delay: i * 0.1 }}
                     className="space-y-0.5"
                   >
-                    <h4 className="font-serif font-black text-xs lg:text-base text-[#000000]">{spec.title}</h4>
-                    <p className="text-[9px] lg:text-xs font-bold opacity-40 leading-snug italic max-w-sm">
+                    <h4 className="font-serif font-black text-[10px] lg:text-base text-[#000000]">{spec.title}</h4>
+                    <p className="text-[8px] lg:text-xs font-bold opacity-40 leading-tight italic max-w-sm">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -440,13 +447,13 @@ export default function Home() {
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="pt-4 lg:pt-8 border-t border-[#000000]/5 flex flex-col space-y-3"
+                className="pt-2 lg:pt-8 border-t border-[#000000]/5 flex flex-col space-y-2 lg:space-y-3"
               >
                 <p className="font-sans font-black uppercase tracking-widest text-[8px] lg:text-[10px] text-[#e5815c]">Join the Moony Stars family</p>
                 <div className="grid grid-cols-1 gap-1">
-                  {['Exclusive collection drops', 'Dazzling community stories', 'Joyful water adventures'].map((item, i) => (
+                  {['Exclusive collection drops', 'Dazzling community stories'].map((item, i) => (
                     <div key={i} className="flex items-center space-x-2 text-[9px] lg:text-xs font-black text-[#5d4037]">
-                      <span className="text-xs">🌟</span>
+                      <span className="text-[10px]">🌟</span>
                       <span>{item}</span>
                     </div>
                   ))}
