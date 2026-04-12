@@ -85,7 +85,7 @@ export default function HomeAR() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
-            <h1 className="text-6xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-8 font-black">
+            <h1 className="text-6xl lg:text-[10rem] leading-[0.82] tracking-tighter mb-8 font-black">
               تمتعي <br />
               <span className="text-[#e5815c] italic">بالأناقة.</span>
             </h1>
@@ -113,11 +113,11 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden">
-          <div className="flex flex-col items-start w-full max-w-xl mx-auto h-full space-y-3 lg:space-y-4">
+        <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden px-2 lg:px-8">
+          <div className="flex flex-col items-start w-full max-w-2xl mx-auto h-full space-y-3 lg:space-y-4 pt-12">
             
             {/* Gallery */}
-            <div className="w-full relative h-[52vh] lg:h-[65vh] overflow-hidden rounded-[2rem] lg:rounded-[3.5rem] shadow-xl bg-[#fef8e1]">
+            <div className="w-full relative h-[60vh] lg:h-[75vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-xl bg-[#fef8e1]">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
@@ -244,16 +244,16 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2.5: Anatomy (RTL Mirrored) */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-20 py-8 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center h-full">
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+          <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full text-right" dir="rtl">
             
             {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
-            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 lg:-translate-y-20 h-full">
+            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 h-full lg:-translate-y-12">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">أداء عالي</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">لماذا ستحبين موني؟</h2>
                </div>
-               
+
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12">
                 {[
                   { title: "أناقة واحتشام", text: "تغطية كاملة مع أناقة لا تضاهى." },
@@ -281,13 +281,13 @@ export default function HomeAR() {
             </div>
 
             {/* Left: Pieces Cluster - Mirrored To Left in RTL */}
-            <div className="relative h-[50vh] lg:h-[80vh] w-full flex flex-col items-center justify-center order-1 lg:order-1">
-              <div className="mb-8 lg:mb-12 text-center lg:text-right w-full lg:max-w-xl">
+            <div className="relative h-[50vh] lg:h-full w-full flex flex-col items-center justify-center order-1 lg:order-1">
+              <div className="mb-8 lg:mb-12 text-center lg:text-right w-full lg:max-w-xl lg:-translate-y-12">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">المواصفات</p>
                 <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">الطقم الكامل المتكامل</h3>
               </div>
 
-              <div className="relative w-full h-full max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.2]">
+              <div className="relative w-full h-[60vh] lg:h-[80vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.4]">
                 {/* 1. Turban */}
                 <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[32%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
