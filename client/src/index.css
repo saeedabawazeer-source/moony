@@ -60,7 +60,7 @@
   }
 
   .internal-scroll-area {
-    @apply fixed inset-[6px] lg:inset-[8px] overflow-y-auto snap-y snap-mandatory bg-[#fef8e1] rounded-[1rem] lg:rounded-[2rem] z-0 scroll-smooth;
+    @apply fixed inset-0 overflow-y-auto snap-y snap-mandatory bg-[#fef8e1] rounded-[1rem] lg:rounded-[2rem] z-0 scroll-smooth;
     scrollbar-width: none;
   }
 

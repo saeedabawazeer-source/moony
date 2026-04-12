@@ -79,6 +79,50 @@ export default function HomeAR() {
         <section className="snap-slide relative overflow-hidden">
           <Header />
           
+          {/* Ambient Animated Starfish (Repositioned to Edges) */}
+          <motion.img 
+            src="/images/starfish-coral.png"
+            className="absolute top-[10%] right-[3%] w-12 lg:w-20 pointer-events-none"
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 15, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img 
+            src="/images/starfish-teal.png"
+            className="absolute bottom-[10%] left-[3%] w-16 lg:w-24 pointer-events-none"
+            animate={{ 
+              y: [0, 25, 0],
+              rotate: [0, -10, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img 
+            src="/images/starfish-coral.png"
+            className="absolute top-[45%] left-[1%] w-10 lg:w-16 pointer-events-none opacity-40"
+            animate={{ 
+              x: [0, 15, 0],
+              rotate: [0, 360],
+            }}
+            transition={{ 
+              x: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 40, repeat: Infinity, ease: "linear" }
+            }}
+          />
+          <motion.img 
+            src="/images/starfish-teal.png"
+            className="absolute top-[15%] left-[8%] w-8 lg:w-12 pointer-events-none opacity-30"
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+            transition={{ duration: 5, repeat: Infinity }}
+          />
+          <motion.img 
+            src="/images/starfish-coral.png"
+            className="absolute bottom-[20%] right-[6%] w-14 lg:w-22 pointer-events-none opacity-20"
+            animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
+            transition={{ duration: 9, repeat: Infinity }}
+          />
+
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -114,10 +158,10 @@ export default function HomeAR() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden px-2 lg:px-8">
-          <div className="flex flex-col items-start w-full max-w-5xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
+          <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* Gallery */}
-            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[16px] border-white">
+            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[10px] border-white">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
