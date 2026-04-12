@@ -157,14 +157,12 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden px-2 lg:px-4 bg-[#fef8e1]">
-          <div className="flex flex-col items-start w-full max-w-5xl mx-auto h-full space-y-2 lg:space-y-4 pt-6">
+        <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden bg-[#fef8e1]">
+          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-4">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
             <motion.div 
-              animate={{ y: [-6, 6, -6], rotate: [-0.5, 0.5, -0.5] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full relative h-[68vh] lg:h-[88vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[2px] lg:border-[3px] border-white"
+              className="w-full relative h-[70vh] lg:h-[88vh] overflow-hidden shadow-2xl bg-[#fef8e1]"
             >
               <motion.div 
                 key={selectedCollection}
