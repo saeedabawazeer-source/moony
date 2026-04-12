@@ -164,7 +164,7 @@ export default function Home() {
             <motion.div 
               animate={{ y: [-6, 6, -6], rotate: [-0.5, 0.5, -0.5] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full relative h-[58vh] lg:h-[78vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[2px] lg:border-[3px] border-white"
+              className="w-full relative h-[68vh] lg:h-[88vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[2px] lg:border-[3px] border-white"
             >
               <motion.div 
                 key={selectedCollection}
