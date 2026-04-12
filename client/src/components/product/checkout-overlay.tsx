@@ -137,7 +137,7 @@ export default function CheckoutOverlay({
                       </div>
 
                       <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
-                         <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+                         <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-[2rem] lg:rounded-[3.5rem] overflow-hidden shadow-2xl border-[8px] lg:border-[16px] border-white">
                             <img src={product.images[0]} className="w-full h-full object-cover" alt="" />
                          </div>
                          <div className="text-center lg:text-left space-y-4">

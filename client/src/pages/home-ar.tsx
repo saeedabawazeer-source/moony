@@ -85,7 +85,7 @@ export default function HomeAR() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
-            <h1 className="text-6xl lg:text-[9rem] leading-[0.82] tracking-tighter mb-8 font-black">
+            <h1 className="text-6xl lg:text-[8.5rem] leading-[0.82] tracking-tighter mb-8 font-black">
               تمتعي <br />
               <span className="text-[#e5815c] italic">بالأناقة.</span>
             </h1>
