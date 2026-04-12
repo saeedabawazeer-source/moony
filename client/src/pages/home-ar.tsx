@@ -158,13 +158,13 @@ export default function HomeAR() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden px-2 lg:px-8 bg-[#fef8e1]">
-          <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
+          <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-2 lg:space-y-4 pt-6">
             
             {/* Gallery */}
             <motion.div 
               animate={{ y: [-6, 6, -6], rotate: [0.5, -0.5, 0.5] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[4px] lg:border-[6px] border-white"
+              className="w-full relative h-[55vh] lg:h-[75vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[2px] lg:border-[3px] border-white"
             >
               <motion.div 
                 key={selectedCollection}
