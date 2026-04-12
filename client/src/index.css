@@ -56,11 +56,11 @@
 
   /* The Master Fixed Frame - Masks sharp screen corners */
   .fixed-master-frame {
-    @apply fixed inset-0 z-[100] pointer-events-none border-[12px] lg:border-[20px] border-[#e5815c] rounded-[1.5rem] lg:rounded-[2.5rem];
+    @apply fixed inset-0 z-[100] pointer-events-none border-[12px] lg:border-[20px] border-[#e5815c] rounded-[1.8rem] lg:rounded-[2.8rem];
   }
 
   .internal-scroll-area {
-    @apply fixed inset-0 overflow-y-auto snap-y snap-mandatory z-0 scroll-smooth rounded-[1.3rem] lg:rounded-[2.3rem] overflow-hidden;
+    @apply fixed inset-[8px] lg:inset-[12px] overflow-y-auto snap-y snap-mandatory z-0 scroll-smooth rounded-[1.4rem] lg:rounded-[2.4rem] overflow-hidden;
     scrollbar-width: none;
     overscroll-behavior: none;
   }

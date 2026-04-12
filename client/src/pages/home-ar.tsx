@@ -158,11 +158,11 @@ export default function HomeAR() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden bg-[#fef8e1]">
-          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-4">
+          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-4 pt-10 lg:pt-16">
             
             {/* Gallery */}
             <motion.div 
-              className="w-full relative h-[70vh] lg:h-[88vh] overflow-hidden shadow-2xl bg-[#fef8e1]"
+              className="w-[92%] lg:w-full max-w-5xl relative h-[65vh] lg:h-[82vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[2px] lg:border-[4px] border-white"
             >
               <motion.div 
                 key={selectedCollection}
