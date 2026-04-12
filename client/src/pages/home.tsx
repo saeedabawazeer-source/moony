@@ -158,10 +158,10 @@ export default function Home() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden px-2 lg:px-8">
-          <div className="flex flex-col items-start w-full max-w-2xl mx-auto h-full space-y-3 lg:space-y-4 pt-12">
+          <div className="flex flex-col items-start w-full max-w-5xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
-            <div className="w-full relative h-[60vh] lg:h-[75vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-xl bg-[#fef8e1]">
+            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-xl bg-[#fef8e1] border-2 border-[#5d4037]/5">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
@@ -194,7 +194,7 @@ export default function Home() {
             </div>
 
             {/* 2. Model Switcher (Stars in one line) */}
-            <div className="w-full flex space-x-6 pb-2 px-8 lg:px-0">
+            <div className="w-full flex space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0">
               {collections.map((col) => {
                 const isActive = selectedCollection === col.id;
                 return (
@@ -212,7 +212,7 @@ export default function Home() {
                   >
                     <img 
                       src={col.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                      className={`w-10 h-10 lg:w-12 lg:h-12 transition-all duration-300 ${
+                      className={`w-12 h-12 lg:w-16 lg:h-16 transition-all duration-300 ${
                         isActive 
                           ? 'drop-shadow-[0_0_15px_rgba(229,129,92,0.4)] scale-110 grayscale-0 opacity-100' 
                           : 'grayscale-[80%] opacity-30 hover:opacity-60'
@@ -222,7 +222,7 @@ export default function Home() {
                     {isActive && (
                       <motion.div 
                         layoutId="activeStar"
-                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#5d4037] rounded-full"
+                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#5d4037] rounded-full"
                       />
                     )}
                   </motion.button>
@@ -277,13 +277,13 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="flex gap-2 w-full pt-1">
-                  <button className="flex-1 py-4 lg:py-6 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
+                <div className="flex gap-4 w-full pt-1">
+                  <button className="flex-1 py-5 lg:py-8 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
                     ADD TO CART
                   </button>
                   <button 
                     onClick={handleCheckout}
-                    className="flex-[2] btn-premium-gradient py-4 lg:py-6 text-[11px] lg:text-base font-black shadow-lg uppercase tracking-widest leading-none"
+                    className="flex-[2] btn-premium-gradient py-5 lg:py-8 text-xs lg:text-xl font-black shadow-lg uppercase tracking-widest leading-none"
                   >
                     PROCEED TO CHECKOUT
                   </button>

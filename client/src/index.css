@@ -56,11 +56,11 @@
 
   /* The Master Fixed Frame */
   .fixed-master-frame {
-    @apply fixed inset-0 z-[100] border-[6px] lg:border-[10px] border-[#e5815c] pointer-events-none rounded-[2rem] lg:rounded-[3rem];
+    @apply fixed inset-0 z-[100] border-[8px] lg:border-[1.5rem] border-[#e5815c] pointer-events-none rounded-[2rem] lg:rounded-[3.5rem];
   }
 
   .internal-scroll-area {
-    @apply fixed inset-[6px] lg:inset-[10px] overflow-y-auto snap-y snap-mandatory bg-[#fef8e1] rounded-[1.5rem] lg:rounded-[2.5rem] z-0 scroll-smooth;
+    @apply fixed inset-[8px] lg:inset-[15px] overflow-y-auto snap-y snap-mandatory bg-[#fef8e1] rounded-[1.5rem] lg:rounded-[3rem] z-0 scroll-smooth;
     scrollbar-width: none;
   }
 
