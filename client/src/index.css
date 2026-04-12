@@ -69,7 +69,7 @@
   }
 
   .snap-slide {
-    @apply min-h-screen snap-start flex flex-col justify-center relative;
+    @apply h-full snap-start flex flex-col justify-center relative;
   }
 
   .floating-pill {

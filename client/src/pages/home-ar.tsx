@@ -157,7 +157,7 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden px-2 lg:px-8 bg-[#fef8e1]">
+        <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden px-2 lg:px-8 bg-[#fef8e1]">
           <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* Gallery */}
@@ -292,7 +292,7 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2.5: Anatomy (RTL Mirrored) */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+        <section id="anatomy-section" className="snap-slide h-full px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
           <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full text-right" dir="rtl">
             
             {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
