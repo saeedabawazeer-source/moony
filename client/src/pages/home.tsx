@@ -64,7 +64,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative h-screen w-screen bg-[#e5815c]">
+    <div className="relative h-[100dvh] w-screen bg-[#e5815c] overflow-hidden">
       {/* Global Grain Texture Overlay */}
       <div className="noise-overlay" />
       {/* Static Global Frame Border */}
@@ -81,7 +81,7 @@ export default function Home() {
       <div className="internal-scroll-area">
         
         {/* Section 1: The Brand */}
-        <section className="snap-slide relative overflow-hidden">
+        <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
           {/* Ambient Animated Starfish (Repositioned to Edges) */}
@@ -157,7 +157,7 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden px-2 lg:px-8">
+        <section id="boutique-shop" className="snap-slide h-[100dvh] flex flex-col pt-0 overflow-hidden px-2 lg:px-8 bg-[#fef8e1]">
           <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
@@ -308,7 +308,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 2.5: The Anatomy Hub (Dissected Pieces + Bold Stats) */}
+        {/* Section 2.5: Anatomy */}
         <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
           <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full">
             
@@ -447,7 +447,7 @@ export default function Home() {
         </section>
 
         {/* Section 3: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-20 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
+        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-10 lg:space-y-16">
             
             {/* Glowing Reviews (Social Proof) */}
