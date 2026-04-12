@@ -164,7 +164,7 @@ export default function HomeAR() {
             <motion.div 
               animate={{ y: [-6, 6, -6], rotate: [0.5, -0.5, 0.5] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[10px] border-white"
+              className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[4px] lg:border-[6px] border-white"
             >
               <motion.div 
                 key={selectedCollection}
@@ -188,7 +188,14 @@ export default function HomeAR() {
                   />
                 </AnimatePresence>
               </motion.div>
-            </div>
+              
+              {/* Swipe Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                {currentProduct.images.map((_, i) => (
+                  <div key={i} className={`w-1 h-1 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
+                ))}
+              </div>
+            </motion.div>
 
             {/* Selector */}
             <div className="w-full flex justify-center space-x-8 lg:space-x-12 space-x-reverse pb-2 px-8 lg:px-0">

@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="py-6 lg:py-10 border-t border-[#5d4037]/10 relative">
+    <footer className="py-2 lg:py-4 border-t border-[#5d4037]/10 relative">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-1">
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img 
