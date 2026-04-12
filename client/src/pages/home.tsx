@@ -161,7 +161,11 @@ export default function Home() {
           <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
-            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[10px] border-white">
+            <motion.div 
+              animate={{ y: [-6, 6, -6], rotate: [-0.5, 0.5, -0.5] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[10px] border-white"
+            >
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"

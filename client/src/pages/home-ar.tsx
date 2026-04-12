@@ -82,7 +82,7 @@ export default function HomeAR() {
           {/* Ambient Animated Starfish (Repositioned to Edges) */}
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[10%] right-[3%] w-12 lg:w-20 pointer-events-none"
+            className="absolute top-[10%] right-[3%] w-12 lg:w-20 pointer-events-none z-20"
             animate={{ 
               y: [0, -20, 0],
               rotate: [0, 15, 0]
@@ -91,7 +91,7 @@ export default function HomeAR() {
           />
           <motion.img 
             src="/images/starfish-teal.png"
-            className="absolute bottom-[10%] left-[3%] w-16 lg:w-24 pointer-events-none"
+            className="absolute bottom-[10%] left-[3%] w-16 lg:w-24 pointer-events-none z-20"
             animate={{ 
               y: [0, 25, 0],
               rotate: [0, -10, 0]
@@ -100,7 +100,7 @@ export default function HomeAR() {
           />
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[45%] left-[1%] w-10 lg:w-16 pointer-events-none opacity-40"
+            className="absolute top-[45%] left-[1%] w-10 lg:w-16 pointer-events-none opacity-40 z-20"
             animate={{ 
               x: [0, 15, 0],
               rotate: [0, 360],
@@ -112,13 +112,13 @@ export default function HomeAR() {
           />
           <motion.img 
             src="/images/starfish-teal.png"
-            className="absolute top-[15%] left-[8%] w-8 lg:w-12 pointer-events-none opacity-30"
+            className="absolute top-[15%] left-[8%] w-8 lg:w-12 pointer-events-none opacity-30 z-20"
             animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
             transition={{ duration: 5, repeat: Infinity }}
           />
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute bottom-[20%] right-[6%] w-14 lg:w-22 pointer-events-none opacity-20"
+            className="absolute bottom-[20%] right-[6%] w-14 lg:w-22 pointer-events-none opacity-20 z-20"
             animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
             transition={{ duration: 9, repeat: Infinity }}
           />
@@ -161,7 +161,11 @@ export default function HomeAR() {
           <div className="flex flex-col items-start w-full max-w-4xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* Gallery */}
-            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[10px] border-white">
+            <motion.div 
+              animate={{ y: [-6, 6, -6], rotate: [0.5, -0.5, 0.5] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[10px] border-white"
+            >
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
