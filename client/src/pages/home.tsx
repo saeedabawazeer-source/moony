@@ -134,7 +134,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
-            <h1 className="text-6xl lg:text-[10rem] leading-[0.82] tracking-tighter mb-8 font-black">
+            <h1 className="text-6xl lg:text-[9rem] leading-[0.82] tracking-tighter mb-8 font-black">
               Embrace <br />
               <span className="text-[#e5815c] italic">Elegance.</span>
             </h1>
@@ -161,7 +161,7 @@ export default function Home() {
           <div className="flex flex-col items-start w-full max-w-5xl mx-auto h-full space-y-3 lg:space-y-6 pt-12">
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
-            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-xl bg-[#fef8e1] border-2 border-[#5d4037]/5">
+            <div className="w-full relative h-[60vh] lg:h-[80vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[8px] lg:border-[16px] border-white">
               <motion.div 
                 key={selectedCollection}
                 className="flex h-full w-full cursor-grab active:cursor-grabbing"
