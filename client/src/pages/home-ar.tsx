@@ -158,11 +158,11 @@ export default function HomeAR() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden bg-[#fef8e1]">
-          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-4 pt-10 lg:pt-16">
+          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-3">
             
             {/* Gallery */}
             <motion.div 
-              className="w-[92%] lg:w-full max-w-5xl relative h-[65vh] lg:h-[82vh] overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-[#fef8e1] border-[2px] lg:border-[4px] border-white"
+              className="w-full flex-1 relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] shadow-2xl bg-[#fef8e1] border-b-[3px] lg:border-b-[4px] border-x-0 border-t-0 border-white"
             >
               <motion.div 
                 key={selectedCollection}
@@ -427,11 +427,17 @@ export default function HomeAR() {
         </section>
 
         {/* Section 3: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide px-4 lg:px-20 py-12 lg:py-24 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-10 lg:space-y-16">
+        <section id="details-section" className="snap-slide px-4 lg:px-20 py-6 lg:py-10 flex flex-col justify-end overflow-hidden bg-[#fef8e1]">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-5 lg:space-y-8">
             
+            {/* Reviews Title */}
+            <div className="space-y-1" dir="rtl">
+              <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">ماذا قلن</p>
+              <h2 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter leading-none">تجارب أخواتنا في موني</h2>
+            </div>
+
             {/* Glowing Reviews (Social Proof) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 w-full lg:px-20" dir="rtl">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 w-full" dir="rtl">
                {[
                  { text: "توازن مثالي بين الأناقة والاحتشام. أشعر بالثقة والراحة!", author: "سارة ج." },
                  { text: "أسرع توصيل جربته في جدة. الجودة لا تضاهى فعلياً.", author: "لينا م." },
