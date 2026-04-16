@@ -35,8 +35,8 @@
 }
 
 [dir="rtl"] {
-  --font-serif: 'Cairo', sans-serif;
-  --font-sans: 'IBM Plex Sans Arabic', sans-serif;
+  --font-serif: 'Amiri', serif;
+  --font-sans: 'Tajawal', sans-serif;
 }
 
 @layer base {
