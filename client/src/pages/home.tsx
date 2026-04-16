@@ -154,11 +154,6 @@ export default function Home() {
             transition={{ duration: 9, repeat: Infinity }}
           />
 
-          {/* Top Hook */}
-          <p className="absolute top-20 lg:top-24 left-1/2 -translate-x-1/2 z-20 font-sans font-black uppercase tracking-[0.3em] text-[9px] lg:text-xs text-[#5d4037]/70">
-            Make every wave count 🐚
-          </p>
-
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -166,11 +161,11 @@ export default function Home() {
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
             <h1 className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-6 font-black text-[#000000]">
-              Swim Without<br />Compromise.
+              Make Every<br />Wave Count.
             </h1>
             <div className="space-y-3 mb-10">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
-                From Jeddah shores to your front door. 🇸🇦
+                From Jeddah shores to your front door.
               </p>
             </div>
             
@@ -178,7 +173,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="px-10 py-5 rounded-full bg-[#01A0A1] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
+              className="px-10 py-5 rounded-full bg-[#6bb7b3] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
             >
               PICK YOUR MODEL
             </motion.button>
@@ -191,7 +186,7 @@ export default function Home() {
             
             {/* 1. Swipeable Model Visual - pure CSS, no framer */}
             <div 
-              className="w-full h-[56vh] lg:h-[72vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem]"
+              className="w-full h-[56vh] lg:h-[72vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] border-[3px] border-t-0 border-black"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >

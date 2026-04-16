@@ -57,6 +57,7 @@
   /* The Master Fixed Frame - Masks sharp screen corners */
   .fixed-master-frame {
     @apply fixed inset-0 z-[100] pointer-events-none border-[12px] lg:border-[20px] border-[#e5815c] rounded-[1.8rem] lg:rounded-[2.8rem];
+    box-shadow: inset 0 0 0 3px #000000;
   }
 
   .internal-scroll-area {
