@@ -185,7 +185,7 @@ export default function HomeAR() {
             
             {/* Gallery - pure CSS, no framer */}
             <div 
-              className="w-full flex-1 relative overflow-hidden"
+              className="w-full h-[56vh] lg:h-[72vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem]"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
