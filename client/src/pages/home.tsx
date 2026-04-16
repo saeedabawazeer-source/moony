@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,6 +15,24 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
+  // Eagerly preload all product images into browser cache on mount
+  useEffect(() => {
+    const allImages = [
+      "/images/models/daydream/_HTM3935.JPEG",
+      "/images/models/daydream/_HTM4121.JPEG",
+      "/images/models/daydream/_HTM4179.JPEG",
+      "/images/models/daydream/_HTM4610.JPEG",
+      "/images/models/aquaglow/_HTM3828.JPEG",
+      "/images/models/aquaglow/_HTM3832.JPEG",
+      "/images/models/aquaglow/_HTM3856.JPEG",
+      "/images/models/aquaglow/_HTM3883.JPEG",
+    ];
+    allImages.forEach(src => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, []);
 
   const { data: apiProducts, isError: productsError } = useQuery<Product[]>({
     queryKey: ["/api/products"],
@@ -162,7 +180,7 @@ export default function Home() {
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
             <motion.div 
-              className="w-full flex-1 relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] shadow-2xl bg-[#fef8e1] border-b-[3px] lg:border-b-[4px] border-x-0 border-t-0 border-[#e5815c]"
+              className="w-full flex-1 relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] shadow-xl bg-[#fef8e1]"
             >
               <motion.div 
                 key={selectedCollection}
@@ -297,7 +315,7 @@ export default function Home() {
                 onClick={() => document.getElementById('anatomy-section')?.scrollIntoView({ behavior: 'smooth' })}
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-full flex flex-col items-center pt-1 opacity-60 hover:opacity-100 transition-opacity"
+                className="w-full flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity"
               >
                 <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1 text-[#5d4037]">View Piece Anatomy</p>
                 <i className="fas fa-chevron-down text-[8px] text-[#5d4037]"></i>
