@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -71,15 +71,23 @@ export default function Home() {
     setIsCheckoutOpen(true);
   };
 
-  const handleDragEnd = (event: any, info: any) => {
-    const swipeThreshold = 20;
-    const velocityThreshold = 200;
-    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
-      setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length);
-    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
-      setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length);
+  const touchStartX = useRef<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 30) {
+      if (diff > 0) {
+        setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length);
+      } else {
+        setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length);
+      }
     }
   };
+
 
   return (
     <div className="relative h-[100dvh] w-screen bg-[#e5815c] overflow-hidden">
@@ -178,39 +186,30 @@ export default function Home() {
         <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden bg-[#fef8e1]">
           <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-3">
             
-            {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
-            <motion.div 
-              className="w-full flex-1 relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] shadow-xl bg-[#fef8e1]"
+            {/* 1. Swipeable Model Visual - pure CSS, no framer */}
+            <div 
+              className="w-full flex-1 relative overflow-hidden"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
             >
-              <motion.div 
-                key={selectedCollection}
-                className="flex h-full w-full cursor-grab active:cursor-grabbing"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.15}
-                dragMomentum={false}
-                onDragEnd={handleDragEnd}
-              >
-                <AnimatePresence mode="sync" initial={false}>
-                  <motion.img 
-                    key={currentImageIndex}
-                    src={currentProduct.images[currentImageIndex]} 
-                    alt={currentProduct.name} 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                  />
-                </AnimatePresence>
-              </motion.div>
-              
+              {currentProduct.images.map((src, i) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={currentProduct.name}
+                  fetchPriority={i === 0 ? "high" : "auto"}
+                  loading="eager"
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200"
+                  style={{ opacity: i === currentImageIndex ? 1 : 0 }}
+                />
+              ))}
               {/* Swipe Indicators */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
                 {currentProduct.images.map((_, i) => (
-                  <div key={i} className={`w-1 h-1 rounded-full ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
+                  <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* 2. Model Switcher (Stars in one line) */}
             <div className="w-full flex space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0">
