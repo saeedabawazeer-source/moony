@@ -83,31 +83,27 @@ export default function CheckoutOverlay({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8"
+          className="fixed inset-[8px] lg:inset-[12px] z-[90] flex items-center justify-center p-4 lg:p-8 rounded-[1.4rem] lg:rounded-[2.4rem] overflow-hidden"
           dir={isArabic ? "rtl" : "ltr"}
         >
-          {/* Backdrop (Respects the cinematic frame in spirit) */}
-          <div className="absolute inset-0 bg-[#e5815c]" onClick={reset} />
-          
-          {/* Boutique Frame Elements */}
-          <div className="noise-overlay pointer-events-none" />
-          <div className="fixed-master-frame pointer-events-none" />
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-[#fef8e1]" onClick={reset} />
 
           {/* Close Button */}
           <button 
             onClick={reset}
-            className="absolute top-10 right-10 lg:top-14 lg:right-14 text-white hover:rotate-90 transition-transform z-[110]"
+            className="absolute top-4 right-4 lg:top-8 lg:right-8 text-[#5d4037] hover:rotate-90 transition-transform z-[110]"
           >
-            <i className="fas fa-times text-2xl lg:text-3xl"></i>
+            <i className="fas fa-times text-xl lg:text-2xl"></i>
           </button>
 
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative w-full max-w-4xl bg-[#fef8e1] rounded-[3rem] lg:rounded-[4rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] overflow-hidden z-[105] border-4 border-white/20"
+            className="relative w-full max-w-2xl z-[105]"
           >
-             <div className="p-8 lg:p-16 h-full min-h-[500px] flex flex-col items-center justify-center relative">
+             <div className="px-4 py-6 lg:p-12 flex flex-col items-center justify-center relative">
                
                {/* Progress Stars */}
                <div className="absolute top-8 left-1/2 -translate-x-1/2 flex space-x-4 space-x-reverse items-center opacity-30">
