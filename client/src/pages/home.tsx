@@ -154,30 +154,33 @@ export default function Home() {
             transition={{ duration: 9, repeat: Infinity }}
           />
 
+          {/* Top Hook */}
+          <p className="absolute top-20 lg:top-24 left-1/2 -translate-x-1/2 z-20 font-sans font-black uppercase tracking-[0.3em] text-[9px] lg:text-xs text-[#5d4037]/70">
+            Make every wave count 🐚
+          </p>
+
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
-            <h1 className="text-6xl lg:text-[8.5rem] leading-[0.82] tracking-tighter mb-8 font-black">
-              Embrace <br />
-              <span className="text-[#e5815c] italic">Elegance.</span>
+            <h1 className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-6 font-black text-[#000000]">
+              Swim Without<br />Compromise.
             </h1>
-            <div className="space-y-4 mb-12">
-              <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] lg:text-sm opacity-40">
-                Premium Modest Boutique
+            <div className="space-y-3 mb-10">
+              <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
+                From Jeddah shores to your front door. 🇸🇦
               </p>
-              <p className="font-serif font-black italic text-lg lg:text-3xl text-[#e5815c] tracking-tight">DESIGN IN JEDDAH</p>
             </div>
             
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="px-10 py-5 rounded-full bg-[#6bb7b3] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] shadow-2xl hover:brightness-110 transition-all duration-500"
+              className="px-10 py-5 rounded-full bg-[#01A0A1] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
             >
-              VIEW MODELS
+              PICK YOUR MODEL
             </motion.button>
           </motion.div>
         </section>
@@ -256,6 +259,7 @@ export default function Home() {
                   {currentProduct.name}
                 </h2>
                 <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
+                <p className="text-[10px] lg:text-xs font-black text-[#5d4037] pt-0.5">Includes all 5 pieces.</p>
 
               {/* 3. Purchase Block */}
               <div className="w-full space-y-3 lg:space-y-4 pb-2">
@@ -295,17 +299,12 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="flex gap-4 w-full pt-1">
-                  <button className="flex-1 py-5 lg:py-8 rounded-full border-2 border-[#5d4037] text-[#5d4037] text-[10px] lg:text-sm font-black hover:bg-[#5d4037] hover:text-white transition-all uppercase tracking-widest leading-none">
-                    ADD TO CART
-                  </button>
-                  <button 
-                    onClick={handleCheckout}
-                    className="flex-[2] btn-premium-gradient py-5 lg:py-8 text-xs lg:text-xl font-black shadow-lg uppercase tracking-widest leading-none"
-                  >
-                    PROCEED TO CHECKOUT
-                  </button>
-                </div>
+                <button 
+                  onClick={handleCheckout}
+                  className="w-full py-5 lg:py-7 rounded-full bg-[#C0FF72] text-black text-xs lg:text-base font-black uppercase tracking-widest leading-none border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:scale-95"
+                >
+                  ADD TO CART
+                </button>
               </div>
 
               {/* Navigation Hint */}
@@ -313,10 +312,9 @@ export default function Home() {
                 onClick={() => document.getElementById('anatomy-section')?.scrollIntoView({ behavior: 'smooth' })}
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-full flex flex-col items-center mt-1 opacity-60 hover:opacity-100 transition-opacity"
+                className="w-full flex flex-col items-center mt-1 hover:opacity-80 transition-opacity"
               >
-                <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1 text-[#5d4037]">View Piece Anatomy</p>
-                <i className="fas fa-chevron-down text-[8px] text-[#5d4037]"></i>
+                <p className="text-[8px] lg:text-[10px] font-black tracking-[0.2em] uppercase mb-0.5 text-black">See all 5 pieces ↓</p>
               </motion.button>
             </div>
           </div>
@@ -434,10 +432,10 @@ export default function Home() {
                
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12">
                 {[
-                  { title: "Elegant & Modest", text: "Full coverage, unmatched elegance." },
-                  { title: "All-Day Comfort", text: "Breathable fabric performance." },
-                  { title: "Sun Protection", text: "Integrated UV shielding." },
-                  { title: "Quick-Drying", text: "Ready for the next adventure." }
+                  { title: "Zero Cling. Full Confidence.", text: "Engineered fabric that never sticks. Move freely, look flawless." },
+                  { title: "All-Day Comfort.", text: "Breathable, lightweight performance you won't want to take off." },
+                  { title: "Built-In UV Shield.", text: "UPF 50+ protection woven into every fiber. No reapplying." },
+                  { title: "Dries Before You Reach the Car.", text: "Quick-dry tech means zero wet marks on your way out." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
@@ -454,7 +452,7 @@ export default function Home() {
                        />
                        <h4 className="font-serif font-black text-sm lg:text-3xl text-[#000000] tracking-tight">{spec.title}</h4>
                     </div>
-                    <p className="text-[10px] lg:text-lg font-bold opacity-60 leading-tight italic max-w-sm">
+                    <p className="text-[10px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -479,7 +477,7 @@ export default function Home() {
                {[
                  { text: "The perfect balance of elegance and modesty. I feel amazing in it!", author: "Sarah J." },
                  { text: "Fastest delivery I've ever had in Jeddah. The quality is unmatched.", author: "Lina M." },
-                 { text: "Finally, a swimwear brand that understands my needs. ★★★★★", author: "Mariam A." }
+                 { text: "Finally, a swimwear brand that understands my needs perfectly.", author: "Mariam A." }
                ].map((review, i) => (
                  <motion.div 
                    key={i}
@@ -488,26 +486,30 @@ export default function Home() {
                    transition={{ delay: i * 0.1 }}
                    className="space-y-2 text-center lg:text-left"
                  >
-                   <p className="text-[11px] lg:text-sm font-bold italic opacity-60 leading-relaxed">"{review.text}"</p>
-                   <p className="text-[9px] font-black uppercase tracking-widest text-[#e5815c]">— {review.author}</p>
+                   <div className="flex items-center justify-center lg:justify-start space-x-1">
+                     <span className="text-black text-[10px] lg:text-xs">★★★★★</span>
+                     <span className="text-[8px] lg:text-[9px] font-black text-green-600 flex items-center"><i className="fas fa-check-circle mr-0.5"></i>Verified</span>
+                   </div>
+                   <p className="text-[11px] lg:text-sm font-bold italic text-[#5d4037] leading-relaxed">"{review.text}"</p>
+                   <p className="text-[9px] font-black uppercase tracking-widest text-[#000000]">— {review.author}</p>
                  </motion.div>
                ))}
             </div>
 
-            {/* WhatsApp Newsletter Card (Slim 2-bar Pill) */}
-            <div className="w-full bg-white p-6 lg:p-10 rounded-[2.5rem] lg:rounded-full border-2 border-[#5d4037]/5 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6 shadow-xl">
+            {/* WhatsApp Newsletter Card */}
+            <div className="w-full bg-white p-6 lg:p-10 rounded-[2.5rem] lg:rounded-full border-[3px] border-black flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6 shadow-[4px_4px_0px_0px_#000]">
                <div className="text-center lg:text-left space-y-0.5">
                   <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
                     Moony Inner Circle
                   </h3>
-                  <p className="text-[9px] lg:text-[11px] font-black text-[#e5815c] uppercase tracking-widest leading-none">
-                    Subscibe for an extra 10% off
+                  <p className="text-[9px] lg:text-[11px] font-black text-[#000000] uppercase tracking-widest leading-none">
+                    Get 10% off your first set via WhatsApp.
                   </p>
                </div>
 
                <div className="flex flex-col items-center lg:items-end w-full lg:w-auto space-y-4">
-                 <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-2 border-[#5d4037]/10 group focus-within:border-[#e5815c]/30 transition-all">
-                   <div className="pl-4 pr-2 border-r border-[#5d4037]/10 text-[10px] lg:text-xs font-black opacity-40">
+                 <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-[3px] border-black group focus-within:border-[#01A0A1] transition-all">
+                   <div className="pl-4 pr-2 border-r border-black/20 text-[10px] lg:text-xs font-black">
                       +966
                    </div>
                    <input 
@@ -515,11 +517,11 @@ export default function Home() {
                      placeholder="5XXXXXXXX"
                      className="flex-1 bg-transparent px-3 py-2 outline-none font-sans font-bold text-xs lg:text-base placeholder:opacity-30 min-w-0"
                    />
-                   <button className="flex-shrink-0 bg-[#000000] text-white px-6 lg:px-10 py-3 rounded-full font-black uppercase tracking-widest text-[9px] lg:text-xs hover:bg-[#25D366] transition-all shadow-lg active:scale-95">
+                   <button className="flex-shrink-0 bg-[#C0FF72] text-black px-6 lg:px-10 py-3 rounded-full font-black uppercase tracking-widest text-[9px] lg:text-xs border-[2px] border-black shadow-[2px_2px_0px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all active:scale-95">
                       JOIN
                    </button>
                  </form>
-                 <p className="hidden lg:block text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] opacity-40">
+                 <p className="hidden lg:block text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-[#5d4037]">
                     Join 500+ Moony Sisters ★
                  </p>
                </div>
