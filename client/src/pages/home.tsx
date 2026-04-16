@@ -180,7 +180,7 @@ export default function Home() {
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
             <motion.div 
-              className="w-full flex-1 relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] shadow-xl bg-[#fef8e1]"
+              className="w-full flex-1 relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] shadow-xl bg-[#fef8e1]"
             >
               <motion.div 
                 key={selectedCollection}
@@ -191,15 +191,14 @@ export default function Home() {
                 dragMomentum={false}
                 onDragEnd={handleDragEnd}
               >
-                <AnimatePresence mode="popLayout" initial={false}>
+                <AnimatePresence mode="sync" initial={false}>
                   <motion.img 
                     key={currentImageIndex}
                     src={currentProduct.images[currentImageIndex]} 
                     alt={currentProduct.name} 
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
                 </AnimatePresence>
@@ -234,8 +233,8 @@ export default function Home() {
                       src={col.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
                       className={`w-12 h-12 lg:w-16 lg:h-16 transition-all duration-300 ${
                         isActive 
-                          ? 'drop-shadow-[0_0_15px_rgba(229,129,92,0.4)] scale-110 grayscale-0 opacity-100' 
-                          : 'grayscale-[80%] opacity-30 hover:opacity-60'
+                          ? 'drop-shadow-[0_0_15px_rgba(229,129,92,0.4)] scale-110 opacity-100' 
+                          : 'opacity-50 hover:opacity-80'
                       }`}
                       alt={col.name}
                     />
@@ -315,7 +314,7 @@ export default function Home() {
                 onClick={() => document.getElementById('anatomy-section')?.scrollIntoView({ behavior: 'smooth' })}
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-full flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity"
+                className="w-full flex flex-col items-center mt-1 opacity-60 hover:opacity-100 transition-opacity"
               >
                 <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1 text-[#5d4037]">View Piece Anatomy</p>
                 <i className="fas fa-chevron-down text-[8px] text-[#5d4037]"></i>
@@ -449,8 +448,12 @@ export default function Home() {
                     className="space-y-1 lg:space-y-3"
                   >
                     <div className="flex items-center space-x-2">
+                       <img 
+                         src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'}
+                         className="w-4 h-4 lg:w-5 lg:h-5"
+                         alt=""
+                       />
                        <h4 className="font-serif font-black text-sm lg:text-3xl text-[#000000] tracking-tight">{spec.title}</h4>
-                       <i className="fas fa-star text-[10px] lg:text-sm text-[#e5815c]"></i>
                     </div>
                     <p className="text-[10px] lg:text-lg font-bold opacity-60 leading-tight italic max-w-sm">
                       {spec.text}
