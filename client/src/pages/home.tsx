@@ -162,7 +162,7 @@ export default function Home() {
             
             {/* 1. Swipeable Model Visual (Ultra Smooth Gallery) */}
             <motion.div 
-              className="w-full flex-1 relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] shadow-2xl bg-[#fef8e1] border-b-[3px] lg:border-b-[4px] border-x-0 border-t-0 border-white"
+              className="w-full flex-1 relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] shadow-2xl bg-[#fef8e1] border-b-[3px] lg:border-b-[4px] border-x-0 border-t-0 border-[#e5815c]"
             >
               <motion.div 
                 key={selectedCollection}
@@ -297,10 +297,10 @@ export default function Home() {
                 onClick={() => document.getElementById('anatomy-section')?.scrollIntoView({ behavior: 'smooth' })}
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-full flex flex-col items-center pt-1 opacity-20 hover:opacity-100 transition-opacity"
+                className="w-full flex flex-col items-center pt-1 opacity-60 hover:opacity-100 transition-opacity"
               >
-                <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1">View Piece Anatomy</p>
-                <i className="fas fa-chevron-down text-[8px]"></i>
+                <p className="text-[7px] font-black tracking-[0.3em] uppercase mb-1 text-[#5d4037]">View Piece Anatomy</p>
+                <i className="fas fa-chevron-down text-[8px] text-[#5d4037]"></i>
               </motion.button>
             </div>
           </div>
