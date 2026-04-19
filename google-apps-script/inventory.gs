@@ -16,8 +16,14 @@
 
 const SHEET_NAME_INVENTORY = "Inventory";
 const SHEET_NAME_ORDERS = "Orders";
-// Set your email here to receive free instant order notifications
-const NOTIFICATION_EMAIL = "moony.swimwear@example.com";
+
+// ─── TELEGRAM NOTIFICATIONS (100% FREE) ───
+// 1. Open Telegram and search for "@BotFather"
+// 2. Type /newbot, give it a name like "Moony Alerts", and copy the HTTP API Token
+const TELEGRAM_BOT_TOKEN = "8636468742:AAGcmfNf0otgS46-JvQodS71HjQBfuAHH1k"; 
+
+// 3. Search for "@userinfobot" in Telegram and press Start to get your chat ID
+const TELEGRAM_CHAT_ID = "8607930596"; 
 
 // ─── Helpers ─────────────────────────────────────────────
 function getInventorySheet() {
@@ -56,6 +62,25 @@ function sheetToJson(sheet) {
     inventory[productId][size] = Number(stock);
   }
   return inventory;
+}
+
+function sendTelegramMessage(message) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  const payload = {
+    chat_id: TELEGRAM_CHAT_ID,
+    text: message,
+    parse_mode: "HTML"
+  };
+  try {
+    UrlFetchApp.fetch(url, {
+      method: "post",
+      contentType: "application/json",
+      payload: JSON.stringify(payload)
+    });
+  } catch(err) {
+    // Ignore notification errors silently
+  }
 }
 
 // ─── Initialize default data if sheet is empty ───────────
@@ -125,16 +150,9 @@ function doPost(e) {
     // Append to Google Sheet
     ordersSheet.appendRow([now, orderId, name, email, phone, product, size, quantity, amount, status]);
     
-    // Send Free Email Notification
-    if (NOTIFICATION_EMAIL && NOTIFICATION_EMAIL.includes("@")) {
-      const subject = `🎉 NEW ORDER: ${product} (Size: ${size})`;
-      const message = `You got a new order!\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nProduct: ${product}\nSize: ${size}\nQuantity: ${quantity}\nAmount: SAR ${amount}\nStatus: ${status}`;
-      try {
-        MailApp.sendEmail(NOTIFICATION_EMAIL, subject, message);
-      } catch(err) {
-        // Ignore email errors to not fail the API response
-      }
-    }
+    // Send Free Telegram Notification
+    const message = `🎉 <b>NEW ORDER: ${product}</b>\n\n<b>Size:</b> ${size}\n<b>Qty:</b> ${quantity}\n<b>Amount:</b> SAR ${amount}\n\n<b>Customer:</b> ${name}\n<b>Phone:</b> ${phone}\n<b>Email:</b> ${email}\n\n<i>Status: ${status}</i>`;
+    sendTelegramMessage(message);
     
     return jsonResponse({ success: true });
   }
@@ -145,18 +163,14 @@ function doPost(e) {
     if (!signupsSheet) {
       signupsSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Signups");
       signupsSheet.appendRow(["Date", "Phone Number"]);
-      signupsSheet.getRange(1, 1, 1, 2).setFontWeight("bold");
+      signupsSheet.getRange(1, 1, 2).setFontWeight("bold");
     }
     
     const now = new Date().toISOString();
     signupsSheet.appendRow([now, body.phone]);
     
-    // Send Free Email Notification
-    if (NOTIFICATION_EMAIL && NOTIFICATION_EMAIL.includes("@")) {
-      try {
-        MailApp.sendEmail(NOTIFICATION_EMAIL, "🌟 New Moony Signup", `New VIP Signup: ${body.phone}`);
-      } catch(err) {}
-    }
+    // Send Free Telegram Notification
+    sendTelegramMessage(`🌟 <b>New VIP Signup!</b>\nPhone: ${body.phone}`);
     
     return jsonResponse({ success: true });
   }

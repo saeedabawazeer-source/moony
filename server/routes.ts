@@ -46,34 +46,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Create Tap Payment Charge
-  app.post("/api/create-charge", async (req, res) => {
+  // Create Tap Payment Charge for multiple items (Cart)
+  app.post("/api/create-charge-cart", async (req, res) => {
     try {
-      const { product, quantity, customer, size, origin } = req.body;
-      const dbProduct = await storage.getProduct(product);
+      const { items, customer, origin } = req.body;
       
-      if (!dbProduct) {
-        return res.status(404).json({ message: "Product not found" });
-      }
+      let totalAmount = 56.25; // Base shipping
+      items.forEach((item: any) => {
+        totalAmount += parseFloat(item.price) * item.quantity;
+      });
 
-      // Check stock before proceeding
-      if (size) {
-        const stockCheck = await storage.getProductInventory(product);
-        if (stockCheck && (stockCheck[size] === undefined || stockCheck[size] < quantity)) {
-          return res.status(409).json({ message: "Size sold out", size, remaining: stockCheck?.[size] || 0 });
-        }
-      }
-
-      // Note: We DO NOT deduct stock here anymore. We wait for the webhook to confirm payment.
-      const amount = (parseFloat(dbProduct.price) * quantity) + 56.25;
-      
       const payload = {
-        amount,
+        amount: totalAmount,
         currency: "SAR",
         customer: {
           first_name: customer.firstName,
           last_name: customer.lastName,
-          email: customer.email,
+          email: customer.email || `${customer.phone}@moony.com`,
           phone: {
             country_code: "966",
             number: customer.phone.replace(/[^0-9]/g, "").slice(-9) || "555555555"
@@ -81,15 +70,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
         source: { id: "src_all" },
         redirect: { url: `${origin}/success` },
-        // Pass essential data to webhook to process the order
         post: { url: `${origin}/api/webhook/tap` },
         metadata: {
-          productId: product,
-          size: size || "N/A",
-          quantity: quantity.toString(),
+          items: JSON.stringify(items.map((i: any) => ({
+            id: i.productId,
+            name: i.productName,
+            size: i.size,
+            qty: i.quantity
+          }))),
           customerName: `${customer.firstName} ${customer.lastName}`,
           phone: customer.phone,
-          email: customer.email
+          address: customer.address
         }
       };
 
@@ -122,16 +113,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const event = req.body;
       
-      // We only care about successful charges
       if (event.status === "CAPTURED" || event.event === "charge.succeeded") {
         const metadata = event.metadata || {};
-        const { productId, size, quantity, customerName, phone, email } = metadata;
+        const items = JSON.parse(metadata.items || "[]");
+        const { customerName, phone, address } = metadata;
         
-        if (productId && size && quantity) {
-          // 1. Deduct the stock NOW because payment is confirmed
-          await storage.decrementStock(productId, size, parseInt(quantity));
+        for (const item of items) {
+          // 1. Deduct the stock
+          await storage.decrementStock(item.id, item.size, parseInt(item.qty));
 
-          // 2. Send the order to the Google Sheets "Orders" tab
+          // 2. Log order to Sheets
           const sheetsUrl = process.env.SHEETS_INVENTORY_URL;
           if (sheetsUrl) {
             await fetch(sheetsUrl, {
@@ -141,12 +132,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 action: "addOrder",
                 orderId: event.id || `ORD-${Date.now()}`,
                 name: customerName || "Unknown",
-                email: email || "N/A",
+                email: metadata.email || "N/A",
                 phone: phone || "N/A",
-                product: productId,
-                size: size,
-                quantity: quantity,
-                amount: event.amount || 0,
+                product: item.name,
+                size: item.size,
+                quantity: item.qty,
+                amount: (event.amount / items.length).toFixed(2), // Approximate per-item amount
                 status: "PAID"
               })
             });

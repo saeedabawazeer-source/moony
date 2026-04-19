@@ -4,7 +4,7 @@ import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import CheckoutOverlay from "@/components/product/checkout-overlay";
+import { useCart } from "@/context/cart-context";
 import { products as staticProducts, collections as staticCollections } from "@/data/products";
 import type { Product, Collection } from "@shared/schema";
 
@@ -14,7 +14,7 @@ export default function Home() {
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const { addToCart, openCart } = useCart();
 
   // Eagerly preload all product images into browser cache on mount
   useEffect(() => {
@@ -73,8 +73,8 @@ export default function Home() {
     document.getElementById('boutique-shop')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleCheckout = () => {
-    setIsCheckoutOpen(true);
+  const handleAddToCart = () => {
+    addToCart(currentProduct, selectedSize, quantity);
   };
 
   const touchStartX = useRef<number>(0);
@@ -309,11 +309,15 @@ export default function Home() {
                 </div>
                 
                 <button 
-                  onClick={handleCheckout}
-                  className="w-full py-5 lg:py-7 rounded-full bg-[#C0FF72] text-black text-xs lg:text-base font-black uppercase tracking-widest leading-none border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:scale-95"
+                  onClick={handleAddToCart}
+                  className="w-full h-14 lg:h-20 bg-[#C0FF72] text-black border-[3px] border-black rounded-2xl lg:rounded-3xl font-black text-xs lg:text-xl uppercase tracking-tighter shadow-[8px_8px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_#000] transition-all flex items-center justify-center gap-3 active:translate-x-2 active:translate-y-2 active:shadow-none"
                 >
+                  <i className="fas fa-shopping-cart text-lg lg:text-2xl"></i>
                   ADD TO CART
                 </button>
+                <p className="text-[10px] font-bold text-[#5d4037]/40 uppercase tracking-widest text-center mt-4">
+                  Includes all 5 pieces.
+                </p>
               </div>
 
               {/* Navigation Hint */}
@@ -540,14 +544,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      <CheckoutOverlay 
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        product={currentProduct}
-        size={selectedSize}
-        quantity={quantity}
-      />
     </div>
   );
 }

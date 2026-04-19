@@ -19,13 +19,19 @@ function Router() {
   );
 }
 
+import { CartProvider } from "@/context/cart-context";
+import CartDrawer from "@/components/product/cart-drawer";
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <CartProvider>
+        <TooltipProvider>
+          <Toaster />
+          <CartDrawer />
+          <Router />
+        </TooltipProvider>
+      </CartProvider>
     </QueryClientProvider>
   );
 }
