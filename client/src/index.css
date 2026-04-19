@@ -36,7 +36,7 @@
 
 [dir="rtl"] {
   --font-serif: 'Cairo', sans-serif;
-  --font-sans: 'Noto Kufi Arabic', sans-serif;
+  --font-sans: 'Cairo', sans-serif;
 }
 
 @layer base {

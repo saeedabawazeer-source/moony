@@ -194,7 +194,7 @@ export default function HomeAR() {
                 />
               ))}
               {/* Swipe Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2" dir="ltr">
                 {currentProduct.images.map((_, i) => (
                   <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
                 ))}
@@ -202,7 +202,7 @@ export default function HomeAR() {
             </div>
 
             {/* Selector */}
-            <div className="w-full flex justify-center space-x-8 lg:space-x-12 space-x-reverse pb-2 px-8 lg:px-0">
+            <div className="w-full flex justify-center space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0" dir="ltr">
               {collections.map((col) => {
                 const isActive = selectedCollection === col.id;
                 return (
