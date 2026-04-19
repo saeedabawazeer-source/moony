@@ -14,11 +14,26 @@
  * The sheet will auto-populate with initial data on first GET request.
  */
 
-const SHEET_NAME = "Inventory";
+const SHEET_NAME_INVENTORY = "Inventory";
+const SHEET_NAME_ORDERS = "Orders";
+// Set your email here to receive free instant order notifications
+const NOTIFICATION_EMAIL = "moony.swimwear@example.com";
 
 // ─── Helpers ─────────────────────────────────────────────
-function getSheet() {
-  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+function getInventorySheet() {
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME_INVENTORY);
+}
+
+function getOrdersSheet() {
+  let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME_ORDERS);
+  // Auto-create Orders tab if it doesn't exist
+  if (!sheet) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet(SHEET_NAME_ORDERS);
+    sheet.appendRow(["Date", "Order ID", "Name", "Email", "Phone", "Product", "Size", "Qty", "Amount", "Status"]);
+    sheet.getRange(1, 1, 1, 10).setFontWeight("bold");
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
 }
 
 function findRow(sheet, productId, size) {
@@ -45,7 +60,9 @@ function sheetToJson(sheet) {
 
 // ─── Initialize default data if sheet is empty ───────────
 function initializeIfEmpty() {
-  const sheet = getSheet();
+  const sheet = getInventorySheet();
+  getOrdersSheet(); // Ensures orders sheet exists
+
   if (sheet.getLastRow() <= 1) {
     // Add headers if missing
     if (sheet.getLastRow() === 0) {
@@ -77,7 +94,7 @@ function initializeIfEmpty() {
 
 function doGet(e) {
   initializeIfEmpty();
-  const sheet = getSheet();
+  const sheet = getInventorySheet();
   const action = e?.parameter?.action || "getAll";
 
   if (action === "getAll") {
@@ -95,20 +112,65 @@ function doGet(e) {
 
 function doPost(e) {
   initializeIfEmpty();
-  const sheet = getSheet();
+  const invSheet = getInventorySheet();
   const body = JSON.parse(e.postData.contents);
   const action = body.action;
+
+  // ── Log Order (and send notification) ──
+  if (action === "addOrder") {
+    const ordersSheet = getOrdersSheet();
+    const now = new Date().toISOString();
+    const { orderId, name, email, phone, product, size, quantity, amount, status } = body;
+    
+    // Append to Google Sheet
+    ordersSheet.appendRow([now, orderId, name, email, phone, product, size, quantity, amount, status]);
+    
+    // Send Free Email Notification
+    if (NOTIFICATION_EMAIL && NOTIFICATION_EMAIL.includes("@")) {
+      const subject = `🎉 NEW ORDER: ${product} (Size: ${size})`;
+      const message = `You got a new order!\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nProduct: ${product}\nSize: ${size}\nQuantity: ${quantity}\nAmount: SAR ${amount}\nStatus: ${status}`;
+      try {
+        MailApp.sendEmail(NOTIFICATION_EMAIL, subject, message);
+      } catch(err) {
+        // Ignore email errors to not fail the API response
+      }
+    }
+    
+    return jsonResponse({ success: true });
+  }
+
+  // ── Log Signup (and send notification) ──
+  if (action === "addSignup") {
+    let signupsSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Signups");
+    if (!signupsSheet) {
+      signupsSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Signups");
+      signupsSheet.appendRow(["Date", "Phone Number"]);
+      signupsSheet.getRange(1, 1, 1, 2).setFontWeight("bold");
+    }
+    
+    const now = new Date().toISOString();
+    signupsSheet.appendRow([now, body.phone]);
+    
+    // Send Free Email Notification
+    if (NOTIFICATION_EMAIL && NOTIFICATION_EMAIL.includes("@")) {
+      try {
+        MailApp.sendEmail(NOTIFICATION_EMAIL, "🌟 New Moony Signup", `New VIP Signup: ${body.phone}`);
+      } catch(err) {}
+    }
+    
+    return jsonResponse({ success: true });
+  }
 
   // ── Set stock to exact value ──
   if (action === "set") {
     const { productId, size, quantity } = body;
-    const row = findRow(sheet, productId, size);
+    const row = findRow(invSheet, productId, size);
     const now = new Date().toISOString();
     if (row > 0) {
-      sheet.getRange(row, 3).setValue(quantity);
-      sheet.getRange(row, 4).setValue(now);
+      invSheet.getRange(row, 3).setValue(quantity);
+      invSheet.getRange(row, 4).setValue(now);
     } else {
-      sheet.appendRow([productId, size, quantity, now]);
+      invSheet.appendRow([productId, size, quantity, now]);
     }
     return jsonResponse({ success: true, stock: quantity });
   }
@@ -116,22 +178,21 @@ function doPost(e) {
   // ── Decrement stock ──
   if (action === "decrement") {
     const { productId, size, quantity } = body;
-    const row = findRow(sheet, productId, size);
+    const row = findRow(invSheet, productId, size);
     if (row < 0) {
       return jsonResponse({ success: false, message: "Not found" }, 404);
     }
-    const current = Number(sheet.getRange(row, 3).getValue());
+    const current = Number(invSheet.getRange(row, 3).getValue());
     if (current < quantity) {
       return jsonResponse({ success: false, message: "Insufficient stock", remaining: current }, 409);
     }
     const newStock = current - quantity;
     const now = new Date().toISOString();
-    sheet.getRange(row, 3).setValue(newStock);
-    sheet.getRange(row, 4).setValue(now);
+    invSheet.getRange(row, 3).setValue(newStock);
+    invSheet.getRange(row, 4).setValue(now);
     
-    // Highlight sold-out rows in red
     if (newStock === 0) {
-      sheet.getRange(row, 1, 1, 4).setBackground("#ffcccc");
+      invSheet.getRange(row, 1, 1, 4).setBackground("#ffcccc");
     }
     
     return jsonResponse({ success: true, remaining: newStock });
@@ -140,19 +201,18 @@ function doPost(e) {
   // ── Increment stock (restock) ──
   if (action === "increment") {
     const { productId, size, quantity } = body;
-    const row = findRow(sheet, productId, size);
+    const row = findRow(invSheet, productId, size);
     if (row < 0) {
       return jsonResponse({ success: false, message: "Not found" }, 404);
     }
-    const current = Number(sheet.getRange(row, 3).getValue());
+    const current = Number(invSheet.getRange(row, 3).getValue());
     const newStock = current + quantity;
     const now = new Date().toISOString();
-    sheet.getRange(row, 3).setValue(newStock);
-    sheet.getRange(row, 4).setValue(now);
+    invSheet.getRange(row, 3).setValue(newStock);
+    invSheet.getRange(row, 4).setValue(now);
     
-    // Remove red highlight if restocked
     if (current === 0 && newStock > 0) {
-      sheet.getRange(row, 1, 1, 4).setBackground(null);
+      invSheet.getRange(row, 1, 1, 4).setBackground(null);
     }
     
     return jsonResponse({ success: true, remaining: newStock });
@@ -178,7 +238,7 @@ function onOpen() {
 }
 
 function resetInventory() {
-  const sheet = getSheet();
+  const sheet = getInventorySheet();
   sheet.clear();
   sheet.appendRow(["Product", "Size", "Stock", "LastUpdated"]);
   sheet.getRange(1, 1, 1, 4).setFontWeight("bold");
@@ -188,7 +248,7 @@ function resetInventory() {
 }
 
 function highlightSoldOut() {
-  const sheet = getSheet();
+  const sheet = getInventorySheet();
   const data = sheet.getDataRange().getValues();
   for (let i = 1; i < data.length; i++) {
     if (Number(data[i][2]) === 0) {

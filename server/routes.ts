@@ -64,7 +64,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      const amount = (parseFloat(dbProduct.price) * quantity) + 56.25; // 56.25 is shipping in SAR
+      // Note: We DO NOT deduct stock here anymore. We wait for the webhook to confirm payment.
+      const amount = (parseFloat(dbProduct.price) * quantity) + 56.25;
       
       const payload = {
         amount,
@@ -75,11 +76,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
           email: customer.email,
           phone: {
             country_code: "966",
-            number: customer.phone.replace(/[^0-9]/g, "").slice(-9) || "555555555" // basic fallback formatting
+            number: customer.phone.replace(/[^0-9]/g, "").slice(-9) || "555555555"
           }
         },
         source: { id: "src_all" },
-        redirect: { url: `${origin}/success` }
+        redirect: { url: `${origin}/success` },
+        // Pass essential data to webhook to process the order
+        post: { url: `${origin}/api/webhook/tap` },
+        metadata: {
+          productId: product,
+          size: size || "N/A",
+          quantity: quantity.toString(),
+          customerName: `${customer.firstName} ${customer.lastName}`,
+          phone: customer.phone,
+          email: customer.email
+        }
       };
 
       const tapRes = await fetch("https://api.tap.company/v2/charges", {
@@ -100,14 +111,52 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       res.json({ url: data.transaction.url });
-
-      // Decrement stock after successful charge creation
-      if (size) {
-        await storage.decrementStock(product, size, quantity);
-      }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Failed to create charge" });
+    }
+  });
+
+  // --- Tap Webhook (Receives successful payment confirmation) ---
+  app.post("/api/webhook/tap", async (req, res) => {
+    try {
+      const event = req.body;
+      
+      // We only care about successful charges
+      if (event.status === "CAPTURED" || event.event === "charge.succeeded") {
+        const metadata = event.metadata || {};
+        const { productId, size, quantity, customerName, phone, email } = metadata;
+        
+        if (productId && size && quantity) {
+          // 1. Deduct the stock NOW because payment is confirmed
+          await storage.decrementStock(productId, size, parseInt(quantity));
+
+          // 2. Send the order to the Google Sheets "Orders" tab
+          const sheetsUrl = process.env.SHEETS_INVENTORY_URL;
+          if (sheetsUrl) {
+            await fetch(sheetsUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                action: "addOrder",
+                orderId: event.id || `ORD-${Date.now()}`,
+                name: customerName || "Unknown",
+                email: email || "N/A",
+                phone: phone || "N/A",
+                product: productId,
+                size: size,
+                quantity: quantity,
+                amount: event.amount || 0,
+                status: "PAID"
+              })
+            });
+          }
+        }
+      }
+      res.status(200).send("OK");
+    } catch (error) {
+      console.error("Webhook error:", error);
+      res.status(500).send("Webhook failed");
     }
   });
 
