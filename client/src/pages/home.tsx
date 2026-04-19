@@ -44,6 +44,12 @@ export default function Home() {
     retry: 1,
   });
 
+  // Fetch live inventory
+  const { data: inventory } = useQuery<Record<string, Record<string, number>>>({
+    queryKey: ["/api/inventory"],
+    refetchInterval: 30000, // refresh every 30s
+  });
+
   const products = apiProducts && !productsError ? apiProducts : staticProducts;
   const collections = apiCollections && !collectionsError ? apiCollections : staticCollections;
 
@@ -261,19 +267,27 @@ export default function Home() {
                 <div className="flex items-center justify-start gap-4">
                   {/* Size Selector */}
                   <div className="flex gap-2">
-                    {currentProduct.sizes.map((size) => (
-                      <button 
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={`w-9 h-9 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl font-black text-[10px] lg:text-sm border-2 transition-all ${
-                          selectedSize === size 
-                            ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-md' 
-                            : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
+                    {currentProduct.sizes.map((size) => {
+                      const stock = inventory?.[currentProduct.id]?.[size];
+                      const soldOut = stock !== undefined && stock <= 0;
+                      return (
+                        <button 
+                          key={size}
+                          onClick={() => !soldOut && setSelectedSize(size)}
+                          disabled={soldOut}
+                          className={`w-9 h-9 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl font-black text-[10px] lg:text-sm border-2 transition-all relative ${
+                            soldOut
+                              ? 'bg-white/20 text-[#5d4037]/30 border-white/20 cursor-not-allowed line-through'
+                              : selectedSize === size 
+                                ? 'bg-[#5d4037] text-white border-[#5d4037] scale-105 shadow-md' 
+                                : 'bg-white/50 text-[#5d4037] border-white/50 hover:border-[#5d4037]/20'
+                          }`}
+                        >
+                          {size}
+                          {soldOut && <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-red-500 rounded-full"></span>}
+                        </button>
+                      );
+                    })}
                   </div>
 
                   {/* Quantity Counter */}
