@@ -11,45 +11,26 @@ declare global {
 const DELIVERY = 56.25;
 
 export default function CartDrawer() {
-  const { items, removeFromCart, updateQuantity, clearCart, totalPrice, isOpen, closeCart } = useCart();
-  const [step, setStep] = useState<"cart" | "details" | "success">("cart");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ fullName: "", phone: "", address: "" });
-  const addressRef = useRef<HTMLInputElement>(null);
-  const autocompleteRef = useRef<any>(null);
-
-  // Init Google Maps autocomplete on the address field
-  useEffect(() => {
-    if (step !== "details") return;
-    const interval = setInterval(() => {
-      if (window.google && addressRef.current && !autocompleteRef.current) {
-        clearInterval(interval);
-        autocompleteRef.current = new window.google.maps.places.Autocomplete(
-          addressRef.current,
-          { componentRestrictions: { country: "sa" }, fields: ["formatted_address", "geometry"] }
-        );
-        autocompleteRef.current.addListener("place_changed", () => {
-          const place = autocompleteRef.current.getPlace();
-          if (place?.formatted_address) {
-            setFormData(f => ({ ...f, address: place.formatted_address }));
-          }
-        });
-      }
-    }, 300);
-    return () => clearInterval(interval);
-  }, [step]);
+  const [formData, setFormData] = useState({ 
+    fullName: "", 
+    phone: "", 
+    city: "", 
+    district: "", 
+    houseNumber: "" 
+  });
 
   const handleClose = () => {
     closeCart();
     setTimeout(() => {
       setStep("cart");
-      setFormData({ fullName: "", phone: "", address: "" });
+      setFormData({ fullName: "", phone: "", city: "", district: "", houseNumber: "" });
     }, 400);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    const fullAddress = `${formData.city}, ${formData.district}, House/Apt: ${formData.houseNumber}`;
     try {
       // Create a combined charge for all cart items
       const res = await fetch("/api/create-charge-cart", {
@@ -67,7 +48,7 @@ export default function CartDrawer() {
             firstName: formData.fullName.split(" ")[0] || formData.fullName,
             lastName: formData.fullName.split(" ").slice(1).join(" ") || "",
             phone: formData.phone,
-            address: formData.address,
+            address: fullAddress,
           },
           origin: window.location.origin,
         }),
@@ -252,26 +233,41 @@ export default function CartDrawer() {
                         />
                       </div>
 
-                      {/* Address with Google Maps */}
+                      {/* City */}
                       <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
-                        <i className="fas fa-map-marker-alt text-[#5d4037]"></i>
+                        <i className="fas fa-city text-[#5d4037]"></i>
                         <input
-                          ref={addressRef}
                           required
-                          placeholder="Start typing your address..."
-                          value={formData.address}
-                          onChange={e => setFormData(f => ({ ...f, address: e.target.value }))}
+                          placeholder="City (e.g. Jeddah)"
+                          value={formData.city}
+                          onChange={e => setFormData(f => ({ ...f, city: e.target.value }))}
                           className="flex-1 bg-transparent outline-none font-serif text-lg text-[#5d4037] placeholder:text-[#5d4037]/30"
                         />
                       </div>
 
-                      {/* Note about Maps */}
-                      {!window.google && (
-                        <p className="text-[10px] text-[#5d4037]/40 font-bold px-2">
-                          <i className="fas fa-info-circle mr-1"></i>
-                          Google Maps suggestions will appear once your API key is added.
-                        </p>
-                      )}
+                      {/* District / Street */}
+                      <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
+                        <i className="fas fa-road text-[#5d4037]"></i>
+                        <input
+                          required
+                          placeholder="District / Street Name"
+                          value={formData.district}
+                          onChange={e => setFormData(f => ({ ...f, district: e.target.value }))}
+                          className="flex-1 bg-transparent outline-none font-serif text-lg text-[#5d4037] placeholder:text-[#5d4037]/30"
+                        />
+                      </div>
+
+                      {/* House / Apt Number */}
+                      <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
+                        <i className="fas fa-home text-[#5d4037]"></i>
+                        <input
+                          required
+                          placeholder="House / Apartment Number"
+                          value={formData.houseNumber}
+                          onChange={e => setFormData(f => ({ ...f, houseNumber: e.target.value }))}
+                          className="flex-1 bg-transparent outline-none font-serif text-lg text-[#5d4037] placeholder:text-[#5d4037]/30"
+                        />
+                      </div>
 
                       {/* Order summary mini */}
                       <div className="bg-[#5d4037]/5 rounded-2xl p-4 space-y-2">
