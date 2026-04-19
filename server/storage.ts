@@ -1,8 +1,34 @@
 import { type Product, type Collection, type InsertProduct, type InsertCollection } from "@shared/schema";
 import { randomUUID } from "crypto";
 
-// Inventory = { "daydream-set": { "S": 9, "M": 16, ... }, ... }
 export type Inventory = Record<string, Record<string, number>>;
+
+// Google Sheets sync helper
+async function sheetsRequest(action: string, body?: any): Promise<any> {
+  const url = process.env.SHEETS_INVENTORY_URL;
+  if (!url) return null;
+
+  try {
+    if (!body) {
+      // GET request
+      const params = new URLSearchParams({ action });
+      const res = await fetch(`${url}?${params}`, { redirect: "follow" });
+      return await res.json();
+    } else {
+      // POST request
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action, ...body }),
+        redirect: "follow",
+      });
+      return await res.json();
+    }
+  } catch (err) {
+    console.error("[SHEETS] Sync error:", err);
+    return null;
+  }
+}
 
 export interface IStorage {
   getProduct(id: string): Promise<Product | undefined>;
@@ -12,7 +38,6 @@ export interface IStorage {
   getCollection(id: string): Promise<Collection | undefined>;
   getAllCollections(): Promise<Collection[]>;
   createCollection(collection: InsertCollection): Promise<Collection>;
-  // Inventory
   getInventory(): Promise<Inventory>;
   getProductInventory(productId: string): Promise<Record<string, number> | undefined>;
   decrementStock(productId: string, size: string, qty: number): Promise<{ success: boolean; remaining: number }>;
@@ -23,12 +48,30 @@ export class MemStorage implements IStorage {
   private products: Map<string, Product>;
   private collections: Map<string, Collection>;
   private inventory: Inventory;
+  private useSheets: boolean;
 
   constructor() {
     this.products = new Map();
     this.collections = new Map();
     this.inventory = {};
+    this.useSheets = !!process.env.SHEETS_INVENTORY_URL;
     this.initializeData();
+    
+    if (this.useSheets) {
+      console.log("[INVENTORY] Google Sheets sync ENABLED");
+      // Pull initial data from Sheets
+      this.syncFromSheets();
+    } else {
+      console.log("[INVENTORY] Using in-memory storage (set SHEETS_INVENTORY_URL to enable Sheets sync)");
+    }
+  }
+
+  private async syncFromSheets() {
+    const data = await sheetsRequest("getAll");
+    if (data && typeof data === "object" && !data.error) {
+      this.inventory = data;
+      console.log("[INVENTORY] Synced from Google Sheets:", JSON.stringify(data));
+    }
   }
 
   private initializeData() {
@@ -118,7 +161,7 @@ export class MemStorage implements IStorage {
 
     products.forEach(p => this.products.set(p.id, p));
 
-    // Initial inventory counts
+    // Fallback in-memory inventory (used when Sheets is not configured)
     this.inventory = {
       "daydream-set": { "S": 9, "M": 16, "L": 18, "XL": 9 },
       "aqua-glow-set": { "S": 8, "M": 13, "L": 17, "XL": 8 }
@@ -145,16 +188,43 @@ export class MemStorage implements IStorage {
     return collection;
   }
 
-  // Inventory methods
+  // ─── Inventory (syncs with Google Sheets when available) ───
+
   async getInventory(): Promise<Inventory> {
+    if (this.useSheets) {
+      const data = await sheetsRequest("getAll");
+      if (data && !data.error) {
+        this.inventory = data; // cache locally
+        return data;
+      }
+    }
     return JSON.parse(JSON.stringify(this.inventory));
   }
 
   async getProductInventory(productId: string): Promise<Record<string, number> | undefined> {
+    if (this.useSheets) {
+      const data = await sheetsRequest("getProduct", undefined);
+      // Use getAll and filter for simplicity with Apps Script redirect handling
+      const all = await this.getInventory();
+      return all[productId];
+    }
     return this.inventory[productId] ? { ...this.inventory[productId] } : undefined;
   }
 
   async decrementStock(productId: string, size: string, qty: number): Promise<{ success: boolean; remaining: number }> {
+    // Try Sheets first
+    if (this.useSheets) {
+      const result = await sheetsRequest("decrement", { productId, size, quantity: qty });
+      if (result) {
+        // Update local cache
+        if (result.success && this.inventory[productId]) {
+          this.inventory[productId][size] = result.remaining;
+        }
+        return { success: result.success, remaining: result.remaining || 0 };
+      }
+    }
+
+    // Fallback to in-memory
     if (!this.inventory[productId] || this.inventory[productId][size] === undefined) {
       return { success: false, remaining: 0 };
     }
@@ -168,6 +238,12 @@ export class MemStorage implements IStorage {
   }
 
   async setStock(productId: string, size: string, qty: number): Promise<void> {
+    // Sync to Sheets
+    if (this.useSheets) {
+      await sheetsRequest("set", { productId, size, quantity: qty });
+    }
+
+    // Always update local
     if (!this.inventory[productId]) this.inventory[productId] = {};
     this.inventory[productId][size] = qty;
     console.log(`[INVENTORY] SET ${productId} ${size}: ${qty}`);
