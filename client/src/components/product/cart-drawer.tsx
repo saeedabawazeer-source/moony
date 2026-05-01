@@ -11,6 +11,9 @@ declare global {
 const DELIVERY = 56.25;
 
 export default function CartDrawer() {
+  const { items, removeFromCart, updateQuantity, clearCart, totalPrice, isOpen, closeCart } = useCart();
+  const [step, setStep] = useState<"cart" | "details" | "success">("cart");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ 
     fullName: "", 
     phone: "", 
@@ -287,7 +290,7 @@ export default function CartDrawer() {
 
                       <button
                         type="submit"
-                        disabled={isSubmitting || !formData.fullName || !formData.phone || !formData.address}
+                        disabled={isSubmitting || !formData.fullName || !formData.phone || !formData.city || !formData.district || !formData.houseNumber}
                         className="w-full py-4 rounded-full font-black text-sm uppercase tracking-widest bg-[#C0FF72] text-black border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0"
                       >
                         {isSubmitting ? "Opening Payment..." : "Pay Now — SAR " + grandTotal.toFixed(2) + " →"}
