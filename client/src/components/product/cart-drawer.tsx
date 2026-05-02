@@ -1,20 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/cart-context";
-import { useState, useRef, useEffect } from "react";
-
-declare global {
-  interface Window {
-    google: any;
-  }
-}
+import { useState } from "react";
 
 const DELIVERY = 56.25;
 
 export default function CartDrawer() {
   const { items, removeFromCart, updateQuantity, clearCart, totalPrice, isOpen, closeCart } = useCart();
-  const [step, setStep] = useState<"cart" | "details" | "success" | "error">("cart");
+  const [step, setStep] = useState<"cart" | "details" | "paying" | "success" | "error">("cart");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [paymentError, setPaymentError] = useState("");
+  const [paymentUrl, setPaymentUrl] = useState("");
   const [formData, setFormData] = useState({ 
     fullName: "", 
     phone: "", 
@@ -27,6 +22,8 @@ export default function CartDrawer() {
     closeCart();
     setTimeout(() => {
       setStep("cart");
+      setPaymentUrl("");
+      setPaymentError("");
       setFormData({ fullName: "", phone: "", city: "", district: "", houseNumber: "" });
     }, 400);
   };
@@ -36,7 +33,6 @@ export default function CartDrawer() {
     setIsSubmitting(true);
     const fullAddress = `${formData.city}, ${formData.district}, House/Apt: ${formData.houseNumber}`;
     try {
-      // Create a combined charge for all cart items
       const res = await fetch("/api/create-charge-cart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -59,25 +55,9 @@ export default function CartDrawer() {
       });
       const data = await res.json();
       if (data.url) {
-        // Open Tap payment in a popup window — user stays on Moony page!
-        const popup = window.open(
-          data.url,
-          "tap_payment",
-          "width=520,height=680,left=200,top=100,resizable=yes,scrollbars=yes"
-        );
-        if (!popup) {
-          // Popup was blocked — redirect instead
-          window.location.href = data.url;
-          return;
-        }
-        // Poll for closure
-        const timer = setInterval(() => {
-          if (popup?.closed) {
-            clearInterval(timer);
-            setStep("success");
-            clearCart();
-          }
-        }, 800);
+        // Show the Tap payment page inside an iframe in our drawer
+        setPaymentUrl(data.url);
+        setStep("paying");
       } else {
         console.error("No payment URL returned", data);
         setPaymentError(data.message || "Payment gateway did not return a URL. Please try again.");
@@ -92,34 +72,52 @@ export default function CartDrawer() {
     }
   };
 
+  // Listen for the /success redirect inside the iframe
+  const handleIframeLoad = (e: React.SyntheticEvent<HTMLIFrameElement>) => {
+    try {
+      const iframe = e.currentTarget;
+      const iframeUrl = iframe.contentWindow?.location.href;
+      if (iframeUrl && iframeUrl.includes("/success")) {
+        setStep("success");
+        clearCart();
+      }
+    } catch {
+      // Cross-origin — can't read URL, that's fine. Tap is still loading.
+    }
+  };
+
   const grandTotal = totalPrice + DELIVERY;
 
+  // The frame insets match the website's .internal-scroll-area exactly
+  // Mobile: inset-[8px] rounded-[1.4rem]  |  Desktop: inset-[12px] rounded-[2.4rem]
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop — sits inside the frame */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/40 z-[200] backdrop-blur-sm"
+            className="fixed inset-[8px] lg:inset-[12px] bg-black/40 z-[90] backdrop-blur-sm rounded-[1.4rem] lg:rounded-[2.4rem]"
             onClick={handleClose}
           />
 
-          {/* Drawer */}
+          {/* Drawer — sits inside the frame, slides from right */}
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 28, stiffness: 260 }}
-            className="fixed top-0 right-0 h-full w-full max-w-md z-[210] bg-[#fef8e1] shadow-2xl flex flex-col"
+            className="fixed top-[8px] right-[8px] bottom-[8px] lg:top-[12px] lg:right-[12px] lg:bottom-[12px] w-[calc(100%-16px)] max-w-md z-[95] bg-[#fef8e1] shadow-2xl flex flex-col rounded-[1.4rem] lg:rounded-[2.4rem] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b-2 border-[#5d4037]/10">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e5815c]">Your Boutique</p>
-                <h2 className="text-2xl font-serif font-black text-[#5d4037]">Cart {items.length > 0 && `(${items.length})`}</h2>
+                <h2 className="text-2xl font-serif font-black text-[#5d4037]">
+                  {step === "paying" ? "Payment" : step === "success" ? "Done!" : step === "error" ? "Oops" : `Cart ${items.length > 0 ? `(${items.length})` : ""}`}
+                </h2>
               </div>
               <button onClick={handleClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5d4037]/10 hover:bg-[#5d4037]/20 transition-colors">
                 <i className="fas fa-times text-[#5d4037]"></i>
@@ -159,7 +157,6 @@ export default function CartDrawer() {
                               <h3 className="font-serif font-black text-[#5d4037] text-base leading-tight">{item.product.name}</h3>
                               <p className="text-xs font-bold text-[#5d4037]/50 mt-0.5">Size: {item.size}</p>
                               <p className="text-sm font-black text-[#e5815c] mt-1">SAR {(parseFloat(item.product.price) * item.quantity).toFixed(2)}</p>
-                              {/* Quantity controls */}
                               <div className="flex items-center gap-2 mt-2">
                                 <button
                                   onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
@@ -219,7 +216,6 @@ export default function CartDrawer() {
                     <h3 className="font-serif font-black text-2xl text-[#5d4037] mb-6">Delivery Details</h3>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
-                      {/* Full Name */}
                       <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
                         <i className="fas fa-user text-[#e5815c]"></i>
                         <input
@@ -231,7 +227,6 @@ export default function CartDrawer() {
                         />
                       </div>
 
-                      {/* Phone */}
                       <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
                         <i className="fas fa-phone text-[#6bb7b3]"></i>
                         <input
@@ -244,7 +239,6 @@ export default function CartDrawer() {
                         />
                       </div>
 
-                      {/* City */}
                       <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
                         <i className="fas fa-city text-[#5d4037]"></i>
                         <input
@@ -256,7 +250,6 @@ export default function CartDrawer() {
                         />
                       </div>
 
-                      {/* District / Street */}
                       <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
                         <i className="fas fa-road text-[#5d4037]"></i>
                         <input
@@ -268,7 +261,6 @@ export default function CartDrawer() {
                         />
                       </div>
 
-                      {/* House / Apt Number */}
                       <div className="bg-white/60 rounded-2xl p-4 border-2 border-[#5d4037]/10 flex items-center gap-3">
                         <i className="fas fa-home text-[#5d4037]"></i>
                         <input
@@ -301,9 +293,39 @@ export default function CartDrawer() {
                         disabled={isSubmitting || !formData.fullName || !formData.phone || !formData.city || !formData.district || !formData.houseNumber}
                         className="w-full py-4 rounded-full font-black text-sm uppercase tracking-widest bg-[#C0FF72] text-black border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0"
                       >
-                        {isSubmitting ? "Opening Payment..." : "Pay Now — SAR " + grandTotal.toFixed(2) + " →"}
+                        {isSubmitting ? "Connecting to Payment..." : "Pay Now — SAR " + grandTotal.toFixed(2) + " →"}
                       </button>
                     </form>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* ── PAYMENT IFRAME STEP ── */}
+              {step === "paying" && (
+                <motion.div
+                  key="paying"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  className="flex flex-col flex-1 min-h-0"
+                >
+                  <div className="px-6 py-3 flex items-center gap-2">
+                    <button onClick={() => setStep("details")} className="flex items-center gap-2 text-xs font-black text-[#5d4037]/40 hover:text-[#5d4037] transition-colors">
+                      <i className="fas fa-arrow-left"></i> Back
+                    </button>
+                    <div className="flex-1" />
+                    <div className="flex items-center gap-2">
+                      <i className="fas fa-lock text-[#6bb7b3] text-xs"></i>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#6bb7b3]">Secure Payment</span>
+                    </div>
+                  </div>
+                  {/* Tap payment embedded inside the drawer */}
+                  <div className="flex-1 relative">
+                    <iframe
+                      src={paymentUrl}
+                      className="absolute inset-0 w-full h-full border-0"
+                      title="Tap Payment"
+                      allow="payment"
+                      onLoad={handleIframeLoad}
+                    />
                   </div>
                 </motion.div>
               )}
