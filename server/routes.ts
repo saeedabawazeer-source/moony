@@ -97,13 +97,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const data = await tapRes.json();
       
       if (!tapRes.ok) {
-        console.error("Tap Error:", data);
+        console.error("[TAP] Error response:", JSON.stringify(data));
         return res.status(500).json({ message: "Payment gateway error", details: data });
       }
 
-      res.json({ url: data.transaction.url });
+      const paymentUrl = data.transaction?.url;
+      console.log("[TAP] Charge created:", data.id, "URL:", paymentUrl);
+      
+      if (!paymentUrl) {
+        console.error("[TAP] No transaction URL in response:", JSON.stringify(data));
+        return res.status(500).json({ message: "Payment gateway did not return a checkout URL" });
+      }
+
+      res.json({ url: paymentUrl });
     } catch (error) {
-      console.error(error);
+      console.error("[TAP] Exception:", error);
       res.status(500).json({ message: "Failed to create charge" });
     }
   });

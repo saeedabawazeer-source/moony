@@ -12,8 +12,9 @@ const DELIVERY = 56.25;
 
 export default function CartDrawer() {
   const { items, removeFromCart, updateQuantity, clearCart, totalPrice, isOpen, closeCart } = useCart();
-  const [step, setStep] = useState<"cart" | "details" | "success">("cart");
+  const [step, setStep] = useState<"cart" | "details" | "success" | "error">("cart");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
   const [formData, setFormData] = useState({ 
     fullName: "", 
     phone: "", 
@@ -64,6 +65,11 @@ export default function CartDrawer() {
           "tap_payment",
           "width=520,height=680,left=200,top=100,resizable=yes,scrollbars=yes"
         );
+        if (!popup) {
+          // Popup was blocked — redirect instead
+          window.location.href = data.url;
+          return;
+        }
         // Poll for closure
         const timer = setInterval(() => {
           if (popup?.closed) {
@@ -73,12 +79,14 @@ export default function CartDrawer() {
           }
         }, 800);
       } else {
-        setStep("success");
-        clearCart();
+        console.error("No payment URL returned", data);
+        setPaymentError(data.message || "Payment gateway did not return a URL. Please try again.");
+        setStep("error");
       }
-    } catch {
-      setStep("success");
-      clearCart();
+    } catch (err: any) {
+      console.error("Payment error:", err);
+      setPaymentError(err?.message || "Something went wrong. Please try again.");
+      setStep("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -95,7 +103,7 @@ export default function CartDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/40 z-[80] backdrop-blur-sm"
+            className="fixed inset-0 bg-black/40 z-[200] backdrop-blur-sm"
             onClick={handleClose}
           />
 
@@ -105,7 +113,7 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 28, stiffness: 260 }}
-            className="fixed top-0 right-0 h-full w-full max-w-md z-[90] bg-[#fef8e1] shadow-2xl flex flex-col"
+            className="fixed top-0 right-0 h-full w-full max-w-md z-[210] bg-[#fef8e1] shadow-2xl flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b-2 border-[#5d4037]/10">
@@ -327,6 +335,40 @@ export default function CartDrawer() {
                   >
                     Back to Boutique
                   </button>
+                </motion.div>
+              )}
+
+              {/* ── ERROR STEP ── */}
+              {step === "error" && (
+                <motion.div
+                  key="error"
+                  initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                  className="flex-1 flex flex-col items-center justify-center gap-6 text-center px-8"
+                >
+                  <div className="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center">
+                    <i className="fas fa-exclamation-triangle text-3xl text-red-500"></i>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-500 mb-2">Payment Failed</p>
+                    <h2 className="text-3xl font-serif font-black text-[#5d4037]">Something Went Wrong</h2>
+                    <p className="text-sm font-bold text-[#5d4037]/50 mt-3 leading-relaxed max-w-xs mx-auto">
+                      {paymentError}
+                    </p>
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => { setStep("details"); setPaymentError(""); }}
+                      className="px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest bg-[#C0FF72] text-black border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] transition-all"
+                    >
+                      Try Again
+                    </button>
+                    <button
+                      onClick={handleClose}
+                      className="px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest bg-[#5d4037]/10 text-[#5d4037] hover:opacity-80 transition-opacity"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
