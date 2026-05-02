@@ -94,22 +94,22 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop — sits inside the frame */}
+          {/* Backdrop — fills the entire frame area */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-[8px] lg:inset-[12px] bg-black/40 z-[90] backdrop-blur-sm rounded-[1.4rem] lg:rounded-[2.4rem]"
+            className="fixed inset-[8px] lg:inset-[12px] bg-black/50 z-[90] rounded-[1.4rem] lg:rounded-[2.4rem]"
             onClick={handleClose}
           />
 
-          {/* Drawer — sits inside the frame, slides from right */}
+          {/* Drawer — fills the entire frame area, no gap */}
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 28, stiffness: 260 }}
-            className="fixed top-[8px] right-[8px] bottom-[8px] lg:top-[12px] lg:right-[12px] lg:bottom-[12px] w-[calc(100%-16px)] max-w-md z-[95] bg-[#fef8e1] shadow-2xl flex flex-col rounded-[1.4rem] lg:rounded-[2.4rem] overflow-hidden"
+            className="fixed inset-[8px] lg:inset-[12px] z-[95] bg-[#fef8e1] shadow-2xl flex flex-col rounded-[1.4rem] lg:rounded-[2.4rem] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b-2 border-[#5d4037]/10">
