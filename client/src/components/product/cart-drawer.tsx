@@ -21,6 +21,7 @@ export default function CartDrawer() {
     district: "", 
     houseNumber: "" 
   });
+  const [subscribeWhatsapp, setSubscribeWhatsapp] = useState(false);
 
   const t = {
     cartTitle: isAr ? "السلة" : "Cart",
@@ -38,6 +39,8 @@ export default function CartDrawer() {
     city: isAr ? "المدينة" : "City",
     district: isAr ? "الحي / الشارع" : "District / Street",
     houseNumber: isAr ? "رقم المنزل / الشقة" : "House / Apt Number",
+    whatsappOffer: isAr ? "اشترك في تحديثات واتساب للحصول على خصم 10٪ على هذا الطلب" : "Subscribe to WhatsApp updates for an extra 10% off this order",
+    discount: isAr ? "خصم (10%)" : "Discount (10%)",
     connecting: isAr ? "جاري الاتصال بالدفع..." : "Connecting to Payment...",
     payNow: isAr ? "ادفع الآن — ر.س " : "Pay Now — SAR ",
     payment: isAr ? "الدفع" : "Payment",
@@ -87,6 +90,7 @@ export default function CartDrawer() {
             phone: formData.phone,
             address: fullAddress,
           },
+          subscribeWhatsapp,
           origin: window.location.origin,
         }),
       });
@@ -121,7 +125,8 @@ export default function CartDrawer() {
     }
   };
 
-  const grandTotal = totalPrice + DELIVERY;
+  const discountAmount = subscribeWhatsapp ? (totalPrice * 0.10) : 0;
+  const grandTotal = totalPrice - discountAmount + DELIVERY;
 
   return (
     <AnimatePresence>
@@ -146,9 +151,9 @@ export default function CartDrawer() {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b-2 border-[#5d4037]/10 shrink-0">
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <img src="/images/starfish-black.png" alt="Moony Logo" className="w-3.5 h-3.5 opacity-60" />
-                  <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#e5815c] font-sans">Moony</p>
+                <div className="flex items-center gap-1.5 mb-0.5" dir="ltr">
+                  <img src="/images/starfish-black.png" alt="Moony Logo" className="w-3.5 h-3.5" />
+                  <p className="text-sm font-black lowercase tracking-tighter text-black font-serif">moony</p>
                 </div>
                 <h2 className={`text-2xl font-black text-[#5d4037] ${isAr ? "font-kufi" : "font-serif"}`}>
                   {step === "paying" ? t.payment : step === "success" ? t.done : step === "error" ? t.oops : `${t.cartTitle} ${items.length > 0 ? `(${items.length})` : ""}`}
@@ -215,7 +220,7 @@ export default function CartDrawer() {
                       </div>
 
                       {/* Summary + CTA */}
-                      <div className="px-6 pb-6 pt-3 border-t-2 border-[#5d4037]/10 space-y-2 shrink-0">
+                      <div className="px-6 pb-6 pt-3 border-t-2 border-[#5d4037]/10 space-y-2 shrink-0 bg-[#fef8e1]">
                         <div className="flex justify-between text-sm font-bold text-[#5d4037]/60">
                           <span>{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
                         </div>
@@ -223,7 +228,7 @@ export default function CartDrawer() {
                           <span>{t.delivery}</span><span className="font-sans">SAR {DELIVERY.toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between text-lg font-black text-[#5d4037] border-t-2 border-[#5d4037]/10 pt-2 mb-2">
-                          <span>{t.total}</span><span className="font-sans">SAR {grandTotal.toFixed(2)}</span>
+                          <span>{t.total}</span><span className="font-sans">SAR {(totalPrice + DELIVERY).toFixed(2)}</span>
                         </div>
                         <button
                           onClick={() => setStep("details")}
@@ -244,14 +249,15 @@ export default function CartDrawer() {
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   className="flex flex-col flex-1 min-h-0"
                 >
-                  <div className="flex-1 overflow-y-auto px-6 py-4">
-                    <button onClick={() => setStep("cart")} className={`flex items-center gap-2 text-xs font-black text-[#5d4037]/40 hover:text-[#5d4037] mb-4 transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
-                      <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.backToCart}
-                    </button>
-                    <h3 className={`font-black text-xl text-[#5d4037] mb-4 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
+                  <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+                    <div className="flex-1 overflow-y-auto px-6 py-4">
+                      <button type="button" onClick={() => setStep("cart")} className={`flex items-center gap-2 text-xs font-black text-[#5d4037]/40 hover:text-[#5d4037] mb-4 transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
+                        <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.backToCart}
+                      </button>
+                      <h3 className={`font-black text-xl text-[#5d4037] mb-4 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
 
-                    {/* Compact Form */}
-                    <form onSubmit={handleSubmit} className="space-y-3">
+                      {/* Compact Form */}
+                      <div className="space-y-3">
                       <div className="bg-white/60 rounded-xl p-3 border-2 border-[#5d4037]/10 flex items-center gap-3">
                         <i className="fas fa-user text-[#e5815c] w-4 text-center"></i>
                         <input
@@ -311,18 +317,44 @@ export default function CartDrawer() {
                         />
                       </div>
 
+                      </div>
+                    </div>
+
+                    {/* Fixed Summary & Pay Button at Bottom */}
+                    <div className="px-6 pb-6 pt-3 border-t-2 border-[#5d4037]/10 shrink-0 bg-[#fef8e1] mt-auto">
+                      
+                      {/* WhatsApp Opt-in */}
+                      <label className="flex items-start gap-3 cursor-pointer bg-white/60 p-3 rounded-xl border-2 border-[#5d4037]/10 mb-4 hover:bg-white transition-colors">
+                        <div className="relative flex items-center justify-center mt-0.5">
+                          <input 
+                            type="checkbox" 
+                            className="peer appearance-none w-5 h-5 border-2 border-[#5d4037] rounded bg-white checked:bg-[#25D366] checked:border-[#25D366] transition-colors cursor-pointer"
+                            checked={subscribeWhatsapp}
+                            onChange={(e) => setSubscribeWhatsapp(e.target.checked)}
+                          />
+                          <i className="fas fa-check absolute text-white text-xs opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></i>
+                        </div>
+                        <div className="flex-1">
+                          <p className={`text-xs font-bold leading-tight ${subscribeWhatsapp ? "text-[#25D366]" : "text-[#5d4037]"} ${isAr ? "font-kufi" : ""}`}>
+                            {t.whatsappOffer}
+                          </p>
+                        </div>
+                      </label>
+
                       {/* Compact Order summary mini */}
-                      <div className="bg-[#5d4037]/5 rounded-xl p-3 space-y-1.5 mt-4">
-                        {items.map(i => (
-                          <div key={`${i.product.id}-${i.size}`} className="flex justify-between text-[11px] font-bold text-[#5d4037]">
-                            <span className={isAr ? "font-kufi" : ""}>{i.product.name} ({i.size}) ×{i.quantity}</span>
-                            <span className="font-sans">SAR {(parseFloat(i.product.price) * i.quantity).toFixed(2)}</span>
-                          </div>
-                        ))}
-                        <div className="flex justify-between text-[11px] font-bold text-[#5d4037]/60 border-t border-[#5d4037]/10 pt-1.5">
+                      <div className="bg-[#5d4037]/5 rounded-xl p-3 space-y-1.5">
+                        <div className="flex justify-between text-[11px] font-bold text-[#5d4037]/60">
+                          <span>{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between text-[11px] font-bold text-[#5d4037]/60">
                           <span>{t.delivery}</span><span className="font-sans">SAR {DELIVERY.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between font-black text-sm text-[#5d4037] pt-1">
+                        {subscribeWhatsapp && (
+                          <div className="flex justify-between text-[11px] font-bold text-[#25D366]">
+                            <span>{t.discount}</span><span className="font-sans">-SAR {discountAmount.toFixed(2)}</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between font-black text-sm text-[#5d4037] border-t border-[#5d4037]/10 pt-1.5 mt-1.5">
                           <span>{t.total}</span><span className="font-sans">SAR {grandTotal.toFixed(2)}</span>
                         </div>
                       </div>
@@ -334,8 +366,8 @@ export default function CartDrawer() {
                       >
                         {isSubmitting ? t.connecting : t.payNow + grandTotal.toFixed(2)}
                       </button>
-                    </form>
-                  </div>
+                    </div>
+                  </form>
                 </motion.div>
               )}
 

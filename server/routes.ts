@@ -49,12 +49,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create Tap Payment Charge for multiple items (Cart)
   app.post("/api/create-charge-cart", async (req, res) => {
     try {
-      const { items, customer, origin } = req.body;
+      const { items, customer, subscribeWhatsapp, origin } = req.body;
       
-      let totalAmount = 56.25; // Base shipping
+      let subtotal = 0;
       items.forEach((item: any) => {
-        totalAmount += parseFloat(item.price) * item.quantity;
+        subtotal += parseFloat(item.price) * item.quantity;
       });
+
+      const discount = subscribeWhatsapp ? (subtotal * 0.10) : 0;
+      const totalAmount = subtotal - discount + 56.25; // Apply discount, add 56.25 base shipping
 
       const payload = {
         amount: totalAmount,
