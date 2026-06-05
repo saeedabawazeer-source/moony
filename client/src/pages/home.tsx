@@ -339,13 +339,13 @@ export default function Home() {
           <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full">
             
             {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
-            <div className="relative h-[50vh] lg:h-full w-full flex flex-col items-center justify-center">
-              <div className="mb-8 lg:mb-12 text-center lg:text-left w-full lg:max-w-xl lg:-translate-y-12">
+            <div className="relative h-[50vh] lg:h-[80vh] w-full flex flex-col items-center justify-center pt-8 lg:pt-0">
+              <div className="mb-4 lg:mb-8 text-center lg:text-left w-full lg:max-w-xl">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">The Breakdown</p>
                 <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">The Full Modular Set</h3>
               </div>
               
-              <div className="relative w-full h-[60vh] lg:h-[80vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.4]">
+              <div className="relative w-full h-[60vh] lg:h-[70vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-100">
                 {/* 1. Turban */}
                 <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[32%] z-30">
                   <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
@@ -438,7 +438,7 @@ export default function Home() {
             </div>
 
             {/* Right: Why you'll love it (High-Impact Stats) */}
-            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center h-full lg:-translate-y-24">
+            <div className="space-y-6 lg:space-y-12 flex flex-col justify-center h-full">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
@@ -508,37 +508,6 @@ export default function Home() {
                    <p className="text-[9px] font-black uppercase tracking-widest text-[#000000]">— {review.author}</p>
                  </motion.div>
                ))}
-            </div>
-
-            {/* WhatsApp Newsletter Card */}
-            <div className="w-full bg-white p-6 lg:p-10 rounded-[2.5rem] lg:rounded-full border-[3px] border-black flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6 shadow-[4px_4px_0px_0px_#000]">
-               <div className="text-center lg:text-left space-y-0.5">
-                  <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
-                    Moony Inner Circle
-                  </h3>
-                  <p className="text-[9px] lg:text-[11px] font-black text-[#000000] uppercase tracking-widest leading-none">
-                    Get 10% off your first set via WhatsApp.
-                  </p>
-               </div>
-
-               <div className="flex flex-col items-center lg:items-end w-full lg:w-auto space-y-4">
-                 <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-[3px] border-black group focus-within:border-[#01A0A1] transition-all">
-                   <div className="pl-4 pr-2 border-r border-black/20 text-[10px] lg:text-xs font-black">
-                      +966
-                   </div>
-                   <input 
-                     type="tel" 
-                     placeholder="5XXXXXXXX"
-                     className="flex-1 bg-transparent px-3 py-2 outline-none font-sans font-bold text-xs lg:text-base placeholder:opacity-30 min-w-0"
-                   />
-                   <button className="flex-shrink-0 bg-[#C0FF72] text-black px-6 lg:px-10 py-3 rounded-full font-black uppercase tracking-widest text-[9px] lg:text-xs border-[2px] border-black shadow-[2px_2px_0px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all active:scale-95">
-                      JOIN
-                   </button>
-                 </form>
-                 <p className="hidden lg:block text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-[#5d4037]">
-                    Join 500+ Moony Sisters ★
-                 </p>
-               </div>
             </div>
 
             <Footer />
