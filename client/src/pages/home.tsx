@@ -192,7 +192,7 @@ export default function Home() {
             
             {/* 1. Swipeable Model Visual - pure CSS, no framer */}
             <div 
-              className="w-full h-[56vh] lg:h-[72vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] border-[3px] border-t-0 border-black"
+              className="w-full aspect-[3/4] landscape:aspect-[4/3] max-h-[75vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] border-[3px] border-t-0 border-black bg-[#5d4037]/5"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
@@ -203,7 +203,7 @@ export default function Home() {
                   alt={currentProduct.name}
                   fetchPriority={i === 0 ? "high" : "auto"}
                   loading="eager"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-200"
                   style={{ opacity: i === currentImageIndex ? 1 : 0 }}
                 />
               ))}
