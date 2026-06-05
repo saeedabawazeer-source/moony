@@ -187,36 +187,37 @@ export default function Home() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden bg-[#fef8e1]">
-          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-3">
-            
-            {/* 1. Swipeable Model Visual - pure CSS, no framer */}
-            <div 
-              className="w-full aspect-[3/4] landscape:aspect-[4/3] max-h-[75vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] border-[3px] border-t-0 border-black bg-[#5d4037]/5"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              {currentProduct.images.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt={currentProduct.name}
-                  fetchPriority={i === 0 ? "high" : "auto"}
-                  loading="eager"
-                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-200"
-                  style={{ opacity: i === currentImageIndex ? 1 : 0 }}
-                />
+        <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row pt-0 overflow-hidden bg-[#fef8e1]">
+          {/* 1. Swipeable Model Visual - pure CSS, no framer */}
+          <div 
+            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-r-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {currentProduct.images.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={currentProduct.name}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                loading="eager"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200"
+                style={{ opacity: i === currentImageIndex ? 1 : 0 }}
+              />
+            ))}
+            {/* Swipe Indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+              {currentProduct.images.map((_, i) => (
+                <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
               ))}
-              {/* Swipe Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                {currentProduct.images.map((_, i) => (
-                  <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
-                ))}
-              </div>
             </div>
+          </div>
+
+          {/* Right/Bottom Info Area */}
+          <div className="flex-1 flex flex-col items-center justify-center w-full lg:w-[55%] space-y-3 lg:space-y-6 px-8 lg:px-12 py-3 lg:py-0">
 
             {/* 2. Model Switcher (Stars in one line) */}
-            <div className="w-full flex space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0">
+            <div className="w-full flex space-x-8 lg:space-x-12 pb-1 px-0 lg:justify-center">
               {collections.map((col) => {
                 const isActive = selectedCollection === col.id;
                 return (
@@ -252,19 +253,20 @@ export default function Home() {
               })}
             </div>
 
-            <div className="w-full space-y-1 lg:space-y-2 px-8 lg:px-0">
-                <p className="font-sans font-black uppercase tracking-[0.5em] text-[8px] lg:text-[9px] text-[#e5815c]">
+            <div className="w-full space-y-1 lg:space-y-3 px-0 lg:text-center">
+                <p className="font-sans font-black uppercase tracking-[0.5em] text-[8px] lg:text-[10px] text-[#e5815c]">
                   5 PIECE SET
                 </p>
-                <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-none">
+                <h2 className="text-3xl lg:text-6xl font-serif font-black text-[#000000] tracking-tighter leading-none">
                   {currentProduct.name}
                 </h2>
-                <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
-                <p className="text-[10px] lg:text-xs font-black text-[#5d4037] pt-0.5">Includes all 5 pieces.</p>
+                <p className="text-xl lg:text-3xl font-black text-[#000000] pt-1 leading-none">SAR {currentProduct.price}</p>
+                <p className="text-[10px] lg:text-sm font-black text-[#5d4037] pt-0.5 lg:pt-2">Includes all 5 pieces.</p>
+            </div>
 
               {/* 3. Purchase Block */}
-              <div className="w-full space-y-3 lg:space-y-4 pb-2">
-                <div className="flex items-center justify-start gap-4">
+              <div className="w-full space-y-3 lg:space-y-6 pb-2 lg:max-w-md lg:mx-auto">
+                <div className="flex items-center justify-start lg:justify-center gap-4">
                   {/* Size Selector */}
                   <div className="flex gap-2">
                     {currentProduct.sizes.map((size) => {
@@ -275,7 +277,7 @@ export default function Home() {
                           key={size}
                           onClick={() => !soldOut && setSelectedSize(size)}
                           disabled={soldOut}
-                          className={`w-9 h-9 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl font-black text-[10px] lg:text-sm border-2 transition-all relative ${
+                          className={`w-9 h-9 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl font-black text-[10px] lg:text-base border-2 transition-all relative ${
                             soldOut
                               ? 'bg-white/20 text-[#5d4037]/30 border-white/20 cursor-not-allowed line-through'
                               : selectedSize === size 
@@ -291,17 +293,17 @@ export default function Home() {
                   </div>
 
                   {/* Quantity Counter */}
-                  <div className="flex items-center bg-white/50 rounded-xl px-2 py-1 border-2 border-[#5d4037]/10 h-9 lg:h-14">
+                  <div className="flex items-center bg-white/50 rounded-xl lg:rounded-2xl px-2 lg:px-4 py-1 border-2 border-[#5d4037]/10 h-9 lg:h-16">
                     <button 
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-6 h-6 flex items-center justify-center font-black text-[#5d4037] hover:scale-125 transition-transform"
+                      className="w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center font-black text-[#5d4037] text-lg lg:text-2xl hover:scale-125 transition-transform"
                     >
                       -
                     </button>
-                    <span className="px-3 font-black text-[10px] lg:text-sm text-[#5d4037] min-w-[1.5rem] text-center">{quantity}</span>
+                    <span className="px-3 lg:px-4 font-black text-[10px] lg:text-lg text-[#5d4037] min-w-[1.5rem] lg:min-w-[2rem] text-center">{quantity}</span>
                     <button 
                       onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                      className="w-6 h-6 flex items-center justify-center font-black text-[#5d4037] hover:scale-125 transition-transform"
+                      className="w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center font-black text-[#5d4037] text-lg lg:text-2xl hover:scale-125 transition-transform"
                     >
                       +
                     </button>
@@ -315,7 +317,7 @@ export default function Home() {
                   <i className="fas fa-shopping-cart text-lg lg:text-2xl"></i>
                   ADD TO CART
                 </button>
-                <p className="text-[10px] font-bold text-[#5d4037]/40 uppercase tracking-widest text-center mt-4">
+                <p className="text-[10px] lg:text-xs font-bold text-[#5d4037]/40 uppercase tracking-widest text-center mt-4">
                   Includes all 5 pieces.
                 </p>
               </div>
@@ -327,10 +329,9 @@ export default function Home() {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-full flex flex-col items-center mt-1 hover:opacity-80 transition-opacity"
               >
-                <p className="text-[8px] lg:text-[10px] font-black tracking-[0.2em] uppercase mb-0.5 text-black">See all 5 pieces ↓</p>
+                <p className="text-[8px] lg:text-[10px] font-black tracking-[0.2em] uppercase mb-0.5 text-[#5d4037]">See all 5 pieces ↓</p>
               </motion.button>
             </div>
-          </div>
         </section>
 
         {/* Section 2.5: Anatomy */}
