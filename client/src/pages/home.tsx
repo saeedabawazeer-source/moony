@@ -166,7 +166,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
-            <div className="relative mb-6 lg:mb-8 w-full max-w-5xl mx-auto overflow-hidden">
+            <div className="relative mb-6 w-full max-w-5xl mx-auto overflow-hidden">
+              {/* Layer 1: The Video */}
               <video 
                 key={selectedCollection}
                 autoPlay loop muted playsInline 
@@ -174,11 +175,16 @@ export default function Home() {
               >
                 <source src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.mov' : '/images/models/aquaglow/VIDAG.mov'} />
               </video>
-              <div className="relative bg-[#fef8e1] mix-blend-lighten py-6 lg:py-10">
-                <h1 className="text-6xl lg:text-[10rem] leading-[0.85] tracking-tighter font-black text-[#000000] uppercase">
-                  Make Every<br />Wave Count
+              
+              {/* Layer 2: White Background + Black Text (mix-blend-screen masks the video into the black text, making the background solid white) */}
+              <div className="relative bg-white mix-blend-screen py-2 lg:py-4">
+                <h1 className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter font-black text-[#000000]">
+                  Make Every<br />Wave Count.
                 </h1>
               </div>
+
+              {/* Layer 3: Multiply by page background color to turn white into beige without bleeding */}
+              <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
             </div>
             
             <div className="space-y-3 mb-10">
