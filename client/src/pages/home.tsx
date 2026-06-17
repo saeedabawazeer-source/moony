@@ -168,10 +168,12 @@ export default function Home() {
           >
             <div className="relative mb-6 lg:mb-8 w-full max-w-5xl mx-auto overflow-hidden">
               <video 
+                key={selectedCollection}
                 autoPlay loop muted playsInline 
                 className="absolute inset-0 w-full h-full object-cover"
-                src="https://cdn.pixabay.com/video/2016/11/22/6468-193021946_tiny.mp4"
-              />
+              >
+                <source src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.mov' : '/images/models/aquaglow/VIDAG.mov'} />
+              </video>
               <div className="relative bg-[#fef8e1] mix-blend-lighten py-6 lg:py-10">
                 <h1 className="text-6xl lg:text-[10rem] leading-[0.85] tracking-tighter font-black text-[#000000] uppercase">
                   Make Every<br />Wave Count
