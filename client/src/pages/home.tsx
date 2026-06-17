@@ -166,13 +166,27 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
-            <div className="relative mb-6 w-full max-w-5xl mx-auto py-2 lg:py-4">
+            <div className="relative mb-6 w-full max-w-5xl mx-auto py-12 lg:py-24 flex flex-col items-center justify-center">
+              {/* The Floating Portrait Image */}
+              <motion.div 
+                key={selectedCollection + "-img"}
+                initial={{ opacity: 0, scale: 0.95, rotate: 0 }}
+                animate={{ opacity: 1, scale: 1, rotate: -2 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65vw] max-w-[260px] lg:max-w-[380px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 lg:border-8 border-white z-0"
+              >
+                <img 
+                  src={selectedCollection === 'daydream' ? '/images/models/daydream/_HTM3935.JPEG' : '/images/models/aquaglow/_HTM3828.JPEG'} 
+                  alt={selectedCollection}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
+              {/* The Overlapping Typography */}
               <h1 
-                key={selectedCollection}
-                className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter font-black text-transparent bg-clip-text bg-cover bg-center"
-                style={{ 
-                  backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})` 
-                }}
+                key={selectedCollection + "-text"}
+                className="relative z-10 text-[3.8rem] lg:text-[8rem] leading-[0.85] tracking-tighter font-black text-[#1a1a1a]"
+                style={{ textShadow: "0px 4px 20px rgba(254, 248, 225, 0.8)" }}
               >
                 Make Every<br />Wave Count.
               </h1>
