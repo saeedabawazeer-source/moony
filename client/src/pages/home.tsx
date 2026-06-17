@@ -15,7 +15,16 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addToCart, openCart } = useCart();
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
 
+  // Force autoplay and strict muting for iOS Safari
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.defaultMuted = true;
+      heroVideoRef.current.muted = true;
+      heroVideoRef.current.play().catch(e => console.log('iOS Autoplay blocked or delayed:', e));
+    }
+  }, [selectedCollection]);
   // Eagerly preload all product images into browser cache on mount
   useEffect(() => {
     const allImages = [
@@ -169,6 +178,7 @@ export default function Home() {
             <div className="relative mb-6 w-full max-w-5xl mx-auto overflow-hidden">
               {/* Layer 1: The Video (Sized to the viewport so it doesn't zoom in to fit the text box) */}
               <video 
+                ref={heroVideoRef}
                 key={selectedCollection}
                 autoPlay loop muted playsInline 
                 className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
