@@ -182,7 +182,7 @@ export default function Home() {
                 key={selectedCollection}
                 autoPlay loop muted playsInline 
                 poster={selectedCollection === 'daydream' ? '/images/models/daydream/_HTM3935.JPEG' : '/images/models/aquaglow/_HTM3828.JPEG'}
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
               >
                 <source src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.mov' : '/images/models/aquaglow/VIDAG.mov'} />
               </video>

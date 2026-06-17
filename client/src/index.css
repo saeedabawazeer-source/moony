@@ -70,6 +70,18 @@
     display: none;
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide iOS Video Controls globally */
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+
   .snap-slide {
     @apply h-full snap-start flex flex-col justify-center relative;
   }
