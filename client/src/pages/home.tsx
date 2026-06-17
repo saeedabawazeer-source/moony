@@ -15,16 +15,7 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addToCart, openCart } = useCart();
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
 
-  // Force autoplay and strict muting for iOS Safari
-  useEffect(() => {
-    if (heroVideoRef.current) {
-      heroVideoRef.current.defaultMuted = true;
-      heroVideoRef.current.muted = true;
-      heroVideoRef.current.play().catch(e => console.log('iOS Autoplay blocked or delayed:', e));
-    }
-  }, [selectedCollection]);
   // Eagerly preload all product images into browser cache on mount
   useEffect(() => {
     const allImages = [
@@ -175,27 +166,16 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
-            <div className="relative mb-6 w-full max-w-5xl mx-auto overflow-hidden">
-              {/* Layer 1: The Video (Sized to the viewport so it doesn't zoom in to fit the text box) */}
-              <video 
-                ref={heroVideoRef}
+            <div className="relative mb-6 w-full max-w-5xl mx-auto py-2 lg:py-4">
+              <h1 
                 key={selectedCollection}
-                autoPlay loop muted playsInline 
-                poster={selectedCollection === 'daydream' ? '/images/models/daydream/_HTM3935.JPEG' : '/images/models/aquaglow/_HTM3828.JPEG'}
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+                className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter font-black text-transparent bg-clip-text bg-cover bg-center"
+                style={{ 
+                  backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})` 
+                }}
               >
-                <source src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.mov' : '/images/models/aquaglow/VIDAG.mov'} />
-              </video>
-              
-              {/* Layer 2: White Background + Black Text (mix-blend-screen masks the video into the black text, making the background solid white) */}
-              <div className="relative bg-white mix-blend-screen py-2 lg:py-4">
-                <h1 className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter font-black text-[#000000]">
-                  Make Every<br />Wave Count.
-                </h1>
-              </div>
-
-              {/* Layer 3: Multiply by page background color to turn white into beige without bleeding */}
-              <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
+                Make Every<br />Wave Count.
+              </h1>
             </div>
             
             <div className="space-y-3 mb-10">
