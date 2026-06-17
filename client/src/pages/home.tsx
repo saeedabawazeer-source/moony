@@ -164,11 +164,21 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
+            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
-            <h1 className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-6 font-black text-[#000000]">
-              Make Every<br />Wave Count.
-            </h1>
+            <div className="relative mb-6 lg:mb-8 w-full max-w-5xl mx-auto overflow-hidden">
+              <video 
+                autoPlay loop muted playsInline 
+                className="absolute inset-0 w-full h-full object-cover"
+                src="https://cdn.pixabay.com/video/2016/11/22/6468-193021946_tiny.mp4"
+              />
+              <div className="relative bg-[#fef8e1] mix-blend-lighten py-6 lg:py-10">
+                <h1 className="text-6xl lg:text-[10rem] leading-[0.85] tracking-tighter font-black text-[#000000] uppercase">
+                  Make Every<br />Wave Count
+                </h1>
+              </div>
+            </div>
+            
             <div className="space-y-3 mb-10">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
                 From Jeddah shores to your front door.
@@ -486,26 +496,29 @@ export default function Home() {
               <h2 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter leading-none">Loved by Moony Sisters</h2>
             </div>
 
-            {/* Glowing Reviews (Social Proof) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 w-full">
+            {/* Glowing Reviews (UGC Masonry Grid) */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 w-full mt-4 pb-12 lg:pb-20">
                {[
-                 { text: "The perfect balance of elegance and modesty. I feel amazing in it!", author: "Sarah J." },
-                 { text: "Fastest delivery I've ever had in Jeddah. The quality is unmatched.", author: "Lina M." },
-                 { text: "Finally, a swimwear brand that understands my needs perfectly.", author: "Mariam A." }
+                 { img: "/images/daydream-1.jpeg", quote: "Obsessed with this fit!", author: "Sarah J." },
+                 { img: "/images/daydream-2.jpeg", quote: "No clinging at all. Finally.", author: "Lina M." },
+                 { img: "/images/daydream-3.jpeg", quote: "Delivery was incredibly fast", author: "Mariam A." },
+                 { img: "/images/daydream-4.jpeg", quote: "Worth every single Riyal", author: "Nouf R." }
                ].map((review, i) => (
                  <motion.div 
                    key={i}
                    initial={{ opacity: 0, y: 10 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    transition={{ delay: i * 0.1 }}
-                   className="space-y-2 text-center lg:text-left"
+                   className={`relative group overflow-hidden rounded-2xl lg:rounded-3xl border-2 border-black aspect-[3/4] lg:aspect-auto lg:h-[40vh] ${i % 2 === 0 ? 'lg:-translate-y-4' : 'lg:translate-y-4'}`}
                  >
-                   <div className="flex items-center justify-center lg:justify-start space-x-1">
-                     <span className="text-black text-[10px] lg:text-xs">★★★★★</span>
-                     <span className="text-[8px] lg:text-[9px] font-black text-green-600 flex items-center"><i className="fas fa-check-circle mr-0.5"></i>Verified</span>
+                   <img src={review.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="UGC" />
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#5d4037]/90 via-[#5d4037]/20 to-transparent flex flex-col justify-end p-3 lg:p-5 text-left">
+                      <div className="flex items-center space-x-1 mb-1">
+                        <span className="text-[#C0FF72] text-[10px] lg:text-xs">★★★★★</span>
+                      </div>
+                      <p className="text-xs lg:text-base font-bold text-white leading-tight mb-1.5 lg:mb-2">"{review.quote}"</p>
+                      <p className="text-[9px] lg:text-[11px] font-black uppercase tracking-widest text-[#fef8e1]">— {review.author}</p>
                    </div>
-                   <p className="text-[11px] lg:text-sm font-bold italic text-[#5d4037] leading-relaxed">"{review.text}"</p>
-                   <p className="text-[9px] font-black uppercase tracking-widest text-[#000000]">— {review.author}</p>
                  </motion.div>
                ))}
             </div>
