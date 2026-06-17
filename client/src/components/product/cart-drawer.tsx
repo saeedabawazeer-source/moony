@@ -274,9 +274,11 @@ export default function CartDrawer() {
                         <input
                           required
                           type="tel"
+                          minLength={9}
+                          maxLength={15}
                           placeholder={t.phone}
                           value={formData.phone}
-                          onChange={e => setFormData(f => ({ ...f, phone: e.target.value }))}
+                          onChange={e => setFormData(f => ({ ...f, phone: e.target.value.replace(/[^0-9+]/g, '') }))}
                           className="flex-1 bg-transparent outline-none text-sm font-bold text-[#5d4037] placeholder:text-[#5d4037]/30"
                           dir="ltr"
                           style={{ textAlign: isAr ? 'right' : 'left' }}
