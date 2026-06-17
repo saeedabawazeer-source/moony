@@ -9,7 +9,8 @@ import { products as staticProducts, collections as staticCollections } from "@/
 import type { Product, Collection } from "@shared/schema";
 
 export default function Home() {
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
+  const isAr = location === "/ar";
   const [selectedCollection, setSelectedCollection] = useState("daydream");
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -169,18 +170,18 @@ export default function Home() {
             <div className="relative mb-6 w-full max-w-6xl mx-auto py-2 lg:py-4 mt-8 lg:mt-12">
               <h1 
                 key={selectedCollection}
-                className="text-[4.5rem] lg:text-[11rem] leading-[0.85] tracking-tighter font-black text-transparent bg-clip-text bg-cover bg-center uppercase"
+                className={`text-[4.5rem] lg:text-[11rem] leading-[0.85] tracking-tighter font-black text-transparent bg-clip-text bg-cover bg-center bg-fixed uppercase ${isAr ? "font-kufi" : ""}`}
                 style={{ 
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})` 
                 }}
               >
-                Make Every<br />Wave Count.
+                {isAr ? <>تألقي مع كل<br/>موجة.</> : <>Make Every<br/>Wave Count.</>}
               </h1>
             </div>
             
             <div className="space-y-3 mb-10">
-              <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
-                From Jeddah shores to your front door.
+              <p className={`font-sans font-bold text-sm lg:text-lg text-[#5d4037] ${isAr ? "font-kufi" : ""}`}>
+                {isAr ? "من شواطئ جدة إلى باب بيتك." : "From Jeddah shores to your front door."}
               </p>
             </div>
             
@@ -188,9 +189,9 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="px-10 py-5 rounded-full bg-[#6bb7b3] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
+              className={`px-10 py-5 rounded-full bg-[#6bb7b3] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 ${isAr ? "font-kufi" : ""}`}
             >
-              PICK YOUR MODEL
+              {isAr ? "اختاري الموديل" : "PICK YOUR MODEL"}
             </motion.button>
           </motion.div>
         </section>
