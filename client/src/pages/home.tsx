@@ -167,11 +167,11 @@ export default function Home() {
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
             <div className="relative mb-6 w-full max-w-5xl mx-auto overflow-hidden">
-              {/* Layer 1: The Video */}
+              {/* Layer 1: The Video (Sized to the viewport so it doesn't zoom in to fit the text box) */}
               <video 
                 key={selectedCollection}
                 autoPlay loop muted playsInline 
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
               >
                 <source src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.mov' : '/images/models/aquaglow/VIDAG.mov'} />
               </video>
