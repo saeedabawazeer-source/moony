@@ -59,13 +59,9 @@ export default function Home() {
   if (!products.length || !collections.length) {
     return (
       <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-[#fef8e1]">
-        <motion.h1 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-2xl font-serif text-gray-900 mb-4"
-        >
-          Loading...
-        </motion.h1>
+        <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}>
+          <img src="/images/starfish-coral.png" alt="Loading" className="w-16 opacity-50" />
+        </motion.div>
       </div>
     );
   }
@@ -98,6 +94,40 @@ export default function Home() {
 
   return (
     <div className="relative h-[100dvh] w-screen bg-[#e5815c] overflow-hidden">
+      {/* Global Ambient Animated Starfish Overlay (z-50 absolutely guarantees they overlap everything) */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-50 overflow-hidden">
+        <motion.img 
+          src="/images/starfish-coral.png"
+          className="absolute top-[10%] right-[5%] w-12 lg:w-20 pointer-events-none"
+          animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img 
+          src="/images/starfish-teal.png"
+          className="absolute top-[85%] left-[5%] w-16 lg:w-24 pointer-events-none"
+          animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.img 
+          src="/images/starfish-coral.png"
+          className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40"
+          animate={{ x: [0, 15, 0], rotate: [0, 360] }}
+          transition={{ x: { duration: 10, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 40, repeat: Infinity, ease: "linear" } }}
+        />
+        <motion.img 
+          src="/images/starfish-teal.png"
+          className="absolute top-[15%] left-[10%] w-8 lg:w-12 pointer-events-none opacity-30"
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+        <motion.img 
+          src="/images/starfish-coral.png"
+          className="absolute top-[80%] right-[8%] w-14 lg:w-22 pointer-events-none opacity-20"
+          animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
+          transition={{ duration: 9, repeat: Infinity }}
+        />
+      </div>
+
       {/* Global Grain Texture Overlay */}
       <div className="noise-overlay" />
       {/* Static Global Frame Border */}
@@ -117,49 +147,7 @@ export default function Home() {
         <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
-          {/* Ambient Animated Starfish (Repositioned to Edges) */}
-          <motion.img 
-            src="/images/starfish-coral.png"
-            className="absolute top-[10%] right-[5%] w-12 lg:w-20 pointer-events-none"
-            animate={{ 
-              y: [0, -20, 0],
-              rotate: [0, 15, 0]
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.img 
-            src="/images/starfish-teal.png"
-            className="absolute bottom-[10%] left-[5%] w-16 lg:w-24 pointer-events-none z-20"
-            animate={{ 
-              y: [0, 25, 0],
-              rotate: [0, -10, 0]
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.img 
-            src="/images/starfish-coral.png"
-            className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40 z-20"
-            animate={{ 
-              x: [0, 15, 0],
-              rotate: [0, 360],
-            }}
-            transition={{ 
-              x: { duration: 10, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 40, repeat: Infinity, ease: "linear" }
-            }}
-          />
-          <motion.img 
-            src="/images/starfish-teal.png"
-            className="absolute top-[15%] left-[10%] w-8 lg:w-12 pointer-events-none opacity-30 z-20"
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-            transition={{ duration: 5, repeat: Infinity }}
-          />
-          <motion.img 
-            src="/images/starfish-coral.png"
-            className="absolute bottom-[20%] right-[8%] w-14 lg:w-22 pointer-events-none opacity-20 z-20"
-            animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
-            transition={{ duration: 9, repeat: Infinity }}
-          />
+          {/* Removed starfish from here to place in global fixed overlay */}
 
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
