@@ -179,7 +179,7 @@ export default function HomeAR() {
                     WebkitTextStroke: "4px #000000"
                   }}
                 >
-                  <span dir="rtl" className="block">تألقي مع كل<br/>موجة.</span>
+                  <span dir="rtl" className="block">اجعلي كل<br/>موجة تحسب.</span>
                 </h1>
               </div>
 

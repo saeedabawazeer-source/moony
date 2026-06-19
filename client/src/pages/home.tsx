@@ -150,13 +150,13 @@ export default function Home() {
           />
           <motion.img 
             src="/images/starfish-teal.png"
-            className="absolute top-[15%] left-[10%] w-8 lg:w-12 pointer-events-none opacity-30"
+            className="absolute top-[15%] left-[10%] w-8 lg:w-12 pointer-events-none opacity-30 z-20"
             animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
             transition={{ duration: 5, repeat: Infinity }}
           />
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute bottom-[20%] right-[8%] w-14 lg:w-22 pointer-events-none opacity-20"
+            className="absolute bottom-[20%] right-[8%] w-14 lg:w-22 pointer-events-none opacity-20 z-20"
             animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
             transition={{ duration: 9, repeat: Infinity }}
           />
@@ -187,7 +187,7 @@ export default function Home() {
                     fontFamily: isAr ? "'Noto Kufi Arabic', sans-serif" : "inherit"
                   }}
                 >
-                  {isAr ? <span dir="rtl" className="block">تألقي مع كل<br/>موجة.</span> : <>Make Every<br/>Wave Count.</>}
+                  {isAr ? <span dir="rtl" className="block">اجعلي كل<br/>موجة تحسب.</span> : <>Make Every<br/>Wave Count.</>}
                 </h1>
               </div>
 
