@@ -172,7 +172,7 @@ export default function Home() {
                 key={selectedCollection}
                 className={`text-transparent bg-clip-text bg-cover bg-center bg-fixed uppercase ${
                   isAr 
-                    ? "text-[3.8rem] lg:text-[8rem] leading-[1.2] tracking-normal font-kufi font-bold" 
+                    ? "text-[3.8rem] lg:text-[8rem] leading-[1.6] tracking-normal font-kufi font-bold" 
                     : "text-[4rem] lg:text-[9.5rem] leading-[0.95] tracking-normal font-extrabold"
                 }`}
                 style={{ 
