@@ -158,9 +158,33 @@ export default function HomeAR() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10"
           >
-            <h1 className="text-5xl lg:text-[8rem] leading-[0.85] tracking-tighter mb-6 font-black text-[#000000]">
-              اجعلي كل<br />موجة تحسب.
-            </h1>
+            <div className="relative mb-6 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none" dir="ltr">
+              {/* Layer 1: The GIF */}
+              <img 
+                key={selectedCollection + "-gif"}
+                src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'}
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+                alt="Background"
+              />
+              
+              {/* Layer 2: White Background + Black Text */}
+              <div className="relative w-full h-full bg-white mix-blend-screen flex items-center justify-center py-16 lg:py-32 px-4">
+                <h1 
+                  key={selectedCollection + "-text"}
+                  className="uppercase text-[#000000] font-black w-full text-center tracking-normal"
+                  style={{
+                    fontSize: "clamp(3.5rem, 8vw, 7.5rem)",
+                    lineHeight: "2.2",
+                    fontFamily: "'Noto Kufi Arabic', sans-serif"
+                  }}
+                >
+                  <span dir="rtl" className="block">تألقي مع كل<br/>موجة.</span>
+                </h1>
+              </div>
+
+              {/* Layer 3: Multiply by page background color */}
+              <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
+            </div>
             <div className="space-y-3 mb-10">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
                 من شواطئ جدة إلى باب بيتك.
