@@ -122,13 +122,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // --- Tap Webhook (Receives successful payment confirmation) ---
   app.post("/api/webhook/tap", async (req, res) => {
     try {
-      const event = req.body;
+      console.log("[TAP WEBHOOK] Received payload:", JSON.stringify(req.body));
+      const payload = req.body;
+      const charge = payload.data ? payload.data : payload; // Handle both wrapped event and direct object
       
-      if (event.status === "CAPTURED" || event.event === "charge.succeeded") {
-        const metadata = event.metadata || {};
+      if (charge.status === "CAPTURED" || payload.event === "charge.succeeded") {
+        const metadata = charge.metadata || {};
         const items = JSON.parse(metadata.items || "[]");
         const { customerName, phone, address } = metadata;
         
+        console.log(`[TAP WEBHOOK] Processing ${items.length} items for order ${charge.id}`);
+
         for (const item of items) {
           // 1. Deduct the stock
           await storage.decrementStock(item.id, item.size, parseInt(item.qty));
@@ -136,22 +140,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // 2. Log order to Sheets
           const sheetsUrl = process.env.SHEETS_INVENTORY_URL;
           if (sheetsUrl) {
-            await fetch(sheetsUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                action: "addOrder",
-                orderId: event.id || `ORD-${Date.now()}`,
-                name: customerName || "Unknown",
-                email: metadata.email || "N/A",
-                phone: phone || "N/A",
-                product: item.name,
-                size: item.size,
-                quantity: item.qty,
-                amount: (event.amount / items.length).toFixed(2), // Approximate per-item amount
-                status: "PAID"
-              })
-            });
+            try {
+              console.log("[TAP WEBHOOK] Sending to Google Sheets:", sheetsUrl);
+              // Note: Apps Script POST often returns 302, so we need to handle it or just send and forget
+              await fetch(sheetsUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  action: "addOrder",
+                  orderId: charge.id || `ORD-${Date.now()}`,
+                  name: customerName || "Unknown",
+                  email: metadata.email || "N/A",
+                  phone: phone || "N/A",
+                  product: item.name,
+                  size: item.size,
+                  quantity: item.qty,
+                  amount: (charge.amount / items.length).toFixed(2), // Approximate per-item amount
+                  status: "PAID"
+                }),
+                redirect: "follow"
+              });
+              console.log("[TAP WEBHOOK] Successfully sent to Google Sheets");
+            } catch (sheetError) {
+              console.error("[TAP WEBHOOK] Google Sheets update failed:", sheetError);
+            }
           }
         }
       }
