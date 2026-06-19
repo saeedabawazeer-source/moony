@@ -170,7 +170,11 @@ export default function Home() {
             <div className="relative mb-6 w-full max-w-6xl mx-auto py-2 lg:py-4 mt-8 lg:mt-12">
               <h1 
                 key={selectedCollection}
-                className={`text-[4.5rem] lg:text-[11rem] leading-[0.85] tracking-tighter font-black text-transparent bg-clip-text bg-cover bg-center bg-fixed uppercase ${isAr ? "font-kufi" : ""}`}
+                className={`text-transparent bg-clip-text bg-cover bg-center bg-fixed uppercase ${
+                  isAr 
+                    ? "text-[3.8rem] lg:text-[8rem] leading-[1.2] tracking-normal font-kufi font-bold" 
+                    : "text-[4rem] lg:text-[9.5rem] leading-[0.95] tracking-normal font-extrabold"
+                }`}
                 style={{ 
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})` 
                 }}
