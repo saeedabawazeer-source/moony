@@ -463,7 +463,7 @@ export default function Home() {
             </div>
           </div>
           {/* Section 3 Ambient Starfish Overlay */}
-          <div className="absolute inset-0 w-full h-full pointer-events-none z-50 overflow-hidden">
+          <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
             <motion.img src="/images/starfish-coral.png" className="absolute top-[10%] right-[5%] w-12 lg:w-20 pointer-events-none" animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} />
             <motion.img src="/images/starfish-teal.png" className="absolute top-[85%] left-[5%] w-16 lg:w-24 pointer-events-none" animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
             <motion.img src="/images/starfish-coral.png" className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40" animate={{ x: [0, 15, 0], rotate: [0, 360] }} transition={{ x: { duration: 10, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 40, repeat: Infinity, ease: "linear" } }} />
@@ -512,7 +512,7 @@ export default function Home() {
             <Footer />
           </div>
           {/* Section 4 Ambient Starfish Overlay */}
-          <div className="absolute inset-0 w-full h-full pointer-events-none z-50 overflow-hidden">
+          <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
             <motion.img src="/images/starfish-coral.png" className="absolute top-[10%] right-[5%] w-12 lg:w-20 pointer-events-none" animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} />
             <motion.img src="/images/starfish-teal.png" className="absolute top-[85%] left-[5%] w-16 lg:w-24 pointer-events-none" animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
             <motion.img src="/images/starfish-coral.png" className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40" animate={{ x: [0, 15, 0], rotate: [0, 360] }} transition={{ x: { duration: 10, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 40, repeat: Infinity, ease: "linear" } }} />
