@@ -167,20 +167,31 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
-            <div className="relative mb-6 w-full max-w-6xl mx-auto py-2 lg:py-4 mt-8 lg:mt-12">
-              <h1 
-                key={selectedCollection}
-                className={`text-transparent bg-clip-text bg-cover bg-center bg-fixed uppercase ${
-                  isAr 
-                    ? "text-[3.8rem] lg:text-[8rem] leading-[1.6] tracking-normal font-kufi font-bold" 
-                    : "text-[4rem] lg:text-[9.5rem] leading-[0.95] tracking-normal font-extrabold"
-                }`}
-                style={{ 
-                  backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})` 
-                }}
-              >
-                {isAr ? <>تألقي مع كل<br/>موجة.</> : <>Make Every<br/>Wave Count.</>}
-              </h1>
+            <div className="relative mb-6 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none">
+              {/* Layer 1: The GIF (Sized to viewport to prevent aggressive zooming/pixelation) */}
+              <img 
+                key={selectedCollection + "-gif"}
+                src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'}
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+                alt="Background"
+              />
+              
+              {/* Layer 2: White Background + Black Text (mix-blend-screen masks the GIF into the black text) */}
+              <div className="relative bg-white mix-blend-screen py-6 lg:py-12 mt-4 lg:mt-8">
+                <h1 
+                  key={selectedCollection + "-text"}
+                  className={`uppercase text-[#000000] font-black ${
+                    isAr 
+                      ? "text-[3.8rem] lg:text-[7.5rem] leading-[1.8] font-kufi tracking-normal" 
+                      : "text-[4.2rem] lg:text-[10rem] leading-[0.95] tracking-tight"
+                  }`}
+                >
+                  {isAr ? <>تألقي مع كل<br/>موجة.</> : <>Make Every<br/>Wave Count.</>}
+                </h1>
+              </div>
+
+              {/* Layer 3: Multiply by page background color to turn white into beige without bleeding */}
+              <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
             </div>
             
             <div className="space-y-3 mb-10">
