@@ -176,17 +176,18 @@ export default function Home() {
                 alt="Background"
               />
               
-              {/* Layer 2: White Background + Black Text (mix-blend-screen masks the GIF into the black text) */}
-              <div className="relative bg-white mix-blend-screen py-6 lg:py-12 mt-4 lg:mt-8">
+              {/* Layer 2: White Background + Black Text. Must cover 100% to prevent GIF bleeding */}
+              <div className="relative w-full h-full bg-white mix-blend-screen flex items-center justify-center py-16 lg:py-32 px-4">
                 <h1 
                   key={selectedCollection + "-text"}
-                  className={`uppercase text-[#000000] font-black ${
-                    isAr 
-                      ? "text-[3.8rem] lg:text-[7.5rem] leading-[1.8] font-kufi tracking-normal" 
-                      : "text-[4.2rem] lg:text-[10rem] leading-[0.95] tracking-tight"
-                  }`}
+                  className="uppercase text-[#000000] font-black w-full text-center tracking-normal"
+                  style={{
+                    fontSize: isAr ? "clamp(3.5rem, 8vw, 7.5rem)" : "clamp(4.2rem, 10vw, 10rem)",
+                    lineHeight: isAr ? "2.2" : "0.95",
+                    fontFamily: isAr ? "'Noto Kufi Arabic', sans-serif" : "inherit"
+                  }}
                 >
-                  {isAr ? <>تألقي مع كل<br/>موجة.</> : <>Make Every<br/>Wave Count.</>}
+                  {isAr ? <span dir="rtl" className="block">تألقي مع كل<br/>موجة.</span> : <>Make Every<br/>Wave Count.</>}
                 </h1>
               </div>
 
