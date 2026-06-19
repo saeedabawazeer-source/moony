@@ -174,8 +174,9 @@ export default function HomeAR() {
                   className="uppercase text-[#000000] font-black w-full text-center tracking-normal"
                   style={{
                     fontSize: "clamp(3.5rem, 8vw, 7.5rem)",
-                    lineHeight: "2.2",
-                    fontFamily: "'Noto Kufi Arabic', sans-serif"
+                    lineHeight: "1.5",
+                    fontFamily: "'Noto Kufi Arabic', sans-serif",
+                    WebkitTextStroke: "4px #000000"
                   }}
                 >
                   <span dir="rtl" className="block">تألقي مع كل<br/>موجة.</span>
