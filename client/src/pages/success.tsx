@@ -12,7 +12,8 @@ export default function Success() {
     const params = new URLSearchParams(window.location.search);
     const tapId = params.get("tap_id") || params.get("charge_id") || params.get("orderId");
     if (tapId) {
-      setOrderId(tapId);
+      // Shorten the long Tap charge ID (e.g. chg_TS02... -> last 8 chars)
+      setOrderId(tapId.slice(-8).toUpperCase());
     }
   }, []);
 
@@ -63,7 +64,7 @@ export default function Success() {
               </div>
 
               <p className="text-sm lg:text-xl font-bold text-[#5d4037] italic leading-snug max-w-md mx-auto relative">
-                Your Moony pieces are officially secured. We're packing your order right now, and you'll get a tracking email the second it ships out.
+                Your Moony pieces are officially secured. Our team will contact you shortly via WhatsApp to coordinate your delivery.
               </p>
               
               <div className="pt-6 relative">
@@ -71,7 +72,7 @@ export default function Success() {
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-full lg:w-auto bg-[#000000] text-[#fef8e1] px-10 py-5 rounded-full font-black uppercase tracking-widest text-[11px] lg:text-[13px] border-[2px] border-black shadow-[4px_4px_0px_0px_#C0FF72] hover:shadow-[2px_2px_0px_0px_#C0FF72] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                    className="w-full lg:w-auto bg-[#C0FF72] text-[#000000] px-10 py-5 rounded-full font-sans font-black uppercase tracking-widest text-[11px] lg:text-[13px] border-[2px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
                   >
                     Back to Boutique
                   </motion.button>
