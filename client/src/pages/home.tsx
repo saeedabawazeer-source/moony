@@ -129,7 +129,7 @@ export default function Home() {
           />
           <motion.img 
             src="/images/starfish-teal.png"
-            className="absolute bottom-[10%] left-[5%] w-16 lg:w-24 pointer-events-none"
+            className="absolute bottom-[10%] left-[5%] w-16 lg:w-24 pointer-events-none z-20"
             animate={{ 
               y: [0, 25, 0],
               rotate: [0, -10, 0]
@@ -138,7 +138,7 @@ export default function Home() {
           />
           <motion.img 
             src="/images/starfish-coral.png"
-            className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40"
+            className="absolute top-[45%] left-[2%] w-10 lg:w-16 pointer-events-none opacity-40 z-20"
             animate={{ 
               x: [0, 15, 0],
               rotate: [0, 360],
