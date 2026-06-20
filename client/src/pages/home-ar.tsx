@@ -10,7 +10,7 @@ import type { Product, Collection } from "@shared/schema";
 
 export default function HomeAR() {
   const [, setLocation] = useLocation();
-  const [selectedCollection, setSelectedCollection] = useState("daydream");
+  const [selectedCollection, setSelectedCollection] = useState("aqua-glow");
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -459,26 +459,38 @@ export default function HomeAR() {
               <h2 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter leading-none">تجارب أخواتنا في موني</h2>
             </div>
 
-            {/* Glowing Reviews (Social Proof) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 w-full" dir="rtl">
+            {/* Glowing Reviews (UGC Masonry Grid) */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 w-full mt-4 pb-12 lg:pb-20" dir="rtl">
                {[
-                 { text: "توازن مثالي بين الأناقة والاحتشام. أشعر بالثقة والراحة!", author: "سارة ج." },
-                 { text: "أسرع توصيل جربته في جدة. الجودة لا تضاهى فعلياً.", author: "لينا م." },
-                 { text: "أخيراً، علامة تجارية تفهم احتياجاتنا تماماً.", author: "مريم أ." }
+                 { img: "/images/daydream-1.jpeg", quote: "مهووسة بهذا الطقم!", author: "سارة ج." },
+                 { img: "/images/daydream-2.jpeg", quote: "أخيراً، لا يلتصق بالجسم.", author: "لينا م." },
+                 { img: "/images/daydream-3.jpeg", quote: "توصيل سريع جداً", author: "مريم أ." },
+                 { img: "/images/daydream-4.jpeg", quote: "يستحق كل ريال", author: "نوف ر." }
                ].map((review, i) => (
                  <motion.div 
                    key={i}
                    initial={{ opacity: 0, y: 10 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    transition={{ delay: i * 0.1 }}
-                   className="space-y-2 text-center lg:text-right"
+                   className={`relative group overflow-hidden rounded-2xl lg:rounded-3xl border-2 border-black aspect-[3/4] lg:aspect-auto lg:h-[40vh] ${i % 2 === 0 ? 'lg:-translate-y-4' : 'lg:translate-y-4'}`}
                  >
-                   <div className="flex items-center justify-center lg:justify-start space-x-1 space-x-reverse">
-                     <span className="text-black text-[10px] lg:text-xs">★★★★★</span>
-                     <span className="text-[8px] lg:text-[9px] font-black text-green-600 flex items-center"><i className="fas fa-check-circle ml-0.5"></i>موثق</span>
+                   <img src={review.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="UGC" />
+                   
+                   {/* Gradient Overlay for Text Legibility */}
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                   
+                   {/* Review Text */}
+                   <div className="absolute bottom-0 left-0 w-full p-3 lg:p-5 flex flex-col justify-end h-full">
+                     <div className="flex items-center space-x-0.5 space-x-reverse mb-1 lg:mb-2">
+                       {[...Array(5)].map((_, i) => (
+                         <svg key={i} className="w-2.5 h-2.5 lg:w-3.5 lg:h-3.5 text-[#C0FF72]" fill="currentColor" viewBox="0 0 20 20">
+                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                         </svg>
+                       ))}
+                     </div>
+                     <p className="text-white font-serif font-black italic text-[11px] lg:text-lg leading-tight mb-1 lg:mb-2">"{review.quote}"</p>
+                     <p className="text-white/80 font-sans font-bold uppercase tracking-widest text-[8px] lg:text-[10px]">{review.author}</p>
                    </div>
-                   <p className="text-[11px] lg:text-sm font-bold italic text-[#5d4037] leading-relaxed">"{review.text}"</p>
-                   <p className="text-[9px] font-black uppercase tracking-widest text-[#000000]">— {review.author}</p>
                  </motion.div>
                ))}
             </div>

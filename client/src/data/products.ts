@@ -3,18 +3,18 @@ import type { Product, Collection } from "@shared/schema";
 // Static data for deployment - mirrors the data from server/storage.ts
 export const collections: Collection[] = [
   {
-    id: "daydream",
-    name: "Daydream",
-    description: "Elegant coral-themed modest swimwear collection",
-    icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
-    color: "coral"
-  },
-  {
     id: "aqua-glow",
     name: "Aqua Glow",
     description: "Refreshing teal-themed modest swimwear collection",
     icon: "https://v0-moony.vercel.app/images/starfish-teal.png",
     color: "teal"
+  },
+  {
+    id: "daydream",
+    name: "Daydream",
+    description: "Elegant coral-themed modest swimwear collection",
+    icon: "https://v0-moony.vercel.app/images/starfish-coral.png",
+    color: "coral"
   }
 ];
 

@@ -11,7 +11,7 @@ import type { Product, Collection } from "@shared/schema";
 export default function Home() {
   const [location, setLocation] = useLocation();
   const isAr = location === "/ar";
-  const [selectedCollection, setSelectedCollection] = useState("daydream");
+  const [selectedCollection, setSelectedCollection] = useState("aqua-glow");
   const [selectedSize, setSelectedSize] = useState("M");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
