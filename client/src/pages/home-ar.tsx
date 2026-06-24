@@ -370,7 +370,7 @@ export default function HomeAR() {
               <div className="relative w-full h-[60vh] lg:h-[80vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.4]">
                 {/* 1. Turban */}
                 <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[32%] z-30">
-                  <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
+                  <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -387,7 +387,7 @@ export default function HomeAR() {
 
                 {/* 2. Top */}
                 <div className="absolute top-[22%] right-[5%] w-[58%] z-20">
-                  <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
+                  <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -403,7 +403,7 @@ export default function HomeAR() {
 
                 {/* 3. Leggings */}
                 <div className="absolute top-[42%] left-[5%] w-[48%] z-10">
-                  <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
+                  <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -419,7 +419,7 @@ export default function HomeAR() {
 
                 {/* 4. Short Coverup */}
                 <div className="absolute bottom-[28%] right-[5%] w-[45%] z-40">
-                  <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
+                  <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -435,7 +435,7 @@ export default function HomeAR() {
 
                 {/* 5. Whole Coverup */}
                 <div className="absolute bottom-[10%] left-[20%] w-[52%] z-10 opacity-90">
-                  <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
+                  <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -507,36 +507,6 @@ export default function HomeAR() {
                ))}
             </div>
 
-            {/* WhatsApp Newsletter Card */}
-            <div className="w-full bg-white p-6 lg:p-10 rounded-[2.5rem] lg:rounded-full border-[3px] border-black flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6 shadow-[4px_4px_0px_0px_#000]" dir="rtl">
-               <div className="text-center lg:text-right space-y-0.5">
-                  <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
-                    دائرة موني المقربة
-                  </h3>
-                  <p className="text-[9px] lg:text-[11px] font-black text-[#000000] uppercase tracking-widest leading-none font-kufi">
-                    احصلي على خصم <span dir="ltr" className="mx-1">10%</span> على أول طقم عبر واتساب.
-                  </p>
-               </div>
-
-               <div className="flex flex-col items-center lg:items-start w-full lg:w-auto space-y-4">
-                 <form className="flex w-full lg:w-[420px] items-center bg-[#fef8e1]/50 rounded-full p-1.5 border-[3px] border-black group focus-within:border-[#6bb7b3] transition-all">
-                   <div className="pr-4 pl-2 border-l border-black/20 text-[10px] lg:text-xs font-black" dir="ltr">
-                      +966
-                   </div>
-                   <input 
-                     type="tel" 
-                     placeholder="5XXXXXXXX"
-                     className="flex-1 bg-transparent px-3 py-2 outline-none font-sans font-bold text-xs lg:text-base text-right placeholder:opacity-30 min-w-0"
-                   />
-                   <button className="flex-shrink-0 bg-[#C0FF72] text-black px-6 lg:px-10 py-3 rounded-full font-black uppercase tracking-widest text-[9px] lg:text-xs border-[2px] border-black shadow-[2px_2px_0px_0px_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all active:scale-95">
-                      انضمي
-                   </button>
-                 </form>
-                 <p className="hidden lg:block text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-[#5d4037]">
-                    انضمي إلى أكثر من 500 من أخوات موني
-                 </p>
-               </div>
-            </div>
 
             <Footer />
           </div>

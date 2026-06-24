@@ -334,9 +334,9 @@ export default function Home() {
               </div>
               
               <div className="relative w-full h-[60vh] lg:h-[70vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-100">
-                {/* 1. Turban */}
-                <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[32%] z-30">
-                  <img src="/images/pieces/turban.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
+                {/* 2. Turban */}
+                <div className="absolute top-[15%] right-[10%] w-[35%] z-40">
+                  <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-lg" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -352,9 +352,9 @@ export default function Home() {
                   </motion.div>
                 </div>
 
-                {/* 2. Top (Tunic) */}
-                <div className="absolute top-[22%] left-[5%] w-[58%] z-20">
-                  <img src="/images/pieces/top.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
+                {/* 1. Top */}
+                <div className="absolute top-[5%] left-[5%] w-[45%] z-30">
+                  <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -371,8 +371,8 @@ export default function Home() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[42%] right-[5%] w-[48%] z-10">
-                  <img src="/images/pieces/leggings.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
+                <div className="absolute bottom-[20%] right-[15%] w-[40%] z-20">
+                  <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-lg" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -390,7 +390,7 @@ export default function Home() {
 
                 {/* 4. Short Coverup */}
                 <div className="absolute bottom-[28%] left-[5%] w-[45%] z-40">
-                  <img src="/images/pieces/short-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
+                  <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -407,7 +407,7 @@ export default function Home() {
 
                 {/* 5. Whole Coverup */}
                 <div className="absolute bottom-[10%] right-[20%] w-[52%] z-10 opacity-90">
-                  <img src="/images/pieces/whole-coverup.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
+                  <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
