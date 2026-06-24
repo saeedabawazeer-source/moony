@@ -335,7 +335,7 @@ export default function Home() {
               
               <div className="relative w-full h-[60vh] lg:h-[70vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-100">
                 {/* 2. Turban */}
-                <div className="absolute top-[15%] right-[10%] w-[35%] z-40">
+                <div className="absolute top-[15%] right-[10%] w-[20%] z-40 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-lg" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -353,7 +353,7 @@ export default function Home() {
                 </div>
 
                 {/* 1. Top */}
-                <div className="absolute top-[5%] left-[5%] w-[45%] z-30">
+                <div className="absolute top-[5%] left-[5%] w-[28%] z-30 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -371,7 +371,7 @@ export default function Home() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute bottom-[20%] right-[15%] w-[40%] z-20">
+                <div className="absolute bottom-[20%] right-[15%] w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-lg" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -389,7 +389,7 @@ export default function Home() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[28%] left-[5%] w-[45%] z-40">
+                <div className="absolute bottom-[28%] left-[5%] w-[28%] z-40 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -406,7 +406,7 @@ export default function Home() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-[10%] right-[20%] w-[52%] z-10 opacity-90">
+                <div className="absolute bottom-[5%] right-[30%] w-[35%] z-10 opacity-90 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}

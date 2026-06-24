@@ -369,7 +369,7 @@ export default function HomeAR() {
 
               <div className="relative w-full h-[60vh] lg:h-[80vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.4]">
                 {/* 1. Turban */}
-                <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[32%] z-30">
+                <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[20%] z-30 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -386,7 +386,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 2. Top */}
-                <div className="absolute top-[22%] right-[5%] w-[58%] z-20">
+                <div className="absolute top-[22%] right-[5%] w-[28%] z-20 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -402,7 +402,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[42%] left-[5%] w-[48%] z-10">
+                <div className="absolute top-[42%] left-[5%] w-[25%] z-10 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -418,7 +418,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[28%] right-[5%] w-[45%] z-40">
+                <div className="absolute bottom-[28%] right-[5%] w-[28%] z-40 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -434,7 +434,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-[10%] left-[20%] w-[52%] z-10 opacity-90">
+                <div className="absolute bottom-[10%] left-[20%] w-[35%] z-10 opacity-90 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
