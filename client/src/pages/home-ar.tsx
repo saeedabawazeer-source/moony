@@ -148,6 +148,17 @@ export default function HomeAR() {
             <div className="space-y-3 mb-10">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
                 من شواطئ جدة إلى باب بيتك.
+                {/* Add to Cart Button */}
+                <div className="flex w-full mt-2 lg:mt-6">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleAddToCart}
+                    className="flex-1 bg-[#C0FF72] text-[#000000] py-4 rounded-full font-sans font-black uppercase tracking-widest text-[11px] lg:text-sm border-[2px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all font-kufi"
+                  >
+                    أضيفي للحقيبة
+                  </motion.button>
+                </div>
               </p>
             </div>
             
@@ -171,15 +182,13 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-full flex flex-col pt-0 overflow-hidden bg-[#fef8e1]">
-          <div className="flex flex-col items-center w-full h-full space-y-2 lg:space-y-3">
-            
-            {/* Gallery - pure CSS, no framer */}
-            <div 
-              className="w-full h-[56vh] lg:h-[72vh] relative overflow-hidden rounded-b-[2rem] lg:rounded-b-[2.5rem] border-[3px] border-t-0 border-black"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
+        <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row-reverse pt-0 overflow-hidden bg-[#fef8e1]" dir="rtl">
+          {/* 1. Swipeable Model Visual - pure CSS, no framer */}
+          <div 
+            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-l-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
               {currentProduct.images.map((src, i) => (
                 <img
                   key={src}
@@ -191,13 +200,16 @@ export default function HomeAR() {
                   style={{ opacity: i === currentImageIndex ? 1 : 0 }}
                 />
               ))}
-              {/* Swipe Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2" dir="ltr">
-                {currentProduct.images.map((_, i) => (
-                  <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
-                ))}
-              </div>
+            {/* Swipe Indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10" dir="ltr">
+              {currentProduct.images.map((_, i) => (
+                <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
+              ))}
             </div>
+          </div>
+
+          {/* Right/Bottom Info Area */}
+          <div className="flex-1 flex flex-col items-center justify-center w-full lg:w-[55%] space-y-3 lg:space-y-6 px-8 lg:px-12 py-3 lg:py-0">
 
             {/* Selector */}
             <div className="w-full flex justify-center space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0" dir="ltr">
@@ -240,7 +252,7 @@ export default function HomeAR() {
                 <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">
                   طقم مكون من 5 قطع
                 </p>
-                <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-none">
+                <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-none font-kufi">
                   {currentProduct.name}
                 </h2>
                 <p className="text-xl lg:text-2xl font-black text-[#000000] pt-1 leading-none">{currentProduct.price} ريال</p>
@@ -456,7 +468,7 @@ export default function HomeAR() {
             {/* Reviews Title */}
             <div className="space-y-1" dir="rtl">
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">ماذا قلن</p>
-              <h2 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter leading-none">تجارب أخواتنا في موني</h2>
+              <h2 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجارب أخواتنا في موني</h2>
             </div>
 
             {/* Glowing Reviews (UGC Masonry Grid) */}
@@ -488,8 +500,8 @@ export default function HomeAR() {
                          </svg>
                        ))}
                      </div>
-                     <p className="text-white font-serif font-black italic text-[11px] lg:text-lg leading-tight mb-1 lg:mb-2">"{review.quote}"</p>
-                     <p className="text-white/80 font-sans font-bold uppercase tracking-widest text-[8px] lg:text-[10px]">{review.author}</p>
+                     <p className="text-white font-serif font-black italic text-[11px] lg:text-lg leading-tight mb-1 lg:mb-2 font-kufi" dir="rtl">"{review.quote}"</p>
+                     <p className="text-white/80 font-sans font-bold uppercase tracking-widest text-[8px] lg:text-[10px] font-kufi" dir="rtl">{review.author}</p>
                    </div>
                  </motion.div>
                ))}
@@ -501,8 +513,8 @@ export default function HomeAR() {
                   <h3 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter italic leading-none">
                     دائرة موني المقربة
                   </h3>
-                  <p className="text-[9px] lg:text-[11px] font-black text-[#000000] uppercase tracking-widest leading-none">
-                    احصلي على خصم 10% على أول طقم عبر واتساب.
+                  <p className="text-[9px] lg:text-[11px] font-black text-[#000000] uppercase tracking-widest leading-none font-kufi">
+                    احصلي على خصم <span dir="ltr" className="mx-1">10%</span> على أول طقم عبر واتساب.
                   </p>
                </div>
 
