@@ -3,7 +3,7 @@ import { useCart } from "@/context/cart-context";
 import { useState } from "react";
 import { useLocation } from "wouter";
 
-const DELIVERY = 56.25;
+const DELIVERY = 0;
 
 export default function CartDrawer() {
   const [location] = useLocation();
@@ -224,8 +224,9 @@ export default function CartDrawer() {
                         <div className="flex justify-between text-sm font-bold text-[#5d4037]/60">
                           <span>{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between text-sm font-bold text-[#5d4037]/60">
-                          <span>{t.delivery}</span><span className="font-sans">SAR {DELIVERY.toFixed(2)}</span>
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-[#000000]/60 font-bold">{t.delivery}</span>
+                          <span className="text-green-600 font-black uppercase tracking-widest text-[10px] lg:text-xs">{isAr ? "مجاناً" : "Free"}</span>
                         </div>
                         <div className="flex justify-between text-lg font-black text-[#5d4037] border-t-2 border-[#5d4037]/10 pt-2 mb-2">
                           <span>{t.total}</span><span className="font-sans">SAR {(totalPrice + DELIVERY).toFixed(2)}</span>
@@ -348,8 +349,9 @@ export default function CartDrawer() {
                         <div className="flex justify-between text-[11px] font-bold text-[#5d4037]/60">
                           <span>{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between text-[11px] font-bold text-[#5d4037]/60">
-                          <span>{t.delivery}</span><span className="font-sans">SAR {DELIVERY.toFixed(2)}</span>
+                        <div className="flex justify-between items-center text-sm mb-4 lg:mb-6">
+                          <span className="text-[#000000]/60 font-bold">{t.delivery}</span>
+                          <span className="text-green-600 font-black uppercase tracking-widest text-[10px] lg:text-xs">{isAr ? "مجاناً" : "Free"}</span>
                         </div>
                         {subscribeWhatsapp && (
                           <div className="flex justify-between text-[11px] font-bold text-[#25D366]">

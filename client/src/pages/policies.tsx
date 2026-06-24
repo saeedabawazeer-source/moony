@@ -73,7 +73,7 @@ export default function Policies() {
                 <li>We currently deliver within <strong>Saudi Arabia</strong>.</li>
                 <li>Orders are typically dispatched within <strong>1–3 business days</strong>.</li>
                 <li>Estimated delivery time is <strong>3–7 business days</strong> depending on your location.</li>
-                <li>A flat delivery fee of <strong>SAR 56.25</strong> applies to all orders.</li>
+                <li>Delivery is completely <strong>Free</strong> for all orders across Saudi Arabia.</li>
               </ul>
 
               <h3 className="font-black text-[#5d4037] text-base pt-2">Product Descriptions</h3>
