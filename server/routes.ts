@@ -57,7 +57,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       const discount = subscribeWhatsapp ? (subtotal * 0.10) : 0;
-      const totalAmount = subtotal - discount + 56.25; // Apply discount, add 56.25 base shipping
+      const totalAmount = subtotal - discount; // Apply discount, free shipping
 
       const payload = {
         amount: totalAmount,

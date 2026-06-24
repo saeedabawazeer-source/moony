@@ -59,12 +59,17 @@ export default function Checkout() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/create-charge", {
+      const res = await fetch("/api/create-charge-cart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          product: selectedProduct,
-          quantity,
+          items: [{
+            productId: selectedProduct.id,
+            productName: selectedProduct.name,
+            size: selectedSize,
+            quantity: quantity,
+            price: currentProduct?.price || 0
+          }],
           customer: formData,
           origin: window.location.origin
         })
@@ -81,7 +86,7 @@ export default function Checkout() {
   };
 
   const subtotal = currentProduct ? parseFloat(currentProduct.price) * quantity : 0;
-  const shipping = 56.25;
+  const shipping = 0;
   const total = subtotal + shipping;
 
   return (
@@ -295,7 +300,7 @@ export default function Checkout() {
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping</span>
-                      <span>SAR {shipping.toFixed(2)}</span>
+                      <span className="text-green-600 font-bold uppercase tracking-wider text-xs lg:text-sm">Free</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between text-lg font-semibold">
