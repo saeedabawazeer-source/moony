@@ -236,6 +236,13 @@ export default function Home() {
                         className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#5d4037] rounded-full"
                       />
                     )}
+                    
+                    {/* Deal Tag to encourage clicks on Daydream */}
+                    {col.id === 'daydream' && !isActive && (
+                      <div className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 bg-red-500 text-white font-sans font-black text-[8px] lg:text-[10px] px-2 py-0.5 rounded-full shadow-lg animate-bounce rotate-12">
+                        HOT
+                      </div>
+                    )}
                   </motion.button>
                 );
               })}
@@ -335,7 +342,7 @@ export default function Home() {
               
               <div className="relative w-full h-[60vh] lg:h-[70vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-100">
                 {/* 2. Turban */}
-                <div className="absolute top-[15%] right-[10%] w-[20%] z-40 hover:z-50 hover:scale-110 transition-transform">
+                <div className="absolute top-[5%] right-[25%] w-[20%] z-40 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-lg" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -371,8 +378,8 @@ export default function Home() {
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute bottom-[20%] right-[15%] w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-lg" alt="Leggings" />
+                <div className="absolute top-[40%] right-[5%] w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform">
+                  <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-lg" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -389,8 +396,8 @@ export default function Home() {
                 </div>
 
                 {/* 4. Short Coverup */}
-                <div className="absolute bottom-[28%] left-[5%] w-[28%] z-40 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
+                <div className="absolute bottom-[10%] left-[10%] w-[28%] z-40 hover:z-50 hover:scale-110 transition-transform">
+                  <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -406,7 +413,7 @@ export default function Home() {
                 </div>
 
                 {/* 5. Whole Coverup */}
-                <div className="absolute bottom-[5%] right-[30%] w-[35%] z-10 opacity-90 hover:z-50 hover:scale-110 transition-transform">
+                <div className="absolute bottom-[5%] right-[15%] w-[35%] z-10 opacity-90 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
