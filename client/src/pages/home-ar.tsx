@@ -233,6 +233,16 @@ export default function HomeAR() {
                       />
                     )}
 
+                    {/* Classy Low Stock Tag for Daydream */}
+                    {col.id === 'daydream' && !isActive && (
+                      <motion.div 
+                        animate={{ boxShadow: ["0px 0px 0px rgba(0,0,0,0)", "0px 0px 8px rgba(93,64,55,0.4)", "0px 0px 0px rgba(0,0,0,0)"] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -top-3 -right-6 lg:-top-4 lg:-right-8 bg-white/90 backdrop-blur-sm text-[#5d4037] font-sans font-bold text-[8px] lg:text-[9px] px-2 py-0.5 rounded-full border border-[#5d4037]/30 whitespace-nowrap tracking-wider uppercase shadow-sm"
+                      >
+                        كمية محدودة
+                      </motion.div>
+                    )}
                   </motion.button>
                 );
               })}
@@ -359,25 +369,25 @@ export default function HomeAR() {
 
               <div className="relative w-full h-[60vh] lg:h-[80vh] max-w-xl mx-auto transform scale-[0.85] lg:scale-[1.4]">
                 {/* 1. Turban */}
-                <div className="absolute top-[5%] left-[25%] w-[20%] z-30 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-xl" alt="Turban" />
+                <div className="absolute top-[5%] right-[25%] w-[20%] z-30 hover:z-50 hover:scale-110 transition-transform">
+                  <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-xl scale-x-[-1]" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="absolute -top-4 -left-4 flex items-center space-x-1 flex-row-reverse"
+                    className="absolute top-4 -right-8 flex items-center space-x-1 flex-row-reverse"
                   >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">توربان</span>
                     <svg className="w-6 h-6 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
-                      <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                      <path d="M38 38C25 30 15 15 2 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                      <path d="M2 2L8 2M2 2L2 8" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </motion.div>
                 </div>
 
                 {/* 2. Top */}
-                <div className="absolute top-[5%] right-[5%] w-[28%] z-20 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-xl" alt="Top" />
+                <div className="absolute top-[5%] left-[5%] w-[28%] z-20 hover:z-50 hover:scale-110 transition-transform">
+                  <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-xl scale-x-[-1]" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -387,34 +397,36 @@ export default function HomeAR() {
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">بلوزة</span>
                     <svg className="w-6 h-6 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
                       <path d="M38 38C25 30 15 15 2 2" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                      <path d="M2 2L8 2M2 2L2 8" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </motion.div>
                 </div>
 
                 {/* 3. Leggings */}
-                <div className="absolute top-[40%] left-[5%] w-[25%] z-10 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-2xl" alt="Leggings" />
+                <div className="absolute top-[40%] left-[5%] w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform">
+                  <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-lg scale-x-[-1]" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
-                    className="absolute bottom-4 -left-10 flex flex-col items-center"
+                    className="absolute bottom-8 -left-6 flex flex-col items-center"
                   >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">ليجنز</span>
                     <svg className="w-6 h-6 rotate-90 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
                       <path d="M2 2C15 10 25 25 38 38" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
+                      <path d="M38 38L32 38M38 38L38 32" stroke="#000000" strokeWidth="4" strokeLinecap="round" />
                     </svg>
                   </motion.div>
                 </div>
 
                 {/* 4. Short Coverup */}
                 <div className="absolute bottom-[10%] right-[10%] w-[28%] z-40 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-xl" alt="Short Coverup" />
+                  <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-xl scale-x-[-1]" alt="Short Coverup" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
-                    className="absolute -bottom-4 -right-4 flex flex-col items-center"
+                    className="absolute -bottom-2 -right-4 flex flex-col items-center"
                   >
                     <span className="font-serif font-black italic text-[10px] lg:text-[11px] text-[#000000] mb-0.5">كيمونو قصير</span>
                     <svg className="w-5 h-5 -rotate-[135deg] scale-x-[-1]" viewBox="0 0 40 40" fill="none">
@@ -425,12 +437,12 @@ export default function HomeAR() {
 
                 {/* 5. Whole Coverup */}
                 <div className="absolute bottom-[5%] left-[15%] w-[35%] z-10 opacity-90 hover:z-50 hover:scale-110 transition-transform">
-                  <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl" alt="Whole Coverup" />
+                  <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-xl scale-x-[-1]" alt="Whole Coverup" />
                    <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-                    className="absolute -bottom-4 lg:-bottom-2 left-6 lg:left-4 flex flex-col items-start"
+                    className="absolute -bottom-4 lg:-bottom-2 left-8 lg:left-4 flex flex-col items-start"
                    >
                     <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000] mb-0.5">كيمونو كامل</span>
                     <svg className="w-10 h-4 scale-x-[-1]" viewBox="0 0 60 20" fill="none">

@@ -237,6 +237,16 @@ export default function Home() {
                       />
                     )}
                     
+                    {/* Classy Low Stock Tag for Daydream */}
+                    {col.id === 'daydream' && !isActive && (
+                      <motion.div 
+                        animate={{ boxShadow: ["0px 0px 0px rgba(0,0,0,0)", "0px 0px 8px rgba(93,64,55,0.4)", "0px 0px 0px rgba(0,0,0,0)"] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -top-3 -right-6 lg:-top-4 lg:-right-8 bg-white/90 backdrop-blur-sm text-[#5d4037] font-sans font-bold text-[8px] lg:text-[9px] px-2 py-0.5 rounded-full border border-[#5d4037]/30 whitespace-nowrap tracking-wider uppercase shadow-sm"
+                      >
+                        Low Stock
+                      </motion.div>
+                    )}
                   </motion.button>
                 );
               })}
