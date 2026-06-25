@@ -148,17 +148,6 @@ export default function HomeAR() {
             <div className="space-y-3 mb-10">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
                 من شواطئ جدة إلى باب بيتك.
-                {/* Add to Cart Button */}
-                <div className="flex w-full mt-2 lg:mt-6">
-                  <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleAddToCart}
-                    className="flex-1 bg-[#C0FF72] text-[#000000] py-4 rounded-full font-sans font-black uppercase tracking-widest text-[11px] lg:text-sm border-[2px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all font-kufi"
-                  >
-                    أضف للسلة
-                  </motion.button>
-                </div>
               </p>
             </div>
             
@@ -182,10 +171,10 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2: The Cinematic Shop */}
-        <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row-reverse pt-0 overflow-hidden bg-[#fef8e1]" dir="rtl">
+        <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row pt-0 overflow-hidden bg-[#fef8e1]" dir="rtl">
           {/* 1. Swipeable Model Visual - pure CSS, no framer */}
           <div 
-            className="w-full lg:w-[45%] h-[56vh] lg:h-[80%] relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] border-[3px] border-black lg:my-auto lg:mr-8"
+            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-l-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >

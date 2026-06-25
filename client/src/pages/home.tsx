@@ -178,7 +178,7 @@ export default function Home() {
         <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row pt-0 overflow-hidden bg-[#fef8e1]">
           {/* 1. Swipeable Model Visual - pure CSS, no framer */}
           <div 
-            className="w-full lg:w-[45%] h-[56vh] lg:h-[80%] relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] border-[3px] border-black lg:my-auto lg:ml-8"
+            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-r-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
