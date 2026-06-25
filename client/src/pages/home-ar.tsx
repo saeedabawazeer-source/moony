@@ -156,7 +156,7 @@ export default function HomeAR() {
                     onClick={handleAddToCart}
                     className="flex-1 bg-[#C0FF72] text-[#000000] py-4 rounded-full font-sans font-black uppercase tracking-widest text-[11px] lg:text-sm border-[2px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all font-kufi"
                   >
-                    أضيفي للحقيبة
+                    أضف للسلة
                   </motion.button>
                 </div>
               </p>
@@ -185,7 +185,7 @@ export default function HomeAR() {
         <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row-reverse pt-0 overflow-hidden bg-[#fef8e1]" dir="rtl">
           {/* 1. Swipeable Model Visual - pure CSS, no framer */}
           <div 
-            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-l-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
+            className="w-full lg:w-[45%] h-[56vh] lg:h-[80%] relative overflow-hidden rounded-[2rem] lg:rounded-[2.5rem] border-[3px] border-black lg:my-auto lg:mr-8"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -213,7 +213,7 @@ export default function HomeAR() {
 
             {/* Selector */}
             <div className="w-full flex justify-center space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0" dir="ltr">
-              {collections.map((col) => {
+              {[...collections].reverse().map((col) => {
                 const isActive = selectedCollection === col.id;
                 return (
                   <motion.button
@@ -244,12 +244,6 @@ export default function HomeAR() {
                       />
                     )}
 
-                    {/* Deal Tag to encourage clicks on Daydream */}
-                    {col.id === 'daydream' && !isActive && (
-                      <div className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 bg-red-500 text-white font-sans font-black text-[8px] lg:text-[10px] px-2 py-0.5 rounded-full shadow-lg animate-bounce rotate-12 font-kufi">
-                        عرض
-                      </div>
-                    )}
                   </motion.button>
                 );
               })}
