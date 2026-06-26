@@ -121,7 +121,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
           >
-            <div className="relative mb-6 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none">
+            <div className="relative mb-2 lg:mb-4 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none">
               {/* Layer 1: The GIF (Sized to viewport to prevent aggressive zooming/pixelation) */}
               <img 
                 key={selectedCollection + "-gif"}
@@ -131,7 +131,7 @@ export default function Home() {
               />
               
               {/* Layer 2: White Background + Black Text. Must cover 100% to prevent GIF bleeding */}
-              <div className="relative w-full h-full bg-white mix-blend-screen flex items-center justify-center py-16 lg:py-32 px-4">
+              <div className="relative w-full h-full bg-white mix-blend-screen flex items-center justify-center py-8 lg:py-20 px-4">
                 <h1 
                   key={selectedCollection + "-text"}
                   className="uppercase text-[#000000] font-black w-full text-center tracking-normal"
@@ -149,7 +149,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
             </div>
             
-            <div className="space-y-3 mb-10">
+            <div className="mb-4 lg:mb-6">
               <p className={`font-sans font-bold text-sm lg:text-lg text-[#5d4037] ${isAr ? "font-kufi" : ""}`}>
                 {isAr ? "من شواطئ جدة إلى باب بيتك." : "From Jeddah shores to your front door."}
               </p>
@@ -331,7 +331,7 @@ export default function Home() {
                 <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">The Full Modular Set</h3>
               </div>
               
-              <div className="w-full max-w-lg mx-auto flex flex-col items-center justify-center gap-2 lg:gap-6 mt-2 lg:mt-4">
+              <div className="w-full max-w-lg mx-auto flex flex-col items-center justify-center mt-2 lg:mt-4">
                 {/* 1. Turban */}
                 <div className="relative w-[12%] lg:w-[10%] z-30 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-md" alt="Turban" />
@@ -365,7 +365,7 @@ export default function Home() {
                 </div>
 
                 {/* 3 & 4. Coverups (Side by Side) */}
-                <div className="w-full flex justify-center items-end gap-4 lg:gap-8 z-40 -mt-2 lg:-mt-4">
+                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-6 lg:-mt-10">
                   {/* Short Coverup */}
                   <div className="relative w-[30%] lg:w-[28%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md" alt="Short Coverup" />
@@ -400,7 +400,7 @@ export default function Home() {
                 </div>
 
                 {/* 5. Leggings */}
-                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform pt-2 lg:pt-4">
+                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-2 lg:-mt-4">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
