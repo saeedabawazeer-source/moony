@@ -325,74 +325,74 @@ export default function Home() {
           <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full">
             
             {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
-            <div className="relative h-[50vh] lg:h-[80vh] w-full flex flex-col items-center justify-center pt-8 lg:pt-0">
-              <div className="mb-4 lg:mb-8 text-center lg:text-left w-full lg:max-w-xl">
+            <div className="relative h-auto w-full flex flex-col items-center justify-center py-8 lg:py-0">
+              <div className="mb-2 lg:mb-4 text-center lg:text-left w-full lg:max-w-xl">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">The Breakdown</p>
                 <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">The Full Modular Set</h3>
               </div>
               
-              <div className="w-full max-w-lg mx-auto flex flex-col items-center justify-center gap-8 lg:gap-12 mt-4 lg:mt-8">
+              <div className="w-full max-w-lg mx-auto flex flex-col items-center justify-center gap-2 lg:gap-6 mt-2 lg:mt-4">
                 {/* 1. Turban */}
-                <div className="relative w-[15%] lg:w-[12%] z-30 hover:z-50 hover:scale-110 transition-transform">
+                <div className="relative w-[12%] lg:w-[10%] z-30 hover:z-50 hover:scale-110 transition-transform">
                   <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-md" alt="Turban" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
-                    className="absolute top-1/2 -left-20 -translate-y-1/2 flex items-center space-x-1"
+                    className="absolute top-1/2 -left-16 lg:-left-20 -translate-y-1/2 flex items-center space-x-1"
                   >
-                    <span className="font-serif font-black italic text-[10px] lg:text-xs text-[#000000]">Turban</span>
-                    <svg className="w-4 h-4 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
+                    <span className="font-serif font-black italic text-[9px] lg:text-xs text-[#000000]">Turban</span>
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
                       <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
                     </svg>
                   </motion.div>
                 </div>
 
                 {/* 2. Top */}
-                <div className="relative w-[38%] lg:w-[32%] z-20 hover:z-50 hover:scale-110 transition-transform">
+                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-2 lg:-mt-4">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-md" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 }}
-                    className="absolute top-1/2 -right-20 -translate-y-1/2 flex items-center space-x-1"
+                    className="absolute top-1/2 -right-16 lg:-right-20 -translate-y-1/2 flex items-center space-x-1"
                   >
-                    <svg className="w-4 h-4" viewBox="0 0 40 40" fill="none">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4" viewBox="0 0 40 40" fill="none">
                       <path d="M38 38C25 30 15 15 2 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
                     </svg>
-                    <span className="font-serif font-black italic text-[10px] lg:text-xs text-[#000000]">Top</span>
+                    <span className="font-serif font-black italic text-[9px] lg:text-xs text-[#000000]">Top</span>
                   </motion.div>
                 </div>
 
                 {/* 3 & 4. Coverups (Side by Side) */}
-                <div className="w-full flex justify-center items-end gap-6 lg:gap-12 z-40">
+                <div className="w-full flex justify-center items-end gap-4 lg:gap-8 z-40 -mt-2 lg:-mt-4">
                   {/* Short Coverup */}
-                  <div className="relative w-[38%] lg:w-[32%] hover:scale-110 transition-transform">
+                  <div className="relative w-[30%] lg:w-[28%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md" alt="Short Coverup" />
                     <motion.div 
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
-                      className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center"
+                      className="absolute -bottom-4 lg:-bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center"
                     >
-                      <span className="font-serif font-black italic text-[9px] lg:text-[10px] text-[#000000] mb-0.5 whitespace-nowrap">Short Coverup</span>
-                      <svg className="w-3 h-3 -rotate-[135deg]" viewBox="0 0 40 40" fill="none">
+                      <span className="font-serif font-black italic text-[8px] lg:text-[10px] text-[#000000] mb-0.5 whitespace-nowrap">Short Coverup</span>
+                      <svg className="w-2 h-2 lg:w-3 lg:h-3 -rotate-[135deg]" viewBox="0 0 40 40" fill="none">
                         <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
                       </svg>
                     </motion.div>
                   </div>
 
                   {/* Whole Coverup */}
-                  <div className="relative w-[45%] lg:w-[40%] hover:scale-110 transition-transform">
+                  <div className="relative w-[36%] lg:w-[32%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-md" alt="Whole Coverup" />
                      <motion.div 
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
-                      className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center"
+                      className="absolute -bottom-4 lg:-bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center"
                      >
-                      <span className="font-serif font-black italic text-[9px] lg:text-[10px] text-[#000000] mb-0.5 whitespace-nowrap">Whole Coverup</span>
-                      <svg className="w-3 h-3 -rotate-[135deg]" viewBox="0 0 40 40" fill="none">
+                      <span className="font-serif font-black italic text-[8px] lg:text-[10px] text-[#000000] mb-0.5 whitespace-nowrap">Whole Coverup</span>
+                      <svg className="w-2 h-2 lg:w-3 lg:h-3 -rotate-[135deg]" viewBox="0 0 40 40" fill="none">
                         <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
                       </svg>
                     </motion.div>
@@ -400,16 +400,16 @@ export default function Home() {
                 </div>
 
                 {/* 5. Leggings */}
-                <div className="relative w-[28%] lg:w-[25%] z-10 hover:z-50 hover:scale-110 transition-transform pt-4">
+                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform pt-2 lg:pt-4">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
-                    className="absolute top-1/2 -left-24 -translate-y-1/2 flex items-center space-x-1"
+                    className="absolute top-1/2 -left-16 lg:-left-24 -translate-y-1/2 flex items-center space-x-1"
                   >
-                    <span className="font-serif font-black italic text-[10px] lg:text-xs text-[#000000]">Leggings</span>
-                    <svg className="w-4 h-4 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
+                    <span className="font-serif font-black italic text-[9px] lg:text-xs text-[#000000]">Leggings</span>
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 scale-x-[-1]" viewBox="0 0 40 40" fill="none">
                       <path d="M2 38C15 30 25 15 38 2" stroke="#000000" strokeWidth="3" strokeLinecap="round" />
                     </svg>
                   </motion.div>
