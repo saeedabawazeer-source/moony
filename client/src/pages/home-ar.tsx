@@ -198,54 +198,42 @@ export default function HomeAR() {
           </div>
 
           {/* Right/Bottom Info Area */}
-          <div className="flex-1 flex flex-col items-center justify-center w-full lg:w-[55%] space-y-3 lg:space-y-6 px-8 lg:px-12 py-3 lg:py-0">
+          <div className="flex-1 flex flex-col items-center justify-center w-full lg:w-[55%] space-y-2 lg:space-y-4 px-8 lg:px-12 py-2 lg:py-0">
 
-            {/* Selector */}
-            <div className="w-full flex justify-center space-x-8 lg:space-x-12 pb-2 px-8 lg:px-0" dir="ltr">
-              {[...collections].reverse().map((col) => {
-                const isActive = selectedCollection === col.id;
-                return (
-                  <motion.button
-                    key={col.id}
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => {
-                      setSelectedCollection(col.id);
-                      setCurrentImageIndex(0);
-                      setSelectedSize("M");
-                      setQuantity(1);
-                    }}
-                    className="relative"
-                  >
-                    <img 
-                      src={col.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
-                      className={`w-12 h-12 lg:w-16 lg:h-16 transition-all duration-300 ${
-                        isActive 
-                          ? 'drop-shadow-[0_0_15px_rgba(229,129,92,0.4)] scale-110 opacity-100' 
-                          : 'opacity-50 hover:opacity-80'
+            {/* Selector — clear named pill toggle */}
+            <div className="w-full flex justify-center">
+              <div className="inline-flex items-center bg-[#f0e8d5] border-2 border-[#5d4037]/15 rounded-full p-1 gap-1 shadow-inner" dir="ltr">
+                {[...collections].reverse().map((col) => {
+                  const isActive = selectedCollection === col.id;
+                  const arName = col.id === 'daydream' ? 'دايدريم' : 'أكوا جلو';
+                  return (
+                    <button
+                      key={col.id}
+                      onClick={() => {
+                        setSelectedCollection(col.id);
+                        setCurrentImageIndex(0);
+                        setSelectedSize("M");
+                        setQuantity(1);
+                      }}
+                      className={`relative flex items-center gap-2 px-4 py-2 rounded-full font-black text-[11px] lg:text-sm transition-all duration-300 ${
+                        isActive
+                          ? 'bg-white text-[#5d4037] shadow-md scale-[1.02]'
+                          : 'text-[#5d4037]/50 hover:text-[#5d4037]/80'
                       }`}
-                      alt={col.name}
-                    />
-                    {isActive && (
-                      <motion.div 
-                        layoutId="activeStarAR"
-                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#5d4037] rounded-full"
+                    >
+                      <img
+                        src={col.id === 'daydream' ? "/images/starfish-coral.png" : "/images/starfish-teal.png"}
+                        className={`w-4 h-4 lg:w-5 lg:h-5 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-40'}`}
+                        alt={arName}
                       />
-                    )}
-
-                    {/* Classy Low Stock Tag for Daydream */}
-                    {col.id === 'daydream' && !isActive && (
-                      <motion.div 
-                        animate={{ boxShadow: ["0px 0px 0px rgba(0,0,0,0)", "0px 0px 8px rgba(93,64,55,0.4)", "0px 0px 0px rgba(0,0,0,0)"] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute -top-3 -right-6 lg:-top-4 lg:-right-8 bg-white/90 backdrop-blur-sm text-[#5d4037] font-sans font-bold text-[8px] lg:text-[9px] px-2 py-0.5 rounded-full border border-[#5d4037]/30 whitespace-nowrap tracking-wider uppercase shadow-sm"
-                      >
-                        كمية محدودة
-                      </motion.div>
-                    )}
-                  </motion.button>
-                );
-              })}
+                      <span className="font-kufi">{arName}</span>
+                      {col.id === 'daydream' && !isActive && (
+                        <span className="bg-[#e5815c]/15 text-[#e5815c] text-[7px] font-black px-1.5 py-0.5 rounded-full tracking-wider font-kufi">كمية محدودة</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="w-full space-y-1 lg:space-y-2 px-8 lg:px-0 text-right">
@@ -259,7 +247,7 @@ export default function HomeAR() {
                 <p className="text-[10px] lg:text-xs font-black text-[#5d4037] pt-0.5">يشمل جميع القطع الخمس.</p>
 
               {/* Purchase Block */}
-              <div className="w-full space-y-3 lg:space-y-4 pb-2">
+              <div className="w-full space-y-2 lg:space-y-3 pb-2">
                 <div className="flex items-center justify-start gap-4 flex-row-reverse">
                   {/* Size Selector */}
                   <div className="flex gap-2 flex-row-reverse">
