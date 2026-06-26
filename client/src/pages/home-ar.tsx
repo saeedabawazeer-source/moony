@@ -332,27 +332,27 @@ export default function HomeAR() {
 
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12">
                 {[
-                  { title: "بدون التصاق. ثقة كاملة.", text: "قماش مصمم ليبقى بعيداً. تحركي بحرية وظهرتك مثالية." },
-                  { title: "راحة طوال اليوم.", text: "أداء خفيف وقابل للتنفس لن ترغبي بخلعه." },
-                  { title: "حماية أشعة مدمجة.", text: "حماية UPF 50+ منسوجة في كل خيط. بدون إعادة وضع واقي." },
-                  { title: "يجف قبل ما توصلين السيارة.", text: "تقنية تجفيف سريعة. صفر بقع رطبة." }
+                  { title: "ما يلتصق. وما تحتاجين تفكرين.", text: "القماش مصمم يبقى بعيد عن جسمك. تتحركين بحرية وتظهرين بأحسن صورة." },
+                  { title: "ارتاحي من أول لحظة.", text: "خفيف، يتنفس، وما تحسين إنك لابسة شيء ثقيل." },
+                  { title: "حماية الشمس مدمجة.", text: "UPF 50+ منسوجة في القماش. ما تحتاجين تعيدين الكريم كل شوي." },
+                  { title: "ينشف قبل ما توصلين السيارة.", text: "تقنية تجفيف سريعة. ودعي البقع الرطبة للأبد." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-1 lg:space-y-3"
+                    className="space-y-1 lg:space-y-2"
                   >
-                    <div className="flex items-center space-x-2 space-x-reverse">
+                    <div className="flex flex-col items-end gap-0.5">
                        <img 
                          src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'}
-                         className="w-4 h-4 lg:w-5 lg:h-5"
+                         className="w-4 h-4 lg:w-5 lg:h-5 self-end"
                          alt=""
                        />
-                       <h4 className="font-serif font-black text-sm lg:text-3xl text-[#000000] tracking-tight">{spec.title}</h4>
+                       <h4 className="font-serif font-black text-sm lg:text-3xl text-[#000000] tracking-tight text-right">{spec.title}</h4>
                     </div>
-                    <p className="text-[10px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm">
+                    <p className="text-[10px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm text-right">
                       {spec.text}
                     </p>
                   </motion.div>
