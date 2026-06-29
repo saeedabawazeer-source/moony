@@ -101,8 +101,9 @@ export class MemStorage implements IStorage {
         price: "425.00",
         description: "Elegant and modest swimwear designed for comfort and style.",
         collection: "daydream",
-        mainImage: "/images/models/daydream/_HTM3935.JPEG",
+        mainImage: "/images/models/daydream/1.JPG",
         images: [
+          "/images/models/daydream/1.JPG",
           "/images/models/daydream/_HTM3935.JPEG",
           "/images/models/daydream/_HTM4121.JPEG",
           "/images/models/daydream/_HTM4179.JPEG",
@@ -132,8 +133,9 @@ export class MemStorage implements IStorage {
         price: "550.00",
         description: "Refreshing teal-themed modest swimwear for comfort and elegance.",
         collection: "aqua-glow",
-        mainImage: "/images/models/aquaglow/_HTM3828.JPEG",
+        mainImage: "/images/models/aquaglow/1.JPG",
         images: [
+          "/images/models/aquaglow/1.JPG",
           "/images/models/aquaglow/_HTM3828.JPEG",
           "/images/models/aquaglow/_HTM3832.JPEG",
           "/images/models/aquaglow/_HTM3856.JPEG",

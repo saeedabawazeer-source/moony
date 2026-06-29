@@ -19,10 +19,12 @@ export default function HomeAR() {
   // Eagerly preload all product images into browser cache on mount
   useEffect(() => {
     const allImages = [
+      "/images/models/daydream/1.JPG",
       "/images/models/daydream/_HTM3935.JPEG",
       "/images/models/daydream/_HTM4121.JPEG",
       "/images/models/daydream/_HTM4179.JPEG",
       "/images/models/daydream/_HTM4610.JPEG",
+      "/images/models/aquaglow/1.JPG",
       "/images/models/aquaglow/_HTM3828.JPEG",
       "/images/models/aquaglow/_HTM3832.JPEG",
       "/images/models/aquaglow/_HTM3856.JPEG",
