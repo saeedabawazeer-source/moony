@@ -131,7 +131,7 @@ export default function CartDrawer() {
 
   // The Receipt Content which will be shared between checkout and success
   const renderReceiptContent = () => (
-    <div className="flex flex-col flex-1 min-h-0 bg-white shadow-2xl relative w-full max-w-[500px] mx-auto border-x border-gray-100">
+    <div className="flex flex-col flex-1 min-h-0 bg-white relative w-full">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b-2 border-dashed border-gray-200 shrink-0 sticky top-0 bg-white z-10">
         <div className="flex flex-col">
@@ -337,17 +337,17 @@ export default function CartDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[90]"
+            className="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[150]"
             onClick={handleClose}
           />
 
-          <div className="fixed inset-0 z-[95] pointer-events-none flex items-center justify-center p-0">
+          <div className="fixed inset-0 z-[150] pointer-events-none flex items-end justify-center p-0">
             <motion.div
               initial={{ y: "100%", opacity: 0 }}
               animate={step === "success" ? { y: 0, opacity: 1, scale: 0.95 } : { y: 0, opacity: 1, scale: 1 }}
               exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className={`pointer-events-auto relative w-full h-[100dvh] flex flex-col items-center justify-center ${isAr ? "font-kufi text-right" : "font-sans text-left"}`}
+              className={`pointer-events-auto relative w-full max-w-[500px] mx-auto max-h-[85dvh] rounded-t-3xl overflow-hidden flex flex-col shadow-2xl bg-white ${isAr ? "font-kufi text-right" : "font-sans text-left"}`}
               dir={isAr ? "rtl" : "ltr"}
             >
               <AnimatePresence mode="wait">
@@ -355,7 +355,7 @@ export default function CartDrawer() {
                 {step === "checkout" && (
                   <motion.div key="checkout" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-1 w-full flex flex-col min-h-0 bg-transparent">
                     {items.length === 0 ? (
-                      <div className="flex-1 flex flex-col w-full max-w-[500px] mx-auto bg-white border-x border-gray-100 items-center justify-center gap-4 text-center px-8 relative h-[100dvh]">
+                      <div className="flex-1 flex flex-col w-full h-[50dvh] bg-white items-center justify-center gap-4 text-center px-8 relative">
                         <button onClick={handleClose} className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
                           <i className="fas fa-times text-gray-500"></i>
                         </button>
@@ -373,7 +373,7 @@ export default function CartDrawer() {
 
                 {/* ── PAYMENT STEP ── */}
                 {step === "paying" && (
-                  <motion.div key="paying" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col flex-1 w-full max-w-[500px] mx-auto min-h-0 bg-white shadow-2xl border-x border-gray-100">
+                  <motion.div key="paying" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col flex-1 w-full min-h-[70dvh] bg-white">
                     <div className={`px-6 py-4 flex items-center gap-2 border-b border-gray-100 ${isAr ? "flex-row-reverse" : ""}`}>
                       <button onClick={() => setStep("checkout")} className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-black transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
                         <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.back}
@@ -411,7 +411,7 @@ export default function CartDrawer() {
 
                 {/* ── ERROR STEP ── */}
                 {step === "error" && (
-                  <motion.div key="error" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex-1 flex flex-col items-center justify-center w-full max-w-[500px] mx-auto gap-6 text-center px-8 relative bg-white shadow-2xl h-[100dvh]">
+                  <motion.div key="error" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex-1 flex flex-col items-center justify-center w-full gap-6 text-center px-8 py-20 relative bg-white">
                     <button onClick={handleClose} className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
                       <i className="fas fa-times text-gray-500"></i>
                     </button>
