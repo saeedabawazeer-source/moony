@@ -19,9 +19,9 @@ export default function CanvasWave() {
       count: 5,
       range: { x: 20, y: 80 },
       duration: { min: 20, max: 40 },
-      thickness: 10,
-      strokeColor: 'transparent',
-      level: 0.35,
+      thickness: 6,
+      strokeColor: '#000',
+      level: 0.5,
       curved: true,
     };
 

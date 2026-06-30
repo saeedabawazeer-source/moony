@@ -116,7 +116,7 @@ export default function Home() {
         <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
-          <div className="absolute inset-x-0 top-1/4 h-1/2 z-0 opacity-60 pointer-events-none">
+          <div className="absolute inset-x-0 top-[30%] h-1/2 z-0 pointer-events-none">
             <CanvasWave />
           </div>
 
