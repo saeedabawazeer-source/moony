@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import CanvasWave from "@/components/ui/canvas-wave";
 import { useCart } from "@/context/cart-context";
 import { products as staticProducts, collections as staticCollections } from "@/data/products";
 import type { Product, Collection } from "@shared/schema";
@@ -115,7 +116,9 @@ export default function Home() {
         <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
-          {/* Removed starfish from here to place in global fixed overlay */}
+          <div className="absolute inset-x-0 top-1/4 h-1/2 z-0 opacity-60 pointer-events-none">
+            <CanvasWave />
+          </div>
 
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
