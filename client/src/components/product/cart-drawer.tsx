@@ -136,31 +136,34 @@ export default function CartDrawer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-[8px] lg:inset-[12px] bg-black/50 z-[90] rounded-[1.4rem] lg:rounded-[2.4rem]"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[90]"
             onClick={handleClose}
           />
 
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 28, stiffness: 260 }}
-            className={`fixed inset-[8px] lg:inset-[12px] z-[95] bg-[#fef8e1] shadow-2xl flex flex-col rounded-[1.4rem] lg:rounded-[2.4rem] overflow-hidden ${isAr ? "font-kufi text-right" : "font-sans text-left"}`}
-            dir={isAr ? "rtl" : "ltr"}
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b-2 border-[#5d4037]/10 shrink-0">
+          <div className="fixed inset-0 z-[95] pointer-events-none flex items-end justify-center sm:items-center p-0 sm:p-6">
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "120%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 220 }}
+              className={`pointer-events-auto relative w-full sm:max-w-[420px] h-[90vh] sm:h-[85vh] max-h-[800px] bg-white shadow-2xl flex flex-col rounded-t-3xl sm:rounded-b-3xl overflow-hidden ${isAr ? "font-kufi text-right" : "font-sans text-left"}`}
+              dir={isAr ? "rtl" : "ltr"}
+            >
+            {/* Ticket Header (Airlines style) */}
+            <div className="flex items-center justify-between px-6 py-5 bg-[#dc2f34] text-white shrink-0">
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 mb-0.5" dir="ltr">
-                  <img src="/images/starfish-black.png" alt="Moony Logo" className="w-3.5 h-3.5" />
-                  <p className="text-sm font-black lowercase tracking-tighter text-black font-serif">moony</p>
+                <div className="flex items-center gap-2 mb-1" dir="ltr">
+                  <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                  </svg>
+                  <p className="text-sm font-bold tracking-widest uppercase opacity-90">Moony Airlines</p>
                 </div>
-                <h2 className={`text-2xl font-black text-[#5d4037] ${isAr ? "font-kufi" : "font-serif"}`}>
-                  {step === "paying" ? t.payment : step === "success" ? t.done : step === "error" ? t.oops : `${t.cartTitle} ${items.length > 0 ? `(${items.length})` : ""}`}
+                <h2 className={`text-2xl font-bold ${isAr ? "font-kufi" : "font-serif"}`}>
+                  {step === "paying" ? t.payment : step === "success" ? t.done : step === "error" ? t.oops : `Boarding Pass`}
                 </h2>
               </div>
-              <button onClick={handleClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-[#5d4037]/10 hover:bg-[#5d4037]/20 transition-colors">
-                <i className="fas fa-times text-[#5d4037]"></i>
+              <button onClick={handleClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors">
+                <i className="fas fa-times text-white"></i>
               </button>
             </div>
 
@@ -180,7 +183,7 @@ export default function CartDrawer() {
                     </div>
                   ) : (
                     <>
-                      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+                      <div className="flex-1 overflow-y-auto px-6 py-2 space-y-2">
                         {items.map((item) => (
                           <motion.div
                             key={`${item.product.id}-${item.size}`}
@@ -188,52 +191,58 @@ export default function CartDrawer() {
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -20, opacity: 0 }}
-                            className="flex gap-4 bg-white/60 rounded-2xl p-3 border-2 border-[#5d4037]/10"
+                            className="flex flex-col gap-1 py-4 border-b border-gray-100 last:border-0"
                           >
-                            <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 border-white shadow-md">
-                              <img src={item.product.images[0]} className="w-full h-full object-cover" alt={item.product.name} />
+                            <div className="flex justify-between items-center mb-1">
+                                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "المنتج" : "Item"}</span>
+                                <button onClick={() => removeFromCart(item.product.id, item.size)} className="text-gray-300 hover:text-red-500 transition-colors"><i className="fas fa-times text-sm"></i></button>
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <h3 className={`font-black text-[#5d4037] text-base leading-tight ${isAr ? "font-kufi" : "font-serif"}`}>{item.product.name}</h3>
-                              <p className="text-xs font-bold text-[#5d4037]/50 mt-0.5">{t.size}: {item.size}</p>
-                              <p className="text-sm font-black text-[#e5815c] mt-1 font-sans">SAR {(parseFloat(item.product.price) * item.quantity).toFixed(2)}</p>
-                              <div className="flex items-center gap-2 mt-2">
-                                <button
-                                  onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}
-                                  className="w-6 h-6 rounded-full bg-[#5d4037]/10 flex items-center justify-center font-black text-[#5d4037] text-sm hover:bg-[#5d4037]/20"
-                                >−</button>
-                                <span className="font-black text-sm text-[#5d4037] min-w-[1.2rem] text-center">{item.quantity}</span>
-                                <button
-                                  onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}
-                                  className="w-6 h-6 rounded-full bg-[#5d4037]/10 flex items-center justify-center font-black text-[#5d4037] text-sm hover:bg-[#5d4037]/20"
-                                >+</button>
-                              </div>
+                            <h3 className={`font-bold text-xl text-black ${isAr ? "font-kufi" : "font-serif"}`}>{item.product.name}</h3>
+                            <div className="flex justify-between flex-wrap gap-4 mt-3">
+                                <div className="flex flex-col">
+                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.size}</span>
+                                    <h3 className="font-bold text-base text-black">{item.size}</h3>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{isAr ? "الكمية" : "Qty"}</span>
+                                    <div className="flex items-center gap-3">
+                                        <button onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)} className="w-5 h-5 rounded-md bg-gray-100 flex items-center justify-center font-bold text-gray-600 hover:bg-gray-200">−</button>
+                                        <span className="font-bold text-base text-black min-w-[1rem] text-center">{item.quantity}</span>
+                                        <button onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)} className="w-5 h-5 rounded-md bg-gray-100 flex items-center justify-center font-bold text-gray-600 hover:bg-gray-200">+</button>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col text-right">
+                                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{isAr ? "السعر" : "Price"}</span>
+                                    <h3 className="font-bold text-base text-black font-sans">SAR {(parseFloat(item.product.price) * item.quantity).toFixed(2)}</h3>
+                                </div>
                             </div>
-                            <button
-                              onClick={() => removeFromCart(item.product.id, item.size)}
-                              className="self-start w-7 h-7 flex items-center justify-center text-[#5d4037]/30 hover:text-red-400 transition-colors"
-                            >
-                              <i className="fas fa-trash-alt text-xs"></i>
-                            </button>
                           </motion.div>
                         ))}
                       </div>
 
+                      {/* Ticket Perforation / Separator */}
+                      <div className="relative w-full h-8 flex items-center shrink-0 overflow-hidden sm:overflow-visible">
+                         <div className="absolute -left-4 sm:-left-9 w-8 h-8 bg-black/70 rounded-full" />
+                         <div className="w-full border-t-2 border-dashed border-gray-300" />
+                         <div className="absolute -right-4 sm:-right-9 w-8 h-8 bg-black/70 rounded-full" />
+                      </div>
+
                       {/* Summary + CTA */}
-                      <div className="px-6 pb-6 pt-3 border-t-2 border-[#5d4037]/10 space-y-2 shrink-0 bg-[#fef8e1]">
-                        <div className="flex justify-between text-sm font-bold text-[#5d4037]/60">
-                          <span>{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
+                      <div className="px-6 pb-6 pt-2 space-y-2 shrink-0 bg-white">
+                        <div className="flex justify-between text-xs font-bold text-gray-500">
+                          <span className="uppercase tracking-widest">{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm">
-                          <span className="text-[#000000]/60 font-bold">{t.delivery}</span>
+                        <div className="flex justify-between items-center text-xs">
+                          <span className="uppercase tracking-widest text-gray-500 font-bold">{t.delivery}</span>
                           <span className="text-green-600 font-black uppercase tracking-widest text-[10px] lg:text-xs">{isAr ? "مجاناً" : "Free"}</span>
                         </div>
-                        <div className="flex justify-between text-lg font-black text-[#5d4037] border-t-2 border-[#5d4037]/10 pt-2 mb-2">
-                          <span>{t.total}</span><span className="font-sans">SAR {(totalPrice + DELIVERY).toFixed(2)}</span>
+                        <div className="flex justify-between items-end mt-4 mb-4">
+                          <span className="text-sm text-gray-500 font-bold uppercase tracking-widest">{t.total}</span>
+                          <span className="text-3xl font-black text-black font-sans leading-none">SAR {(totalPrice + DELIVERY).toFixed(2)}</span>
                         </div>
                         <button
                           onClick={() => setStep("details")}
-                          className={`w-full py-3.5 rounded-full font-black text-sm uppercase tracking-widest bg-[#C0FF72] text-black border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_#000] transition-all flex items-center justify-center gap-2 ${isAr ? "font-kufi" : ""}`}
+                          className={`w-full py-4 mt-2 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all flex items-center justify-center gap-2 ${isAr ? "font-kufi" : ""}`}
                         >
                           {t.proceed}
                         </button>
@@ -252,121 +261,125 @@ export default function CartDrawer() {
                 >
                   <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
                     <div className="flex-1 overflow-y-auto px-6 py-4">
-                      <button type="button" onClick={() => setStep("cart")} className={`flex items-center gap-2 text-xs font-black text-[#5d4037]/40 hover:text-[#5d4037] mb-4 transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
-                        <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.backToCart}
-                      </button>
-                      <h3 className={`font-black text-xl text-[#5d4037] mb-4 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
+                      <div className="flex justify-between items-center mb-6">
+                        <h3 className={`font-bold text-xl text-black ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
+                        <button type="button" onClick={() => setStep("cart")} className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-black transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
+                          <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.back}
+                        </button>
+                      </div>
 
-                      {/* Compact Form */}
-                      <div className="space-y-3">
-                      <div className="bg-white/60 rounded-xl p-3 border-2 border-[#5d4037]/10 flex items-center gap-3">
-                        <i className="fas fa-user text-[#e5815c] w-4 text-center"></i>
+                      {/* Minimalist Form */}
+                      <div className="space-y-4">
+                      <div className="flex flex-col border-b border-gray-200 pb-2">
+                        <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.fullName}</label>
                         <input
                           required
-                          placeholder={t.fullName}
                           value={formData.fullName}
                           onChange={e => setFormData(f => ({ ...f, fullName: e.target.value }))}
-                          className="flex-1 bg-transparent outline-none text-sm font-bold text-[#5d4037] placeholder:text-[#5d4037]/30"
+                          className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
                         />
                       </div>
 
-                      <div className="bg-white/60 rounded-xl p-3 border-2 border-[#5d4037]/10 flex items-center gap-3">
-                        <i className="fas fa-phone text-[#6bb7b3] w-4 text-center"></i>
+                      <div className="flex flex-col border-b border-gray-200 pb-2">
+                        <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.phone}</label>
                         <input
                           required
                           type="tel"
                           minLength={9}
                           maxLength={15}
-                          placeholder={t.phone}
                           value={formData.phone}
                           onChange={e => setFormData(f => ({ ...f, phone: e.target.value.replace(/[^0-9+]/g, '') }))}
-                          className="flex-1 bg-transparent outline-none text-sm font-bold text-[#5d4037] placeholder:text-[#5d4037]/30"
+                          className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
                           dir="ltr"
                           style={{ textAlign: isAr ? 'right' : 'left' }}
                         />
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-white/60 rounded-xl p-3 border-2 border-[#5d4037]/10 flex items-center gap-2">
-                          <i className="fas fa-city text-[#5d4037] w-4 text-center text-xs"></i>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col border-b border-gray-200 pb-2">
+                          <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.city}</label>
                           <input
                             required
-                            placeholder={t.city}
                             value={formData.city}
                             onChange={e => setFormData(f => ({ ...f, city: e.target.value }))}
-                            className="flex-1 bg-transparent outline-none text-sm font-bold text-[#5d4037] placeholder:text-[#5d4037]/30 min-w-0"
+                            className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
                           />
                         </div>
-                        <div className="bg-white/60 rounded-xl p-3 border-2 border-[#5d4037]/10 flex items-center gap-2">
-                          <i className="fas fa-road text-[#5d4037] w-4 text-center text-xs"></i>
+                        <div className="flex flex-col border-b border-gray-200 pb-2">
+                          <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.district}</label>
                           <input
                             required
-                            placeholder={t.district}
                             value={formData.district}
                             onChange={e => setFormData(f => ({ ...f, district: e.target.value }))}
-                            className="flex-1 bg-transparent outline-none text-sm font-bold text-[#5d4037] placeholder:text-[#5d4037]/30 min-w-0"
+                            className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
                           />
                         </div>
                       </div>
 
-                      <div className="bg-white/60 rounded-xl p-3 border-2 border-[#5d4037]/10 flex items-center gap-3">
-                        <i className="fas fa-home text-[#5d4037] w-4 text-center"></i>
+                      <div className="flex flex-col border-b border-gray-200 pb-2">
+                        <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.houseNumber}</label>
                         <input
                           required
-                          placeholder={t.houseNumber}
                           value={formData.houseNumber}
                           onChange={e => setFormData(f => ({ ...f, houseNumber: e.target.value }))}
-                          className="flex-1 bg-transparent outline-none text-sm font-bold text-[#5d4037] placeholder:text-[#5d4037]/30"
+                          className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
                         />
                       </div>
 
                       </div>
                     </div>
 
+                    {/* Ticket Perforation / Separator */}
+                    <div className="relative w-full h-8 flex items-center shrink-0 overflow-hidden sm:overflow-visible">
+                       <div className="absolute -left-4 sm:-left-9 w-8 h-8 bg-black/70 rounded-full" />
+                       <div className="w-full border-t-2 border-dashed border-gray-300" />
+                       <div className="absolute -right-4 sm:-right-9 w-8 h-8 bg-black/70 rounded-full" />
+                    </div>
+
                     {/* Fixed Summary & Pay Button at Bottom */}
-                    <div className="px-6 pb-6 pt-3 border-t-2 border-[#5d4037]/10 shrink-0 bg-[#fef8e1] mt-auto">
+                    <div className="px-6 pb-6 pt-2 shrink-0 bg-white mt-auto">
                       
                       {/* WhatsApp Opt-in */}
-                      <label className="flex items-start gap-3 cursor-pointer bg-white/60 p-3 rounded-xl border-2 border-[#5d4037]/10 mb-4 hover:bg-white transition-colors">
-                        <div className="relative flex items-center justify-center mt-0.5">
+                      <label className="flex items-center gap-3 cursor-pointer bg-gray-50 p-3 rounded-xl border border-gray-200 mb-4 hover:bg-gray-100 transition-colors">
+                        <div className="relative flex items-center justify-center">
                           <input 
                             type="checkbox" 
-                            className="peer appearance-none w-5 h-5 border-2 border-[#5d4037] rounded bg-white checked:bg-[#25D366] checked:border-[#25D366] transition-colors cursor-pointer"
+                            className="peer appearance-none w-5 h-5 border-2 border-black rounded bg-white checked:bg-[#25D366] checked:border-[#25D366] transition-colors cursor-pointer"
                             checked={subscribeWhatsapp}
                             onChange={(e) => setSubscribeWhatsapp(e.target.checked)}
                           />
                           <i className="fas fa-check absolute text-white text-xs opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></i>
                         </div>
                         <div className="flex-1">
-                          <p className={`text-xs font-bold leading-tight ${subscribeWhatsapp ? "text-[#25D366]" : "text-[#5d4037]"} ${isAr ? "font-kufi" : ""}`}>
+                          <p className={`text-[10px] font-bold leading-tight ${subscribeWhatsapp ? "text-[#25D366]" : "text-black"} ${isAr ? "font-kufi" : "uppercase tracking-widest"}`}>
                             {t.whatsappOffer}
                           </p>
                         </div>
                       </label>
 
                       {/* Compact Order summary mini */}
-                      <div className="bg-[#5d4037]/5 rounded-xl p-3 space-y-1.5">
-                        <div className="flex justify-between text-[11px] font-bold text-[#5d4037]/60">
+                      <div className="space-y-1.5 px-2">
+                        <div className="flex justify-between text-[11px] font-bold text-gray-400 uppercase tracking-widest">
                           <span>{t.subtotal}</span><span className="font-sans">SAR {totalPrice.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm mb-4 lg:mb-6">
-                          <span className="text-[#000000]/60 font-bold">{t.delivery}</span>
-                          <span className="text-green-600 font-black uppercase tracking-widest text-[10px] lg:text-xs">{isAr ? "مجاناً" : "Free"}</span>
+                        <div className="flex justify-between text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                          <span>{t.delivery}</span><span className="text-green-600 font-sans">{isAr ? "مجاناً" : "Free"}</span>
                         </div>
                         {subscribeWhatsapp && (
-                          <div className="flex justify-between text-[11px] font-bold text-[#25D366]">
+                          <div className="flex justify-between text-[11px] font-bold text-[#25D366] uppercase tracking-widest">
                             <span>{t.discount}</span><span className="font-sans">-SAR {discountAmount.toFixed(2)}</span>
                           </div>
                         )}
-                        <div className="flex justify-between font-black text-sm text-[#5d4037] border-t border-[#5d4037]/10 pt-1.5 mt-1.5">
-                          <span>{t.total}</span><span className="font-sans">SAR {grandTotal.toFixed(2)}</span>
+                        <div className="flex justify-between items-end mt-4 mb-4">
+                          <span className="text-sm text-gray-500 font-bold uppercase tracking-widest">{t.total}</span>
+                          <span className="text-3xl font-black text-black font-sans leading-none">SAR {grandTotal.toFixed(2)}</span>
                         </div>
                       </div>
 
                       <button
                         type="submit"
                         disabled={isSubmitting || !formData.fullName || !formData.phone || !formData.city || !formData.district || !formData.houseNumber}
-                        className={`w-full mt-4 py-3.5 rounded-full font-black text-sm uppercase tracking-widest bg-[#C0FF72] text-black border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-x-0 disabled:translate-y-0 ${isAr ? "font-kufi" : ""}`}
+                        className={`w-full py-4 mt-2 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${isAr ? "font-kufi" : ""}`}
                       >
                         {isSubmitting ? t.connecting : t.payNow + grandTotal.toFixed(2)}
                       </button>
@@ -380,19 +393,19 @@ export default function CartDrawer() {
                 <motion.div
                   key="paying"
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="flex flex-col flex-1 min-h-0"
+                  className="flex flex-col flex-1 min-h-0 bg-white"
                 >
-                  <div className={`px-6 py-3 flex items-center gap-2 border-b border-[#5d4037]/5 ${isAr ? "flex-row-reverse" : ""}`}>
-                    <button onClick={() => setStep("details")} className={`flex items-center gap-2 text-xs font-black text-[#5d4037]/40 hover:text-[#5d4037] transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
+                  <div className={`px-6 py-4 flex items-center gap-2 border-b border-gray-100 ${isAr ? "flex-row-reverse" : ""}`}>
+                    <button onClick={() => setStep("details")} className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-black transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
                       <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.back}
                     </button>
                     <div className="flex-1" />
                     <div className={`flex items-center gap-2 ${isAr ? "flex-row-reverse" : ""}`}>
-                      <i className="fas fa-lock text-[#6bb7b3] text-xs"></i>
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#6bb7b3]">{t.securePayment}</span>
+                      <i className="fas fa-lock text-green-600 text-xs"></i>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-green-600">{t.securePayment}</span>
                     </div>
                   </div>
-                  <div className="flex-1 relative bg-white">
+                  <div className="flex-1 relative">
                     <iframe
                       src={paymentUrl}
                       className="absolute inset-0 w-full h-full border-0"
@@ -408,29 +421,54 @@ export default function CartDrawer() {
               {step === "success" && (
                 <motion.div
                   key="success"
-                  initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                  className="flex-1 flex flex-col items-center justify-center gap-6 text-center px-8"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                  className="flex-1 flex flex-col items-center justify-between px-6 pt-10 pb-6 text-center"
                 >
-                  <motion.img
-                    animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.15, 1] }}
-                    transition={{ repeat: Infinity, duration: 4 }}
-                    src="/images/starfish-coral.png"
-                    className="w-24 h-24 drop-shadow-2xl"
-                    alt=""
-                  />
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#6bb7b3] mb-2 font-sans">{t.orderReceived}</p>
-                    <h2 className={`text-4xl font-black text-[#5d4037] ${isAr ? "font-kufi" : "font-serif"}`}>{t.seeYouSoon}</h2>
-                    <p className={`text-sm font-bold text-[#5d4037]/50 mt-3 leading-relaxed max-w-xs mx-auto ${isAr ? "font-kufi" : "font-sans"}`}>
-                      {t.orderConfirmed}
-                    </p>
+                  <div className="flex flex-col items-center gap-4">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", bounce: 0.5 }}
+                      className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl mb-2"
+                    >
+                      <i className="fas fa-check"></i>
+                    </motion.div>
+                    
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-2 font-sans">{t.orderReceived}</p>
+                      <h2 className={`text-3xl font-bold text-black ${isAr ? "font-kufi" : "font-serif"}`}>{t.seeYouSoon}</h2>
+                      <p className={`text-sm text-gray-500 mt-2 leading-relaxed max-w-xs mx-auto ${isAr ? "font-kufi" : "font-sans"}`}>
+                        {t.orderConfirmed}
+                      </p>
+                    </div>
                   </div>
-                  <button
-                    onClick={handleClose}
-                    className={`px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest bg-[#5d4037] text-white hover:opacity-80 transition-opacity mt-4 ${isAr ? "font-kufi" : ""}`}
-                  >
-                    {t.backToBoutique}
-                  </button>
+                  
+                  <div className="w-full mt-auto">
+                    {/* Ticket Perforation / Separator */}
+                    <div className="relative w-full h-8 flex items-center shrink-0 overflow-hidden sm:overflow-visible mb-6">
+                       <div className="absolute -left-4 sm:-left-9 w-8 h-8 bg-black/70 rounded-full" />
+                       <div className="w-full border-t-2 border-dashed border-gray-300" />
+                       <div className="absolute -right-4 sm:-right-9 w-8 h-8 bg-black/70 rounded-full" />
+                    </div>
+
+                    {/* Decorative QR Code Block */}
+                    <div className="flex justify-between items-center bg-gray-50 p-4 rounded-xl mb-4">
+                      <div className="text-left space-y-1">
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Order ID</p>
+                        <p className="font-bold font-mono text-sm tracking-wider">MNY-{Math.floor(100000 + Math.random() * 900000)}</p>
+                      </div>
+                      <svg className="w-12 h-12 text-black" viewBox="0 0 29.938 29.938" fill="currentColor">
+                        <path d="M7.129 15.683h1.427v1.427h1.426v1.426H2.853V17.11h1.426v-2.853h2.853v1.426h-.003zm18.535 12.83h1.424v-1.426h-1.424v1.426zM8.555 15.683h1.426v-1.426H8.555v1.426zm19.957 12.83h1.427v-1.426h-1.427v1.426zm-17.104 1.425h2.85v-1.426h-2.85v1.426zm12.829 0v-1.426H22.81v1.426h1.427zm-5.702 0h1.426v-2.852h-1.426v2.852zM7.129 11.406v1.426h4.277v-1.426H7.129zm-1.424 1.425v-1.426H2.852v2.852h1.426v-1.426h1.427zm4.276-2.852H.002V.001h9.979v9.978zM8.555 1.427H1.426v7.127h7.129V1.427zm-5.703 25.66h4.276V22.81H2.852v4.277zm14.256-1.427v1.427h1.428V25.66h-1.428zM7.129 2.853H2.853v4.275h4.276V2.853zM29.938.001V9.98h-9.979V.001h9.979zm-1.426 1.426h-7.127v7.127h7.127V1.427zM0 19.957h9.98v9.979H0v-9.979zm1.427 8.556h7.129v-7.129H1.427v7.129zm0-17.107H0v7.129h1.427v-7.129zm18.532 7.127v1.424h1.426v-1.424h-1.426zm-4.277 5.703V22.81h-1.425v1.427h-2.85v2.853h2.85v1.426h1.425v-2.853h1.427v-1.426h-1.427v-.001zM11.408 5.704h2.85V4.276h-2.85v1.428zm11.403 11.405h2.854v1.426h1.425v-4.276h-1.425v-2.853h-1.428v4.277h-4.274v1.427h1.426v1.426h1.426V17.11h-.004zm1.426 4.275H22.81v-1.427h-1.426v2.853h-4.276v1.427h2.854v2.853h1.426v1.426h1.426v-2.853h5.701v-1.426h-4.276v-2.853h-.002zm0 0h1.428v-2.851h-1.428v2.851zm-11.405 0v-1.427h1.424v-1.424h1.425v-1.426h1.427v-2.853h4.276v-2.853h-1.426v1.426h-1.426V7.125h-1.426V4.272h1.426V0h-1.426v2.852H15.68V0h-4.276v2.852h1.426V1.426h1.424v2.85h1.426v4.277h1.426v1.426H15.68v2.852h-1.426V9.979H12.83V8.554h-1.426v2.852h1.426v1.426h-1.426v4.278h1.426v-2.853h1.424v2.853H12.83v1.426h-1.426v4.274h2.85v-1.426h-1.422zm15.68 1.426v-1.426h-2.85v1.426h2.85zM27.086 2.853h-4.275v4.275h4.275V2.853zM15.682 21.384h2.854v-1.427h-1.428v-1.424h-1.427v2.851zm2.853-2.851v-1.426h-1.428v1.426h1.428zm8.551-5.702h2.853v-1.426h-2.853v1.426zm1.426 11.405h1.427V22.81h-1.427v1.426zm0-8.553h1.427v-1.426h-1.427v1.426zm-12.83-7.129h-1.425V9.98h1.425V8.554z"/>
+                      </svg>
+                    </div>
+
+                    <button
+                      onClick={handleClose}
+                      className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors ${isAr ? "font-kufi" : ""}`}
+                    >
+                      {t.backToBoutique}
+                    </button>
+                  </div>
                 </motion.div>
               )}
 
@@ -468,7 +506,8 @@ export default function CartDrawer() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
