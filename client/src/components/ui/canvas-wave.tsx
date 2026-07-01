@@ -18,7 +18,7 @@ export default function CanvasWave() {
     const opt = {
       count: 5,
       range: { x: 20, y: 80 },
-      duration: { min: 80, max: 150 },
+      duration: { min: 60, max: 110 },
       thickness: 6,
       strokeColor: '#000',
       level: 0.5,

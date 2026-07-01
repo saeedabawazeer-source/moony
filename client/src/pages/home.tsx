@@ -116,7 +116,7 @@ export default function Home() {
         <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
-          <div className="absolute inset-x-0 bottom-0 top-[35%] z-0 pointer-events-none">
+          <div className="absolute inset-x-0 bottom-0 top-[40%] z-0 pointer-events-none">
             <CanvasWave />
           </div>
 
@@ -164,7 +164,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className={`px-10 py-5 rounded-full bg-[#6bb7b3] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 ${isAr ? "font-kufi" : ""}`}
+              className={`px-10 py-5 rounded-full bg-[#eda78b] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 ${isAr ? "font-kufi" : ""}`}
             >
               {isAr ? "اختاري الموديل" : "PICK YOUR MODEL"}
             </motion.button>
@@ -303,7 +303,7 @@ export default function Home() {
                 
                 <button 
                   onClick={handleAddToCart}
-                  className="w-full h-14 lg:h-20 bg-[#C0FF72] text-black border-[3px] border-black rounded-2xl lg:rounded-3xl font-black text-xs lg:text-xl uppercase tracking-tighter shadow-[8px_8px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_#000] transition-all flex items-center justify-center gap-3 active:translate-x-2 active:translate-y-2 active:shadow-none"
+                  className="w-full h-14 lg:h-20 bg-[#eda78b] text-black border-[3px] border-black rounded-2xl lg:rounded-3xl font-black text-xs lg:text-xl uppercase tracking-tighter shadow-[8px_8px_0px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_#000] transition-all flex items-center justify-center gap-3 active:translate-x-2 active:translate-y-2 active:shadow-none"
                 >
                   <i className="fas fa-shopping-cart text-lg lg:text-2xl"></i>
                   ADD TO CART
