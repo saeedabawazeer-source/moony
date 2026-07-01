@@ -321,7 +321,7 @@ export default function HomeAR() {
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">لماذا ستحبين موني؟</h2>
                </div>
 
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-12">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-12 px-2 lg:px-0 mt-4 lg:mt-0">
                 {[
                   { title: "ما يلتصق. وما تحتاجين تفكرين.", text: "القماش مصمم يبقى بعيد عن جسمك. تتحركين بحرية وتظهرين بأحسن صورة." },
                   { title: "ارتاحي من أول لحظة.", text: "خفيف، يتنفس، وما تحسين إنك لابسة شيء ثقيل." },
@@ -341,9 +341,9 @@ export default function HomeAR() {
                          className="w-4 h-4 lg:w-5 lg:h-5 self-end"
                          alt=""
                        />
-                       <h4 className="font-serif font-black text-xs lg:text-2xl text-[#000000] tracking-tight text-right">{spec.title}</h4>
+                       <h4 className="font-serif font-black text-[10px] lg:text-xl text-[#000000] tracking-tight text-right">{spec.title}</h4>
                     </div>
-                     <p className="text-[10px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm text-right">
+                     <p className="text-[8px] lg:text-sm font-bold text-[#5d4037] leading-tight italic max-w-sm text-right">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -455,17 +455,17 @@ export default function HomeAR() {
         </section>
 
         {/* Section 4: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 py-6 lg:py-10 flex flex-col justify-end bg-[#fef8e1]">
+        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 py-4 lg:py-10 flex flex-col justify-end bg-[#fef8e1]">
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-5 lg:space-y-8">
             
             {/* Reviews Title */}
             <div className="space-y-1" dir="rtl">
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">ماذا قلن</p>
-              <h2 className="text-2xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجارب أخواتنا في موني</h2>
+              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجارب أخواتنا في موني</h2>
             </div>
 
             {/* Glowing Reviews (UGC Masonry Grid) */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 w-full mt-4 pb-12 lg:pb-20" dir="rtl">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 w-full mt-2 lg:mt-4 pb-8 lg:pb-20" dir="rtl">
                {[
                  { img: "/images/daydream-1.jpeg", quote: "مهووسة بهذا الطقم!", author: "سارة ج." },
                  { img: "/images/daydream-2.jpeg", quote: "أخيراً، لا يلتصق بالجسم.", author: "لينا م." },
@@ -477,7 +477,7 @@ export default function HomeAR() {
                    initial={{ opacity: 0, y: 10 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    transition={{ delay: i * 0.1 }}
-                   className={`relative group overflow-hidden rounded-2xl lg:rounded-3xl border-2 border-black aspect-[3/4] lg:aspect-auto lg:h-[40vh] ${i % 2 === 0 ? 'lg:-translate-y-4' : 'lg:translate-y-4'}`}
+                   className={`relative group overflow-hidden rounded-2xl lg:rounded-3xl border-2 border-black aspect-square lg:aspect-auto lg:h-[40vh] ${i % 2 === 0 ? 'lg:-translate-y-4' : 'lg:translate-y-4'}`}
                  >
                    <img src={review.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="UGC" />
                    
