@@ -118,9 +118,9 @@ export default function HomeAR() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative z-10 w-full"
+            className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative w-full"
           >
-            <div className="relative mb-2 lg:mb-4 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none" dir="ltr">
+            <div className="relative z-10 mb-2 lg:mb-4 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none" dir="ltr">
               {/* Layer 1: The GIF */}
               <img 
                 key={selectedCollection + "-gif"}
@@ -148,8 +148,8 @@ export default function HomeAR() {
               {/* Layer 3: Multiply by page background color */}
               <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
             </div>
-            <div className="mb-4 lg:mb-6">
-              <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037]">
+            <div className="relative z-30 mb-4 lg:mb-6">
+              <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037] font-kufi">
                 من شواطئ جدة إلى باب بيتك.
               </p>
             </div>
@@ -158,7 +158,7 @@ export default function HomeAR() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="px-10 py-5 rounded-full bg-[#eda78b] text-white font-black text-xs lg:text-sm uppercase tracking-[0.2em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
+              className="relative z-30 px-10 py-5 rounded-full bg-[#eda78b] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-kufi"
             >
               اختاري موديلك
             </motion.button>
@@ -376,7 +376,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 2. Top */}
-                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-6 lg:-mt-4">
+                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-12 lg:-mt-8">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -392,7 +392,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 3 & 4. Coverups (Side by Side) */}
-                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-12 lg:-mt-10">
+                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-24 lg:-mt-20">
                   {/* Short Coverup */}
                   <div className="relative w-[30%] lg:w-[28%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Short Coverup" />
@@ -427,7 +427,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 5. Leggings */}
-                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-6 lg:-mt-4">
+                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-12 lg:-mt-8">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
