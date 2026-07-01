@@ -327,13 +327,13 @@ export default function Home() {
 
         {/* Section 2.5: Anatomy */}
         <section id="anatomy-section" className="snap-slide h-full px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full">
+          <div className="max-w-[95vw] lg:max-w-[90vw] mx-auto w-full grid grid-cols-2 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full">
             
             {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
             <div className="relative h-auto w-full flex flex-col items-center justify-center py-2 lg:py-0">
               <div className="mb-2 lg:mb-4 text-center lg:text-left w-full lg:max-w-xl">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">The Breakdown</p>
-                <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">The Full Modular Set</h3>
+                <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">The Full Modular Set</h3>
               </div>
               
               <div className="w-full max-w-lg mx-auto flex flex-col items-center justify-center mt-2 lg:mt-4">
@@ -426,10 +426,10 @@ export default function Home() {
             <div className="space-y-2 lg:space-y-12 flex flex-col justify-center h-full">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
-                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
+                  <h2 className="text-sm lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
                </div>
                
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-12">
+               <div className="grid grid-cols-1 lg:grid-cols-1 gap-2 lg:gap-12">
                 {[
                   { title: "Zero Cling. Full Confidence.", text: "Engineered fabric that never sticks. Move freely, look flawless." },
                   { title: "All-Day Comfort.", text: "Breathable, lightweight performance you won't want to take off." },
@@ -449,9 +449,9 @@ export default function Home() {
                          className="w-4 h-4 lg:w-5 lg:h-5"
                          alt=""
                        />
-                       <h4 className="font-serif font-black text-sm lg:text-3xl text-[#000000] tracking-tight">{spec.title}</h4>
+                       <h4 className="font-serif font-black text-[9px] lg:text-3xl text-[#000000] tracking-tight">{spec.title}</h4>
                     </div>
-                    <p className="text-[10px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm">
+                    <p className="text-[7px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -469,8 +469,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide px-4 lg:px-20 py-6 lg:py-10 flex flex-col justify-end overflow-hidden bg-[#fef8e1]">
+        {/* Section 4: The Final Chapter (Signup + Footer) */}
+        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 py-6 lg:py-10 flex flex-col justify-end bg-[#fef8e1]">
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-5 lg:space-y-8">
             
             {/* Reviews Title */}
