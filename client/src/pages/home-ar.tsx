@@ -111,7 +111,7 @@ export default function HomeAR() {
         <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
-          <div className="absolute inset-x-0 bottom-0 top-[40%] z-0 pointer-events-none">
+          <div className="absolute inset-x-0 bottom-0 top-[40%] z-20 pointer-events-none">
             <CanvasWave />
           </div>
           <motion.div 
@@ -312,13 +312,13 @@ export default function HomeAR() {
 
         {/* Section 2.5: Anatomy (RTL Mirrored) */}
         <section id="anatomy-section" className="snap-slide h-full px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-[95vw] lg:max-w-[90vw] mx-auto w-full grid grid-cols-2 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full text-right" dir="rtl">
+          <div className="max-w-[95vw] lg:max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full text-right" dir="rtl">
             
             {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
             <div className="space-y-2 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 h-full lg:-translate-y-12">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">أداء عالي</p>
-                  <h2 className="text-sm lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">لماذا ستحبين موني؟</h2>
+                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">لماذا ستحبين موني؟</h2>
                </div>
 
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-12">
@@ -341,9 +341,9 @@ export default function HomeAR() {
                          className="w-4 h-4 lg:w-5 lg:h-5 self-end"
                          alt=""
                        />
-                       <h4 className="font-serif font-black text-[9px] lg:text-3xl text-[#000000] tracking-tight text-right">{spec.title}</h4>
+                       <h4 className="font-serif font-black text-xs lg:text-2xl text-[#000000] tracking-tight text-right">{spec.title}</h4>
                     </div>
-                    <p className="text-[7px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm text-right">
+                     <p className="text-[10px] lg:text-lg font-bold text-[#5d4037] leading-tight italic max-w-sm text-right">
                       {spec.text}
                     </p>
                   </motion.div>
@@ -355,7 +355,7 @@ export default function HomeAR() {
             <div className="relative h-auto w-full flex flex-col items-center justify-center order-1 lg:order-1 py-2 lg:py-0">
               <div className="mb-2 lg:mb-4 text-center lg:text-right w-full lg:max-w-xl">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">المواصفات</p>
-                <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
+                <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
               </div>
 
               <div className="w-full max-w-lg mx-auto flex flex-col items-center justify-center mt-2 lg:mt-4">
