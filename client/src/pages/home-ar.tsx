@@ -312,16 +312,16 @@ export default function HomeAR() {
 
         {/* Section 2.5: Anatomy (RTL Mirrored) */}
         <section id="anatomy-section" className="snap-slide h-full px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full text-right" dir="rtl">
+          <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full text-right" dir="rtl">
             
             {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
-            <div className="space-y-6 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 h-full lg:-translate-y-12">
+            <div className="space-y-2 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 h-full lg:-translate-y-12">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">أداء عالي</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">لماذا ستحبين موني؟</h2>
                </div>
 
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-12">
                 {[
                   { title: "ما يلتصق. وما تحتاجين تفكرين.", text: "القماش مصمم يبقى بعيد عن جسمك. تتحركين بحرية وتظهرين بأحسن صورة." },
                   { title: "ارتاحي من أول لحظة.", text: "خفيف، يتنفس، وما تحسين إنك لابسة شيء ثقيل." },
@@ -352,7 +352,7 @@ export default function HomeAR() {
             </div>
 
             {/* Left: Pieces Cluster - Mirrored To Left in RTL */}
-            <div className="relative h-auto w-full flex flex-col items-center justify-center order-1 lg:order-1 py-8 lg:py-0">
+            <div className="relative h-auto w-full flex flex-col items-center justify-center order-1 lg:order-1 py-2 lg:py-0">
               <div className="mb-2 lg:mb-4 text-center lg:text-right w-full lg:max-w-xl">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">المواصفات</p>
                 <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">الطقم الكامل المتكامل</h3>
@@ -376,7 +376,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 2. Top */}
-                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-2 lg:-mt-4">
+                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-6 lg:-mt-4">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -392,7 +392,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 3 & 4. Coverups (Side by Side) */}
-                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-6 lg:-mt-10">
+                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-12 lg:-mt-10">
                   {/* Short Coverup */}
                   <div className="relative w-[30%] lg:w-[28%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Short Coverup" />
@@ -427,7 +427,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 5. Leggings */}
-                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-2 lg:-mt-4">
+                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-6 lg:-mt-4">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}

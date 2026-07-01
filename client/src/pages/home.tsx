@@ -327,10 +327,10 @@ export default function Home() {
 
         {/* Section 2.5: Anatomy */}
         <section id="anatomy-section" className="snap-slide h-full px-4 lg:px-8 py-8 lg:py-16 flex flex-col justify-center overflow-hidden bg-[#fef8e1]">
-          <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full">
+          <div className="max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full">
             
             {/* Left: The Moony Blueprint (Centered Piece Cluster) */}
-            <div className="relative h-auto w-full flex flex-col items-center justify-center py-8 lg:py-0">
+            <div className="relative h-auto w-full flex flex-col items-center justify-center py-2 lg:py-0">
               <div className="mb-2 lg:mb-4 text-center lg:text-left w-full lg:max-w-xl">
                 <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-2">The Breakdown</p>
                 <h3 className="text-3xl lg:text-5xl font-serif font-black tracking-tighter italic">The Full Modular Set</h3>
@@ -354,7 +354,7 @@ export default function Home() {
                 </div>
 
                 {/* 2. Top */}
-                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-2 lg:-mt-4">
+                <div className="relative w-[28%] lg:w-[25%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-6 lg:-mt-4">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-md" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -370,7 +370,7 @@ export default function Home() {
                 </div>
 
                 {/* 3 & 4. Coverups (Side by Side) */}
-                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-6 lg:-mt-10">
+                <div className="w-full flex justify-center items-end gap-2 lg:gap-4 z-40 -mt-12 lg:-mt-10">
                   {/* Short Coverup */}
                   <div className="relative w-[30%] lg:w-[28%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md" alt="Short Coverup" />
@@ -405,7 +405,7 @@ export default function Home() {
                 </div>
 
                 {/* 5. Leggings */}
-                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-2 lg:-mt-4">
+                <div className="relative w-[22%] lg:w-[20%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-6 lg:-mt-4">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -423,13 +423,13 @@ export default function Home() {
             </div>
 
             {/* Right: Why you'll love it (High-Impact Stats) */}
-            <div className="space-y-6 lg:space-y-12 flex flex-col justify-center h-full">
+            <div className="space-y-2 lg:space-y-12 flex flex-col justify-center h-full">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
                </div>
                
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-12">
                 {[
                   { title: "Zero Cling. Full Confidence.", text: "Engineered fabric that never sticks. Move freely, look flawless." },
                   { title: "All-Day Comfort.", text: "Breathable, lightweight performance you won't want to take off." },
