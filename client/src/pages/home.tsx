@@ -470,7 +470,7 @@ export default function Home() {
         </section>
 
         {/* Section 4: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 py-4 lg:py-10 flex flex-col justify-end bg-[#fef8e1]">
+        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 pt-8 pb-4 lg:pt-16 lg:pb-10 flex flex-col justify-between bg-[#fef8e1]">
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-5 lg:space-y-8">
             
             {/* Reviews Title */}
@@ -505,9 +505,12 @@ export default function Home() {
                  </motion.div>
                ))}
             </div>
-
+          </div>
+          
+          <div className="w-full mt-auto pt-8">
             <Footer />
           </div>
+
           {/* Section 4 Ambient Starfish Overlay */}
           <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
             <motion.img src="/images/starfish-coral.png" className="absolute top-[10%] right-[5%] w-12 lg:w-20 pointer-events-none" animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} />
