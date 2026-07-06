@@ -505,6 +505,10 @@ export default function Home() {
                  </motion.div>
                ))}
             </div>
+
+            <p className="text-xs lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-6 lg:mb-12">
+              Order today and get same day delivery in Jeddah.
+            </p>
           </div>
           
           <div className="w-full mt-auto pt-8">

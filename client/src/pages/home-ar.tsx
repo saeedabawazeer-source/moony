@@ -141,7 +141,7 @@ export default function HomeAR() {
                     WebkitTextStroke: "4px #000000"
                   }}
                 >
-                  <span dir="rtl" className="block">اجعلي كل<br/>موجة تحسب.</span>
+                  <span dir="rtl" className="block">خلي كل موجة<br/>تسوى.</span>
                 </h1>
               </div>
 
@@ -150,7 +150,7 @@ export default function HomeAR() {
             </div>
             <div className="relative z-30 mb-4 lg:mb-6">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037] font-kufi">
-                من شواطئ جدة إلى باب بيتك.
+                من بحر جدة لِباب بيتك.
               </p>
             </div>
             
@@ -317,16 +317,16 @@ export default function HomeAR() {
             {/* Right: Why you'll love it (High-Impact Stats) - Mirrored To Right in RTL */}
             <div className="space-y-2 lg:space-y-16 flex flex-col justify-center text-right order-2 lg:order-2 h-full lg:-translate-y-12">
                <div className="space-y-1">
-                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">أداء عالي</p>
-                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">لماذا ستحبين موني؟</h2>
+                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">عملي ومريح</p>
+                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">ليش بتحبين موني؟</h2>
                </div>
 
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-12 px-2 lg:px-0 mt-4 lg:mt-0">
                 {[
-                  { title: "ما يلتصق. وما تحتاجين تفكرين.", text: "القماش مصمم يبقى بعيد عن جسمك. تتحركين بحرية وتظهرين بأحسن صورة." },
-                  { title: "ارتاحي من أول لحظة.", text: "خفيف، يتنفس، وما تحسين إنك لابسة شيء ثقيل." },
-                  { title: "حماية الشمس مدمجة.", text: "UPF 50+ منسوجة في القماش. ما تحتاجين تعيدين الكريم كل شوي." },
-                  { title: "ينشف قبل ما توصلين السيارة.", text: "تقنية تجفيف سريعة. ودعي البقع الرطبة للأبد." }
+                  { title: "ما يلصق في الجسم.", text: "القماش مصمم عشان يعطيك حريتك. تحركي براحتك واطلعي بأحلى طلة." },
+                  { title: "راحة طول اليوم.", text: "قماش خفيف، يتنفس، وما كأنك لابسة شي ثقيل." },
+                  { title: "حماية مدمجة من الشمس.", text: "عامل حماية UPF 50+ منسوج في القماش، عشان ما تشيلين هم الشمس." },
+                  { title: "ينشف قبل توصلين سيارتك.", text: "تقنية تجفيف سريعة عشان تودعين الإحراج." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
@@ -460,17 +460,17 @@ export default function HomeAR() {
             
             {/* Reviews Title */}
             <div className="space-y-1" dir="rtl">
-              <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">ماذا قلن</p>
-              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجارب أخواتنا في موني</h2>
+              <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">قالوا عنّا</p>
+              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجارب بنات موني</h2>
             </div>
 
             {/* Glowing Reviews (UGC Masonry Grid) */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 w-full mt-2 lg:mt-4 pb-8 lg:pb-20" dir="rtl">
                {[
-                 { img: "/images/daydream-1.jpeg", quote: "مهووسة بهذا الطقم!", author: "سارة ج." },
-                 { img: "/images/daydream-2.jpeg", quote: "أخيراً، لا يلتصق بالجسم.", author: "لينا م." },
-                 { img: "/images/daydream-3.jpeg", quote: "توصيل سريع جداً", author: "مريم أ." },
-                 { img: "/images/daydream-4.jpeg", quote: "يستحق كل ريال", author: "نوف ر." }
+                 { img: "/images/daydream-1.jpeg", quote: "مرة حبيت الطقم، يجنن!", author: "سارة ج." },
+                 { img: "/images/daydream-2.jpeg", quote: "أخيراً لقيت لبس سباحة ما يلصق في الجسم!", author: "لينا م." },
+                 { img: "/images/daydream-3.jpeg", quote: "التوصيل كان مرة سريع!", author: "مريم أ." },
+                 { img: "/images/daydream-4.jpeg", quote: "يستاهل كل ريال تدفعينه فيه.", author: "نوف ر." }
                ].map((review, i) => (
                  <motion.div 
                    key={i}
@@ -499,6 +499,10 @@ export default function HomeAR() {
                  </motion.div>
                ))}
             </div>
+
+            <p className="text-xs lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-6 lg:mb-12 font-kufi" dir="rtl">
+              اطلبي اليوم ويوصلك بنفس اليوم في جدة.
+            </p>
           </div>
           <div className="w-full mt-auto pt-8">
             <Footer />
