@@ -141,7 +141,7 @@ export default function HomeAR() {
                     WebkitTextStroke: "4px #000000"
                   }}
                 >
-                  <span dir="rtl" className="block">خلي كل موجة<br/>تسوى.</span>
+                  <span dir="rtl" className="block">خلي كل موجة<br/>تنحسب لك.</span>
                 </h1>
               </div>
 
@@ -326,7 +326,7 @@ export default function HomeAR() {
                   { title: "ما يلصق في الجسم.", text: "القماش مصمم عشان يعطيك حريتك. تحركي براحتك واطلعي بأحلى طلة." },
                   { title: "راحة طول اليوم.", text: "قماش خفيف، يتنفس، وما كأنك لابسة شي ثقيل." },
                   { title: "حماية مدمجة من الشمس.", text: "عامل حماية UPF 50+ منسوج في القماش، عشان ما تشيلين هم الشمس." },
-                  { title: "ينشف قبل توصلين سيارتك.", text: "تقنية تجفيف سريعة عشان تودعين الإحراج." }
+                  { title: "ينشف قبل ما توصلين للسيارة.", text: "تقنية تجفيف سريعة عشان تودعين الإحراج." }
                 ].map((spec, i) => (
                   <motion.div 
                     key={i}
