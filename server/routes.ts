@@ -120,6 +120,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to create charge" });
     }
   });
+  // Verify Tap Charge Status
+  app.get("/api/verify-charge/:charge_id", async (req, res) => {
+    try {
+      const tapRes = await fetch(`https://api.tap.company/v2/charges/${req.params.charge_id}`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${process.env.TAP_SECRET_KEY}`,
+          "Accept": "application/json"
+        }
+      });
+      const data = await tapRes.json();
+      res.json(data);
+    } catch (error) {
+      console.error("[TAP] Verify Exception:", error);
+      res.status(500).json({ message: "Failed to verify charge" });
+    }
+  });
 
   // --- Tap Webhook (Receives successful payment confirmation) ---
   app.post("/api/webhook/tap", async (req, res) => {

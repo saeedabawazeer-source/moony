@@ -15,6 +15,7 @@ export default function CartDrawer() {
   const [showForm, setShowForm] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const [paymentUrl, setPaymentUrl] = useState("");
+  const [paymentId, setPaymentId] = useState("");
   const [formData, setFormData] = useState({ 
     fullName: "", 
     phone: "", 
@@ -65,6 +66,7 @@ export default function CartDrawer() {
       setStep("checkout");
       setShowForm(false);
       setPaymentUrl("");
+      setPaymentId("");
       setPaymentError("");
       setFormData({ fullName: "", phone: "", city: "", district: "", houseNumber: "" });
     }, 400);
@@ -114,12 +116,31 @@ export default function CartDrawer() {
     }
   };
 
-  const handleIframeLoad = (e: React.SyntheticEvent<HTMLIFrameElement>) => {
+  const handleIframeLoad = async (e: React.SyntheticEvent<HTMLIFrameElement>) => {
     try {
       const iframe = e.currentTarget;
       const iframeUrl = iframe.contentWindow?.location.href;
       if (iframeUrl && iframeUrl.includes("/success")) {
-        setStep("success");
+        const urlObj = new URL(iframeUrl);
+        const tapId = urlObj.searchParams.get("tap_id");
+        if (tapId) {
+          setPaymentId(tapId);
+          try {
+            const res = await fetch(`/api/verify-charge/${tapId}`);
+            const data = await res.json();
+            if (data.status === "CAPTURED" || data.status === "AUTHORIZED") {
+              setStep("success");
+            } else {
+              setPaymentError(isAr ? "فشلت عملية الدفع. يرجى المحاولة مرة أخرى." : "Payment failed or was cancelled. Please try again.");
+              setStep("error");
+            }
+          } catch (err) {
+            setPaymentError(isAr ? "فشلت عملية الدفع. يرجى المحاولة مرة أخرى." : "Payment verification failed. Please try again.");
+            setStep("error");
+          }
+        } else {
+          setStep("success"); // fallback
+        }
       }
     } catch {
       // Cross-origin
@@ -133,7 +154,7 @@ export default function CartDrawer() {
 
   // The Receipt Content which will be shared between checkout and success
   const renderReceiptContent = () => (
-    <div className="flex flex-col flex-1 min-h-0 bg-white relative w-full">
+    <div className="flex flex-col bg-white relative w-full h-auto">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b-2 border-dashed border-gray-200 shrink-0 sticky top-0 bg-white z-10">
         <div className="flex flex-col">
@@ -215,82 +236,77 @@ export default function CartDrawer() {
           </div>
         </div>
 
-        {/* Shipping Form directly on Receipt */}
-        <AnimatePresence initial={false}>
-          {showForm && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <div className="px-6 py-6 border-t border-gray-100 bg-gray-50/50">
-                 <h3 className={`font-bold text-xl text-black mb-6 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
-                 <div className="space-y-4">
-              <div className="flex flex-col border-b border-gray-200 pb-2 bg-transparent">
-                <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.fullName}</label>
-                <input
-                  required
-                  disabled={isSuccess}
-                  value={formData.fullName}
-                  onChange={e => setFormData(f => ({ ...f, fullName: e.target.value }))}
-                  className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 disabled:opacity-70 disabled:bg-transparent"
-                />
-              </div>
-
-              <div className="flex flex-col border-b border-gray-200 pb-2">
-                <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.phone}</label>
-                <input
-                  required
-                  disabled={isSuccess}
-                  type="tel"
-                  minLength={9}
-                  maxLength={15}
-                  value={formData.phone}
-                  onChange={e => setFormData(f => ({ ...f, phone: e.target.value.replace(/[^0-9+]/g, '') }))}
-                  className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 disabled:opacity-70"
-                  dir="ltr"
-                  style={{ textAlign: isAr ? 'right' : 'left' }}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col border-b border-gray-200 pb-2">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.city}</label>
+        {/* Shipping Form or Success Details directly on Receipt */}
+        {!isSuccess ? (
+          <AnimatePresence initial={false}>
+            {showForm && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 py-6 border-t border-gray-100 bg-gray-50/50">
+                   <h3 className={`font-bold text-xl text-black mb-6 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
+                   <div className="space-y-4">
+                <div className="flex flex-col border-b border-gray-200 pb-2 bg-transparent">
+                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.fullName}</label>
                   <input
                     required
-                    disabled={isSuccess}
-                    value={formData.city}
-                    onChange={e => setFormData(f => ({ ...f, city: e.target.value }))}
-                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0 disabled:opacity-70"
+                    value={formData.fullName}
+                    onChange={e => setFormData(f => ({ ...f, fullName: e.target.value }))}
+                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
                   />
                 </div>
+
                 <div className="flex flex-col border-b border-gray-200 pb-2">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.district}</label>
+                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.phone}</label>
                   <input
                     required
-                    disabled={isSuccess}
-                    value={formData.district}
-                    onChange={e => setFormData(f => ({ ...f, district: e.target.value }))}
-                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0 disabled:opacity-70"
+                    type="tel"
+                    minLength={9}
+                    maxLength={15}
+                    value={formData.phone}
+                    onChange={e => setFormData(f => ({ ...f, phone: e.target.value.replace(/[^0-9+]/g, '') }))}
+                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
+                    dir="ltr"
+                    style={{ textAlign: isAr ? 'right' : 'left' }}
                   />
                 </div>
-              </div>
 
-              <div className="flex flex-col border-b border-gray-200 pb-2">
-                <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.houseNumber}</label>
-                <input
-                  required
-                  disabled={isSuccess}
-                  value={formData.houseNumber}
-                  onChange={e => setFormData(f => ({ ...f, houseNumber: e.target.value }))}
-                  className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 disabled:opacity-70"
-                />
-              </div>
-           </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col border-b border-gray-200 pb-2">
+                    <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.city}</label>
+                    <input
+                      required
+                      value={formData.city}
+                      onChange={e => setFormData(f => ({ ...f, city: e.target.value }))}
+                      className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
+                    />
+                  </div>
+                  <div className="flex flex-col border-b border-gray-200 pb-2">
+                    <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.district}</label>
+                    <input
+                      required
+                      value={formData.district}
+                      onChange={e => setFormData(f => ({ ...f, district: e.target.value }))}
+                      className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
+                    />
+                  </div>
+                </div>
 
-           {!isSuccess && (
+                <div className="flex flex-col border-b border-gray-200 pb-2">
+                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.houseNumber}</label>
+                  <input
+                    required
+                    value={formData.houseNumber}
+                    onChange={e => setFormData(f => ({ ...f, houseNumber: e.target.value }))}
+                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
+                  />
+                </div>
+             </div>
+
              <label className="flex items-center gap-3 cursor-pointer bg-white p-4 rounded-xl border border-gray-200 mt-6 hover:bg-gray-50 transition-colors shadow-sm">
                <div className="relative flex items-center justify-center">
                  <input 
@@ -307,12 +323,36 @@ export default function CartDrawer() {
                  </p>
                </div>
              </label>
-           )}
-        </div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</div>
+          </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        ) : (
+          <div className="px-6 py-6 border-t-2 border-dashed border-gray-200 bg-gray-50">
+            <h3 className={`font-bold text-xl text-black mb-4 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t.fullName}</span>
+                <span className="text-sm font-bold text-black">{formData.fullName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t.phone}</span>
+                <span className="text-sm font-bold text-black" dir="ltr">{formData.phone}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "العنوان" : "Address"}</span>
+                <span className="text-sm font-bold text-black text-right max-w-[60%]">{formData.city}, {formData.district}, {formData.houseNumber}</span>
+              </div>
+              {paymentId && (
+                <div className="flex justify-between border-t border-gray-200 mt-4 pt-4">
+                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "رقم الطلب" : "Order Number"}</span>
+                  <span className="text-sm font-bold text-black font-mono">{paymentId}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
       
       {!isSuccess && (
         <div className="px-6 pb-6 pt-4 shrink-0 bg-white border-t border-gray-100 sticky bottom-0 z-10 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
@@ -377,7 +417,7 @@ export default function CartDrawer() {
               <AnimatePresence mode="wait">
                 {/* ── CHECKOUT STEP ── */}
                 {step === "checkout" && (
-                  <motion.div key="checkout" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex-1 w-full flex flex-col min-h-0 bg-transparent">
+                  <motion.div key="checkout" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col bg-transparent h-auto">
                     {items.length === 0 ? (
                       <div className="flex-1 flex flex-col w-full h-[50dvh] bg-white items-center justify-center gap-4 text-center px-8 relative">
                         <button onClick={handleClose} className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
@@ -388,7 +428,7 @@ export default function CartDrawer() {
                         <button onClick={handleClose} className="text-sm font-black text-[#e5815c] underline">{t.continueShopping}</button>
                       </div>
                     ) : (
-                      <form onSubmit={handleSubmit} className="flex flex-col flex-1 w-full min-h-0 bg-transparent">
+                      <form onSubmit={handleSubmit} className="flex flex-col w-full bg-transparent h-auto">
                         {renderReceiptContent()}
                       </form>
                     )}
@@ -424,7 +464,7 @@ export default function CartDrawer() {
                       transition={{ type: "spring", damping: 12, delay: 0.3 }}
                       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none"
                     >
-                      <div className="border-8 border-green-500 text-green-500 rounded-xl px-8 py-4 text-5xl font-black tracking-widest uppercase opacity-80 mix-blend-multiply shadow-lg shadow-green-500/20 bg-green-50/80 backdrop-blur-sm transform-gpu">
+                      <div className="border-[8px] border-green-600 text-green-600 rounded-3xl px-12 py-4 text-6xl font-black tracking-[0.2em] uppercase opacity-95 shadow-[0_0_50px_rgba(34,197,94,0.3)] bg-green-50/90 backdrop-blur-md transform-gpu font-sans whitespace-nowrap">
                         PAID
                       </div>
                     </motion.div>
