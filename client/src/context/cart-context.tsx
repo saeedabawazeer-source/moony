@@ -23,39 +23,70 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(() => {
+    try {
+      const stored = localStorage.getItem("moony_cart");
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
   const [isOpen, setIsOpen] = useState(false);
+
+  // Save to localStorage whenever items change
+  const saveItems = (newItems: CartItem[]) => {
+    setItems(newItems);
+    try {
+      localStorage.setItem("moony_cart", JSON.stringify(newItems));
+    } catch {}
+  };
 
   const addToCart = useCallback((product: Product, size: string, quantity: number) => {
     setItems(prev => {
       const existing = prev.find(i => i.product.id === product.id && i.size === size);
+      let newItems;
       if (existing) {
-        return prev.map(i =>
+        newItems = prev.map(i =>
           i.product.id === product.id && i.size === size
             ? { ...i, quantity: i.quantity + quantity }
             : i
         );
+      } else {
+        newItems = [...prev, { product, size, quantity }];
       }
-      return [...prev, { product, size, quantity }];
+      try { localStorage.setItem("moony_cart", JSON.stringify(newItems)); } catch {}
+      return newItems;
     });
     setIsOpen(true); // Auto-open cart on add
   }, []);
 
   const removeFromCart = useCallback((productId: string, size: string) => {
-    setItems(prev => prev.filter(i => !(i.product.id === productId && i.size === size)));
+    setItems(prev => {
+      const newItems = prev.filter(i => !(i.product.id === productId && i.size === size));
+      try { localStorage.setItem("moony_cart", JSON.stringify(newItems)); } catch {}
+      return newItems;
+    });
   }, []);
 
   const updateQuantity = useCallback((productId: string, size: string, quantity: number) => {
-    if (quantity <= 0) {
-      setItems(prev => prev.filter(i => !(i.product.id === productId && i.size === size)));
-    } else {
-      setItems(prev => prev.map(i =>
-        i.product.id === productId && i.size === size ? { ...i, quantity } : i
-      ));
-    }
+    setItems(prev => {
+      let newItems;
+      if (quantity <= 0) {
+        newItems = prev.filter(i => !(i.product.id === productId && i.size === size));
+      } else {
+        newItems = prev.map(i =>
+          i.product.id === productId && i.size === size ? { ...i, quantity } : i
+        );
+      }
+      try { localStorage.setItem("moony_cart", JSON.stringify(newItems)); } catch {}
+      return newItems;
+    });
   }, []);
 
-  const clearCart = useCallback(() => setItems([]), []);
+  const clearCart = useCallback(() => {
+    setItems([]);
+    try { localStorage.removeItem("moony_cart"); } catch {}
+  }, []);
   const openCart = useCallback(() => setIsOpen(true), []);
   const closeCart = useCallback(() => setIsOpen(false), []);
 

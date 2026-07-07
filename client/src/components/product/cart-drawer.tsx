@@ -100,8 +100,8 @@ export default function CartDrawer() {
       });
       const data = await res.json();
       if (data.url) {
-        setPaymentUrl(data.url);
-        setStep("paying");
+        // Redirect completely to Tap's domain to ensure Apple Pay works perfectly
+        window.location.href = data.url;
       } else {
         console.error("No payment URL returned", data);
         setPaymentError(data.message || "Payment gateway did not return a URL. Please try again.");
@@ -116,36 +116,7 @@ export default function CartDrawer() {
     }
   };
 
-  const handleIframeLoad = async (e: React.SyntheticEvent<HTMLIFrameElement>) => {
-    try {
-      const iframe = e.currentTarget;
-      const iframeUrl = iframe.contentWindow?.location.href;
-      if (iframeUrl && iframeUrl.includes("/success")) {
-        const urlObj = new URL(iframeUrl);
-        const tapId = urlObj.searchParams.get("tap_id");
-        if (tapId) {
-          setPaymentId(tapId);
-          try {
-            const res = await fetch(`/api/verify-charge/${tapId}`);
-            const data = await res.json();
-            if (data.status === "CAPTURED" || data.status === "AUTHORIZED") {
-              setStep("success");
-            } else {
-              setPaymentError(isAr ? "فشلت عملية الدفع. يرجى المحاولة مرة أخرى." : "Payment failed or was cancelled. Please try again.");
-              setStep("error");
-            }
-          } catch (err) {
-            setPaymentError(isAr ? "فشلت عملية الدفع. يرجى المحاولة مرة أخرى." : "Payment verification failed. Please try again.");
-            setStep("error");
-          }
-        } else {
-          setStep("success"); // fallback
-        }
-      }
-    } catch {
-      // Cross-origin
-    }
-  };
+  // No handleIframeLoad needed anymore since we redirect the whole page
 
   const discountAmount = subscribeWhatsapp ? (totalPrice * 0.10) : 0;
   const grandTotal = totalPrice - discountAmount + DELIVERY;
@@ -353,7 +324,7 @@ export default function CartDrawer() {
           </div>
         )}
       </div>
-      
+
       {!isSuccess && (
         <div className="px-6 pb-6 pt-4 shrink-0 bg-white border-t border-gray-100 sticky bottom-0 z-10 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
           {!showForm ? (
@@ -435,22 +406,10 @@ export default function CartDrawer() {
                   </motion.div>
                 )}
 
-                {/* ── PAYMENT STEP ── */}
+                {/* ── PAYMENT STEP (DEPRECATED, using redirect) ── */}
                 {step === "paying" && (
-                  <motion.div key="paying" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col flex-1 w-full min-h-[70dvh] bg-white">
-                    <div className={`px-6 py-4 flex items-center gap-2 border-b border-gray-100 ${isAr ? "flex-row-reverse" : ""}`}>
-                      <button onClick={() => setStep("checkout")} className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-black transition-colors ${isAr ? "flex-row-reverse" : ""}`}>
-                        <i className={`fas ${isAr ? "fa-arrow-right" : "fa-arrow-left"}`}></i> {t.back}
-                      </button>
-                      <div className="flex-1" />
-                      <div className={`flex items-center gap-2 ${isAr ? "flex-row-reverse" : ""}`}>
-                        <i className="fas fa-lock text-green-600 text-xs"></i>
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-600">{t.securePayment}</span>
-                      </div>
-                    </div>
-                    <div className="flex-1 relative">
-                      <iframe src={paymentUrl} className="absolute inset-0 w-full h-full border-0" title="Tap Payment" allow="payment" onLoad={handleIframeLoad} />
-                    </div>
+                  <motion.div key="paying" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col flex-1 w-full min-h-[50dvh] bg-white items-center justify-center">
+                    <p className="font-bold text-lg text-gray-500 animate-pulse">{t.connecting}</p>
                   </motion.div>
                 )}
 

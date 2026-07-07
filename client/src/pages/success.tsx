@@ -3,9 +3,12 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useCart } from "@/context/cart-context";
 
 export default function Success() {
   const [orderId, setOrderId] = useState<string | null>(null);
+
+  const { clearCart } = useCart();
 
   useEffect(() => {
     // Extract Tap charge ID or generic order ID from URL if present
@@ -15,7 +18,10 @@ export default function Success() {
       // Shorten the long Tap charge ID (e.g. chg_TS02... -> last 8 chars)
       setOrderId(tapId.slice(-8).toUpperCase());
     }
-  }, []);
+    
+    // Clear the cart securely since they completed checkout
+    clearCart();
+  }, [clearCart]);
 
   return (
     <div className="relative h-[100dvh] w-screen bg-[#e5815c] overflow-hidden selection:bg-[#6bb7b3] selection:text-white font-serif">
