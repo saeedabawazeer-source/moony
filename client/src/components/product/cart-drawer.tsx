@@ -12,7 +12,7 @@ export default function CartDrawer() {
   const { items, removeFromCart, updateQuantity, clearCart, totalPrice, isOpen, closeCart } = useCart();
   const [step, setStep] = useState<"checkout" | "paying" | "success" | "error">("checkout");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+
   const [paymentError, setPaymentError] = useState("");
   const [paymentUrl, setPaymentUrl] = useState("");
   const [paymentId, setPaymentId] = useState("");
@@ -64,7 +64,7 @@ export default function CartDrawer() {
     closeCart();
     setTimeout(() => {
       setStep("checkout");
-      setShowForm(false);
+      setStep("checkout");
       setPaymentUrl("");
       setPaymentId("");
       setPaymentError("");
@@ -100,6 +100,14 @@ export default function CartDrawer() {
       });
       const data = await res.json();
       if (data.url) {
+        localStorage.setItem("moony_order_metadata", JSON.stringify({
+          customer: formData,
+          items: items,
+          discountAmount,
+          grandTotal,
+          totalPrice,
+          delivery: DELIVERY
+        }));
         // Redirect completely to Tap's domain to ensure Apple Pay works perfectly
         window.location.href = data.url;
       } else {
@@ -148,7 +156,7 @@ export default function CartDrawer() {
         <div className="px-6 py-6 space-y-6">
           {items.map((item) => (
             <div key={`${item.product.id}-${item.size}`} className="flex justify-between items-start gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
-              <div className="w-16 h-16 rounded-sm overflow-hidden flex-shrink-0 bg-gray-50 border border-gray-300 p-0.5 grayscale">
+              <div className="w-16 h-16 rounded-sm overflow-hidden flex-shrink-0 bg-gray-50 border border-gray-300 p-0.5">
                 <img src={item.product.images[0]} className="w-full h-full object-cover rounded-sm" alt={item.product.name} />
               </div>
               <div className="flex-1">
@@ -209,16 +217,7 @@ export default function CartDrawer() {
 
         {/* Shipping Form or Success Details directly on Receipt */}
         {!isSuccess ? (
-          <AnimatePresence initial={false}>
-            {showForm && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 py-6 border-t border-gray-100 bg-gray-50/50">
+          <div className="px-6 py-6 border-t border-gray-100 bg-gray-50/50">
                    <h3 className={`font-bold text-xl text-black mb-6 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
                    <div className="space-y-4">
                 <div className="flex flex-col border-b border-gray-200 pb-2 bg-transparent">
@@ -295,9 +294,6 @@ export default function CartDrawer() {
                </div>
              </label>
           </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         ) : (
           <div className="px-6 py-6 border-t-2 border-dashed border-gray-200 bg-gray-50">
             <h3 className={`font-bold text-xl text-black mb-4 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
@@ -327,23 +323,13 @@ export default function CartDrawer() {
 
       {!isSuccess && (
         <div className="px-6 pb-6 pt-4 shrink-0 bg-white border-t border-gray-100 sticky bottom-0 z-10 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
-          {!showForm ? (
-            <button
-              type="button"
-              onClick={() => setShowForm(true)}
-              className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all flex items-center justify-center gap-2 ${isAr ? "font-kufi" : ""}`}
-            >
-              {t.proceed}
-            </button>
-          ) : (
-            <button
-              type="submit"
-              disabled={isSubmitting || !formData.fullName || !formData.phone || !formData.city || !formData.district || !formData.houseNumber}
-              className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${isAr ? "font-kufi" : ""}`}
-            >
+          <button
+            type="submit"
+            disabled={isSubmitting || !formData.fullName || !formData.phone || !formData.city || !formData.district || !formData.houseNumber}
+            className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${isAr ? "font-kufi" : ""}`}
+          >
               {isSubmitting ? t.connecting : t.payNow + grandTotal.toFixed(2)}
             </button>
-          )}
         </div>
       )}
 
@@ -382,7 +368,7 @@ export default function CartDrawer() {
               animate={step === "success" ? { y: 0, opacity: 1, scale: 0.95 } : { y: 0, opacity: 1, scale: 1 }}
               exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className={`pointer-events-auto relative w-full max-w-[500px] mx-auto max-h-[85dvh] rounded-t-3xl overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] flex flex-col shadow-2xl bg-white ${isAr ? "font-kufi text-right" : "font-sans text-left"}`}
+              className={`pointer-events-auto relative w-full max-w-[500px] mx-auto max-h-[95dvh] rounded-t-3xl overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] flex flex-col shadow-2xl bg-white ${isAr ? "font-kufi text-right" : "font-sans text-left"}`}
               dir={isAr ? "rtl" : "ltr"}
             >
               <AnimatePresence mode="wait">
