@@ -101,7 +101,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       if (!tapRes.ok) {
         console.error("[TAP] Error response:", JSON.stringify(data));
-        const errorMessage = data.errors?.[0]?.description || "Payment gateway error";
+        const errObj = data.errors?.[0];
+        const errorMessage = errObj ? `Error ${errObj.code}: ${errObj.description}` : "Payment gateway error";
         return res.status(500).json({ message: errorMessage, details: data });
       }
 
