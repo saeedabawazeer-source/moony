@@ -91,27 +91,27 @@ function initializeIfEmpty() {
   if (sheet.getLastRow() <= 1) {
     // Add headers if missing
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Product", "Size", "Stock", "LastUpdated"]);
+      sheet.appendRow(["Product", "Size", "Stock", "Sold", "LastUpdated"]);
       // Bold + freeze header row
-      sheet.getRange(1, 1, 1, 4).setFontWeight("bold");
+      sheet.getRange(1, 1, 1, 5).setFontWeight("bold");
       sheet.setFrozenRows(1);
     }
     // Seed with initial inventory
     const initial = [
-      ["daydream-set", "S", 9],
-      ["daydream-set", "M", 16],
-      ["daydream-set", "L", 18],
-      ["daydream-set", "XL", 9],
-      ["aqua-glow-set", "S", 8],
-      ["aqua-glow-set", "M", 13],
-      ["aqua-glow-set", "L", 17],
-      ["aqua-glow-set", "XL", 8],
+      ["daydream-set", "S", 9, 0],
+      ["daydream-set", "M", 16, 0],
+      ["daydream-set", "L", 18, 0],
+      ["daydream-set", "XL", 9, 0],
+      ["aqua-glow-set", "S", 8, 0],
+      ["aqua-glow-set", "M", 13, 0],
+      ["aqua-glow-set", "L", 16, 0],
+      ["aqua-glow-set", "XL", 8, 0],
     ];
     const now = new Date().toISOString();
-    initial.forEach(([p, s, q]) => sheet.appendRow([p, s, q, now]));
+    initial.forEach(([p, s, q, sold]) => sheet.appendRow([p, s, q, sold, now]));
     
     // Auto-resize columns
-    sheet.autoResizeColumns(1, 4);
+    sheet.autoResizeColumns(1, 5);
   }
 }
 
@@ -201,12 +201,17 @@ function doPost(e) {
       return jsonResponse({ success: false, message: "Insufficient stock", remaining: current }, 409);
     }
     const newStock = current - quantity;
+    const currentSold = Number(invSheet.getRange(row, 4).getValue() || 0);
     const now = new Date().toISOString();
     invSheet.getRange(row, 3).setValue(newStock);
-    invSheet.getRange(row, 4).setValue(now);
+    invSheet.getRange(row, 4).setValue(currentSold + quantity); // Update Sold column
+    invSheet.getRange(row, 5).setValue(now); // Update LastUpdated column
     
+    // Visual indicator: highlight the row yellow to show recent decrease, red if 0
     if (newStock === 0) {
-      invSheet.getRange(row, 1, 1, 4).setBackground("#ffcccc");
+      invSheet.getRange(row, 1, 1, 5).setBackground("#ffcccc"); // Red
+    } else {
+      invSheet.getRange(row, 1, 1, 5).setBackground("#fff3cd"); // Yellow indication of decrease
     }
     
     return jsonResponse({ success: true, remaining: newStock });
@@ -254,8 +259,8 @@ function onOpen() {
 function resetInventory() {
   const sheet = getInventorySheet();
   sheet.clear();
-  sheet.appendRow(["Product", "Size", "Stock", "LastUpdated"]);
-  sheet.getRange(1, 1, 1, 4).setFontWeight("bold");
+  sheet.appendRow(["Product", "Size", "Stock", "Sold", "LastUpdated"]);
+  sheet.getRange(1, 1, 1, 5).setFontWeight("bold");
   sheet.setFrozenRows(1);
   initializeIfEmpty();
   SpreadsheetApp.getUi().alert("Inventory reset to defaults!");

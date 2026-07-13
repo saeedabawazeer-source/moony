@@ -166,7 +166,7 @@ export class MemStorage implements IStorage {
     // Fallback in-memory inventory (used when Sheets is not configured)
     this.inventory = {
       "daydream-set": { "S": 9, "M": 16, "L": 18, "XL": 9 },
-      "aqua-glow-set": { "S": 8, "M": 13, "L": 17, "XL": 8 }
+      "aqua-glow-set": { "S": 8, "M": 13, "L": 16, "XL": 8 }
     };
   }
 
