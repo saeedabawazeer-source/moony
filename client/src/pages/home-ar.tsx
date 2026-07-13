@@ -375,7 +375,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 2. Top */}
-                <div className="relative w-[45%] lg:w-[40%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-16 lg:-mt-12">
+                <div className="relative w-[45%] lg:w-[40%] z-20 hover:z-50 hover:scale-110 transition-transform -mt-20 lg:-mt-12">
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Top" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
@@ -390,7 +390,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 3 & 4. Coverups (Side by Side) */}
-                <div className="w-full flex justify-center items-end gap-4 lg:gap-8 z-40 -mt-28 lg:-mt-32">
+                <div className="w-full flex justify-center items-end gap-4 lg:gap-8 z-40 -mt-36 lg:-mt-32">
                   {/* Short Coverup */}
                   <div className="relative w-[38%] lg:w-[32%] hover:scale-110 transition-transform">
                     <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Short Coverup" />
@@ -421,7 +421,7 @@ export default function HomeAR() {
                 </div>
 
                 {/* 5. Leggings */}
-                <div className="relative w-[30%] lg:w-[25%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-16 lg:-mt-12">
+                <div className="relative w-[30%] lg:w-[25%] z-10 hover:z-50 hover:scale-110 transition-transform -mt-24 lg:-mt-12">
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Leggings" />
                   <motion.div 
                     initial={{ opacity: 0, scale: 0 }}
