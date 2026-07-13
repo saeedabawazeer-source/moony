@@ -147,7 +147,7 @@ export default function Success() {
                   {/* ── Header ── */}
                   <div className="px-6 pt-8 pb-5 text-center relative z-20">
                     <div className="flex items-center justify-center gap-1.5 mb-4" dir="ltr">
-                      <span className="text-lg">✦</span>
+                      <img src="/images/starfish-black.png" alt="Moony Logo" className="w-4 h-4 opacity-80" />
                       <p className="text-lg font-black lowercase tracking-tight text-black font-serif">moony</p>
                     </div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 font-sans">{isAr ? "إيصال الطلب" : "Order Confirmation"}</p>
@@ -230,10 +230,13 @@ export default function Success() {
                     </div>
                   )}
 
-                  {/* ── Footer ── */}
                   <div className="px-6 py-6 text-center relative z-20">
                     <p className="text-[10px] text-gray-400 font-sans mb-1">{isAr ? "سنتواصل معك عبر واتساب لتنسيق التوصيل" : "We'll contact you via WhatsApp to coordinate delivery."}</p>
-                    <p className="text-xs text-gray-400 font-sans mt-3">— ✦ —</p>
+                    <div className="flex items-center justify-center gap-2 mt-3 text-gray-300">
+                      <span>—</span>
+                      <img src="/images/starfish-black.png" alt="" className="w-3 h-3 opacity-30 grayscale" />
+                      <span>—</span>
+                    </div>
                   </div>
                 </div>
 
