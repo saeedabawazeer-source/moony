@@ -454,7 +454,7 @@ export default function HomeAR() {
             {/* Reviews Title */}
             <div className="space-y-1" dir="rtl">
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">قالوا عنّا</p>
-              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجارب بنات موني</h2>
+              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجربة نجوم موني</h2>
             </div>
 
             {/* Glowing Reviews (UGC Masonry Grid) */}
@@ -494,7 +494,7 @@ export default function HomeAR() {
             </div>
 
             <p className="text-xs lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-6 lg:mb-12 font-kufi" dir="rtl">
-              اطلبي اليوم ويوصلك بنفس اليوم في جدة.
+              اطلبي ويوصلك في نفس اليوم في جده
             </p>
           </div>
           <div className="w-full mt-auto pt-8">
