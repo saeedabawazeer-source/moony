@@ -167,7 +167,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   action: "addOrder",
-                  orderId: charge.id || `ORD-${Date.now()}`,
+                  orderId: `MNS-${(charge.id || "").slice(-5).toUpperCase()}`,
                   name: customerName || "Unknown",
                   email: metadata.email || "N/A",
                   phone: phone || "N/A",
@@ -191,8 +191,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const chatId = process.env.TELEGRAM_CHAT_ID;
         
         if (botToken && chatId) {
+          const moonyOrderId = `MNS-${(charge.id || "").slice(-5).toUpperCase()}`;
           const itemSummary = items.map((i: any) => `${i.qty}x ${i.productName || i.name || 'Product'} (Size: ${i.size})`).join("\n");
-          const message = `🎉 *NEW ORDER RECEIVED!*\n\n*Order ID:* \`${charge.id}\`\n*Customer:* ${customerName || 'N/A'}\n*Phone:* ${phone || 'N/A'}\n*Address:* ${address || 'N/A'}\n\n*Items:*\n${itemSummary}\n\n*Total:* ${charge.amount} ${charge.currency}`;
+          const message = `🎉 *NEW ORDER RECEIVED!*\n\n*Order ID:* \`${moonyOrderId}\`\n*Customer:* ${customerName || 'N/A'}\n*Phone:* ${phone || 'N/A'}\n*Address:* ${address || 'N/A'}\n\n*Items:*\n${itemSummary}\n\n*Total:* ${charge.amount} ${charge.currency}`;
           
           try {
             await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {

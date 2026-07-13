@@ -25,7 +25,7 @@ export default function Success() {
         return;
       }
 
-      setOrderId(tapId.slice(-8).toUpperCase());
+      setOrderId(`MNS-${tapId.slice(-5).toUpperCase()}`);
 
       try {
         const res = await fetch(`/api/verify-charge/${tapId}`);
