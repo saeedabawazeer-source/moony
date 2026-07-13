@@ -10,29 +10,50 @@ export default function Success() {
   const isAr = location.startsWith("/ar");
   const [orderId, setOrderId] = useState<string | null>(null);
   const [orderMetadata, setOrderMetadata] = useState<any>(null);
+  const [paymentStatus, setPaymentStatus] = useState<"loading" | "success" | "failed">("loading");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { clearCart } = useCart();
 
   useEffect(() => {
-    // Extract Tap charge ID or generic order ID from URL if present
-    const params = new URLSearchParams(window.location.search);
-    const tapId = params.get("tap_id") || params.get("charge_id") || params.get("orderId");
-    if (tapId) {
-      // Shorten the long Tap charge ID (e.g. chg_TS02... -> last 8 chars)
+    const verifyPayment = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const tapId = params.get("tap_id") || params.get("charge_id") || params.get("orderId");
+      
+      if (!tapId) {
+        // No tapId, probably direct navigation, just show success for UX fallback
+        setPaymentStatus("success");
+        return;
+      }
+
       setOrderId(tapId.slice(-8).toUpperCase());
-    }
-    
-    // Try to get metadata from localStorage
+
+      try {
+        const res = await fetch(`/api/verify-charge/${tapId}`);
+        const data = await res.json();
+        
+        if (data.status === "CAPTURED" || data.status === "AUTHORIZED") {
+          setPaymentStatus("success");
+          clearCart(); // Only clear cart on actual success
+        } else {
+          setPaymentStatus("failed");
+          setErrorMessage(isAr ? "فشلت عملية الدفع أو تم إلغاؤها." : "Payment failed or was cancelled.");
+        }
+      } catch (err) {
+        setPaymentStatus("failed");
+        setErrorMessage(isAr ? "فشلت عملية الدفع. يرجى المحاولة مرة أخرى." : "Payment verification failed. Please try again.");
+      }
+    };
+
+    verifyPayment();
+
     const savedMeta = localStorage.getItem("moony_order_metadata");
     if (savedMeta) {
       try {
         setOrderMetadata(JSON.parse(savedMeta));
       } catch (e) {}
     }
-
-    // Clear the cart securely since they completed checkout
-    clearCart();
-  }, [clearCart]);
+  }, [clearCart, isAr]);
 
   return (
     <div className="relative h-[100dvh] w-screen bg-[#e5815c] overflow-hidden selection:bg-[#6bb7b3] selection:text-white font-serif">
@@ -48,32 +69,68 @@ export default function Success() {
           
           <main className="flex-1 flex flex-col items-center justify-start px-4 py-8 lg:py-16 relative z-10 w-full max-w-2xl mx-auto pb-32">
             
-            {/* The PAID stamp */}
-            <motion.div 
-              initial={{ scale: 3, opacity: 0, rotate: -15 }}
-              animate={{ scale: 1, opacity: 1, rotate: -15 }}
-              transition={{ type: "spring", damping: 12, delay: 0.3 }}
-              className="absolute top-1/4 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
-            >
-              <div className="border-[8px] border-green-600 text-green-600 rounded-3xl px-12 py-4 text-4xl lg:text-6xl font-black tracking-[0.2em] uppercase opacity-95 shadow-[0_0_50px_rgba(34,197,94,0.3)] bg-green-50/90 backdrop-blur-md transform-gpu font-sans whitespace-nowrap">
-                PAID
+            {paymentStatus === "loading" && (
+              <div className="flex flex-col items-center justify-center space-y-4 my-20">
+                <div className="w-12 h-12 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
+                <p className="font-bold uppercase tracking-widest text-sm font-mono">{isAr ? "جاري التحقق..." : "VERIFYING..."}</p>
               </div>
-            </motion.div>
+            )}
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl border border-gray-200 shadow-2xl w-full text-left overflow-hidden mt-8"
-              dir={isAr ? "rtl" : "ltr"}
-            >
-              <div className="px-6 py-6 border-b-2 border-dashed border-gray-200 bg-gray-50 flex justify-between items-center">
-                 <div className="flex items-center gap-2" dir="ltr">
-                   <img src="/images/starfish-black.png" alt="Moony Logo" className="w-4 h-4 opacity-50" />
-                   <p className="text-sm font-black lowercase tracking-tighter text-gray-500 font-serif">moony</p>
+            {paymentStatus === "failed" && (
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000] p-8 max-w-md w-full text-center mt-12 relative"
+              >
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
+                  <i className="fas fa-times text-2xl text-red-600"></i>
+                </div>
+                <h2 className="text-2xl font-black uppercase tracking-widest text-red-600 mb-2 font-mono">{isAr ? "فشلت العملية" : "PAYMENT FAILED"}</h2>
+                <p className="font-bold text-gray-600 mb-6 font-mono text-sm">{errorMessage}</p>
+                <Link href="/">
+                  <button className="bg-black text-white px-8 py-4 w-full font-black uppercase tracking-widest text-sm hover:bg-gray-800 transition-colors border-2 border-black font-mono">
+                    {isAr ? "حاول مرة أخرى" : "TRY AGAIN"}
+                  </button>
+                </Link>
+              </motion.div>
+            )}
+
+            {paymentStatus === "success" && (
+              <>
+                {/* The PAID stamp */}
+                <motion.div 
+                  initial={{ scale: 3, opacity: 0, rotate: -15 }}
+                  animate={{ scale: 1, opacity: 1, rotate: -15 }}
+                  transition={{ type: "spring", damping: 12, delay: 0.3 }}
+                  className="absolute top-[15%] lg:top-[20%] left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+                >
+                  <div className="border-[4px] lg:border-[6px] border-green-600 text-green-600 rounded-sm px-8 py-2 lg:px-10 lg:py-3 text-4xl lg:text-5xl font-black tracking-[0.2em] uppercase opacity-90 shadow-sm bg-transparent backdrop-blur-none transform-gpu font-mono whitespace-nowrap">
+                    PAID
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white border-2 border-black shadow-[8px_8px_0px_0px_#000] w-full text-left mt-8 relative"
+                  dir={isAr ? "rtl" : "ltr"}
+                >
+                  {/* Receipt Zig-Zag Top Edge (Ticket Effect) */}
+                  <div className="absolute -top-2 left-0 w-full h-2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+PHBvbHlnb24gcG9pbnRzPSIwLDEwIDUsMCAxMCwxMCAwLDEwIiBmaWxsPSIjZmZmIi8+PC9zdmc+')] bg-repeat-x"></div>
+              <div className="px-6 py-6 border-b-2 border-dashed border-gray-300 bg-white flex justify-between items-center mt-2">
+                 <div className="flex flex-col">
+                   <div className="flex items-center gap-1.5 mb-1" dir="ltr">
+                     <img src="/images/starfish-black.png" alt="Moony Logo" className="w-4 h-4 opacity-80 grayscale" />
+                     <p className="text-sm font-black lowercase tracking-tighter text-black font-serif">moony</p>
+                   </div>
+                   <h2 className={`text-2xl font-black uppercase tracking-widest text-black font-mono`}>
+                     {isAr ? "إيصال" : "RECEIPT"}
+                   </h2>
                  </div>
-                 <h2 className={`text-xl font-bold text-black ${isAr ? "font-kufi" : "font-serif"}`}>
-                   {isAr ? "إيصال الطلب" : "Receipt"}
-                 </h2>
+                 <div className="text-right">
+                   <p className="font-mono text-xs font-bold text-gray-400 uppercase tracking-widest">Customer Copy</p>
+                   <p className="font-mono text-[10px] text-gray-400 font-bold">{new Date().toLocaleDateString()}</p>
+                 </div>
               </div>
 
               {orderMetadata && orderMetadata.items ? (
@@ -141,45 +198,54 @@ export default function Success() {
 
               {/* Delivery Details Section */}
               {orderMetadata && orderMetadata.customer && (
-                <div className="px-6 py-6 border-t-2 border-dashed border-gray-200 bg-gray-50">
-                  <h3 className={`font-bold text-xl text-black mb-4 ${isAr ? "font-kufi" : "font-serif"}`}>
-                    {isAr ? "تفاصيل التوصيل" : "Delivery Details"}
+                <div className="px-6 py-8 border-t-2 border-dashed border-gray-300 bg-white font-mono">
+                  <h3 className={`font-bold text-sm text-black mb-4 uppercase tracking-widest`}>
+                    {isAr ? "معلومات التوصيل" : "SHIPPING INFO"}
                   </h3>
                   <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "الاسم" : "Name"}</span>
+                    <div className="flex justify-between border-b border-gray-100 pb-2">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "الاسم" : "NAME"}</span>
                       <span className="text-sm font-bold text-black">{orderMetadata.customer.fullName}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "رقم الجوال" : "Phone"}</span>
+                    <div className="flex justify-between border-b border-gray-100 pb-2">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "رقم الجوال" : "PHONE"}</span>
                       <span className="text-sm font-bold text-black" dir="ltr">{orderMetadata.customer.phone}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "العنوان" : "Address"}</span>
-                      <span className="text-sm font-bold text-black text-right max-w-[60%]">{orderMetadata.customer.address}</span>
+                    <div className="flex justify-between border-b border-gray-100 pb-2">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "العنوان" : "ADDRESS"}</span>
+                      <span className="text-sm font-bold text-black text-right max-w-[60%] leading-relaxed">{orderMetadata.customer.address}</span>
                     </div>
                     {orderId && (
-                      <div className="flex justify-between border-t border-gray-200 mt-4 pt-4">
-                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "رقم الطلب" : "Order Number"}</span>
-                        <span className="text-sm font-bold text-black font-mono">{orderId}</span>
+                      <div className="flex justify-between pt-2">
+                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{isAr ? "رقم الطلب" : "ORDER ID"}</span>
+                        <span className="text-sm font-black text-black">{orderId}</span>
                       </div>
                     )}
                   </div>
+                  <div className="mt-8 text-center">
+                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">*** {isAr ? "شكراً لك" : "THANK YOU"} ***</p>
+                    {orderId && <div className="mx-auto w-3/4 h-12 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjMwIj48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIzMCIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==')] bg-repeat-x opacity-20"></div>}
+                  </div>
                 </div>
               )}
-            </motion.div>
-            
-            <div className="pt-8 relative w-full max-w-sm">
-              <Link href={isAr ? "/ar" : "/"}>
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full bg-[#C0FF72] text-[#000000] px-10 py-5 rounded-full font-sans font-black uppercase tracking-widest text-[11px] lg:text-[13px] border-[2px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
-                >
-                  {isAr ? "العودة للمتجر" : "Back to Boutique"}
-                </motion.button>
-              </Link>
-            </div>
+              
+                  {/* Receipt Zig-Zag Bottom Edge */}
+                  <div className="absolute -bottom-2 left-0 w-full h-2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+PHBvbHlnb24gcG9pbnRzPSIwLDAgNSwxMCAxMCwwIDAsMCIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==')] bg-repeat-x"></div>
+                </motion.div>
+                
+                <div className="pt-12 relative w-full max-w-sm">
+                  <Link href={isAr ? "/ar" : "/"}>
+                    <motion.button 
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-black text-white px-10 py-5 rounded-none font-mono font-black uppercase tracking-widest text-[11px] lg:text-[13px] border-[2px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+                    >
+                      {isAr ? "العودة للمتجر" : "BACK TO BOUTIQUE"}
+                    </motion.button>
+                  </Link>
+                </div>
+              </>
+            )}
             
           </main>
 
