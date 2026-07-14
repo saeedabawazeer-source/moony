@@ -188,26 +188,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // 3. Send Telegram Notification
         const botToken = process.env.TELEGRAM_BOT_TOKEN;
-        const chatId = process.env.TELEGRAM_CHAT_ID;
+        const chatIdEnv = process.env.TELEGRAM_CHAT_ID;
         
-        if (botToken && chatId) {
+        if (botToken && chatIdEnv) {
+          const chatIds = chatIdEnv.split(',').map(id => id.trim()).filter(id => id);
           const moonyOrderId = `MNS-${(charge.id || "").slice(-5).toUpperCase()}`;
           const itemSummary = items.map((i: any) => `${i.qty}x ${i.productName || i.name || 'Product'} (Size: ${i.size})`).join("\n");
           const message = `🎉 *NEW ORDER RECEIVED!*\n\n*Order ID:* \`${moonyOrderId}\`\n*Customer:* ${customerName || 'N/A'}\n*Phone:* ${phone || 'N/A'}\n*Address:* ${address || 'N/A'}\n\n*Items:*\n${itemSummary}\n\n*Total:* ${charge.amount} ${charge.currency}`;
           
-          try {
-            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: "Markdown"
-              })
-            });
-            console.log("[TELEGRAM] Notification sent successfully!");
-          } catch (err) {
-            console.error("[TELEGRAM] Failed to send:", err);
+          for (const chatId of chatIds) {
+            try {
+              await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  chat_id: chatId,
+                  text: message,
+                  parse_mode: "Markdown"
+                })
+              });
+              console.log(`[TELEGRAM] Notification sent successfully to ${chatId}!`);
+            } catch (err) {
+              console.error(`[TELEGRAM] Failed to send to ${chatId}:`, err);
+            }
           }
         }
       }
