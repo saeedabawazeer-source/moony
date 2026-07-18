@@ -14,15 +14,28 @@ async function main() {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   
-  // Standard OG Image size is 1200x630
-  await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+  // Use 900x900 (mobile layout so we get rounded corners) x 1.2 = 1080x1080 PNG (1:1 aspect ratio)
+  await page.setViewport({ width: 900, height: 900, deviceScaleFactor: 1.2 });
 
   const hideElements = async () => {
     await page.evaluate(() => {
-      const header = document.querySelector('header');
-      if (header) header.style.display = 'none';
+      // Hide buttons (cart)
       const buttons = document.querySelectorAll('button');
       buttons.forEach(b => b.style.display = 'none');
+      
+      // Hide EN / AR links
+      const links = Array.from(document.querySelectorAll('a'));
+      links.forEach(a => {
+        if (a.textContent === 'EN' || a.textContent === 'ع') {
+           a.style.display = 'none';
+        }
+      });
+      
+      // Center the logo in the header
+      const headerInner = document.querySelector('.sticky > div');
+      if (headerInner) {
+         headerInner.style.justifyContent = 'center';
+      }
       
       // hide the down arrow link
       const downArrow = document.querySelector('a[href="#carousel-section"]');
@@ -37,12 +50,12 @@ async function main() {
   console.log("Capturing English OG...");
   await page.goto('http://localhost:5001/', { waitUntil: 'networkidle0' });
   await hideElements();
-  await page.screenshot({ path: 'client/public/images/og-en.png', clip: { x: 0, y: 0, width: 1200, height: 630 } });
+  await page.screenshot({ path: 'client/public/images/og-en.png', clip: { x: 0, y: 0, width: 900, height: 900 } });
 
   console.log("Capturing Arabic OG...");
   await page.goto('http://localhost:5001/ar', { waitUntil: 'networkidle0' });
   await hideElements();
-  await page.screenshot({ path: 'client/public/images/og-ar.png', clip: { x: 0, y: 0, width: 1200, height: 630 } });
+  await page.screenshot({ path: 'client/public/images/og-ar.png', clip: { x: 0, y: 0, width: 900, height: 900 } });
 
   await browser.close();
   dev.kill();
