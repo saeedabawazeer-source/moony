@@ -325,49 +325,49 @@ export default function HomeAR() {
               <div className="flex flex-col items-center w-full justify-center" dir="ltr">
 
                 {/* Turban */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full relative z-10">
-                  <div className="w-20 lg:w-24 shrink-0"/>
-                  <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md h-[6vh] lg:h-[10vh] w-auto object-contain" alt="توربان" />
-                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-24">
-                    <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                    <span className="font-serif font-black italic text-[11px] lg:text-sm">توربان</span>
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full relative z-30">
+                  <div className="w-20 lg:w-32 shrink-0"/>
+                  <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md h-[12vh] lg:h-[16vh] w-auto object-contain" alt="توربان" />
+                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-32">
+                    <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
+                    <span className="font-serif font-black italic text-[11px] lg:text-lg">توربان</span>
                   </div>
                 </motion.div>
 
                 {/* Top */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[1vh] relative z-20">
-                  <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-24">
-                    <span className="font-serif font-black italic text-[11px] lg:text-sm">بلوزة</span>
-                    <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[4vh] lg:-mt-[6vh] relative z-20">
+                  <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-32">
+                    <span className="font-serif font-black italic text-[11px] lg:text-lg">بلوزة</span>
+                    <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
                   </div>
-                  <img src="/images/pieces/aqua-1.png" className="scale-x-[-1] drop-shadow-md h-[22vh] lg:h-[32vh] w-auto object-contain" alt="بلوزة" />
-                  <div className="ml-2 w-20 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-1.png" className="scale-x-[-1] drop-shadow-md h-[30vh] lg:h-[40vh] w-auto object-contain" alt="بلوزة" />
+                  <div className="ml-2 w-20 lg:w-32 shrink-0"/>
                 </motion.div>
 
                 {/* Leggings */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[4vh] relative z-10">
-                  <div className="w-20 lg:w-24 shrink-0"/>
-                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[20vh] lg:h-[30vh] w-auto object-contain" alt="ليجنز" />
-                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-24">
-                    <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                    <span className="font-serif font-black italic text-[11px] lg:text-sm">ليجنز</span>
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[8vh] lg:-mt-[12vh] relative z-10">
+                  <div className="w-20 lg:w-32 shrink-0"/>
+                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[28vh] lg:h-[38vh] w-auto object-contain" alt="ليجنز" />
+                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-32">
+                    <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
+                    <span className="font-serif font-black italic text-[11px] lg:text-lg">ليجنز</span>
                   </div>
                 </motion.div>
 
                 {/* Coverups */}
-                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 -mt-[3vh] relative z-30">
+                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 -mt-[6vh] lg:-mt-[8vh] relative z-40">
                   <div className="flex flex-col items-center">
-                    <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md h-[14vh] lg:h-[20vh] w-auto object-contain" alt="كيمونو قصير" />
+                    <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md h-[18vh] lg:h-[26vh] w-auto object-contain" alt="كيمونو قصير" />
                     <div className="flex flex-col items-center mt-1">
-                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[10px] lg:text-xs whitespace-nowrap">كيمونو قصير</span>
+                      <svg className="w-3 h-3 lg:w-4 lg:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
+                      <span className="font-serif font-black italic text-[10px] lg:text-sm whitespace-nowrap">كيمونو قصير</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-center">
-                    <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md h-[18vh] lg:h-[26vh] w-auto object-contain" alt="كيمونو كامل" />
+                    <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md h-[22vh] lg:h-[32vh] w-auto object-contain" alt="كيمونو كامل" />
                     <div className="flex flex-col items-center mt-1">
-                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[10px] lg:text-xs whitespace-nowrap">كيمونو كامل</span>
+                      <svg className="w-3 h-3 lg:w-4 lg:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
+                      <span className="font-serif font-black italic text-[10px] lg:text-sm whitespace-nowrap">كيمونو كامل</span>
                     </div>
                   </div>
                 </motion.div>
