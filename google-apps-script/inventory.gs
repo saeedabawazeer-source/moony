@@ -23,7 +23,8 @@ const SHEET_NAME_ORDERS = "Orders";
 const TELEGRAM_BOT_TOKEN = "8636468742:AAGcmfNf0otgS46-JvQodS71HjQBfuAHH1k"; 
 
 // 3. Search for "@userinfobot" in Telegram and press Start to get your chat ID
-const TELEGRAM_CHAT_ID = "8607930596"; 
+// You can add multiple chat IDs separated by commas! Example: "8607930596,123456789"
+const TELEGRAM_CHAT_IDS = "8607930596,8653778997"; 
 
 // ─── Helpers ─────────────────────────────────────────────
 function getInventorySheet() {
@@ -65,22 +66,27 @@ function sheetToJson(sheet) {
 }
 
 function sendTelegramMessage(message) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  const payload = {
-    chat_id: TELEGRAM_CHAT_ID,
-    text: message,
-    parse_mode: "HTML"
-  };
-  try {
-    UrlFetchApp.fetch(url, {
-      method: "post",
-      contentType: "application/json",
-      payload: JSON.stringify(payload)
-    });
-  } catch(err) {
-    // Ignore notification errors silently
-  }
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_IDS) return;
+  
+  const chatIds = TELEGRAM_CHAT_IDS.split(',').map(id => id.trim()).filter(id => id);
+  
+  chatIds.forEach(chatId => {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const payload = {
+      chat_id: chatId,
+      text: message,
+      parse_mode: "HTML"
+    };
+    try {
+      UrlFetchApp.fetch(url, {
+        method: "post",
+        contentType: "application/json",
+        payload: JSON.stringify(payload)
+      });
+    } catch(err) {
+      // Ignore notification errors silently
+    }
+  });
 }
 
 // ─── Initialize default data if sheet is empty ───────────
@@ -151,7 +157,8 @@ function doPost(e) {
     ordersSheet.appendRow([now, orderId, name, email, phone, product, size, quantity, amount, status]);
     
     // Send Free Telegram Notification
-    const message = `🎉 <b>NEW ORDER: ${product}</b>\n\n<b>Size:</b> ${size}\n<b>Qty:</b> ${quantity}\n<b>Amount:</b> SAR ${amount}\n\n<b>Customer:</b> ${name}\n<b>Phone:</b> ${phone}\n<b>Email:</b> ${email}\n\n<i>Status: ${status}</i>`;
+    const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl();
+    const message = `🎉 <b>NEW ORDER: ${product}</b>\n\n<b>Size:</b> ${size}\n<b>Qty:</b> ${quantity}\n<b>Amount:</b> SAR ${amount}\n\n<b>Customer:</b> ${name}\n<b>Phone:</b> ${phone}\n<b>Email:</b> ${email}\n\n<i>Status: ${status}</i>\n\n<a href="${sheetUrl}">Open Google Sheet</a>`;
     sendTelegramMessage(message);
     
     return jsonResponse({ success: true });
