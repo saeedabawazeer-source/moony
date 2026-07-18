@@ -336,55 +336,55 @@ export default function Home() {
                 <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">The Full Modular Set</h3>
               </div>
 
-              {/* Piece Stack — heights capped in vh so transparent PNG padding can't expand rows */}
-              <div className="flex flex-col items-center w-full flex-1 justify-center" style={{gap: '0px'}}>
+              {/* Piece Stack — mannequin proportions with negative margins to collapse transparent padding */}
+              <div className="flex flex-col items-center w-full flex-1 justify-center">
 
-                {/* Row 1: Turban */}
-                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full">
+                {/* Row 1: Turban — small head piece */}
+                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full" style={{marginBottom: '-3vh'}}>
                   <div className="flex items-center gap-1 mr-2">
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">Turban</span>
+                    <span className="font-serif font-black italic text-[11px]">Turban</span>
                     <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                   </div>
-                  <img src="/images/pieces/aqua-2.png" className="drop-shadow-md object-contain" alt="Turban" style={{height: '9vh', width: 'auto'}} />
-                  <div className="ml-2 w-12 shrink-0"/>
+                  <img src="/images/pieces/aqua-2.png" className="drop-shadow-md object-contain" alt="Turban" style={{height: '8vh', width: 'auto'}} />
+                  <div className="ml-2 w-14 shrink-0"/>
                 </motion.div>
 
-                {/* Row 2: Top */}
-                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full">
-                  <div className="w-12 shrink-0"/>
-                  <img src="/images/pieces/aqua-1.png" className="drop-shadow-md object-contain" alt="Top" style={{height: '20vh', width: 'auto'}} />
+                {/* Row 2: Top — largest piece (torso) */}
+                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full" style={{marginBottom: '-5vh'}}>
+                  <div className="w-14 shrink-0"/>
+                  <img src="/images/pieces/aqua-1.png" className="drop-shadow-md object-contain" alt="Top" style={{height: '28vh', width: 'auto'}} />
                   <div className="flex items-center gap-1 ml-2">
                     <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">Top</span>
+                    <span className="font-serif font-black italic text-[11px]">Top</span>
                   </div>
                 </motion.div>
 
-                {/* Row 3: Leggings */}
-                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full">
+                {/* Row 3: Leggings — tall and narrow */}
+                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full" style={{marginBottom: '-5vh'}}>
                   <div className="flex items-center gap-1 mr-2">
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">Leggings</span>
+                    <span className="font-serif font-black italic text-[11px]">Leggings</span>
                     <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                   </div>
-                  <img src="/images/pieces/aqua-4.png" className="drop-shadow-md object-contain" alt="Leggings" style={{height: '18vh', width: 'auto'}} />
-                  <div className="ml-2 w-12 shrink-0"/>
+                  <img src="/images/pieces/aqua-4.png" className="drop-shadow-md object-contain" alt="Leggings" style={{height: '26vh', width: 'auto'}} />
+                  <div className="ml-2 w-14 shrink-0"/>
                 </motion.div>
 
                 {/* Row 4: Both Coverups side by side */}
                 <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-flex-start justify-center w-full">
                   {/* Short Coverup */}
                   <div className="flex flex-col items-center">
-                    <img src="/images/pieces/aqua-3.png" className="drop-shadow-md object-contain" alt="Short Coverup" style={{height: '16vh', width: 'auto'}} />
+                    <img src="/images/pieces/aqua-3.png" className="drop-shadow-md object-contain" alt="Short Coverup" style={{height: '18vh', width: 'auto'}} />
                     <div className="flex flex-col items-center">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] lg:text-sm whitespace-nowrap">Short Coverup</span>
+                      <span className="font-serif font-black italic text-[9px] whitespace-nowrap">Short Coverup</span>
                     </div>
                   </div>
                   {/* Whole Coverup */}
                   <div className="flex flex-col items-center">
-                    <img src="/images/pieces/aqua-5.png" className="drop-shadow-md object-contain" alt="Whole Coverup" style={{height: '20vh', width: 'auto'}} />
+                    <img src="/images/pieces/aqua-5.png" className="drop-shadow-md object-contain" alt="Whole Coverup" style={{height: '22vh', width: 'auto'}} />
                     <div className="flex flex-col items-center">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] lg:text-sm whitespace-nowrap">Whole Coverup</span>
+                      <span className="font-serif font-black italic text-[9px] whitespace-nowrap">Whole Coverup</span>
                     </div>
                   </div>
                 </motion.div>
@@ -392,8 +392,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Why you'll love it (High-Impact Stats) */}
-            <div className="space-y-2 lg:space-y-12 flex flex-col justify-center h-full">
+            {/* Right: Why you'll love it — hidden on mobile, shown on desktop */}
+            <div className="hidden lg:flex space-y-2 lg:space-y-12 flex-col justify-center h-full">
                <div className="space-y-1">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
