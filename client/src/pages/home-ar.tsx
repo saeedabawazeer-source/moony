@@ -327,7 +327,7 @@ export default function HomeAR() {
                 {/* Turban */}
                 <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full relative z-30">
                   <div className="w-20 lg:w-32 shrink-0"/>
-                  <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md h-[12vh] lg:h-[16vh] w-auto object-contain" alt="توربان" />
+                  <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md h-[10vh] lg:h-[14vh] w-auto object-contain" alt="توربان" />
                   <div className="flex items-center gap-1 ml-2 w-20 lg:w-32">
                     <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                     <span className="font-serif font-black italic text-[11px] lg:text-lg">توربان</span>
@@ -335,7 +335,7 @@ export default function HomeAR() {
                 </motion.div>
 
                 {/* Top */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[8vh] lg:-mt-[12vh] relative z-20">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[12vh] lg:-mt-[16vh] relative z-20">
                   <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-32">
                     <span className="font-serif font-black italic text-[11px] lg:text-lg">بلوزة</span>
                     <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
@@ -345,9 +345,9 @@ export default function HomeAR() {
                 </motion.div>
 
                 {/* Leggings */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[6vh] lg:-mt-[8vh] relative z-10">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[10vh] lg:-mt-[14vh] relative z-10">
                   <div className="w-20 lg:w-32 shrink-0"/>
-                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[22vh] lg:h-[30vh] w-auto object-contain" alt="ليجنز" />
+                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[24vh] lg:h-[32vh] w-auto object-contain" alt="ليجنز" />
                   <div className="flex items-center gap-1 ml-2 w-20 lg:w-32">
                     <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                     <span className="font-serif font-black italic text-[11px] lg:text-lg">ليجنز</span>
@@ -355,7 +355,7 @@ export default function HomeAR() {
                 </motion.div>
 
                 {/* Coverups */}
-                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-center justify-center w-full gap-2 -mt-[4vh] lg:-mt-[6vh] relative z-40">
+                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-center justify-center w-full gap-2 -mt-[8vh] lg:-mt-[12vh] relative z-40">
                   
                   {/* Short Coverup (Left Tag, points right ->) */}
                   <div className="flex items-center justify-end gap-1 w-14 lg:w-24 text-right">
@@ -404,9 +404,9 @@ export default function HomeAR() {
                          className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
                          alt=""
                        />
-                       <h4 className="font-serif font-black text-[12px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
+                       <h4 className="font-serif font-black text-sm lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
                     </div>
-                     <p className="text-[10px] lg:text-sm font-bold text-[#5d4037] leading-tight italic break-words w-full">
+                     <p className="text-xs lg:text-sm font-bold text-[#5d4037] leading-tight italic break-words w-full">
                       {spec.text}
                     </p>
                   </motion.div>
