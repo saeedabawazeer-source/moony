@@ -326,108 +326,98 @@ export default function Home() {
         </section>
 
         {/* Section 2.5: Anatomy */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-4 lg:px-8 py-4 lg:py-16 flex flex-col justify-center bg-[#fef8e1] overflow-hidden">
-          <div className="max-w-[95vw] lg:max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-16 items-center h-full">
-            
-            {/* Left: The Moony Blueprint */}
-            <div className="flex flex-col items-center justify-center h-full py-2">
-              <div className="mb-1 text-center lg:text-left w-full">
-                <p className="text-[9px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-0.5">The Breakdown</p>
-                <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">The Full Modular Set</h3>
-              </div>
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 py-4 lg:py-12 flex flex-col bg-[#fef8e1] overflow-hidden">
+          
+          {/* Title */}
+          <div className="text-center mb-2 shrink-0">
+            <p className="font-sans font-black uppercase tracking-[0.3em] text-[8px] text-[#e5815c]">The Breakdown</p>
+            <h3 className="text-lg lg:text-4xl font-serif font-black tracking-tighter italic leading-tight">The Full Modular Set</h3>
+          </div>
 
-              {/* Piece Stack — mannequin proportions with negative margins to collapse transparent padding */}
-              <div className="flex flex-col items-center w-full flex-1 justify-center">
+          {/* 2-col: Pieces | Points — always side by side */}
+          <div className="flex flex-row gap-2 lg:gap-8 flex-1 min-h-0 items-center">
 
-                {/* Row 1: Turban — small head piece */}
-                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full" style={{marginBottom: '-3vh'}}>
-                  <div className="flex items-center gap-1 mr-2">
-                    <span className="font-serif font-black italic text-[11px]">Turban</span>
-                    <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
+            {/* LEFT COL: Piece Stack */}
+            <div className="flex flex-col items-center justify-center flex-1 min-h-0 h-full">
+
+              {/* Turban — small, head */}
+              <motion.div initial={{ opacity: 0, y: -8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full" style={{marginBottom: '-4vh'}}>
+                <div className="flex items-center gap-0.5 mr-1.5">
+                  <span className="font-serif font-black italic text-[10px]">Turban</span>
+                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+                </div>
+                <div style={{height: '10vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                  <img src="/images/pieces/aqua-2.png" className="drop-shadow" style={{height: '14vh', width: 'auto', objectFit: 'contain', marginBottom: '-2vh'}} alt="Turban" />
+                </div>
+                <div className="w-10 shrink-0"/>
+              </motion.div>
+
+              {/* Top — biggest garment */}
+              <motion.div initial={{ opacity: 0, y: -8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full" style={{marginBottom: '-6vh'}}>
+                <div className="w-10 shrink-0"/>
+                <div style={{height: '24vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                  <img src="/images/pieces/aqua-1.png" className="drop-shadow" style={{height: '32vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="Top" />
+                </div>
+                <div className="flex items-center gap-0.5 ml-1.5">
+                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
+                  <span className="font-serif font-black italic text-[10px]">Top</span>
+                </div>
+              </motion.div>
+
+              {/* Leggings — tall */}
+              <motion.div initial={{ opacity: 0, y: -8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full" style={{marginBottom: '-5vh'}}>
+                <div className="flex items-center gap-0.5 mr-1.5">
+                  <span className="font-serif font-black italic text-[10px]">Leggings</span>
+                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+                </div>
+                <div style={{height: '22vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                  <img src="/images/pieces/aqua-4.png" className="drop-shadow" style={{height: '28vh', width: 'auto', objectFit: 'contain', marginBottom: '-3vh'}} alt="Leggings" />
+                </div>
+                <div className="w-10 shrink-0"/>
+              </motion.div>
+
+              {/* Coverups — side by side */}
+              <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-1">
+                <div className="flex flex-col items-center">
+                  <div style={{height: '18vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                    <img src="/images/pieces/aqua-3.png" className="drop-shadow" style={{height: '24vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="Short Coverup" />
                   </div>
-                  <img src="/images/pieces/aqua-2.png" className="drop-shadow-md object-contain" alt="Turban" style={{height: '8vh', width: 'auto'}} />
-                  <div className="ml-2 w-14 shrink-0"/>
-                </motion.div>
-
-                {/* Row 2: Top — largest piece (torso) */}
-                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full" style={{marginBottom: '-5vh'}}>
-                  <div className="w-14 shrink-0"/>
-                  <img src="/images/pieces/aqua-1.png" className="drop-shadow-md object-contain" alt="Top" style={{height: '28vh', width: 'auto'}} />
-                  <div className="flex items-center gap-1 ml-2">
-                    <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
-                    <span className="font-serif font-black italic text-[11px]">Top</span>
+                  <svg className="w-2.5 h-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
+                  <span className="font-serif font-black italic text-[8px] whitespace-nowrap">Short Coverup</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div style={{height: '22vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                    <img src="/images/pieces/aqua-5.png" className="drop-shadow" style={{height: '28vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="Whole Coverup" />
                   </div>
-                </motion.div>
+                  <svg className="w-2.5 h-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
+                  <span className="font-serif font-black italic text-[8px] whitespace-nowrap">Whole Coverup</span>
+                </div>
+              </motion.div>
 
-                {/* Row 3: Leggings — tall and narrow */}
-                <motion.div initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full" style={{marginBottom: '-5vh'}}>
-                  <div className="flex items-center gap-1 mr-2">
-                    <span className="font-serif font-black italic text-[11px]">Leggings</span>
-                    <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                  </div>
-                  <img src="/images/pieces/aqua-4.png" className="drop-shadow-md object-contain" alt="Leggings" style={{height: '26vh', width: 'auto'}} />
-                  <div className="ml-2 w-14 shrink-0"/>
-                </motion.div>
-
-                {/* Row 4: Both Coverups side by side */}
-                <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex items-flex-start justify-center w-full">
-                  {/* Short Coverup */}
-                  <div className="flex flex-col items-center">
-                    <img src="/images/pieces/aqua-3.png" className="drop-shadow-md object-contain" alt="Short Coverup" style={{height: '18vh', width: 'auto'}} />
-                    <div className="flex flex-col items-center">
-                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] whitespace-nowrap">Short Coverup</span>
-                    </div>
-                  </div>
-                  {/* Whole Coverup */}
-                  <div className="flex flex-col items-center">
-                    <img src="/images/pieces/aqua-5.png" className="drop-shadow-md object-contain" alt="Whole Coverup" style={{height: '22vh', width: 'auto'}} />
-                    <div className="flex flex-col items-center">
-                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] whitespace-nowrap">Whole Coverup</span>
-                    </div>
-                  </div>
-                </motion.div>
-
-              </div>
             </div>
 
-            {/* Right: Why you'll love it — hidden on mobile, shown on desktop */}
-            <div className="hidden lg:flex space-y-2 lg:space-y-12 flex-col justify-center h-full">
-               <div className="space-y-1">
-                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
-                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
-               </div>
-               
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-12 px-2 lg:px-0 mt-4 lg:mt-0">
-                {[
-                  { title: "Zero Cling. Full Confidence.", text: "Engineered fabric that never sticks. Move freely, look flawless." },
-                  { title: "All-Day Comfort.", text: "Breathable, lightweight performance you won't want to take off." },
-                  { title: "Built-In UV Shield.", text: "UPF 50+ protection woven into every fiber. No reapplying." },
-                  { title: "Dries Before You Reach the Car.", text: "Quick-dry tech means zero wet marks on your way out." }
-                ].map((spec, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="space-y-1 lg:space-y-2"
-                  >
-                    <div className="flex items-center gap-1.5">
-                       <img 
-                         src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'}
-                         className="w-4 h-4 lg:w-5 lg:h-5"
-                         alt=""
-                       />
-                       <h4 className="font-serif font-black text-[10px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
-                    </div>
-                     <p className="text-[8px] lg:text-sm font-bold text-[#5d4037] leading-tight italic max-w-sm">
-                      {spec.text}
-                    </p>
-                  </motion.div>
-                ))}
-               </div>
+            {/* RIGHT COL: Why you'll love it — always visible */}
+            <div className="flex flex-col justify-center gap-3 lg:gap-8 w-[42%] lg:w-[45%] shrink-0">
+              <div>
+                <p className="font-sans font-black uppercase tracking-[0.3em] text-[7px] lg:text-[10px] text-[#6bb7b3]">High Performance</p>
+                <h2 className="text-sm lg:text-4xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
+              </div>
+              {[
+                { title: "Zero Cling.", text: "Engineered fabric that never sticks." },
+                { title: "All-Day Comfort.", text: "Breathable, lightweight performance." },
+                { title: "UPF 50+.", text: "Protection woven into every fiber." },
+                { title: "Quick-Dry.", text: "Dries before you reach the car." }
+              ].map((spec, i) => (
+                <motion.div key={i} initial={{ opacity: 0, x: 10 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }} className="space-y-0.5">
+                  <div className="flex items-center gap-1">
+                    <img src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'} className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" alt="" />
+                    <h4 className="font-serif font-black text-[9px] lg:text-base text-black tracking-tight">{spec.title}</h4>
+                  </div>
+                  <p className="text-[7px] lg:text-xs font-bold text-[#5d4037] leading-tight italic">{spec.text}</p>
+                </motion.div>
+              ))}
             </div>
+
           </div>
         </section>
 
