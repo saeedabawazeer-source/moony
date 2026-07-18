@@ -326,7 +326,7 @@ export default function Home() {
         </section>
 
         {/* Section 2.5: Anatomy */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 py-2 lg:py-12 flex flex-col justify-center bg-[#fef8e1] overflow-hidden">
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 pt-4 pb-8 lg:py-12 flex flex-col justify-center bg-[#fef8e1] overflow-hidden">
           <div className="max-w-[95vw] lg:max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-16 items-center h-full">
             
             {/* Left/Top: Pieces Cluster */}
@@ -350,7 +350,7 @@ export default function Home() {
                 </motion.div>
 
                 {/* Top — largest piece (torso) */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[12vh] lg:-mt-[16vh] relative z-20">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[9vh] lg:-mt-[13vh] relative z-20">
                   <div className="w-20 lg:w-32 shrink-0"/>
                   <img src="/images/pieces/aqua-1.png" className="drop-shadow-md h-[32vh] lg:h-[42vh] w-auto object-contain" alt="Top" />
                   <div className="flex items-center gap-1 ml-2 w-20 lg:w-32">

@@ -311,14 +311,14 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2.5: Anatomy */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 py-2 lg:py-12 flex flex-col justify-center bg-[#fef8e1] overflow-hidden" dir="rtl">
-          <div className="w-full max-w-[95vw] lg:max-w-[90vw] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 items-center h-full text-right">
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 pt-4 pb-8 lg:py-12 flex flex-col justify-center bg-[#fef8e1] overflow-hidden" dir="rtl">
+          <div className="max-w-[95vw] lg:max-w-[90vw] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-16 items-center h-full">
 
             {/* Left/Top: Pieces Cluster */}
             <div className="flex flex-col items-center justify-center w-full order-1 lg:order-1 py-1 lg:py-2">
               <div className="mb-2 text-center lg:text-right w-full">
                 <p className="text-[9px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-0.5">المواصفات</p>
-                <h3 className="text-lg lg:text-4xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
+                <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
               </div>
 
               {/* Piece Stack */}
@@ -335,7 +335,7 @@ export default function HomeAR() {
                 </motion.div>
 
                 {/* Top */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[12vh] lg:-mt-[16vh] relative z-20">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[9vh] lg:-mt-[13vh] relative z-20">
                   <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-32">
                     <span className="font-serif font-black italic text-[11px] lg:text-lg">بلوزة</span>
                     <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
