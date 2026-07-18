@@ -311,96 +311,115 @@ export default function HomeAR() {
         </section>
 
         {/* Section 2.5: Anatomy */}
-        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 py-4 lg:py-12 flex flex-col bg-[#fef8e1] overflow-hidden" dir="rtl">
-          
-          {/* Title */}
-          <div className="text-center mb-2 shrink-0">
-            <p className="font-sans font-black uppercase tracking-[0.3em] text-[8px] text-[#e5815c]">المواصفات</p>
-            <h3 className="text-lg lg:text-4xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
-          </div>
+        <section id="anatomy-section" className="snap-slide h-[100dvh] px-3 lg:px-8 py-2 lg:py-12 flex flex-col justify-center bg-[#fef8e1] overflow-hidden" dir="rtl">
+          <div className="w-full max-w-[95vw] lg:max-w-[90vw] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 items-center h-full text-right">
 
-          {/* 2-col: Pieces | Points — always side by side */}
-          <div className="flex flex-row gap-2 lg:gap-8 flex-1 min-h-0 items-center">
+            {/* Left/Top: Pieces Cluster */}
+            <div className="flex flex-col items-center justify-center w-full order-1 lg:order-1 py-1 lg:py-2">
+              <div className="mb-2 text-center lg:text-right w-full">
+                <p className="text-[9px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-0.5">المواصفات</p>
+                <h3 className="text-lg lg:text-4xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
+              </div>
 
-            {/* LEFT COL: Piece Stack */}
-            <div className="flex flex-col items-center justify-center flex-1 min-h-0 h-full" dir="ltr">
+              {/* Piece Stack */}
+              <div className="flex flex-col items-center w-full justify-center gap-1 lg:gap-2" dir="ltr">
 
-              {/* Turban — small, head */}
-              <motion.div initial={{ opacity: 0, y: -8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full" style={{marginBottom: '-4vh'}}>
-                <div className="w-10 shrink-0"/>
-                <div style={{height: '10vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                  <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow" style={{height: '14vh', width: 'auto', objectFit: 'contain', marginBottom: '-2vh'}} alt="توربان" />
-                </div>
-                <div className="flex items-center gap-0.5 ml-1.5">
-                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                  <span className="font-serif font-black italic text-[10px]">توربان</span>
-                </div>
-              </motion.div>
-
-              {/* Top — biggest garment */}
-              <motion.div initial={{ opacity: 0, y: -8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full" style={{marginBottom: '-6vh'}}>
-                <div className="flex items-center gap-0.5 mr-1.5">
-                  <span className="font-serif font-black italic text-[10px]">بلوزة</span>
-                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
-                </div>
-                <div style={{height: '24vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                  <img src="/images/pieces/aqua-1.png" className="scale-x-[-1] drop-shadow" style={{height: '32vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="بلوزة" />
-                </div>
-                <div className="ml-1.5 w-10 shrink-0"/>
-              </motion.div>
-
-              {/* Leggings — tall */}
-              <motion.div initial={{ opacity: 0, y: -8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full" style={{marginBottom: '-5vh'}}>
-                <div className="w-10 shrink-0"/>
-                <div style={{height: '22vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow" style={{height: '28vh', width: 'auto', objectFit: 'contain', marginBottom: '-3vh'}} alt="ليجنز" />
-                </div>
-                <div className="flex items-center gap-0.5 ml-1.5">
-                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                  <span className="font-serif font-black italic text-[10px]">ليجنز</span>
-                </div>
-              </motion.div>
-
-              {/* Coverups — side by side */}
-              <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-1">
-                <div className="flex flex-col items-center">
-                  <div style={{height: '18vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow" style={{height: '24vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="كيمونو قصير" />
+                {/* Turban */}
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full">
+                  <div className="w-16 lg:w-24 shrink-0"/>
+                  <div style={{height: '8vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                    <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md" style={{height: '14vh', width: 'auto', objectFit: 'contain', marginBottom: '-2vh'}} alt="توربان" />
                   </div>
-                  <svg className="w-2.5 h-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                  <span className="font-serif font-black italic text-[8px] whitespace-nowrap">كيمونو قصير</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div style={{height: '22vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow" style={{height: '28vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="كيمونو كامل" />
+                  <div className="flex items-center gap-1 ml-2 w-16 lg:w-24">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm">توربان</span>
                   </div>
-                  <svg className="w-2.5 h-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                  <span className="font-serif font-black italic text-[8px] whitespace-nowrap">كيمونو كامل</span>
-                </div>
-              </motion.div>
+                </motion.div>
 
+                {/* Top */}
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full">
+                  <div className="flex items-center justify-end gap-1 mr-2 w-16 lg:w-24">
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm">بلوزة</span>
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+                  </div>
+                  <div style={{height: '16vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                    <img src="/images/pieces/aqua-1.png" className="scale-x-[-1] drop-shadow-md" style={{height: '26vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="بلوزة" />
+                  </div>
+                  <div className="ml-2 w-16 lg:w-24 shrink-0"/>
+                </motion.div>
+
+                {/* Leggings */}
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full">
+                  <div className="w-16 lg:w-24 shrink-0"/>
+                  <div style={{height: '15vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                    <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md" style={{height: '24vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="ليجنز" />
+                  </div>
+                  <div className="flex items-center gap-1 ml-2 w-16 lg:w-24">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
+                    <span className="font-serif font-black italic text-[10px] lg:text-sm">ليجنز</span>
+                  </div>
+                </motion.div>
+
+                {/* Coverups */}
+                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 mt-1">
+                  <div className="flex flex-col items-center">
+                    <div style={{height: '12vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                      <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md" style={{height: '18vh', width: 'auto', objectFit: 'contain', marginBottom: '-3vh'}} alt="كيمونو قصير" />
+                    </div>
+                    <div className="flex flex-col items-center mt-1">
+                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
+                      <span className="font-serif font-black italic text-[9px] lg:text-xs whitespace-nowrap">كيمونو قصير</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <div style={{height: '14vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                      <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md" style={{height: '22vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="كيمونو كامل" />
+                    </div>
+                    <div className="flex flex-col items-center mt-1">
+                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
+                      <span className="font-serif font-black italic text-[9px] lg:text-xs whitespace-nowrap">كيمونو كامل</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
             </div>
 
-            {/* RIGHT COL: Why you'll love it — always visible */}
-            <div className="flex flex-col justify-center gap-3 lg:gap-8 w-[42%] lg:w-[45%] shrink-0 text-right">
-              <div>
-                <p className="font-sans font-black uppercase tracking-[0.3em] text-[7px] lg:text-[10px] text-[#6bb7b3]">عملي ومريح</p>
-                <h2 className="text-sm lg:text-4xl font-serif font-black tracking-tighter leading-tight font-kufi">ليش بتحبين موني؟</h2>
-              </div>
-              {[
-                { title: "ما يلصق.", text: "قماش يعطيك حريتك وتحركين براحة." },
-                { title: "راحة طول اليوم.", text: "خفيف ويتنفس، ما كأنك لابسة شي." },
-                { title: "حماية UPF 50+.", text: "منسوج في القماش، بدون ما تشيلين هم." },
-                { title: "ينشف بسرعة.", text: "تقنية تجفيف سريع عشان تودعين الإحراج." }
-              ].map((spec, i) => (
-                <motion.div key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }} className="space-y-0.5">
-                  <div className="flex items-center justify-end gap-1">
-                    <h4 className="font-serif font-black text-[9px] lg:text-base text-black tracking-tight">{spec.title}</h4>
-                    <img src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'} className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" alt="" />
-                  </div>
-                  <p className="text-[7px] lg:text-xs font-bold text-[#5d4037] leading-tight italic">{spec.text}</p>
-                </motion.div>
-              ))}
+            {/* Right/Bottom: Why you'll love it */}
+            <div className="flex flex-col justify-center order-2 lg:order-2 text-right">
+               <div className="space-y-0.5 hidden lg:block mb-4">
+                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">عملي ومريح</p>
+                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">ليش بتحبين موني؟</h2>
+               </div>
+
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-8 px-1 lg:px-0">
+                {[
+                  { title: "ما يلصق في الجسم.", text: "مصمم عشان يعطيك حريتك." },
+                  { title: "راحة طول اليوم.", text: "قماش خفيف وما كأنك لابسة شي." },
+                  { title: "حماية من الشمس.", text: "UPF 50+ منسوج في القماش." },
+                  { title: "ينشف بسرعة.", text: "تقنية تجفيف سريعة تودعين الإحراج." }
+                ].map((spec, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="space-y-0.5 lg:space-y-2"
+                  >
+                    <div className="flex items-center justify-end gap-1">
+                       <h4 className="font-serif font-black text-[9px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
+                       <img 
+                         src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'}
+                         className="w-3 h-3 lg:w-5 lg:h-5 shrink-0"
+                         alt=""
+                       />
+                    </div>
+                     <p className="text-[7.5px] lg:text-sm font-bold text-[#5d4037] leading-tight italic">
+                      {spec.text}
+                    </p>
+                  </motion.div>
+                ))}
+               </div>
             </div>
 
           </div>
