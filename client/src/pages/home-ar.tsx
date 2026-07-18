@@ -141,7 +141,7 @@ export default function HomeAR() {
                     WebkitTextStroke: "4px #000000"
                   }}
                 >
-                  <span dir="rtl" className="block">خلي كل موجة<br/>تنحسب لك.</span>
+                  <span dir="rtl" className="block">استمتعي<br/>بكل موجة.</span>
                 </h1>
               </div>
 
@@ -361,57 +361,57 @@ export default function HomeAR() {
               <div className="relative w-full aspect-[4/5] lg:aspect-square max-w-sm lg:max-w-md mx-auto mt-4 lg:mt-8">
                 {/* --- IMAGES --- */}
                 {/* 1. Turban */}
-                <motion.div className="absolute top-[0%] left-1/2 -translate-x-1/2 w-[22%] lg:w-[18%] z-30 cursor-pointer" whileHover={{ scale: 1.1 }}>
+                <motion.div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[18%] lg:w-[15%] z-30 cursor-pointer" whileHover={{ scale: 1.1 }}>
                   <img src="/images/pieces/aqua-2.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Turban" />
                 </motion.div>
 
                 {/* 2. Top */}
-                <motion.div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[60%] lg:w-[45%] z-20 cursor-pointer" whileHover={{ scale: 1.1 }}>
+                <motion.div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[50%] lg:w-[40%] z-20 cursor-pointer" whileHover={{ scale: 1.1 }}>
                   <img src="/images/pieces/aqua-1.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Top" />
                 </motion.div>
 
                 {/* 5. Leggings (Behind Coverups) */}
-                <motion.div className="absolute top-[38%] left-1/2 -translate-x-1/2 w-[35%] lg:w-[28%] z-10 cursor-pointer" whileHover={{ scale: 1.1 }}>
+                <motion.div className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[30%] lg:w-[25%] z-10 cursor-pointer" whileHover={{ scale: 1.1 }}>
                   <img src="/images/pieces/aqua-4.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Leggings" />
                 </motion.div>
 
                 {/* 3. Short Coverup */}
-                <motion.div className="absolute top-[35%] left-[2%] w-[45%] lg:w-[35%] z-40 cursor-pointer" whileHover={{ scale: 1.1 }}>
+                <motion.div className="absolute top-[42%] left-[5%] w-[40%] lg:w-[32%] z-40 cursor-pointer" whileHover={{ scale: 1.1 }}>
                   <img src="/images/pieces/aqua-3.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Short Coverup" />
                 </motion.div>
 
                 {/* 4. Whole Coverup */}
-                <motion.div className="absolute top-[35%] right-[2%] w-[50%] lg:w-[42%] z-40 cursor-pointer" whileHover={{ scale: 1.1 }}>
+                <motion.div className="absolute top-[42%] right-[5%] w-[42%] lg:w-[35%] z-40 cursor-pointer" whileHover={{ scale: 1.1 }}>
                   <img src="/images/pieces/aqua-5.png" className="w-full h-auto drop-shadow-md scale-x-[-1]" alt="Whole Coverup" />
                 </motion.div>
 
                 {/* --- LABELS (Decoupled from invisible image padding) --- */}
                 {/* Turban Label */}
-                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="absolute top-[8%] right-[15%] flex items-center gap-1 z-50 pointer-events-none" dir="ltr">
+                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="absolute top-[12%] right-[15%] flex items-center gap-1 z-50 pointer-events-none" dir="ltr">
                   <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
                   <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">توربان</span>
                 </motion.div>
 
                 {/* Top Label */}
-                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="absolute top-[25%] left-[5%] lg:left-[10%] flex items-center gap-1 z-50 pointer-events-none" dir="ltr">
+                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="absolute top-[28%] left-[8%] lg:left-[12%] flex items-center gap-1 z-50 pointer-events-none" dir="ltr">
                   <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">بلوزة</span>
                   <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                 </motion.div>
 
                 {/* Leggings Label */}
-                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} className="absolute top-[50%] right-[10%] flex items-center gap-1 z-50 pointer-events-none" dir="ltr">
+                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} className="absolute top-[48%] right-[8%] flex items-center gap-1 z-50 pointer-events-none" dir="ltr">
                   <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
                   <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000]">ليجنز</span>
                 </motion.div>
 
                 {/* Short Coverup Label */}
-                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }} className="absolute top-[75%] left-[12%] lg:left-[18%] flex flex-col items-center gap-1 z-50 pointer-events-none">
+                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }} className="absolute top-[78%] left-[12%] lg:left-[18%] flex flex-col items-center gap-1 z-50 pointer-events-none">
                   <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
                   <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000] mb-0.5 whitespace-nowrap">كيمونو قصير</span>
                 </motion.div>
 
                 {/* Whole Coverup Label */}
-                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }} className="absolute top-[75%] right-[12%] lg:right-[18%] flex flex-col items-center gap-1 z-50 pointer-events-none">
+                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5 }} className="absolute top-[78%] right-[12%] lg:right-[18%] flex flex-col items-center gap-1 z-50 pointer-events-none">
                   <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
                   <span className="font-serif font-black italic text-[11px] lg:text-sm text-[#000000] mb-0.5 whitespace-nowrap">كيمونو كامل</span>
                 </motion.div>
