@@ -336,65 +336,55 @@ export default function Home() {
                 <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">The Full Modular Set</h3>
               </div>
 
-              {/* Piece Stack — tightly cropped relative mannequin proportions */}
-              <div className="flex flex-col items-center w-full justify-center gap-1 lg:gap-2">
+              {/* Piece Stack — realistic mannequin sizing, uncropped */}
+              <div className="flex flex-col items-center w-full justify-center">
 
                 {/* Turban — small head piece */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full">
-                  <div className="flex items-center justify-end gap-1 mr-2 w-16 lg:w-24">
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">Turban</span>
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full relative z-10">
+                  <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-24">
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm">Turban</span>
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                   </div>
-                  <div style={{height: '8vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-2.png" className="drop-shadow-md" style={{height: '14vh', width: 'auto', objectFit: 'contain', marginBottom: '-2vh'}} alt="Turban" />
-                  </div>
-                  <div className="ml-2 w-16 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-2.png" className="drop-shadow-md h-[6vh] lg:h-[10vh] w-auto object-contain" alt="Turban" />
+                  <div className="ml-2 w-20 lg:w-24 shrink-0"/>
                 </motion.div>
 
                 {/* Top — largest piece (torso) */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full">
-                  <div className="w-16 lg:w-24 shrink-0"/>
-                  <div style={{height: '16vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-1.png" className="drop-shadow-md" style={{height: '26vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="Top" />
-                  </div>
-                  <div className="flex items-center gap-1 ml-2 w-16 lg:w-24">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[1vh] relative z-20">
+                  <div className="w-20 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-1.png" className="drop-shadow-md h-[22vh] lg:h-[32vh] w-auto object-contain" alt="Top" />
+                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-24">
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">Top</span>
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm">Top</span>
                   </div>
                 </motion.div>
 
                 {/* Leggings — tall and narrow */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full">
-                  <div className="flex items-center justify-end gap-1 mr-2 w-16 lg:w-24">
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">Leggings</span>
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[4vh] relative z-10">
+                  <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-24">
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm">Leggings</span>
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
                   </div>
-                  <div style={{height: '15vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-4.png" className="drop-shadow-md" style={{height: '24vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="Leggings" />
-                  </div>
-                  <div className="ml-2 w-16 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-4.png" className="drop-shadow-md h-[20vh] lg:h-[30vh] w-auto object-contain" alt="Leggings" />
+                  <div className="ml-2 w-20 lg:w-24 shrink-0"/>
                 </motion.div>
 
                 {/* Both Coverups side by side */}
-                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 mt-1">
+                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 -mt-[3vh] relative z-30">
                   {/* Short Coverup */}
                   <div className="flex flex-col items-center">
-                    <div style={{height: '12vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                      <img src="/images/pieces/aqua-3.png" className="drop-shadow-md" style={{height: '18vh', width: 'auto', objectFit: 'contain', marginBottom: '-3vh'}} alt="Short Coverup" />
-                    </div>
+                    <img src="/images/pieces/aqua-3.png" className="drop-shadow-md h-[14vh] lg:h-[20vh] w-auto object-contain" alt="Short Coverup" />
                     <div className="flex flex-col items-center mt-1">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] lg:text-xs whitespace-nowrap">Short Coverup</span>
+                      <span className="font-serif font-black italic text-[10px] lg:text-xs whitespace-nowrap">Short Coverup</span>
                     </div>
                   </div>
                   {/* Whole Coverup */}
                   <div className="flex flex-col items-center">
-                    <div style={{height: '14vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                      <img src="/images/pieces/aqua-5.png" className="drop-shadow-md" style={{height: '22vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="Whole Coverup" />
-                    </div>
+                    <img src="/images/pieces/aqua-5.png" className="drop-shadow-md h-[18vh] lg:h-[26vh] w-auto object-contain" alt="Whole Coverup" />
                     <div className="flex flex-col items-center mt-1">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] lg:text-xs whitespace-nowrap">Whole Coverup</span>
+                      <span className="font-serif font-black italic text-[10px] lg:text-xs whitespace-nowrap">Whole Coverup</span>
                     </div>
                   </div>
                 </motion.div>
@@ -403,14 +393,14 @@ export default function Home() {
             </div>
 
             {/* Right/Bottom: Why you'll love it (4 points explicitly visible at bottom) */}
-            <div className="flex flex-col justify-center order-2 lg:order-2">
+            <div className="flex flex-col justify-center order-2 lg:order-2 w-full mt-2 lg:mt-0">
                <div className="space-y-0.5 hidden lg:block mb-4">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[10px] text-[#6bb7b3]">High Performance</p>
                   <h2 className="text-5xl font-serif font-black tracking-tighter leading-tight">Why you'll love Moony:</h2>
                </div>
                
                {/* 4 points in a 2x2 grid on mobile so they take up less vertical space */}
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-12 px-1 lg:px-0">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-x-2 gap-y-4 px-2 w-full lg:px-0">
                 {[
                   { title: "Zero Cling.", text: "Engineered fabric that never sticks." },
                   { title: "All-Day Comfort.", text: "Breathable, lightweight performance." },
@@ -422,17 +412,17 @@ export default function Home() {
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-0.5 lg:space-y-2"
+                    className="flex flex-col items-start text-left w-full space-y-1"
                   >
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                        <img 
                          src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'}
-                         className="w-3 h-3 lg:w-5 lg:h-5 shrink-0"
+                         className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
                          alt=""
                        />
-                       <h4 className="font-serif font-black text-[9px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
+                       <h4 className="font-serif font-black text-[12px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
                     </div>
-                     <p className="text-[7.5px] lg:text-sm font-bold text-[#5d4037] leading-tight italic">
+                     <p className="text-[10px] lg:text-sm font-bold text-[#5d4037] leading-tight italic break-words">
                       {spec.text}
                     </p>
                   </motion.div>

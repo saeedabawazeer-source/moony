@@ -322,62 +322,52 @@ export default function HomeAR() {
               </div>
 
               {/* Piece Stack */}
-              <div className="flex flex-col items-center w-full justify-center gap-1 lg:gap-2" dir="ltr">
+              <div className="flex flex-col items-center w-full justify-center" dir="ltr">
 
                 {/* Turban */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full">
-                  <div className="w-16 lg:w-24 shrink-0"/>
-                  <div style={{height: '8vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md" style={{height: '14vh', width: 'auto', objectFit: 'contain', marginBottom: '-2vh'}} alt="توربان" />
-                  </div>
-                  <div className="flex items-center gap-1 ml-2 w-16 lg:w-24">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="flex items-center justify-center w-full relative z-10">
+                  <div className="w-20 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-2.png" className="scale-x-[-1] drop-shadow-md h-[6vh] lg:h-[10vh] w-auto object-contain" alt="توربان" />
+                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-24">
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">توربان</span>
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm">توربان</span>
                   </div>
                 </motion.div>
 
                 {/* Top */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full">
-                  <div className="flex items-center justify-end gap-1 mr-2 w-16 lg:w-24">
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">بلوزة</span>
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex items-center justify-center w-full -mt-[1vh] relative z-20">
+                  <div className="flex items-center justify-end gap-1 mr-2 w-20 lg:w-24">
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm">بلوزة</span>
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
                   </div>
-                  <div style={{height: '16vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-1.png" className="scale-x-[-1] drop-shadow-md" style={{height: '26vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="بلوزة" />
-                  </div>
-                  <div className="ml-2 w-16 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-1.png" className="scale-x-[-1] drop-shadow-md h-[22vh] lg:h-[32vh] w-auto object-contain" alt="بلوزة" />
+                  <div className="ml-2 w-20 lg:w-24 shrink-0"/>
                 </motion.div>
 
                 {/* Leggings */}
-                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full">
-                  <div className="w-16 lg:w-24 shrink-0"/>
-                  <div style={{height: '15vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                    <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md" style={{height: '24vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="ليجنز" />
-                  </div>
-                  <div className="flex items-center gap-1 ml-2 w-16 lg:w-24">
+                <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[4vh] relative z-10">
+                  <div className="w-20 lg:w-24 shrink-0"/>
+                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[20vh] lg:h-[30vh] w-auto object-contain" alt="ليجنز" />
+                  <div className="flex items-center gap-1 ml-2 w-20 lg:w-24">
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                    <span className="font-serif font-black italic text-[10px] lg:text-sm">ليجنز</span>
+                    <span className="font-serif font-black italic text-[11px] lg:text-sm">ليجنز</span>
                   </div>
                 </motion.div>
 
                 {/* Coverups */}
-                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 mt-1">
+                <motion.div initial={{ opacity: 0, y: 5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex justify-center w-full gap-4 -mt-[3vh] relative z-30">
                   <div className="flex flex-col items-center">
-                    <div style={{height: '12vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                      <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md" style={{height: '18vh', width: 'auto', objectFit: 'contain', marginBottom: '-3vh'}} alt="كيمونو قصير" />
-                    </div>
+                    <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md h-[14vh] lg:h-[20vh] w-auto object-contain" alt="كيمونو قصير" />
                     <div className="flex flex-col items-center mt-1">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] lg:text-xs whitespace-nowrap">كيمونو قصير</span>
+                      <span className="font-serif font-black italic text-[10px] lg:text-xs whitespace-nowrap">كيمونو قصير</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-center">
-                    <div style={{height: '14vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                      <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md" style={{height: '22vh', width: 'auto', objectFit: 'contain', marginBottom: '-4vh'}} alt="كيمونو كامل" />
-                    </div>
+                    <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md h-[18vh] lg:h-[26vh] w-auto object-contain" alt="كيمونو كامل" />
                     <div className="flex flex-col items-center mt-1">
                       <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M12 5l-7 7M12 5l7 7"/></svg>
-                      <span className="font-serif font-black italic text-[9px] lg:text-xs whitespace-nowrap">كيمونو كامل</span>
+                      <span className="font-serif font-black italic text-[10px] lg:text-xs whitespace-nowrap">كيمونو كامل</span>
                     </div>
                   </div>
                 </motion.div>
@@ -386,13 +376,13 @@ export default function HomeAR() {
             </div>
 
             {/* Right/Bottom: Why you'll love it */}
-            <div className="flex flex-col justify-center order-2 lg:order-2 text-right">
+            <div className="flex flex-col justify-center order-2 lg:order-2 w-full mt-2 lg:mt-0 text-right">
                <div className="space-y-0.5 hidden lg:block mb-4">
                   <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">عملي ومريح</p>
                   <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">ليش بتحبين موني؟</h2>
                </div>
 
-               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-8 px-1 lg:px-0">
+               <div className="grid grid-cols-2 lg:grid-cols-1 gap-x-2 gap-y-4 px-2 w-full lg:px-0">
                 {[
                   { title: "ما يلصق في الجسم.", text: "مصمم عشان يعطيك حريتك." },
                   { title: "راحة طول اليوم.", text: "قماش خفيف وما كأنك لابسة شي." },
@@ -404,17 +394,17 @@ export default function HomeAR() {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="space-y-0.5 lg:space-y-2"
+                    className="flex flex-col items-start lg:items-end text-right w-full space-y-1" dir="rtl"
                   >
-                    <div className="flex items-center justify-end gap-1">
-                       <h4 className="font-serif font-black text-[9px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
+                    <div className="flex items-center gap-1.5 w-full">
                        <img 
                          src={selectedCollection === 'daydream' ? '/images/starfish-coral.png' : '/images/starfish-teal.png'}
-                         className="w-3 h-3 lg:w-5 lg:h-5 shrink-0"
+                         className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
                          alt=""
                        />
+                       <h4 className="font-serif font-black text-[12px] lg:text-xl text-[#000000] tracking-tight">{spec.title}</h4>
                     </div>
-                     <p className="text-[7.5px] lg:text-sm font-bold text-[#5d4037] leading-tight italic">
+                     <p className="text-[10px] lg:text-sm font-bold text-[#5d4037] leading-tight italic break-words w-full">
                       {spec.text}
                     </p>
                   </motion.div>
