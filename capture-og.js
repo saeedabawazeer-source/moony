@@ -14,8 +14,8 @@ async function main() {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   
-  // Use 900x900 (mobile layout so we get rounded corners) x 1.2 = 1080x1080 PNG (1:1 aspect ratio)
-  await page.setViewport({ width: 900, height: 900, deviceScaleFactor: 1.2 });
+  // Use 500x500 (mobile layout, less empty space) x 2.16 = 1080x1080 PNG
+  await page.setViewport({ width: 500, height: 500, deviceScaleFactor: 2.16 });
 
   const hideElements = async () => {
     await page.evaluate(() => {
@@ -50,12 +50,14 @@ async function main() {
   console.log("Capturing English OG...");
   await page.goto('http://localhost:5001/', { waitUntil: 'networkidle0' });
   await hideElements();
-  await page.screenshot({ path: 'client/public/images/og-en.png', clip: { x: 0, y: 0, width: 900, height: 900 } });
+  await new Promise(r => setTimeout(r, 2000)); // wait for wave to animate
+  await page.screenshot({ path: 'client/public/images/og-en.png', clip: { x: 0, y: 0, width: 500, height: 500 } });
 
   console.log("Capturing Arabic OG...");
   await page.goto('http://localhost:5001/ar', { waitUntil: 'networkidle0' });
   await hideElements();
-  await page.screenshot({ path: 'client/public/images/og-ar.png', clip: { x: 0, y: 0, width: 900, height: 900 } });
+  await new Promise(r => setTimeout(r, 2000)); // wait for wave to animate
+  await page.screenshot({ path: 'client/public/images/og-ar.png', clip: { x: 0, y: 0, width: 500, height: 500 } });
 
   await browser.close();
   dev.kill();
