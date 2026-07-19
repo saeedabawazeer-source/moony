@@ -126,7 +126,7 @@ export default function HomeAR() {
                 className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})`,
-                  fontSize: "clamp(4.2rem, 11vw, 9rem)",
+                  fontSize: "clamp(3.8rem, 10vw, 9rem)",
                   lineHeight: "1.3",
                   fontFamily: "'Noto Kufi Arabic', sans-serif",
                   WebkitTextStroke: "4px transparent"
@@ -365,7 +365,7 @@ export default function HomeAR() {
             </div>
 
             {/* Right/Bottom: Why you'll love it */}
-            <div className="flex flex-col justify-center order-2 lg:order-2 w-full mt-2 lg:mt-0" dir="rtl">
+            <div className="flex flex-col justify-center order-2 lg:order-2 w-full -mt-6 lg:-mt-10" dir="rtl">
                
                {/* 4 points in a 2x2 grid on mobile so they take up less vertical space */}
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-x-2 gap-y-4 px-2 w-full lg:px-0">
@@ -402,17 +402,17 @@ export default function HomeAR() {
         </section>
 
         {/* Section 4: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 pt-8 pb-4 lg:pt-16 lg:pb-10 flex flex-col justify-between bg-[#fef8e1]">
-          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-5 lg:space-y-8">
+        <section id="details-section" className="snap-slide h-[100dvh] overflow-hidden px-4 lg:px-20 pt-6 pb-2 lg:pt-16 lg:pb-10 flex flex-col justify-between bg-[#fef8e1]">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-3 lg:space-y-8">
             
             {/* Reviews Title */}
-            <div className="space-y-1" dir="rtl">
-              <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">قالوا عنّا</p>
-              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">تجربة نجوم موني</h2>
+            <div className="space-y-0.5" dir="rtl">
+              <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c] font-kufi">آراء النجمات</p>
+              <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">نجمات موني</h2>
             </div>
 
             {/* Glowing Reviews (UGC Masonry Grid) */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 w-full mt-2 lg:mt-4 pb-8 lg:pb-20" dir="rtl">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 w-full mt-1 lg:mt-4 pb-2 lg:pb-20" dir="rtl">
                {[
                  { img: "/images/daydream-1.jpeg", quote: "مرة حبيت الطقم، يجنن!", author: "سارة ج." },
                  { img: "/images/daydream-2.jpeg", quote: "أخيراً لقيت لبس سباحة ما يلصق في الجسم!", author: "لينا م." },
@@ -447,11 +447,12 @@ export default function HomeAR() {
                ))}
             </div>
 
-            <p className="text-xs lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-6 lg:mb-12 font-kufi" dir="rtl">
-              اطلبي ويوصلك في نفس اليوم في جده
+            <p className="text-[10px] lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-2 lg:mb-12 font-kufi" dir="rtl">
+              اطلبي اليوم ويوصلك في نفس اليوم داخل جدة.
             </p>
           </div>
-          <div className="w-full mt-auto pt-8">
+          
+          <div className="w-full mt-auto pt-2">
             <Footer />
           </div>
           {/* Section 4 Ambient Starfish Overlay */}

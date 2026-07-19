@@ -132,7 +132,7 @@ export default function Home() {
                 className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})`,
-                  fontSize: isAr ? "clamp(4.2rem, 11vw, 9rem)" : "clamp(4.2rem, 11vw, 9rem)",
+                  fontSize: isAr ? "clamp(3.8rem, 10vw, 9rem)" : "clamp(3.8rem, 10vw, 9rem)",
                   lineHeight: "1.3",
                   fontFamily: isAr ? "'Noto Kufi Arabic', sans-serif" : "inherit",
                   WebkitTextStroke: isAr ? "4px transparent" : "none"
@@ -380,7 +380,7 @@ export default function Home() {
             </div>
 
             {/* Right/Bottom: Why you'll love it (4 points explicitly visible at bottom) */}
-            <div className="flex flex-col justify-center order-2 lg:order-2 w-full mt-2 lg:mt-0">
+            <div className="flex flex-col justify-center order-2 lg:order-2 w-full -mt-6 lg:-mt-10">
                
                {/* 4 points in a 2x2 grid on mobile so they take up less vertical space */}
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-x-2 gap-y-4 px-2 w-full lg:px-0">
@@ -416,17 +416,17 @@ export default function Home() {
         </section>
 
         {/* Section 4: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide !h-auto min-h-[100dvh] px-4 lg:px-20 pt-8 pb-4 lg:pt-16 lg:pb-10 flex flex-col justify-between bg-[#fef8e1]">
-          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-5 lg:space-y-8">
+        <section id="details-section" className="snap-slide h-[100dvh] overflow-hidden px-4 lg:px-20 pt-6 pb-2 lg:pt-16 lg:pb-10 flex flex-col justify-between bg-[#fef8e1]">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-3 lg:space-y-8">
             
             {/* Reviews Title */}
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">What They Say</p>
               <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none">Moony Stars</h2>
             </div>
 
             {/* Glowing Reviews (UGC Masonry Grid) */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 w-full mt-2 lg:mt-4 pb-8 lg:pb-20">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 w-full mt-1 lg:mt-4 pb-2 lg:pb-20">
                {[
                  { img: "/images/daydream-1.jpeg", quote: "Obsessed with this fit!", author: "Sarah J." },
                  { img: "/images/daydream-2.jpeg", quote: "No clinging at all. Finally.", author: "Lina M." },
@@ -452,12 +452,12 @@ export default function Home() {
                ))}
             </div>
 
-            <p className="text-xs lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-6 lg:mb-12">
+            <p className="text-[10px] lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-2 lg:mb-12">
               Order today and get same day delivery in Jeddah.
             </p>
           </div>
           
-          <div className="w-full mt-auto pt-8">
+          <div className="w-full mt-auto pt-2">
             <Footer />
           </div>
 
