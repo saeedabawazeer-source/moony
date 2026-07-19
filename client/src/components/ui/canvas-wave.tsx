@@ -16,14 +16,15 @@ export default function CanvasWave() {
     let time = 0;
     
     // Wave configuration
-    const amplitude = 15; // height of the wave
-    const frequency = 0.015; // tightness of the wave
-    const speed = 0.05; // speed of horizontal movement
-    const thickness = 5;
+    const amplitude = 25; // height of the wave — bigger for visibility
+    const frequency = 0.012; // tightness of the wave
+    const speed = 0.04; // speed of horizontal movement
+    const thickness = 10; // thick enough to be clearly seen
     
     ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
     ctx.lineWidth = thickness;
-    ctx.strokeStyle = '#6bb7b3'; // Brand blue color
+    ctx.strokeStyle = '#6bb7b3'; // Brand teal
 
     const renderWave = () => {
       ctx.clearRect(0, 0, cw, ch);
@@ -31,8 +32,8 @@ export default function CanvasWave() {
       
       // Draw a continuous sine wave across the canvas width
       for (let x = 0; x <= cw; x += 5) {
-        // y centers around 80% down the container, so it overlaps the subtext/button and avoids the main hero text entirely
-        const y = (ch * 0.8) + Math.sin(x * frequency + time) * amplitude;
+        // y centers at 50% of the container — middle of the wave div, clearly visible
+        const y = (ch * 0.5) + Math.sin(x * frequency + time) * amplitude;
         if (x === 0) {
           ctx.moveTo(x, y);
         } else {

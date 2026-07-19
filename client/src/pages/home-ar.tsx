@@ -111,7 +111,7 @@ export default function HomeAR() {
         <section className="snap-slide relative overflow-hidden bg-[#fef8e1]">
           <Header />
           
-          <div className="absolute inset-x-0 bottom-0 top-[40%] z-20 pointer-events-none">
+          <div className="absolute inset-x-0 bottom-0 top-[55%] z-20 pointer-events-none">
             <CanvasWave />
           </div>
           <motion.div 
@@ -132,7 +132,7 @@ export default function HomeAR() {
                   WebkitTextStroke: "4px transparent"
                 }}
               >
-                <span dir="rtl" className="block">استمتعي<br/>بكل موجة.</span>
+                <span dir="rtl" className="block">استمتعي<br/>بكل<br/>موجة.</span>
               </h1>
             </div>
             <div className="relative z-30 mb-4 lg:mb-6">
