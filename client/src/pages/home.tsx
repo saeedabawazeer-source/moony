@@ -132,8 +132,8 @@ export default function Home() {
                 className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})`,
-                  fontSize: isAr ? "clamp(5rem, 12vw, 9rem)" : "clamp(4.2rem, 10vw, 10rem)",
-                  lineHeight: isAr ? "1.5" : "0.95",
+                  fontSize: isAr ? "clamp(5rem, 12vw, 9rem)" : "clamp(5rem, 12vw, 9rem)",
+                  lineHeight: "1.3",
                   fontFamily: isAr ? "'Noto Kufi Arabic', sans-serif" : "inherit",
                   WebkitTextStroke: isAr ? "4px transparent" : "none"
                 }}

@@ -70,13 +70,13 @@ async function main() {
   console.log("Capturing English OG...");
   await page.goto('http://localhost:5001/', { waitUntil: 'networkidle0' });
   await hideElements();
-  await new Promise(r => setTimeout(r, 3000)); // wait for wave animation to draw
+  await new Promise(r => setTimeout(r, 3000));
   await page.screenshot({ path: 'client/public/images/og-en.png', clip: { x: 0, y: 0, width: 600, height: 600 } });
 
   console.log("Capturing Arabic OG...");
   await page.goto('http://localhost:5001/ar', { waitUntil: 'networkidle0' });
   await hideElements();
-  await new Promise(r => setTimeout(r, 3000)); // wait for wave animation to draw
+  await new Promise(r => setTimeout(r, 3000));
   await page.screenshot({ path: 'client/public/images/og-ar.png', clip: { x: 0, y: 0, width: 600, height: 600 } });
 
   await browser.close();
