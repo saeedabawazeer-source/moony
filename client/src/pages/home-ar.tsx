@@ -402,8 +402,8 @@ export default function HomeAR() {
         </section>
 
         {/* Section 4: The Final Chapter (Signup + Footer) */}
-        <section id="details-section" className="snap-slide h-[100dvh] overflow-hidden px-4 lg:px-20 pt-6 pb-2 lg:pt-16 lg:pb-10 flex flex-col justify-between bg-[#fef8e1]">
-          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-3 lg:space-y-8">
+        <section id="details-section" className="snap-slide h-[100dvh] overflow-hidden px-4 lg:px-20 pt-6 pb-2 lg:pt-16 lg:pb-10 flex flex-col justify-center bg-[#fef8e1]">
+          <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-3 lg:space-y-6">
             
             {/* Reviews Title */}
             <div className="space-y-0.5" dir="rtl">
@@ -447,12 +447,12 @@ export default function HomeAR() {
                ))}
             </div>
 
-            <p className="text-[10px] lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-2 lg:mb-12 font-kufi" dir="rtl">
+            <p className="text-[10px] lg:text-base font-serif font-black italic text-[#5d4037] mt-0 mb-0 font-kufi" dir="rtl">
               اطلبي اليوم ويوصلك في نفس اليوم داخل جدة.
             </p>
           </div>
           
-          <div className="w-full mt-auto pt-2">
+          <div className="w-full pt-4 lg:pt-8">
             <Footer />
           </div>
           {/* Section 4 Ambient Starfish Overlay */}

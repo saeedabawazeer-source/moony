@@ -16,10 +16,10 @@ export default function Footer() {
           </div>
           
           {/* Social Links */}
-          <div className="flex items-center space-x-6 text-[#5d4037]">
-            <a href="https://instagram.com/moonyswimwear" target="_blank" rel="noopener noreferrer" className="hover:text-[#e5815c] transition-colors"><i className="fab fa-instagram lg:text-lg"></i></a>
-            <a href="https://tiktok.com/@moonyswimwear" target="_blank" rel="noopener noreferrer" className="hover:text-[#e5815c] transition-colors"><i className="fab fa-tiktok lg:text-lg"></i></a>
-            <a href="https://wa.me/?text=Hi%20Moony!" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors"><i className="fab fa-whatsapp lg:text-lg"></i></a>
+          <div className="flex items-center justify-center gap-8 lg:gap-6 text-[#5d4037] my-2 md:my-0">
+            <a href="https://instagram.com/moonyswimwear" target="_blank" rel="noopener noreferrer" className="hover:text-[#e5815c] transition-colors"><i className="fab fa-instagram text-2xl lg:text-lg"></i></a>
+            <a href="https://tiktok.com/@moonyswimwear" target="_blank" rel="noopener noreferrer" className="hover:text-[#e5815c] transition-colors"><i className="fab fa-tiktok text-2xl lg:text-lg"></i></a>
+            <a href="https://wa.me/?text=Hi%20Moony!" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors"><i className="fab fa-whatsapp text-2xl lg:text-lg"></i></a>
           </div>
 
           {/* Policy Links + Copyright */}
