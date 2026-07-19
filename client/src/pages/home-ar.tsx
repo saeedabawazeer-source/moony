@@ -120,16 +120,16 @@ export default function HomeAR() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative w-full"
           >
-            <div className="relative z-10 mb-2 lg:mb-4 w-full max-w-6xl mx-auto py-8 lg:py-20 px-4" dir="ltr">
+            <div className="relative z-30 mb-2 lg:mb-4 w-full max-w-6xl mx-auto py-8 lg:py-20 px-4" dir="ltr">
               <h1 
                 key={selectedCollection + "-text"}
                 className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})`,
                   fontSize: "clamp(5rem, 12vw, 9rem)",
-                  lineHeight: "1.5",
+                  lineHeight: "1.3",
                   fontFamily: "'Noto Kufi Arabic', sans-serif",
-                  WebkitTextStroke: "4px transparent"
+                  WebkitTextStroke: "4px #000000"
                 }}
               >
                 <span dir="rtl" className="block">استمتعي<br/>بكل<br/>موجة.</span>

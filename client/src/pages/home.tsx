@@ -126,7 +126,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative w-full"
           >
-            <div className="relative z-10 mb-2 lg:mb-4 w-full max-w-6xl mx-auto py-8 lg:py-20 px-4">
+            <div className="relative z-30 mb-2 lg:mb-4 w-full max-w-6xl mx-auto py-8 lg:py-20 px-4">
               <h1 
                 key={selectedCollection + "-text"}
                 className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
@@ -135,7 +135,7 @@ export default function Home() {
                   fontSize: isAr ? "clamp(5rem, 12vw, 9rem)" : "clamp(5rem, 12vw, 9rem)",
                   lineHeight: "1.3",
                   fontFamily: isAr ? "'Noto Kufi Arabic', sans-serif" : "inherit",
-                  WebkitTextStroke: isAr ? "4px transparent" : "none"
+                  WebkitTextStroke: "4px #000000"
                 }}
               >
                 {isAr ? <span dir="rtl" className="block">اجعلي<br/>كل موجة<br/>تحسب.</span> : <>Make<br/>Every Wave<br/>Count.</>}
