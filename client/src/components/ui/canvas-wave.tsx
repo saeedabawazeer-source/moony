@@ -31,8 +31,8 @@ export default function CanvasWave() {
       
       // Draw a continuous sine wave across the canvas width
       for (let x = 0; x <= cw; x += 5) {
-        // y centers around 20% down the container, so it overlaps the subtext but NOT the main hero text
-        const y = (ch * 0.2) + Math.sin(x * frequency + time) * amplitude;
+        // y centers around 80% down the container, so it overlaps the subtext/button and avoids the main hero text entirely
+        const y = (ch * 0.8) + Math.sin(x * frequency + time) * amplitude;
         if (x === 0) {
           ctx.moveTo(x, y);
         } else {

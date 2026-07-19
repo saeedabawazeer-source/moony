@@ -120,33 +120,20 @@ export default function HomeAR() {
             viewport={{ once: true }}
             className="flex-grow flex flex-col justify-center items-center text-center px-4 lg:px-8 relative w-full"
           >
-            <div className="relative z-10 mb-2 lg:mb-4 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl lg:rounded-none" dir="ltr">
-              {/* Layer 1: The GIF */}
-              <img 
-                key={selectedCollection + "-gif"}
-                src={selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'}
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[100vh] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-                alt="Background"
-              />
-              
-              {/* Layer 2: White Background + Black Text */}
-              <div className="relative w-full h-full bg-white mix-blend-screen flex items-center justify-center py-8 lg:py-20 px-4">
-                <h1 
-                  key={selectedCollection + "-text"}
-                  className="uppercase text-[#000000] font-black w-full text-center tracking-normal"
-                  style={{
-                    fontSize: "clamp(5rem, 12vw, 9rem)",
-                    lineHeight: "1.5",
-                    fontFamily: "'Noto Kufi Arabic', sans-serif",
-                    WebkitTextStroke: "4px #000000"
-                  }}
-                >
-                  <span dir="rtl" className="block">استمتعي<br/>بكل موجة.</span>
-                </h1>
-              </div>
-
-              {/* Layer 3: Multiply by page background color */}
-              <div className="absolute inset-0 bg-[#fef8e1] mix-blend-multiply pointer-events-none"></div>
+            <div className="relative z-10 mb-2 lg:mb-4 w-full max-w-6xl mx-auto py-8 lg:py-20 px-4" dir="ltr">
+              <h1 
+                key={selectedCollection + "-text"}
+                className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})`,
+                  fontSize: "clamp(5rem, 12vw, 9rem)",
+                  lineHeight: "1.5",
+                  fontFamily: "'Noto Kufi Arabic', sans-serif",
+                  WebkitTextStroke: "4px transparent"
+                }}
+              >
+                <span dir="rtl" className="block">استمتعي<br/>بكل موجة.</span>
+              </h1>
             </div>
             <div className="relative z-30 mb-4 lg:mb-6">
               <p className="font-sans font-bold text-sm lg:text-lg text-[#5d4037] font-kufi">

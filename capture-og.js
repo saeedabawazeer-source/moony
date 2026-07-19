@@ -14,8 +14,8 @@ async function main() {
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   
-  // Use 500x500 (mobile layout, less empty space) x 2.16 = 1080x1080 PNG
-  await page.setViewport({ width: 500, height: 500, deviceScaleFactor: 2.16 });
+  // Use 800x800 x 1.35 = 1080x1080 PNG
+  await page.setViewport({ width: 800, height: 800, deviceScaleFactor: 1.35 });
 
   const hideElements = async () => {
     await page.evaluate(() => {
@@ -31,20 +31,19 @@ async function main() {
         }
       });
       
-      // Center the logo in the header and make it huge
+      // Center the logo in the header and make it appropriately sized
       const headerInner = document.querySelector('.sticky > div');
       if (headerInner) {
          headerInner.style.justifyContent = 'center';
       }
       const logoImg = document.querySelector('img[alt="Moony Logo"]');
       if (logoImg) {
-         logoImg.style.width = '64px';
-         logoImg.style.height = '64px';
-         logoImg.style.marginBottom = '12px';
+         logoImg.style.width = '48px';
+         logoImg.style.height = '48px';
       }
       const logoText = document.querySelector('span:has(img) + span') || document.querySelector('.text-2xl') || document.querySelector('.text-4xl');
       if (logoText) {
-         logoText.style.fontSize = '48px';
+         logoText.style.fontSize = '36px';
       }
       
       // hide the down arrow link
