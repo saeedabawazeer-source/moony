@@ -135,7 +135,7 @@ export default function Home() {
                   fontSize: isAr ? "clamp(5rem, 12vw, 9rem)" : "clamp(5rem, 12vw, 9rem)",
                   lineHeight: "1.3",
                   fontFamily: isAr ? "'Noto Kufi Arabic', sans-serif" : "inherit",
-                  WebkitTextStroke: "4px #000000"
+                  WebkitTextStroke: isAr ? "4px transparent" : "none"
                 }}
               >
                 {isAr ? <span dir="rtl" className="block">اجعلي<br/>كل موجة<br/>تحسب.</span> : <>Make<br/>Every Wave<br/>Count.</>}

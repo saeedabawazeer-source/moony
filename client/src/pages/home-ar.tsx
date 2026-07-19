@@ -129,7 +129,7 @@ export default function HomeAR() {
                   fontSize: "clamp(5rem, 12vw, 9rem)",
                   lineHeight: "1.3",
                   fontFamily: "'Noto Kufi Arabic', sans-serif",
-                  WebkitTextStroke: "4px #000000"
+                  WebkitTextStroke: "4px transparent"
                 }}
               >
                 <span dir="rtl" className="block">استمتعي<br/>بكل<br/>موجة.</span>

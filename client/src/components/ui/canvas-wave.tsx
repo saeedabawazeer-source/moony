@@ -41,6 +41,11 @@ export default function CanvasWave() {
       ctx.closePath();
       
       ctx.fill();
+      
+      // Add a black outline around the wave
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#000000';
+      ctx.stroke();
     };
 
     let animationFrameId: number;
