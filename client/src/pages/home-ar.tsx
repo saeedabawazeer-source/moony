@@ -135,7 +135,7 @@ export default function HomeAR() {
                   key={selectedCollection + "-text"}
                   className="uppercase text-[#000000] font-black w-full text-center tracking-normal"
                   style={{
-                    fontSize: "clamp(3.5rem, 8vw, 7.5rem)",
+                    fontSize: "clamp(5rem, 12vw, 9rem)",
                     lineHeight: "1.5",
                     fontFamily: "'Noto Kufi Arabic', sans-serif",
                     WebkitTextStroke: "4px #000000"

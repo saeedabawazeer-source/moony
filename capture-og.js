@@ -31,10 +31,20 @@ async function main() {
         }
       });
       
-      // Center the logo in the header
+      // Center the logo in the header and make it huge
       const headerInner = document.querySelector('.sticky > div');
       if (headerInner) {
          headerInner.style.justifyContent = 'center';
+      }
+      const logoImg = document.querySelector('img[alt="Moony Logo"]');
+      if (logoImg) {
+         logoImg.style.width = '64px';
+         logoImg.style.height = '64px';
+         logoImg.style.marginBottom = '12px';
+      }
+      const logoText = document.querySelector('span:has(img) + span') || document.querySelector('.text-2xl') || document.querySelector('.text-4xl');
+      if (logoText) {
+         logoText.style.fontSize = '48px';
       }
       
       // hide the down arrow link
