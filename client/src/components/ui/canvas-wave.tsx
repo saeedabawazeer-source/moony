@@ -19,16 +19,11 @@ export default function CanvasWave() {
     const amplitude = 28;
     const frequency = 0.012;
     const speed = 0.04;
-    const thickness = 14;
-    const color = '#00b4c8'; // vivid teal, clearly visible on beige
+    const color = '#6bb7b3'; // Original brand teal filled color
 
     const renderWave = () => {
       ctx.clearRect(0, 0, cw, ch);
-      // Reset styles each frame to ensure color/width are applied
-      ctx.lineJoin = 'round';
-      ctx.lineCap = 'round';
-      ctx.lineWidth = thickness;
-      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
       ctx.beginPath();
       
       for (let x = 0; x <= cw; x += 4) {
@@ -40,7 +35,12 @@ export default function CanvasWave() {
         }
       }
       
-      ctx.stroke();
+      // Close the path at the bottom of the canvas to fill it
+      ctx.lineTo(cw, ch);
+      ctx.lineTo(0, ch);
+      ctx.closePath();
+      
+      ctx.fill();
     };
 
     let animationFrameId: number;
