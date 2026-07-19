@@ -126,7 +126,7 @@ export default function HomeAR() {
                 className="uppercase font-black w-full text-center tracking-normal text-transparent bg-clip-text bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${selectedCollection === 'daydream' ? '/images/models/daydream/VIDDD.gif' : '/images/models/aquaglow/VIDAG.gif'})`,
-                  fontSize: "clamp(5rem, 12vw, 9rem)",
+                  fontSize: "clamp(4.2rem, 11vw, 9rem)",
                   lineHeight: "1.3",
                   fontFamily: "'Noto Kufi Arabic', sans-serif",
                   WebkitTextStroke: "4px transparent"
@@ -365,12 +365,9 @@ export default function HomeAR() {
             </div>
 
             {/* Right/Bottom: Why you'll love it */}
-            <div className="flex flex-col justify-center order-2 lg:order-2 w-full mt-2 lg:mt-0 text-right">
-               <div className="space-y-0.5 hidden lg:block mb-4">
-                  <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[10px] text-[#6bb7b3]">عملي ومريح</p>
-                  <h2 className="text-xl lg:text-5xl font-serif font-black tracking-tighter leading-tight font-kufi">ليش بتحبين موني؟</h2>
-               </div>
-
+            <div className="flex flex-col justify-center order-2 lg:order-2 w-full mt-2 lg:mt-0" dir="rtl">
+               
+               {/* 4 points in a 2x2 grid on mobile so they take up less vertical space */}
                <div className="grid grid-cols-2 lg:grid-cols-1 gap-x-2 gap-y-4 px-2 w-full lg:px-0">
                 {[
                   { title: "ما يلصق في الجسم.", text: "مصمم عشان يعطيك حريتك." },
