@@ -96,7 +96,7 @@ export function SaeedSignature() {
       let W = 36*S + D + 6, H = y0 + 8*S + D + 4;
       
       // We limit max-width so it's not too big and doesn't take too much height
-      bn.innerHTML = '<svg width="100%" viewBox="0 0 '+W+' '+H+'" style="overflow:visible;max-width:240px;margin:auto;" aria-hidden="true">'
+      bn.innerHTML = '<svg width="100%" viewBox="0 0 '+W+' '+H+'" style="overflow:visible;max-width:180px;margin:auto;" aria-hidden="true">'
                    + all.map(function(b){ return brick(b.tx, b.ty, b.w, face[b.cl]); }).join('') 
                    + '</svg>';
                    
