@@ -334,10 +334,10 @@ export default function HomeAR() {
                 {/* Leggings */}
                 <motion.div initial={{ opacity: 0, y: -5 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex items-center justify-center w-full -mt-[10vh] lg:-mt-[14vh] relative z-10">
                   <div className="w-20 lg:w-32 shrink-0"/>
-                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[24vh] lg:h-[32vh] w-auto object-contain" alt="ليجنز" />
+                  <img src="/images/pieces/aqua-4.png" className="scale-x-[-1] drop-shadow-md h-[24vh] lg:h-[32vh] w-auto object-contain" alt="ليقنز" />
                   <div className="flex items-center gap-1 ml-2 w-20 lg:w-32">
                     <svg className="w-3 h-3 lg:w-5 lg:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                    <span className="font-serif font-black italic text-[11px] lg:text-lg">ليجنز</span>
+                    <span className="font-serif font-black italic text-[11px] lg:text-lg">ليقنز</span>
                   </div>
                 </motion.div>
 
@@ -346,18 +346,18 @@ export default function HomeAR() {
                   
                   {/* Short Coverup (Left Tag, points right ->) */}
                   <div className="flex items-center justify-end gap-1 w-14 lg:w-24 text-right">
-                    <span className="font-serif font-black italic text-[9px] lg:text-sm leading-tight">كيمونو<br/>قصير</span>
+                    <span className="font-serif font-black italic text-[9px] lg:text-sm leading-tight">تنوره<br/>قصيره</span>
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
                   </div>
                   
-                  <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md h-[22vh] lg:h-[30vh] w-auto object-contain" alt="كيمونو قصير" />
+                  <img src="/images/pieces/aqua-3.png" className="scale-x-[-1] drop-shadow-md h-[22vh] lg:h-[30vh] w-auto object-contain" alt="تنوره قصيره" />
                   
-                  <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md h-[26vh] lg:h-[36vh] w-auto object-contain" alt="كيمونو كامل" />
+                  <img src="/images/pieces/aqua-5.png" className="scale-x-[-1] drop-shadow-md h-[26vh] lg:h-[36vh] w-auto object-contain" alt="كاش مايو" />
                   
                   {/* Whole Coverup (Right Tag, points left <-) */}
                   <div className="flex items-center gap-1 w-14 lg:w-24 text-left">
                     <svg className="w-3 h-3 lg:w-4 lg:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M19 12l-7-7M19 12l-7 7"/></svg>
-                    <span className="font-serif font-black italic text-[9px] lg:text-sm leading-tight">كيمونو<br/>كامل</span>
+                    <span className="font-serif font-black italic text-[9px] lg:text-sm leading-tight">كاش<br/>مايو</span>
                   </div>
                 </motion.div>
 

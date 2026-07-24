@@ -275,6 +275,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get gallery images
+  app.get("/api/gallery-images", async (req, res) => {
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      
+      const adsDir = path.join(process.cwd(), "client", "public", "images", "ads");
+      if (!fs.existsSync(adsDir)) {
+        return res.json({ images: [] });
+      }
+
+      const files = fs.readdirSync(adsDir);
+      const validPrefixes = [
+        "neo_", "lux_", "art_", "strict_", "final_", "baaghil_", "baaghil-", 
+        "carousel_", "carousel-", "premium_", "slide-", "static-", "ad1-", "ad2-", "ad3-"
+      ];
+
+      const images = files
+        .filter(f => f.match(/\.(jpg|jpeg|png|webp)$/i))
+        .filter(f => validPrefixes.some(prefix => f.startsWith(prefix)))
+        .map(f => `/images/ads/${f}`);
+
+      res.json({ images });
+    } catch (error) {
+      console.error("[GALLERY] Error:", error);
+      res.status(500).json({ message: "Failed to fetch gallery images" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { SaeedSignature } from "@/components/ui/SaeedSignature";
 
 export default function Footer() {
   return (
@@ -35,6 +36,11 @@ export default function Footer() {
               &copy; 2025 Moony Boutique. All rights reserved.
             </p>
           </div>
+        </div>
+        
+        {/* Saeed Signature */}
+        <div className="w-full mt-2 pt-1 pb-1">
+          <SaeedSignature />
         </div>
       </div>
     </footer>

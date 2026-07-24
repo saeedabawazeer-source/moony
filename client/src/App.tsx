@@ -8,6 +8,8 @@ import Home from "@/pages/home";
 import HomeAR from "@/pages/home-ar";
 import Success from "@/pages/success";
 import Policies from "@/pages/policies";
+import CreatorStudio from "@/pages/creator";
+import Gallery from "@/pages/gallery";
 
 function Router() {
   return (
@@ -16,6 +18,8 @@ function Router() {
       <Route path="/ar" component={HomeAR} />
       <Route path="/success" component={Success} />
       <Route path="/policies" component={Policies} />
+      <Route path="/creator31" component={CreatorStudio} />
+      <Route path="/gallery" component={Gallery} />
       <Route component={NotFound} />
     </Switch>
   );
