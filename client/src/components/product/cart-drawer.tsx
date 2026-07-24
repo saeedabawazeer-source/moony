@@ -221,53 +221,67 @@ export default function CartDrawer() {
           <div className="px-6 py-6 border-t border-gray-100 bg-gray-50/50">
                    <h3 className={`font-bold text-xl text-black mb-6 ${isAr ? "font-kufi" : "font-serif"}`}>{t.deliveryDetails}</h3>
                    <div className="space-y-4">
-                <div className="flex flex-col border-b border-gray-200 pb-2 bg-transparent">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.fullName}</label>
-                  <input
-                    required
-                    value={formData.fullName}
-                    onChange={e => setFormData(f => ({ ...f, fullName: e.target.value }))}
-                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
-                  />
-                </div>
+                {checkoutFormStep === 1 ? (
+                  <>
+                    <div className="flex flex-col border-b border-gray-200 pb-2 bg-transparent">
+                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.fullName}</label>
+                      <input
+                        required
+                        value={formData.fullName}
+                        onChange={e => setFormData(f => ({ ...f, fullName: e.target.value }))}
+                        className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
+                      />
+                    </div>
 
-                <div className="flex flex-col border-b border-gray-200 pb-2">
-                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.phone}</label>
-                  <input
-                    required
-                    type="tel"
-                    minLength={9}
-                    maxLength={15}
-                    value={formData.phone}
-                    onChange={e => setFormData(f => ({ ...f, phone: e.target.value.replace(/[^0-9+]/g, '') }))}
-                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
-                    dir="ltr"
-                    style={{ textAlign: isAr ? 'right' : 'left' }}
-                  />
-                </div>
+                    <div className="flex flex-col border-b border-gray-200 pb-2">
+                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.phone}</label>
+                      <input
+                        required
+                        type="tel"
+                        minLength={9}
+                        maxLength={15}
+                        value={formData.phone}
+                        onChange={e => setFormData(f => ({ ...f, phone: e.target.value.replace(/[^0-9+]/g, '') }))}
+                        className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
+                        dir="ltr"
+                        style={{ textAlign: isAr ? 'right' : 'left' }}
+                      />
+                    </div>
 
-                {checkoutFormStep === 1 && (
-                  <button 
-                    type="button"
-                    onClick={() => {
-                      if (!formData.fullName || !formData.phone) {
-                        alert(isAr ? "يرجى تعبئة الاسم ورقم الجوال أولاً" : "Please fill in your name and phone number first.");
-                        return;
-                      }
-                      setCheckoutFormStep(2);
-                      setTimeout(() => {
-                        document.getElementById('address-section-drawer')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      }, 100);
-                    }}
-                    className={`w-full mt-4 py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all ${isAr ? "font-kufi" : ""}`}
-                  >
-                    {isAr ? "التالي: عنوان التوصيل" : "Next: Shipping Address"}
-                  </button>
+                    <button 
+                      type="button"
+                      onClick={() => {
+                        if (!formData.fullName || !formData.phone) {
+                          alert(isAr ? "يرجى تعبئة الاسم ورقم الجوال أولاً" : "Please fill in your name and phone number first.");
+                          return;
+                        }
+                        setCheckoutFormStep(2);
+                      }}
+                      className={`w-full mt-4 py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all ${isAr ? "font-kufi" : ""}`}
+                    >
+                      {isAr ? "التالي: عنوان التوصيل" : "Next: Shipping Address"}
+                    </button>
+                  </>
+                ) : (
+                  <div className="flex justify-between items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm mt-2">
+                    <div className="flex flex-col space-y-1">
+                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t.fullName}</span>
+                      <span className="text-sm font-bold text-black">{formData.fullName}</span>
+                      <span className="text-sm font-bold text-black" dir="ltr">{formData.phone}</span>
+                    </div>
+                    <button 
+                      type="button" 
+                      onClick={() => setCheckoutFormStep(1)} 
+                      className="text-xs font-bold text-black underline uppercase tracking-widest hover:text-gray-600 transition-colors"
+                    >
+                      {isAr ? "تعديل" : "Edit"}
+                    </button>
+                  </div>
                 )}
 
                 <div 
                   id="address-section-drawer"
-                  className={`transition-all duration-500 overflow-hidden ${checkoutFormStep === 2 ? 'opacity-100 max-h-[1000px] mt-6' : 'opacity-0 max-h-0'}`}
+                  className={`transition-all duration-500 overflow-hidden ${checkoutFormStep === 2 ? 'opacity-100 max-h-[1000px] mt-4' : 'opacity-0 max-h-0'}`}
                 >
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div className="flex flex-col border-b border-gray-200 pb-2">
