@@ -13,6 +13,7 @@ export default function Checkout() {
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [quantity, setQuantity] = useState(1);
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -167,89 +168,131 @@ export default function Checkout() {
             <div className="bg-white p-6 rounded-2xl shadow-sm">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Contact Information</h2>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                
+                {/* Step 1: Basic Info */}
+                <div className="space-y-4">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">1. Personal Details</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName">First Name</Label>
+                      <Input
+                        id="firstName"
+                        value={formData.firstName}
+                        onChange={(e) => handleInputChange("firstName", e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <Input
+                        id="lastName"
+                        value={formData.lastName}
+                        onChange={(e) => handleInputChange("lastName", e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <Label htmlFor="firstName">First Name</Label>
+                    <Label htmlFor="email">Email</Label>
                     <Input
-                      id="firstName"
-                      value={formData.firstName}
-                      onChange={(e) => handleInputChange("firstName", e.target.value)}
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
                       required
                     />
                   </div>
+
                   <div>
-                    <Label htmlFor="lastName">Last Name</Label>
+                    <Label htmlFor="phone">Phone</Label>
                     <Input
-                      id="lastName"
-                      value={formData.lastName}
-                      onChange={(e) => handleInputChange("lastName", e.target.value)}
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange("phone", e.target.value)}
                       required
                     />
                   </div>
+
+                  {step === 1 && (
+                    <Button 
+                      type="button" 
+                      className="w-full py-6 text-lg font-bold mt-4" 
+                      onClick={() => {
+                        if (!formData.firstName || !formData.lastName || !formData.phone) {
+                          alert("Please fill in your name and phone number first.");
+                          return;
+                        }
+                        setStep(2);
+                        setTimeout(() => {
+                          document.getElementById('address-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                      }}
+                    >
+                      Next: Shipping Address
+                    </Button>
+                  )}
                 </div>
 
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="address">Address</Label>
-                  <Input
-                    id="address"
-                    value={formData.address}
-                    onChange={(e) => handleInputChange("address", e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
+                {/* Step 2: Address (Hidden until Step 1 complete) */}
+                <div 
+                  id="address-section"
+                  className={`space-y-4 transition-all duration-500 overflow-hidden ${step >= 2 ? 'opacity-100 max-h-[1000px] mt-8 pt-8 border-t border-gray-100' : 'opacity-0 max-h-0'}`}
+                >
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">2. Delivery Address</h3>
                   <div>
-                    <Label htmlFor="city">City</Label>
+                    <Label htmlFor="address">Address</Label>
                     <Input
-                      id="city"
-                      value={formData.city}
-                      onChange={(e) => handleInputChange("city", e.target.value)}
-                      required
+                      id="address"
+                      value={formData.address}
+                      onChange={(e) => handleInputChange("address", e.target.value)}
+                      required={step >= 2}
                     />
                   </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="city">City</Label>
+                      <Input
+                        id="city"
+                        value={formData.city}
+                        onChange={(e) => handleInputChange("city", e.target.value)}
+                        required={step >= 2}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="zipCode">Zip Code</Label>
+                      <Input
+                        id="zipCode"
+                        value={formData.zipCode}
+                        onChange={(e) => handleInputChange("zipCode", e.target.value)}
+                        required={step >= 2}
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <Label htmlFor="zipCode">Zip Code</Label>
+                    <Label htmlFor="country">Country</Label>
                     <Input
-                      id="zipCode"
-                      value={formData.zipCode}
-                      onChange={(e) => handleInputChange("zipCode", e.target.value)}
-                      required
+                      id="country"
+                      value={formData.country}
+                      onChange={(e) => handleInputChange("country", e.target.value)}
+                      required={step >= 2}
                     />
                   </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="country">Country</Label>
-                  <Input
-                    id="country"
-                    value={formData.country}
-                    onChange={(e) => handleInputChange("country", e.target.value)}
-                    required
-                  />
+                  
+                  {/* Mobile Pay Button (Shows here for better UX on small screens) */}
+                  <div className="lg:hidden pt-6">
+                    <Button 
+                      type="submit"
+                      className="w-full btn-premium-gradient py-6 text-lg font-bold shadow-lg"
+                      disabled={!selectedProduct || !selectedSize}
+                    >
+                      Pay Now
+                    </Button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -309,12 +352,13 @@ export default function Checkout() {
                     </div>
                   </div>
 
+                  {/* Desktop Pay Button (Hidden on mobile since it's at the end of the form) */}
                   <Button 
-                    className="w-full btn-premium-gradient py-6 text-lg font-bold shadow-lg"
+                    className="w-full btn-premium-gradient py-6 text-lg font-bold shadow-lg hidden lg:block"
                     onClick={handleSubmit}
-                    disabled={!selectedProduct || !selectedSize}
+                    disabled={!selectedProduct || !selectedSize || step < 2}
                   >
-                    Complete Order
+                    Pay Now
                   </Button>
 
                   <div className="text-center space-y-2 text-sm text-gray-600">
