@@ -130,7 +130,12 @@ export function SaeedSignature() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <a 
+      href="https://pcv-production.up.railway.app/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="flex flex-col items-center justify-center w-full cursor-pointer hover:opacity-80 transition-opacity"
+    >
       <span className="text-[8px] font-black opacity-30 uppercase tracking-[0.2em] text-[#5d4037] mb-1">
         Built By
       </span>
@@ -140,6 +145,6 @@ export function SaeedSignature() {
         aria-hidden="true" 
         className="w-full flex justify-center"
       />
-    </div>
+    </a>
   );
 }
