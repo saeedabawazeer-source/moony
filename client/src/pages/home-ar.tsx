@@ -145,7 +145,7 @@ export default function HomeAR() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToShop}
-              className="relative z-30 px-10 py-5 rounded-full bg-[#eda78b] text-white font-black text-xs lg:text-sm uppercase tracking-[0.3em] border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-kufi"
+              className="relative z-30 px-10 py-5 rounded-full bg-[#eda78b] text-white font-black text-xs lg:text-sm uppercase border-[3px] border-black shadow-[4px_4px_0px_0px_#000] hover:shadow-[2px_2px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-kufi"
             >
               اختاري موديلك
             </motion.button>
@@ -218,7 +218,7 @@ export default function HomeAR() {
                       />
                       <span className="font-kufi">{arName}</span>
                       {col.id === 'daydream' && !isActive && (
-                        <span className="bg-[#e5815c]/15 text-[#e5815c] text-[7px] font-black px-1.5 py-0.5 rounded-full tracking-wider font-kufi">كمية محدودة</span>
+                        <span className="bg-[#e5815c]/15 text-[#e5815c] text-[7px] font-black px-1.5 py-0.5 rounded-full font-kufi">كمية محدودة</span>
                       )}
                     </button>
                   );
@@ -227,7 +227,7 @@ export default function HomeAR() {
             </div>
 
             <div className="w-full space-y-1 lg:space-y-2 px-8 lg:px-0 text-right">
-                <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c]">
+                <p className="font-sans font-black uppercase text-[8px] lg:text-[9px] text-[#e5815c]">
                   طقم مكون من 5 قطع
                 </p>
                 <h2 className="text-3xl lg:text-5xl font-serif font-black text-[#000000] tracking-tighter leading-none font-kufi">
@@ -279,7 +279,7 @@ export default function HomeAR() {
                   <i className="fas fa-shopping-cart text-lg lg:text-2xl"></i>
                   إضافة للسلة
                 </button>
-                <p className="text-[10px] font-bold text-[#5d4037]/40 uppercase tracking-widest text-center mt-4 font-black">
+                <p className="text-[10px] font-bold text-[#5d4037]/40 uppercase text-center mt-4 font-black">
                   يشمل جميع القطع الـ 5.
                 </p>
               </div>
@@ -291,7 +291,7 @@ export default function HomeAR() {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-full flex flex-col items-center mt-1 hover:opacity-80 transition-opacity"
               >
-                <p className="text-[8px] lg:text-[10px] font-black tracking-[0.2em] uppercase mb-0.5 text-black">شاهدي القطع الخمس ↓</p>
+                <p className="text-[8px] lg:text-[10px] font-black uppercase mb-0.5 text-black">شاهدي القطع الخمس ↓</p>
               </motion.button>
             </div>
           </div>
@@ -304,7 +304,7 @@ export default function HomeAR() {
             {/* Left/Top: Pieces Cluster */}
             <div className="flex flex-col items-center justify-center w-full order-1 lg:order-1 py-1 lg:py-2">
               <div className="mb-2 text-center lg:text-right w-full">
-                <p className="text-[9px] lg:text-xs font-black uppercase tracking-[0.3em] text-[#e5815c] mb-0.5">المواصفات</p>
+                <p className="text-[9px] lg:text-xs font-black uppercase text-[#e5815c] mb-0.5">المواصفات</p>
                 <h3 className="text-xl lg:text-5xl font-serif font-black tracking-tighter italic leading-tight">الطقم الكامل المتكامل</h3>
               </div>
 
@@ -407,7 +407,7 @@ export default function HomeAR() {
             
             {/* Reviews Title */}
             <div className="space-y-0.5" dir="rtl">
-              <p className="font-sans font-black uppercase tracking-[0.4em] text-[8px] lg:text-[9px] text-[#e5815c] font-kufi">آراء النجمات</p>
+              <p className="font-sans font-black uppercase text-[8px] lg:text-[9px] text-[#e5815c] font-kufi">آراء النجمات</p>
               <h2 className="text-xl lg:text-4xl font-serif font-black tracking-tighter leading-none font-kufi">نجمات موني</h2>
             </div>
 
@@ -441,7 +441,7 @@ export default function HomeAR() {
                        ))}
                      </div>
                      <p className="text-white font-serif font-black italic text-[11px] lg:text-lg leading-tight mb-1 lg:mb-2 font-kufi" dir="rtl">"{review.quote}"</p>
-                     <p className="text-white/80 font-sans font-bold uppercase tracking-widest text-[8px] lg:text-[10px] font-kufi" dir="rtl">{review.author}</p>
+                     <p className="text-white/80 font-sans font-bold uppercase text-[8px] lg:text-[10px] font-kufi" dir="rtl">{review.author}</p>
                    </div>
                  </motion.div>
                ))}
