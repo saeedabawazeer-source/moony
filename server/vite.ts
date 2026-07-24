@@ -65,7 +65,7 @@ export async function setupVite(app: Express, server: Server) {
       const description = isArabic 
         ? "لأنك تستحقين ملابس سباحة مريحة، محتشمة، وعملية. تشكيلتنا مصممة عشان تعطيك التغطية اللي تحتاجينها بستايل أنيق."
         : "Modest swimwear shouldn't feel like a compromise. Dive into the Moony modular collection.";
-      const host = req.get('host') || 'moony-swim.com';
+      const host = req.get('host') || 'moonyswim.com';
       const protocol = req.headers['x-forwarded-proto'] || req.protocol;
       const baseUrl = `${protocol}://${host}`;
       const imageUrl = isArabic ? `${baseUrl}/images/og-ar.png` : `${baseUrl}/images/og-en.png`;
@@ -115,7 +115,7 @@ export function serveStatic(app: Express) {
       const description = isArabic 
         ? "لأنك تستحقين ملابس سباحة مريحة، محتشمة، وعملية. تشكيلتنا مصممة عشان تعطيك التغطية اللي تحتاجينها بستايل أنيق."
         : "Modest swimwear shouldn't feel like a compromise. Dive into the Moony modular collection.";
-      const host = req.get('host') || 'moony-swim.com';
+      const host = req.get('host') || 'moonyswim.com';
       const protocol = req.headers['x-forwarded-proto'] || req.protocol;
       const baseUrl = `${protocol}://${host}`;
       const imageUrl = isArabic ? `${baseUrl}/images/og-ar.png` : `${baseUrl}/images/og-en.png`;
