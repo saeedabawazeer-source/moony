@@ -11,7 +11,6 @@ export default function CartDrawer() {
 
   const { items, removeFromCart, updateQuantity, clearCart, totalPrice, isOpen, closeCart } = useCart();
   const [step, setStep] = useState<"checkout" | "paying" | "success" | "error">("checkout");
-  const [checkoutFormStep, setCheckoutFormStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [paymentError, setPaymentError] = useState("");
@@ -61,10 +60,11 @@ export default function CartDrawer() {
     cancel: isAr ? "إلغاء" : "Cancel"
   };
 
+  const handleClose = () => {
     closeCart();
     setTimeout(() => {
       setStep("checkout");
-      setCheckoutFormStep(1);
+      setStep("checkout");
       setPaymentUrl("");
       setPaymentId("");
       setPaymentError("");
@@ -245,77 +245,54 @@ export default function CartDrawer() {
                   />
                 </div>
 
-                {checkoutFormStep === 1 && (
-                  <button 
-                    type="button"
-                    onClick={() => {
-                      if (!formData.fullName || !formData.phone) {
-                        alert(isAr ? "يرجى تعبئة الاسم ورقم الجوال أولاً" : "Please fill in your name and phone number first.");
-                        return;
-                      }
-                      setCheckoutFormStep(2);
-                      setTimeout(() => {
-                        document.getElementById('address-section-drawer')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                      }, 100);
-                    }}
-                    className={`w-full mt-4 py-4 rounded-xl font-bold text-sm uppercase tracking-widest bg-black text-white hover:bg-gray-800 transition-all ${isAr ? "font-kufi" : ""}`}
-                  >
-                    {isAr ? "التالي: عنوان التوصيل" : "Next: Shipping Address"}
-                  </button>
-                )}
-
-                <div 
-                  id="address-section-drawer"
-                  className={`transition-all duration-500 overflow-hidden ${checkoutFormStep === 2 ? 'opacity-100 max-h-[1000px] mt-6' : 'opacity-0 max-h-0'}`}
-                >
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="flex flex-col border-b border-gray-200 pb-2">
-                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.city}</label>
-                      <input
-                        required={checkoutFormStep === 2}
-                        value={formData.city}
-                        onChange={e => setFormData(f => ({ ...f, city: e.target.value }))}
-                        className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
-                      />
-                    </div>
-                    <div className="flex flex-col border-b border-gray-200 pb-2">
-                      <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.district}</label>
-                      <input
-                        required={checkoutFormStep === 2}
-                        value={formData.district}
-                        onChange={e => setFormData(f => ({ ...f, district: e.target.value }))}
-                        className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
-                      />
-                    </div>
-                  </div>
-
+                <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col border-b border-gray-200 pb-2">
-                    <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.houseNumber}</label>
+                    <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.city}</label>
                     <input
-                      required={checkoutFormStep === 2}
-                      value={formData.houseNumber}
-                      onChange={e => setFormData(f => ({ ...f, houseNumber: e.target.value }))}
-                      className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
+                      required
+                      value={formData.city}
+                      onChange={e => setFormData(f => ({ ...f, city: e.target.value }))}
+                      className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
                     />
                   </div>
-
-                  <label className="flex items-center gap-3 cursor-pointer bg-white p-4 rounded-xl border border-gray-200 mt-6 hover:bg-gray-50 transition-colors shadow-sm">
-                    <div className="relative flex items-center justify-center">
-                      <input 
-                        type="checkbox" 
-                        className="peer appearance-none w-5 h-5 border-2 border-black rounded bg-white checked:bg-[#25D366] checked:border-[#25D366] transition-colors cursor-pointer"
-                        checked={subscribeWhatsapp}
-                        onChange={(e) => setSubscribeWhatsapp(e.target.checked)}
-                      />
-                      <i className="fas fa-check absolute text-white text-xs opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></i>
-                    </div>
-                    <div className="flex-1">
-                      <p className={`text-[10px] font-bold leading-tight ${subscribeWhatsapp ? "text-[#25D366]" : "text-black"} ${isAr ? "font-kufi" : "uppercase tracking-widest"}`}>
-                        {t.whatsappOffer}
-                      </p>
-                    </div>
-                  </label>
+                  <div className="flex flex-col border-b border-gray-200 pb-2">
+                    <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.district}</label>
+                    <input
+                      required
+                      value={formData.district}
+                      onChange={e => setFormData(f => ({ ...f, district: e.target.value }))}
+                      className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300 min-w-0"
+                    />
+                  </div>
                 </div>
+
+                <div className="flex flex-col border-b border-gray-200 pb-2">
+                  <label className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t.houseNumber}</label>
+                  <input
+                    required
+                    value={formData.houseNumber}
+                    onChange={e => setFormData(f => ({ ...f, houseNumber: e.target.value }))}
+                    className="bg-transparent outline-none text-base font-bold text-black placeholder:text-gray-300"
+                  />
+                </div>
+             </div>
+
+             <label className="flex items-center gap-3 cursor-pointer bg-white p-4 rounded-xl border border-gray-200 mt-6 hover:bg-gray-50 transition-colors shadow-sm">
+               <div className="relative flex items-center justify-center">
+                 <input 
+                   type="checkbox" 
+                   className="peer appearance-none w-5 h-5 border-2 border-black rounded bg-white checked:bg-[#25D366] checked:border-[#25D366] transition-colors cursor-pointer"
+                   checked={subscribeWhatsapp}
+                   onChange={(e) => setSubscribeWhatsapp(e.target.checked)}
+                 />
+                 <i className="fas fa-check absolute text-white text-xs opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></i>
+               </div>
+               <div className="flex-1">
+                 <p className={`text-[10px] font-bold leading-tight ${subscribeWhatsapp ? "text-[#25D366]" : "text-black"} ${isAr ? "font-kufi" : "uppercase tracking-widest"}`}>
+                   {t.whatsappOffer}
+                 </p>
+               </div>
+             </label>
           </div>
         ) : (
           <div className="px-6 py-6 border-t-2 border-dashed border-gray-200 bg-gray-50">
@@ -344,7 +321,7 @@ export default function CartDrawer() {
         )}
       </div>
 
-      {!isSuccess && checkoutFormStep === 2 && (
+      {!isSuccess && (
         <div className="px-6 pb-6 pt-4 shrink-0 bg-white border-t border-gray-100 sticky bottom-0 z-10 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
           <button
             type="submit"
