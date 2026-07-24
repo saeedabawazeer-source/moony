@@ -102,7 +102,7 @@ export default function Checkout() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Order Form */}
           <div className="space-y-8">
-            <div className="bg-white p-6 rounded-2xl shadow-sm">
+            <div className={`bg-white p-6 rounded-2xl shadow-sm ${selectedProduct ? 'hidden' : 'block'}`}>
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Product Selection</h2>
               
               <div className="space-y-4">
