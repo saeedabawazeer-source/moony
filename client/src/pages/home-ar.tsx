@@ -80,22 +80,7 @@ export default function HomeAR() {
     addToCart(currentProduct, selectedSize, quantity);
   };
 
-  const touchStartX = useRef<number>(0);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 30) {
-      if (diff > 0) {
-        setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length);
-      } else {
-        setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length);
-      }
-    }
-  };
+  // Swipe logic is now handled by framer-motion drag="x" to prevent scroll jumping
 
   return (
     <div className="relative h-[100dvh] w-screen bg-[#e5815c] overflow-hidden" dir="rtl">
@@ -162,30 +147,55 @@ export default function HomeAR() {
 
         {/* Section 2: The Cinematic Shop */}
         <section id="boutique-shop" className="snap-slide h-full flex flex-col lg:flex-row pt-0 overflow-hidden bg-[#fef8e1]" dir="rtl">
-          {/* 1. Swipeable Model Visual - pure CSS, no framer */}
-          <div 
-            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-l-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
+          {/* 1. Swipeable Model Visual - powered by framer-motion to prevent vertical jump */}
+          <motion.div 
+            className="w-full lg:w-[45%] h-[56vh] lg:h-full relative overflow-hidden rounded-b-[2rem] lg:rounded-none lg:rounded-r-[2.5rem] border-[3px] border-t-0 lg:border-t-0 border-black"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.05}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = offset.x;
+              // Reversed logic for RTL swipe if desired, but image array is LTR technically so keeping logic standard
+              if (swipe < -30) {
+                setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length);
+              } else if (swipe > 30) {
+                setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length);
+              }
+            }}
           >
-              {currentProduct.images.map((src, i) => (
-                <img
-                  key={src}
-                  src={src}
-                  alt={currentProduct.name}
-                  fetchPriority={i === 0 ? "high" : "auto"}
-                  loading="eager"
-                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200"
-                  style={{ opacity: i === currentImageIndex ? 1 : 0 }}
-                />
-              ))}
+            {currentProduct.images.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={currentProduct.name}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                loading="eager"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200 pointer-events-none"
+                style={{ opacity: i === currentImageIndex ? 1 : 0 }}
+              />
+            ))}
+
+            {/* Subtle Arrows */}
+            <button 
+              onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => (prev - 1 + currentProduct.images.length) % currentProduct.images.length); }}
+              className="absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center bg-black/10 hover:bg-black/30 text-white rounded-full backdrop-blur-sm transition-colors z-20"
+            >
+              <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button 
+              onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(prev => (prev + 1) % currentProduct.images.length); }}
+              className="absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center bg-black/10 hover:bg-black/30 text-white rounded-full backdrop-blur-sm transition-colors z-20"
+            >
+              <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+
             {/* Swipe Indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10" dir="ltr">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10 pointer-events-none">
               {currentProduct.images.map((_, i) => (
                 <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right/Bottom Info Area */}
           <div className="flex-1 flex flex-col items-center justify-center w-full lg:w-[55%] space-y-2 lg:space-y-4 px-8 lg:px-12 py-2 lg:py-0">
