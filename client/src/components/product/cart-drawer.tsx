@@ -154,7 +154,8 @@ export default function CartDrawer() {
       </div>
 
       <div className="flex-1">
-        <div className="px-6 py-6 space-y-6">
+        <div className={`transition-all duration-500 overflow-hidden ${!isSuccess && checkoutFormStep === 2 ? 'opacity-0 max-h-0' : 'opacity-100 max-h-[2000px]'}`}>
+          <div className="px-6 py-6 space-y-6">
           {items.map((item) => (
             <div key={`${item.product.id}-${item.size}`} className="flex justify-between items-start gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
               <div className="w-16 h-16 rounded-sm overflow-hidden flex-shrink-0 bg-gray-50 border border-gray-300 p-0.5">
@@ -196,6 +197,7 @@ export default function CartDrawer() {
            <div className="absolute -left-4 sm:-left-9 w-8 h-8 bg-black/10 rounded-full" />
            <div className="w-full border-t-2 border-dashed border-gray-300" />
            <div className="absolute -right-4 sm:-right-9 w-8 h-8 bg-black/10 rounded-full" />
+        </div>
         </div>
 
         <div className="px-6 space-y-2 mt-4">
